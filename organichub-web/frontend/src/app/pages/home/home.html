@@ -1,0 +1,255 @@
+<!-- ======================================================
+     HOME PAGE
+====================================================== -->
+
+<!-- ======================================================
+     SECTION 1: HERO SLIDER (PRIMARY)
+====================================================== -->
+<app-hero-slider></app-hero-slider>
+
+<!-- ======================================================
+     SECTION 2: KEY FEATURES
+====================================================== -->
+<section class="home-features">
+  <div class="features-inner">
+
+    <div class="feature-item">
+      <h3>100% Organic</h3>
+      <p>No chemicals. No shortcuts.</p>
+    </div>
+
+    <div class="feature-item">
+      <h3>Farm to Table</h3>
+      <p>Directly sourced from trusted farms.</p>
+    </div>
+
+    <div class="feature-item">
+      <h3>Fresh Delivery</h3>
+      <p>Handled with care, delivered fast.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ======================================================
+     SECTION 3: ABOUT ORGANIC HUB
+====================================================== -->
+<section class="home-about">
+  <div class="about-inner">
+
+    <span class="about-eyebrow">Our Philosophy</span>
+
+    <h2>Why Organic Hub?</h2>
+
+    <p class="about-tagline">
+      Purity Over Compromise
+    </p>
+
+    <div class="about-divider"></div>
+
+    <p class="about-text">
+      Organic Hub was created with a single promise — to deliver
+      food that is genuinely organic, responsibly sourced,
+      and naturally processed.
+    </p>
+
+    <p class="about-text">
+      From organic spices and cold-pressed oils to farm-fresh
+      dairy and honey, every product reflects our commitment
+      to purity, transparency, and trust.
+    </p>
+
+  </div>
+</section>
+
+<!-- ======================================================
+     SECTION 3.5: TRUST MARQUEE
+====================================================== -->
+<section class="trust-marquee">
+  <div class="trust-track">
+    <span>Purity Over Compromise</span>
+    <span>100% Organic</span>
+    <span>Farm to Table</span>
+    <span>Chemical Free</span>
+    <span>Cold Pressed</span>
+    <span>Raw & Unfiltered</span>
+    <span>Locally Sourced</span>
+
+    <!-- duplicate for seamless loop -->
+    <span>Purity Over Compromise</span>
+    <span>100% Organic</span>
+    <span>Farm to Table</span>
+    <span>Chemical Free</span>
+    <span>Cold Pressed</span>
+    <span>Raw & Unfiltered</span>
+    <span>Locally Sourced</span>
+  </div>
+</section>
+
+<!-- ======================================================
+     SECTION 4: PRODUCT CATEGORY HIGHLIGHTS
+====================================================== -->
+<section id="categories" class="home-categories">
+
+  <!-- SECTION HEADER -->
+  <div class="categories-header">
+    <h2>Browse by Category</h2>
+    <p>Explore our naturally sourced product collections</p>
+  </div>
+
+  <!-- CATEGORY GRID -->
+  <div class="categories-inner">
+
+    <a
+      class="category-card"
+      [routerLink]="['/products']"
+      [queryParams]="{ category: 'Spices' }">
+
+      <h4>Organic Spices</h4>
+      <p>Pure aroma & authentic taste</p>
+
+    </a>
+
+    <a
+      class="category-card"
+      [routerLink]="['/products']"
+      [queryParams]="{ category: 'Dairy' }">
+
+      <h4>Organic Milk</h4>
+      <p>Fresh from grass-fed farms</p>
+
+    </a>
+
+    <a
+      class="category-card"
+      [routerLink]="['/products']"
+      [queryParams]="{ category: 'Oil' }">
+
+      <h4>Organic Oil</h4>
+      <p>Cold-pressed & chemical-free</p>
+
+    </a>
+
+    <a
+      class="category-card"
+      [routerLink]="['/products']"
+      [queryParams]="{ category: 'Grains' }">
+
+      <h4>Organic Rice</h4>
+      <p>Naturally grown premium grains</p>
+
+    </a>
+
+    <a
+      class="category-card"
+      [routerLink]="['/products']"
+      [queryParams]="{ category: 'Natural' }">
+
+      <h4>Organic Honey</h4>
+      <p>Raw, natural & unfiltered</p>
+
+    </a>
+
+    <a
+      class="category-card"
+      [routerLink]="['/products']"
+      [queryParams]="{ category: 'Seafood' }">
+
+      <h4>Farm Fresh Shrimps</h4>
+      <p>Locally sourced, naturally raised</p>
+
+    </a>
+
+  </div>
+
+</section>
+
+
+
+
+<!-- ======================================================
+     SECTION: CONNECT WITH US
+====================================================== -->
+<section class="connect-section">
+
+  <div class="connect-container">
+
+    <div class="connect-col">
+      <h3>Visit Us</h3>
+      <p>
+        Shop - 02, 6th Floor<br>
+        Mirpur DOHS Shopping Complex<br>
+        Mirpur, Dhaka 1216
+      </p>
+    </div>
+
+    <div class="connect-col">
+      <h3>Contact</h3>
+      <p>📞 +880 1812114911</p>
+      <p>📞 +880 1712863456</p>
+      <p>✉ contact@organichub.net</p>
+      <p>🌐 www.organichub.net</p>
+    </div>
+
+    <div class="connect-col">
+      <h3>Follow Us</h3>
+
+      <div class="social-links">
+
+        <a href="#" target="_blank" class="social-item facebook">
+
+          <svg viewBox="0 0 24 24" class="social-icon">
+            <path d="M22 12.07C22 6.48 17.52 2 11.93 2 
+                    6.34 2 2 6.48 2 12.07c0 5.03 
+                    3.66 9.19 8.44 9.93v-7.02H7.9v-2.91h2.54V9.41
+                    c0-2.5 1.49-3.89 3.77-3.89 1.09 
+                    0 2.23.19 2.23.19v2.46h-1.26
+                    c-1.24 0-1.63.77-1.63 1.56v1.87h2.78
+                    l-.44 2.91h-2.34V22c4.78-.74 
+                    8.44-4.9 8.44-9.93z"/>
+          </svg>
+          Facebook
+        </a>
+
+        <a href="#" target="_blank" class="social-item youtube">
+
+          <svg viewBox="0 0 24 24" class="social-icon">
+            <path d="M23.5 6.2a2.9 2.9 0 0 0-2-2.05C19.7 3.5 
+                    12 3.5 12 3.5s-7.7 0-9.5.65a2.9 
+                    2.9 0 0 0-2 2.05C0 8.1 0 12 0 
+                    12s0 3.9.5 5.8a2.9 2.9 0 0 0 
+                    2 2.05C4.3 20.5 12 20.5 12 
+                    20.5s7.7 0 9.5-.65a2.9 2.9 0 
+                    0 0 2-2.05C24 15.9 24 12 24 
+                    12s0-3.9-.5-5.8zM9.75 
+                    15.5v-7l6 3.5-6 3.5z"/>
+          </svg>
+          YouTube
+        </a>
+
+        <a href="#" target="_blank" class="social-item instagram">
+
+          <svg viewBox="0 0 24 24" class="social-icon">
+            <path d="M7.75 2h8.5A5.75 5.75 0 0 1 
+                    22 7.75v8.5A5.75 5.75 0 0 1 
+                    16.25 22h-8.5A5.75 5.75 0 0 
+                    1 2 16.25v-8.5A5.75 5.75 0 
+                    0 1 7.75 2zm4.25 5a5 
+                    5 0 1 0 0 10 5 5 0 0 
+                    0 0-10zm0 8.25A3.25 
+                    3.25 0 1 1 12 8.75a3.25 
+                    3.25 0 0 1 0 6.5zm4.75-8.5
+                    a1.25 1.25 0 1 1-2.5 
+                    0 1.25 1.25 0 0 1 2.5 0z"/>
+          </svg>
+          Instagram
+        </a>
+
+      </div>
+    </div>
+
+
+  </div>
+
+</section>
+

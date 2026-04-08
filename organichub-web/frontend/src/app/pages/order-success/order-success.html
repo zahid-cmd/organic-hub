@@ -1,0 +1,110 @@
+<div class="order-success-container">
+
+  <!-- ================= LOADING ================= -->
+  <ng-container *ngIf="loading; else loadedBlock">
+    <div class="loading">
+      Loading order details...
+    </div>
+  </ng-container>
+
+  <!-- ================= LOADED BLOCK ================= -->
+  <ng-template #loadedBlock>
+
+    <!-- ERROR -->
+    <div *ngIf="errorMessage; else successBlock" class="error">
+      <h2>⚠ {{ errorMessage }}</h2>
+      <button (click)="backToHome()">Back to Home</button>
+    </div>
+
+    <!-- SUCCESS -->
+    <ng-template #successBlock>
+      <div *ngIf="order" class="success-card">
+
+        <div class="success-header">
+          <h1>🎉 Order Placed Successfully!</h1>
+          <p>Thank you for shopping with Organic Hub.</p>
+        </div>
+
+        <!-- ORDER INFO -->
+        <div class="order-info">
+          <div class="info-grid">
+            <div><strong>Order No:</strong> {{ order.orderNo }}</div>
+            <div><strong>Customer:</strong> {{ order.customerName }}</div>
+            <div><strong>Phone:</strong> {{ order.phone }}</div>
+            <div><strong>Address:</strong> {{ order.address }}</div>
+            <div>
+              <strong>Date:</strong>
+              {{ order.orderDate | date:'medium' }}
+            </div>
+          </div>
+        </div>
+
+        <!-- ITEMS -->
+        <div class="order-items" *ngIf="order.items.length; else noItems">
+          <h3>Ordered Items</h3>
+
+          <!-- Desktop Table -->
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Qty</th>
+                  <th>Unit Price</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of order.items">
+                  <td>{{ item.productName }}</td>
+                  <td>{{ item.quantity }}</td>
+                  <td>{{ item.unitPrice | number:'1.2-2' }}</td>
+                  <td>{{ item.lineTotal | number:'1.2-2' }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Mobile Card Layout -->
+          <div class="mobile-items">
+            <div class="item-card" *ngFor="let item of order.items">
+              <div class="item-name">{{ item.productName }}</div>
+              <div>Qty: {{ item.quantity }}</div>
+              <div>Unit: {{ item.unitPrice | number:'1.2-2' }}</div>
+              <div class="item-total">
+                Total: {{ item.lineTotal | number:'1.2-2' }}
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- NO ITEMS -->
+        <ng-template #noItems>
+          <p>No items found for this order.</p>
+        </ng-template>
+
+        <!-- TOTAL -->
+        <div class="order-total">
+          <h2>
+            Total:
+            {{ order.totalAmount | number:'1.2-2' }}
+          </h2>
+        </div>
+
+        <!-- ACTIONS -->
+        <div class="actions">
+          <button class="primary" (click)="continueShopping()">
+            Continue Shopping
+          </button>
+          <button class="secondary" (click)="backToHome()">
+            Back to Home
+          </button>
+        </div>
+
+      </div>
+    </ng-template>
+
+  </ng-template>
+
+</div>

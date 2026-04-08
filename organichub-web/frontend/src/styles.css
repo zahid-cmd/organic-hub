@@ -1,0 +1,74 @@
+/* =========================
+   GLOBAL BASE STYLES
+========================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: #000;
+  color: #fff;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+/* =========================
+   APP MAIN OFFSET
+========================= */
+
+.app-main {
+  padding-top: 72px; /* SAME AS HEADER HEIGHT */
+  min-height: 100vh;
+  background: radial-gradient(
+    ellipse at top,
+    #1a1a1a 0%,
+    #000000 70%
+  );
+}
+.app-main {
+  padding-top: 72px; /* same as header height */
+  min-height: calc(100vh - 72px);
+}
+
+/* ==========================================
+   ORGANIC THIN SCROLLBAR (RIGHT SIDE)
+========================================== */
+
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    to bottom,
+    #2f9e44,
+    #7ed957,
+    #ffd54f
+  );
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    to bottom,
+    #1b5e20,
+    #2f9e44,
+    #7ed957
+  );
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #2f9e44 rgba(0,0,0,0.1);
+}
+

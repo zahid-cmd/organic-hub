@@ -1,0 +1,98 @@
+<div class="cart-container" *ngIf="(cartUi.isOpen$ | async)">
+
+  <!-- HEADER -->
+  <div class="cart-header">
+    <h2>My Cart</h2>
+
+    <div class="header-actions">
+      <button
+        class="clear-btn"
+        *ngIf="cartItems.length > 0"
+        (click)="clearCart()">
+        Clear All
+      </button>
+
+      <button class="close-btn" (click)="close()">✕</button>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="cart-body">
+
+    <div *ngIf="cartItems.length === 0" class="empty">
+      Your cart is empty.
+    </div>
+
+    <div
+      class="cart-item"
+      *ngFor="let item of cartItems">
+
+      <!-- LEFT SIDE -->
+      <div class="item-left">
+
+        <div class="item-name">
+          {{ item.product.productName }}
+        </div>
+
+        <div class="item-meta">
+          Rate: ৳ {{ item.product.salePrice }}
+        </div>
+
+      </div>
+
+      <!-- RIGHT SIDE -->
+      <div class="item-right">
+
+        <!-- Quantity -->
+        <div class="qty-box">
+          <button (click)="decrease(item)">−</button>
+          <span>{{ item.quantity }}</span>
+          <button (click)="increase(item)">+</button>
+        </div>
+
+        <!-- Amount -->
+        <div class="amount">
+          ৳ {{ item.product.salePrice * item.quantity }}
+        </div>
+
+        <!-- Remove -->
+        <button
+          class="remove"
+          (click)="remove(item.product.id)">
+          ✕
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div
+    class="cart-footer"
+    *ngIf="cartItems.length > 0">
+
+    <div class="cart-total-section">
+
+      <div class="total-row">
+        <span class="label">Subtotal</span>
+        <span class="value">৳ {{ getTotal() }}</span>
+      </div>
+
+      <div class="grand-total">
+        <span>Total</span>
+        <span>৳ {{ getTotal() }}</span>
+      </div>
+
+    </div>
+
+    <button
+      class="checkout-btn"
+      (click)="goToCheckout()">
+      Proceed to Order
+    </button>
+
+  </div>
+
+</div>

@@ -1,0 +1,221 @@
+.order-success-container {
+  padding: 60px 20px;
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: #0f0f0f;
+  color: #f5f5f5;
+}
+
+/* ================= LOADING & ERROR ================= */
+
+.loading,
+.error {
+  text-align: center;
+  font-size: 18px;
+}
+
+.error button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background: #4ade80;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* ================= CARD ================= */
+
+.success-card {
+  width: 100%;
+  max-width: 900px;
+  background: #161616;
+  border-radius: 14px;
+  padding: 40px;
+  box-shadow: 0 0 30px rgba(0, 255, 120, 0.08);
+}
+
+/* ================= HEADER ================= */
+
+.success-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.success-header h1 {
+  color: #4ade80;
+  margin-bottom: 10px;
+}
+
+/* ================= ORDER INFO ================= */
+
+.order-info {
+  background: #1f1f1f;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+/* ================= TABLE ================= */
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #1a1a1a;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+thead {
+  background: #222;
+}
+
+th, td {
+  padding: 12px;
+  border-bottom: 1px solid #2a2a2a;
+}
+
+/* Default left alignment */
+td:first-child,
+th:first-child {
+  text-align: left;
+}
+
+/* Qty column center */
+td:nth-child(2),
+th:nth-child(2) {
+  text-align: center;
+}
+
+/* Unit Price right */
+td:nth-child(3),
+th:nth-child(3) {
+  text-align: right;
+}
+
+/* Total right */
+td:nth-child(4),
+th:nth-child(4) {
+  text-align: right;
+}
+
+th {
+  color: #4ade80;
+  font-weight: 600;
+}
+
+tbody tr:hover {
+  background: #202020;
+}
+
+/* ================= MOBILE ITEM CARDS ================= */
+
+.mobile-items {
+  display: none;
+}
+
+.item-card {
+  background: #1a1a1a;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.item-name {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.item-total {
+  color: #4ade80;
+  margin-top: 6px;
+}
+
+/* ================= TOTAL ================= */
+
+.order-total {
+  text-align: right;
+  margin-top: 20px;
+}
+
+.order-total h2 {
+  color: #4ade80;
+}
+
+/* ================= ACTIONS ================= */
+
+.actions {
+  margin-top: 30px;
+  display: flex;
+  gap: 15px;
+}
+
+.actions button {
+  flex: 1;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+  border: none;
+}
+
+.primary {
+  background: #4ade80;
+  color: #000;
+}
+
+.primary:hover {
+  background: #22c55e;
+}
+
+.secondary {
+  background: transparent;
+  border: 1px solid #4ade80;
+  color: #4ade80;
+}
+
+.secondary:hover {
+  background: #4ade80;
+  color: #000;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+
+  .success-card {
+    padding: 25px;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  table {
+    display: none;
+  }
+
+  .mobile-items {
+    display: block;
+  }
+
+  .order-total {
+    text-align: left;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+}

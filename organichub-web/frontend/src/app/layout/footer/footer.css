@@ -1,0 +1,53 @@
+/* =========================
+   FOOTER BASE LAYOUT
+========================= */
+
+.site-footer {
+  height: 64px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* 🌿 organic dark base */
+  background: linear-gradient(
+    to top,
+    #0f0f0f,
+    #1a1a1a
+  );
+
+  /* subtle organic separator */
+  border-top: 1px solid rgba(126, 217, 87, 0.25);
+
+  box-sizing: border-box;
+}
+
+/* =========================
+   FOOTER INNER
+========================= */
+
+.footer-inner {
+  width: 100%;
+  text-align: center;
+}
+
+/* =========================
+   FOOTER TEXT
+========================= */
+
+.footer-text {
+  font-size: 13px;
+  letter-spacing: 0.3px;
+
+  /* 🌱 soft organic grey */
+  color: #cfcfcf;
+}
+
+/* =========================
+   OPTIONAL HIGHLIGHT (BRAND)
+========================= */
+
+.footer-text span {
+  color: #7ed957; /* organic green accent */
+  font-weight: 500;
+}

@@ -1,0 +1,6 @@
+@OrganicHub.Api_HostAddress = http://localhost:5150
+
+GET {{OrganicHub.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

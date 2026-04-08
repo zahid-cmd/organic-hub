@@ -1,0 +1,31 @@
+<app-header></app-header>
+
+<!-- Scroll Indicator -->
+<div
+  class="scroll-indicator"
+  (click)="scrollToTop()">
+
+  <div class="scroll-track">
+    <div
+      class="scroll-progress"
+      [style.height.%]="scrollPercent">
+    </div>
+  </div>
+
+  <span class="scroll-text">
+    {{ scrollPercent > 10 ? 'TOP' : 'SCROLL' }}
+  </span>
+</div>
+
+<!-- MAIN SCROLL CONTAINER -->
+<main
+  class="app-main"
+  #scrollContainer
+  (scroll)="onScroll(scrollContainer)">
+
+  <router-outlet></router-outlet>
+
+</main>
+
+<app-footer></app-footer>
+<app-cart-drawer></app-cart-drawer>

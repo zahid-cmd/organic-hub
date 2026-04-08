@@ -1,0 +1,265 @@
+/* ==============================
+   CHECKOUT PAGE BACKGROUND
+============================== */
+.checkout-page {
+  padding: 60px 0 80px;
+  min-height: calc(100vh - 154px); /* header + footer */
+  background: linear-gradient(135deg, #f4f7f2 0%, #eef3ea 100%);
+}
+
+/* ==============================
+   TITLE SECTION
+============================== */
+.checkout-title {
+  max-width: 1100px;
+  margin: 0 auto 10px;
+  padding: 0 20px;
+}
+
+.checkout-title h1 {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #1f2d1f;
+}
+
+.checkout-title p {
+  color: #5f6f5f;
+  font-size: 14px;
+}
+
+/* ==============================
+   MAIN CONTAINER
+============================== */
+.checkout-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ==============================
+   GRID LAYOUT
+============================== */
+.checkout-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  align-items: stretch; /* makes equal height */
+}
+
+/* ==============================
+   CARD DESIGN
+============================== */
+.checkout-form,
+.checkout-summary {
+  background: #ffffff;
+  padding: 35px;
+  border-radius: 16px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Make both equal height */
+.checkout-summary {
+  justify-content: space-between;
+}
+
+/* ==============================
+   SECTION TITLES (LIKE PANEL HEADERS)
+============================== */
+.checkout-form h2,
+.checkout-summary h2 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 22px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e9f2e3;
+  color: #1f2d1f;
+}
+
+/* ==============================
+   FORM STYLING
+============================== */
+.checkout-form label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #2e3d2e;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.checkout-form input,
+.checkout-form textarea {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 18px;
+  border-radius: 8px;
+  border: 1px solid #dcdcdc;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  background: #fafafa;
+}
+
+.checkout-form input:focus,
+.checkout-form textarea:focus {
+  outline: none;
+  border-color: #8cc152;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(140, 193, 82, 0.15);
+}
+
+/* ==============================
+   BUTTON
+============================== */
+.place-order-btn {
+  margin-top: auto;
+  width: 100%;
+  padding: 14px;
+  border-radius: 40px;
+  border: none;
+  background: linear-gradient(90deg, #8cc152, #79b343);
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.place-order-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(140, 193, 82, 0.35);
+}
+
+.place-order-btn:disabled {
+  background: #c5d8a8;
+  cursor: not-allowed;
+}
+
+/* ==============================
+   SUMMARY ITEMS
+============================== */
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 14px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.summary-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.summary-name {
+  font-weight: 600;
+  font-size: 14px;
+  color: #222;
+}
+
+.summary-qty {
+  font-size: 12px;
+  color: #777;
+  margin-top: 2px;
+}
+
+.summary-amount {
+  font-weight: 600;
+  font-size: 14px;
+  color: #222;
+}
+
+/* ==============================
+   TOTAL SECTION
+============================== */
+.summary-total {
+  margin-top: 25px;
+  padding-top: 15px;
+  border-top: 2px solid #e9f2e3;
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: 700;
+  color: #1f2d1f;
+}
+
+/* ==============================
+   EMPTY STATE
+============================== */
+.empty-summary {
+  text-align: center;
+  padding: 40px 0;
+  color: #888;
+}
+.checkout-summary {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Items stay top */
+.summary-items {
+  flex: 1;
+}
+
+/* Total sticks to bottom */
+.summary-total {
+  margin-top: auto;
+  padding-top: 18px;
+  border-top: 2px solid #e9f2e3;
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: 700;
+  color: #1f2d1f;
+}
+.title-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.back-btn {
+  background: none;
+  border: 1px solid #dcdcdc;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.2s ease;
+}
+
+.back-btn:hover {
+  background: #8cc152;
+  color: white;
+  border-color: #8cc152;
+}
+/* FORM LABEL BLOCK */
+.checkout-form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1e2d1f;
+  margin-bottom: 22px;   /* space between fields */
+}
+
+/* SPACE BETWEEN LABEL TEXT & INPUT */
+.checkout-form label input,
+.checkout-form label textarea {
+  margin-top: 8px;       /* 👈 this increases gap */
+}
+.checkout-form label input,
+.checkout-form label textarea {
+  margin-top: 10px;
+}
+
+/* ==============================
+   RESPONSIVE
+============================== */
+@media (max-width: 900px) {
+  .checkout-grid {
+    grid-template-columns: 1fr;
+  }
+}

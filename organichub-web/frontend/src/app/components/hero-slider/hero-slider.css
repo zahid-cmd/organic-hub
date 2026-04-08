@@ -1,0 +1,276 @@
+/* ======================================================
+   HERO SLIDER — CINEMATIC ORGANIC VERSION
+====================================================== */
+
+.hero-slider {
+  position: relative;
+  height: 720px;
+  max-height: calc(100vh - 100px);
+  overflow: hidden;
+
+  /* Deep cinematic layered background */
+  background:
+    radial-gradient(circle at 25% 20%, rgba(126,217,87,0.10), transparent 45%),
+    radial-gradient(circle at 75% 80%, rgba(255,213,79,0.08), transparent 50%),
+    radial-gradient(circle at center, #1a1a1a 0%, #0b0b0b 70%);
+}
+
+/* Soft vignette for cinematic depth */
+.hero-slider::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at center,
+      transparent 55%,
+      rgba(0,0,0,0.5) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ======================================================
+   SLIDER CORE
+====================================================== */
+
+.slider-viewport {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.slider-track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.slider-track.no-transition {
+  transition: none !important;
+}
+
+.slide {
+  min-width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* ======================================================
+   SLIDE LAYOUT
+====================================================== */
+
+.slide-content {
+  position: relative;
+  z-index: 2;
+
+  max-width: 1300px;
+  margin: auto;
+  width: 100%;
+  padding: 0 60px;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+
+  gap: 200px; /* Strong horizontal separation */
+}
+
+/* ======================================================
+   TEXT AREA
+====================================================== */
+
+.slide-text h1 {
+  font-size: 58px;
+  font-weight: 700;
+  color: #ffffff;
+  white-space: nowrap;
+  letter-spacing: 0.5px;
+}
+
+.tagline {
+  font-size: 20px;
+  color: #7ed957;
+  margin: 14px 0;
+  font-weight: 500;
+}
+
+.motto {
+  font-size: 14px;
+  color: #ffd54f;
+  margin-bottom: 28px;
+  letter-spacing: 0.6px;
+}
+
+.cta-btn {
+  background: linear-gradient(90deg, #7ed957, #9be15d);
+  color: #0b0b0b;
+  border: none;
+  padding: 14px 36px;
+  border-radius: 40px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(126,217,87,0.4);
+}
+
+/* ======================================================
+   TRUST BOXES
+====================================================== */
+
+.trust-boxes {
+  display: flex;
+  gap: 18px;
+  margin: 24px 0 32px;
+}
+
+.trust-box {
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(10px);
+  padding: 16px 22px;
+  border-radius: 16px;
+  min-width: 130px;
+  text-align: center;
+  border: 1px solid rgba(255,255,255,0.06);
+  transition: 0.3s ease;
+}
+
+.trust-box:hover {
+  transform: translateY(-4px);
+  border-color: rgba(126,217,87,0.5);
+}
+
+.trust-box span {
+  display: block;
+  font-size: 22px;
+  font-weight: 700;
+  color: #7ed957;
+}
+
+.trust-box small {
+  font-size: 12px;
+  color: #d0d0d0;
+  letter-spacing: 0.4px;
+}
+
+/* ======================================================
+   IMAGE AREA
+====================================================== */
+
+.slide-image {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-image {
+  position: relative;
+  z-index: 2;
+
+  max-width: 750px;
+  max-height: 750px;
+
+  object-fit: contain;
+
+  transform: translateY(40px);
+
+  filter:
+    drop-shadow(0 45px 70px rgba(0,0,0,0.85))
+    brightness(1.03)
+    contrast(1.05);
+}
+
+/* ======================================================
+   NAVIGATION ARROWS
+====================================================== */
+
+.nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 52px;
+  color: #7ed957;
+  cursor: pointer;
+  z-index: 3;
+  transition: 0.2s ease;
+}
+
+.nav:hover {
+  transform: translateY(-50%) scale(1.1);
+}
+
+.prev { left: 30px; }
+.next { right: 30px; }
+
+/* ======================================================
+   PROGRESS BAR
+====================================================== */
+
+.progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  width: 100%;
+  background: rgba(255,255,255,0.08);
+  z-index: 3;
+}
+
+.progress-bar span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #7ed957, #ffd54f);
+  transition: width 0.1s linear;
+}
+
+.progress-bar span.no-transition {
+  transition: none !important;
+}
+
+/* ======================================================
+   RESPONSIVE
+====================================================== */
+
+@media (max-width: 1200px) {
+  .slide-content {
+    gap: 120px;
+  }
+
+  .slide-text h1 {
+    font-size: 48px;
+  }
+}
+
+@media (max-width: 992px) {
+
+  .hero-slider {
+    height: auto;
+    padding: 120px 0 60px;
+  }
+
+  .slide-content {
+    grid-template-columns: 1fr;
+    gap: 60px;
+    text-align: center;
+  }
+
+  .slide-text h1 {
+    white-space: normal;
+  }
+
+  .product-image {
+    transform: translateY(0);
+  }
+
+  .trust-boxes {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}

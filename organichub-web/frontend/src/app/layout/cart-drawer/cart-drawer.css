@@ -1,0 +1,246 @@
+/* ===============================
+   CONTAINER
+================================ */
+.cart-container {
+  position: fixed;
+  top: 90px;              /* below header */
+  right: 0;
+  width: 420px;
+
+  height: calc(100vh - 165px);  /* 🔥 reduced height */
+
+  background: #ffffff;
+  box-shadow: -4px 0 20px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+  border-radius: 12px 0 0 12px;
+}
+
+
+/* ===============================
+   HEADER
+================================ */
+.cart-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid #eaeaea;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-header h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #2e2e2e;
+}
+
+.header-actions {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+
+.clear-btn {
+  background: none;
+  border: none;
+  color: #7bbf5e;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* ===============================
+   BODY
+================================ */
+.cart-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px 24px;
+}
+
+/* ===============================
+   ITEM ROW
+================================ */
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 0;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.item-left {
+  flex: 1;
+}
+
+.item-name {
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 6px;
+  color: #222;
+}
+
+.item-meta {
+  font-size: 13px;
+  color: #777;
+}
+
+.unit {
+  color: #aaa;
+  font-size: 12px;
+}
+
+/* ===============================
+   RIGHT SIDE
+================================ */
+.item-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 200px;   /* prevents collapse */
+}
+
+
+.qty-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.qty-box button {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #dcdcdc;
+  background: #f5f5f5;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.qty-box span {
+  min-width: 28px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 16px;
+  color: #222;          /* 🔥 FORCE VISIBLE */
+}
+
+
+.amount {
+  min-width: 80px;
+  text-align: right;
+  font-weight: 700;
+  color: #2e2e2e;
+}
+
+.remove {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: #999;
+}
+
+/* ===============================
+   FOOTER
+================================ */
+.cart-footer {
+  padding: 20px 24px;
+  border-top: 1px solid #eaeaea;
+  background: #ffffff;
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.checkout-btn {
+  width: 100%;
+  padding: 16px;
+  border-radius: 50px;
+  border: none;
+  background: #8cc152;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.checkout-btn:hover {
+  background: #79b043;
+}
+
+/* ===============================
+   EMPTY STATE
+================================ */
+.empty {
+  text-align: center;
+  margin-top: 60px;
+  color: #888;
+  font-size: 14px;
+}
+/* ===============================
+   FOOTER
+================================ */
+.cart-footer {
+  padding: 18px 20px;
+  border-top: 1px solid #e5e5e5;
+  background: #ffffff;
+}
+
+/* TOTAL SECTION */
+.cart-total-section {
+  margin-bottom: 16px;
+}
+
+/* Normal row */
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #555;
+}
+
+/* Grand total */
+.grand-total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 17px;
+  font-weight: 700;
+  padding-top: 10px;
+  border-top: 1px solid #e0e0e0;
+  color: #111;
+}
+
+/* Checkout button */
+.checkout-btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 40px;
+  border: none;
+  background: #8cc152;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.checkout-btn:hover {
+  background: #7ab644;
+}
