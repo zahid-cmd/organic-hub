@@ -1,0 +1,161 @@
+<div class="form-page-container">
+
+  <app-organic-toast></app-organic-toast>
+
+  <app-page-sub-header title="Product Sale Price Setup">
+
+    <div page-actions class="subheader-actions">
+
+      <div class="price-mode-badge">
+        <span class="badge"
+              [ngClass]="isExistingPrice ? 'badge-warning' : 'badge-success'">
+          {{ isExistingPrice ? 'Update Price' : 'New Price' }}
+        </span>
+      </div>
+
+      <button
+        class="ch-btn ch-btn-primary"
+        (click)="onSave()">
+        {{ isExistingPrice ? 'Update' : 'Save' }}
+      </button>
+
+      <button
+        class="ch-btn"
+        (click)="onClear()">
+        Clear
+      </button>
+
+      <button
+        class="ch-btn"
+        (click)="onCancel()">
+        Back
+      </button>
+
+    </div>
+
+  </app-page-sub-header>
+
+  <div class="form-body">
+
+    <!-- COLUMN 1 : SELECTION -->
+    <div class="form-col">
+      <div class="form-group-box">
+        <div class="form-section">
+
+          <div class="section-header">Selection</div>
+
+          <div class="form-field">
+            <label>Sub Category</label>
+            <select
+              [(ngModel)]="form.subCategoryId"
+              (change)="onSubCategoryChange()"
+              [disabled]="isEditMode">
+              <option [ngValue]="0">Select</option>
+              <option *ngFor="let s of subCategories" [ngValue]="s.id">
+                {{ s.subCategoryName }}
+              </option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label>Product</label>
+            <select
+              [(ngModel)]="form.productId"
+              (change)="onProductChange()"
+              [disabled]="isEditMode">
+              <option [ngValue]="0">Select</option>
+              <option *ngFor="let p of products" [ngValue]="p.id">
+                {{ p.productName }}
+              </option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label>Status</label>
+            <select [(ngModel)]="form.status">
+              <option value="Active">Active</option>
+              <option value="Inactive">Inactive</option>
+            </select>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- COLUMN 2 : PRICING + NOTES -->
+    <div class="form-col">
+      <div class="form-group-box">
+        <div class="form-section">
+
+          <div class="section-header">Pricing</div>
+
+          <div class="form-field">
+            <label>Current Price</label>
+            <input
+              type="number"
+              [(ngModel)]="form.oldPrice"
+              readonly />
+          </div>
+
+          <div class="form-field">
+            <label>New Price</label>
+            <input
+              type="number"
+              [(ngModel)]="form.newPrice" />
+          </div>
+
+          <div class="form-field">
+            <label>Remarks</label>
+            <textarea
+              [(ngModel)]="form.remarks"></textarea>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- COLUMN 3 : AUDIT INFO -->
+    <div class="form-col">
+      <div class="form-group-box">
+        <div class="form-section">
+
+          <div class="section-header">Audit Info</div>
+
+          <div class="form-field">
+            <label>Created By</label>
+            <input type="text" [value]="createdBy" readonly />
+          </div>
+
+          <div class="form-field">
+            <label>Created Date</label>
+            <input type="text" [value]="createdAt" readonly />
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- COLUMN 4 : UPDATE INFO -->
+    <div class="form-col">
+      <div class="form-group-box">
+        <div class="form-section">
+
+          <div class="section-header">Update Info</div>
+
+          <div class="form-field">
+            <label>Updated By</label>
+            <input type="text" [value]="updatedBy" readonly />
+          </div>
+
+          <div class="form-field">
+            <label>Updated Date</label>
+            <input type="text" [value]="updatedAt" readonly />
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

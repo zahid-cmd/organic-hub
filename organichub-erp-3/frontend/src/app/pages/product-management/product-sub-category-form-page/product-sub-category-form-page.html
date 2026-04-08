@@ -1,0 +1,187 @@
+<div class="page-body">
+
+  <!-- TOAST -->
+  <app-organic-toast></app-organic-toast>
+
+  <!-- PAGE HEADER -->
+  <app-page-sub-header title="Create / Update Product Sub Category">
+    <div page-actions class="subheader-actions">
+
+      <button
+        type="button"
+        class="ch-btn"
+        *ngIf="!isViewMode"
+        (click)="onSave()">
+        {{ mode === 'edit' ? 'Update' : 'Save' }}
+      </button>
+
+      <button
+        type="button"
+        class="ch-btn"
+        *ngIf="!isViewMode"
+        (click)="onClear()">
+        Clear
+      </button>
+
+      <button
+        type="button"
+        class="ch-btn"
+        (click)="onBack()">
+        Back
+      </button>
+
+    </div>
+  </app-page-sub-header>
+
+  <!-- PAGE CONTENT -->
+  <div class="page-body-content">
+
+    <div class="form-body">
+
+      <!-- ===================================================== -->
+      <!-- COLUMN 1 – IDENTIFICATION -->
+      <!-- ===================================================== -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+
+            <div class="section-header">Sub Category Identification</div>
+
+            <!-- Product Category -->
+            <div class="form-field">
+              <label>Product Category</label>
+
+              <select
+                [(ngModel)]="subCategory.parentCategoryId"
+                (change)="onCategoryChange()"
+                [disabled]="isViewMode || mode === 'edit'"
+                [class.view-mode]="isViewMode">
+
+                <option [ngValue]="null">Select Product Category</option>
+
+                <option
+                  *ngFor="let c of categories"
+                  [ngValue]="c.id">
+                  {{ c.categoryName }}
+                </option>
+
+              </select>
+            </div>
+
+            <!-- Sub Category Code -->
+            <div class="form-field">
+              <label>Sub Category Code</label>
+              <input
+                type="text"
+                [(ngModel)]="subCategory.subCategoryCode"
+                readonly>
+            </div>
+
+            <!-- Sub Category Name -->
+            <div class="form-field">
+              <label>Sub Category Name</label>
+              <input
+                type="text"
+                [(ngModel)]="subCategory.subCategoryName"
+                [disabled]="isViewMode">
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================================================== -->
+      <!-- COLUMN 2 – STATUS -->
+      <!-- ===================================================== -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+
+            <div class="section-header">Status</div>
+
+            <div class="form-field">
+              <label>Status</label>
+              <select
+                [(ngModel)]="subCategory.status"
+                [disabled]="isViewMode">
+
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label>Remarks</label>
+              <input
+                type="text"
+                [(ngModel)]="subCategory.remarks"
+                [disabled]="isViewMode">
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================================================== -->
+      <!-- COLUMN 3 – AUDIT INFO -->
+      <!-- ===================================================== -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+
+            <div class="section-header">Audit Info</div>
+
+            <div class="form-field">
+              <label>Created By</label>
+              <input
+                type="text"
+                [(ngModel)]="subCategory.createdBy"
+                readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Creation Date</label>
+              <input
+                type="text"
+                [(ngModel)]="subCategory.createdDate"
+                readonly>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================================================== -->
+      <!-- COLUMN 4 – UPDATE INFO -->
+      <!-- ===================================================== -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+
+            <div class="section-header">Update Info</div>
+
+            <div class="form-field">
+              <label>Updated By</label>
+              <input
+                type="text"
+                [(ngModel)]="subCategory.updatedBy"
+                readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Updated Date</label>
+              <input
+                type="text"
+                [(ngModel)]="subCategory.updatedDate"
+                readonly>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

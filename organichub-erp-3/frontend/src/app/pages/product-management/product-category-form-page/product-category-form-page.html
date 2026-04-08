@@ -1,0 +1,151 @@
+<div class="page-body">
+
+  <app-organic-toast></app-organic-toast>
+
+  <app-page-sub-header title="Create / Update Category">
+    <div page-actions class="subheader-actions">
+
+      <button
+        type="button"
+        class="ch-btn"
+        *ngIf="!isViewMode"
+        (click)="onSave()">
+        {{ saveButtonLabel }}
+      </button>
+
+      <button
+        type="button"
+        class="ch-btn"
+        *ngIf="!isViewMode"
+        (click)="onClear()">
+        Clear
+      </button>
+
+      <button
+        type="button"
+        class="ch-btn"
+        (click)="onBack()">
+        Back
+      </button>
+
+    </div>
+  </app-page-sub-header>
+
+  <div class="page-body-content">
+
+    <div class="form-body">
+
+      <!-- COLUMN 1 -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+            <div class="section-header">Category Identification</div>
+
+            <!-- 🔥 NEW PRODUCT TYPE -->
+            <div class="form-field">
+              <label>Product Type</label>
+              <select
+                [(ngModel)]="category.productTypeId"
+                (change)="onProductTypeChange()"
+                [disabled]="isViewMode">
+
+                <option [ngValue]="0">Select Product Type</option>
+
+                <option *ngFor="let pt of productTypes" [ngValue]="pt.id">
+                  {{ pt.typeName }}
+                </option>
+
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label>Category Code</label>
+              <input
+                type="text"
+                [(ngModel)]="category.categoryCode"
+                readonly>
+            </div>
+
+
+            <div class="form-field">
+              <label>Category Name</label>
+              <input
+                type="text"
+                [(ngModel)]="category.categoryName"
+                [disabled]="isViewMode">
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- COLUMN 2 -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+            <div class="section-header">Status</div>
+
+            <div class="form-field">
+              <label>Status</label>
+              <select
+                [(ngModel)]="category.status"
+                [disabled]="isViewMode">
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label>Remarks</label>
+              <input
+                type="text"
+                [(ngModel)]="category.remarks"
+                [disabled]="isViewMode">
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- COLUMN 3 -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+            <div class="section-header">Audit Info</div>
+
+            <div class="form-field">
+              <label>Created By</label>
+              <input type="text" [(ngModel)]="category.createdBy" readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Creation Date</label>
+              <input type="text" [(ngModel)]="category.createdDate" readonly>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- COLUMN 4 -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+            <div class="section-header">Update Info</div>
+
+            <div class="form-field">
+              <label>Updated By</label>
+              <input type="text" [(ngModel)]="category.updatedBy" readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Updated Date</label>
+              <input type="text" [(ngModel)]="category.updatedDate" readonly>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

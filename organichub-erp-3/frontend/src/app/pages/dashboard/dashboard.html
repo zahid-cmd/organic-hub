@@ -1,0 +1,109 @@
+<div class="dashboard-container">
+
+  <!-- =========================
+       LOADING / ERROR STATE
+  ========================== -->
+
+  <div *ngIf="loading" style="padding:20px;font-weight:500;">
+    Loading dashboard...
+  </div>
+
+  <div *ngIf="error" style="padding:20px;color:red;">
+    {{ error }}
+  </div>
+
+  <!-- =========================
+       DASHBOARD CONTENT
+  ========================== -->
+
+  <ng-container *ngIf="!loading && summary">
+
+    <!-- KPI ROW -->
+    <div class="dashboard-kpi-row">
+
+      <div class="kpi-card green">
+        <div class="kpi-label">Total Sales</div>
+        <div class="kpi-value">
+          {{ summary.totalSales | currency:'BDT':'symbol':'1.0-0' }}
+        </div>
+        <div class="kpi-trend">Live Data</div>
+      </div>
+
+      <div class="kpi-card blue">
+        <div class="kpi-label">Total Orders</div>
+        <div class="kpi-value">
+          {{ summary.totalOrders }}
+        </div>
+        <div class="kpi-trend">Live Data</div>
+      </div>
+
+      <div class="kpi-card amber">
+        <div class="kpi-label">Inventory Value</div>
+        <div class="kpi-value">
+          {{ summary.inventoryValue | currency:'BDT':'symbol':'1.0-0' }}
+        </div>
+        <div class="kpi-trend">Live Data</div>
+      </div>
+
+      <div class="kpi-card green">
+        <div class="kpi-label">Cash Position</div>
+        <div class="kpi-value">
+          {{
+            (summary.cashAmount + summary.bankAmount + summary.mfsAmount)
+            | currency:'BDT':'symbol':'1.0-0'
+          }}
+        </div>
+        <div class="kpi-trend">Cash + Bank + MFS</div>
+      </div>
+
+    </div>
+
+
+    <!-- ADVANCED GRID -->
+    <div class="dashboard-grid-advanced">
+
+      <!-- PRODUCT SUMMARY -->
+      <div class="dash-card wide">
+        <div class="card-title">Product Overview</div>
+
+        <div class="cash-box">
+          <div>
+            <strong>{{ summary.totalProducts }}</strong>
+            <span>Total Products</span>
+          </div>
+
+          <div>
+            <strong>{{ summary.activeProducts }}</strong>
+            <span>Active Products</span>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- CASH BREAKDOWN -->
+      <div class="dash-card">
+        <div class="card-title">Cash Breakdown</div>
+
+        <div class="cash-box">
+          <div>
+            <strong>{{ summary.cashAmount | currency:'BDT':'symbol':'1.0-0' }}</strong>
+            <span>Cash</span>
+          </div>
+
+          <div>
+            <strong>{{ summary.bankAmount | currency:'BDT':'symbol':'1.0-0' }}</strong>
+            <span>Bank</span>
+          </div>
+
+          <div>
+            <strong>{{ summary.mfsAmount | currency:'BDT':'symbol':'1.0-0' }}</strong>
+            <span>MFS</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </ng-container>
+
+</div>

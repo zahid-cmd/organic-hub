@@ -1,0 +1,98 @@
+<div class="page-container">
+
+  <div class="page-body">
+
+    <!-- PAGE SUB HEADER -->
+    <app-page-sub-header title="Search & Filter Stock Summary">
+      <div page-actions class="subheader-actions">
+        <button class="ch-btn" (click)="onClear()">Clear</button>
+        <button class="ch-btn" (click)="onBack()">Back</button>
+      </div>
+    </app-page-sub-header>
+
+    <!-- BODY -->
+    <div class="page-body-content">
+
+      <!-- SEARCH AREA -->
+      <app-search-area
+        [searchText]="searchText"
+        [status]="statusFilter"
+        [statusOptions]="statusOptions"
+        (searchChange)="onSearch($event)"
+        (statusChange)="onStatusChange($event)">
+      </app-search-area>
+
+      <!-- LIST -->
+      <div class="ch-list-body">
+        <div class="ch-list-table">
+
+          <!-- HEADER -->
+          <div class="ch-list-row ch-list-header">
+            <div class="col col-sl">#</div>
+            <div class="col">Product Code</div>
+            <div class="col">Product Name</div>
+            <div class="col">Current Stock</div>
+            <div class="col">Re-Order Level</div>
+            <div class="col">Re-Order Qty</div>
+            <div class="col">Stock Value</div>
+            <div class="col">Status</div>
+            <div class="col col-actions">Actions</div>
+          </div>
+
+          <!-- BODY ROWS -->
+          <div class="ch-list-body-rows">
+
+            <div
+              class="ch-list-row"
+              *ngFor="let item of pagedItems; let i = index"
+              [class.low-stock]="item.status === 'Low Stock'">
+
+              <div class="col col-sl">{{ serial(i) }}</div>
+              <div class="col">{{ item.productCode }}</div>
+              <div class="col">{{ item.productName }}</div>
+
+              <div class="col stock">{{ item.currentStock }}</div>
+              <div class="col reorder">{{ item.reorderLevel }}</div>
+              <div class="col">{{ item.reorderQty }}</div>
+              <div class="col">৳ {{ item.stockValue | number }}</div>
+
+              <!-- STATUS (UI LABEL ONLY) -->
+              <div class="col">
+                <span
+                  class="stock-status"
+                  [class.ok]="item.status === 'Healthy'"
+                  [class.warning]="item.status === 'Low Stock'">
+                  {{ item.status === 'Low Stock' ? 'Re-Order' : 'Healthy' }}
+                </span>
+              </div>
+
+              <!-- ACTIONS -->
+              <div class="col col-actions action-icons">
+                <button class="icon-btn view" (click)="onView(item)">
+                  <i class="fa fa-eye"></i>
+                </button>
+                <button class="icon-btn edit" (click)="onAdjust(item)">
+                  <i class="fa fa-pen"></i>
+                </button>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- PAGINATION -->
+      <div class="ch-pagination">
+        <app-pagination
+          [totalRecords]="totalRecords"
+          [pageSize]="pageSize"
+          [currentPage]="currentPage"
+          (pageChange)="onPageChange($event)"
+          (pageSizeChange)="onPageSizeChange($event)">
+        </app-pagination>
+      </div>
+
+    </div>
+  </div>
+</div>

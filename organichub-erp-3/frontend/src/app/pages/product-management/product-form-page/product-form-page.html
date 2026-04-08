@@ -1,0 +1,295 @@
+<div class="page-body">
+
+  <app-organic-toast></app-organic-toast>
+
+  <app-page-sub-header title="Create / Update Product">
+    <div page-actions class="subheader-actions">
+
+      <button
+        class="ch-btn"
+        *ngIf="!isViewMode"
+        (click)="onSave()">
+        {{ mode === 'edit' ? 'Update' : 'Save' }}
+      </button>
+
+      <button
+        class="ch-btn"
+        *ngIf="!isViewMode"
+        (click)="onClear()">
+        Clear
+      </button>
+
+      <button
+        class="ch-btn"
+        (click)="onBack()">
+        Back
+      </button>
+
+    </div>
+  </app-page-sub-header>
+
+  <div class="page-body-content">
+    <div class="form-body">
+
+      <!-- ========================================================= -->
+      <!-- COLUMN 1 – CLASSIFICATION -->
+      <!-- ========================================================= -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+            <div class="section-header">Classification</div>
+
+            <!-- Product Type -->
+            <div class="form-field">
+              <label>Product Type</label>
+              <select
+                [(ngModel)]="product.productTypeId"
+                (change)="onProductTypeChange()"
+                [disabled]="isViewMode || isEditMode">
+
+                <option [ngValue]="null">Select Product Type</option>
+
+                <option *ngFor="let pt of productTypes" [ngValue]="pt.id">
+                  {{ pt.typeName }}
+                </option>
+
+              </select>
+            </div>
+
+            <!-- Category -->
+            <div class="form-field">
+              <label>Category</label>
+              <select
+                [(ngModel)]="product.categoryId"
+                (change)="onCategoryChange()"
+                [disabled]="isViewMode || isEditMode || !product.productTypeId">
+
+                <option [ngValue]="null">Select Category</option>
+
+                <option *ngFor="let c of categories" [ngValue]="c.id">
+                  {{ c.categoryName }}
+                </option>
+
+              </select>
+            </div>
+
+            <!-- Sub Category -->
+            <div class="form-field">
+              <label>Sub Category</label>
+              <select
+                [(ngModel)]="product.subCategoryId"
+                (change)="onSubCategoryChange()"
+                [disabled]="isViewMode || isEditMode || !product.categoryId">
+
+                <option [ngValue]="null">Select Sub Category</option>
+
+                <option *ngFor="let s of subCategories" [ngValue]="s.id">
+                  {{ s.subCategoryName }}
+                </option>
+
+              </select>
+            </div>
+
+            <!-- Unit -->
+            <div class="form-field">
+              <label>Unit</label>
+              <select
+                [(ngModel)]="product.unitId"
+                [disabled]="isViewMode">
+
+                <option [ngValue]="null">Select Unit</option>
+
+                <option *ngFor="let u of units" [ngValue]="u.id">
+                  {{ u.unitName }}
+                </option>
+
+              </select>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ========================================================= -->
+      <!-- COLUMN 2 – PRODUCT IDENTIFICATION -->
+      <!-- ========================================================= -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+
+            <div class="section-header">Product Identification</div>
+
+            <div class="form-field">
+              <label>Product Code</label>
+              <input type="text" [(ngModel)]="product.productCode" readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Product Name</label>
+              <input type="text"
+                    [(ngModel)]="product.productName"
+                    [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>SKU</label>
+              <input type="text"
+                    [(ngModel)]="product.sku"
+                    [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>Barcode</label>
+              <input type="text"
+                    [(ngModel)]="product.barcode"
+                    [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>Status</label>
+              <select [(ngModel)]="product.status"
+                      [disabled]="isViewMode">
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+              </select>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ========================================================= -->
+      <!-- COLUMN 3 – IMAGE + REMARKS -->
+      <!-- ========================================================= -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+
+            <div class="section-header">Product Images</div>
+
+            <!-- Upload -->
+            <div class="form-field">
+              <label>Upload Image</label>
+              <input
+                type="file"
+                (change)="onImageSelected($event)"
+                [disabled]="isViewMode">
+            </div>
+
+            <!-- Empty State -->
+            <div class="empty-image-state"
+                *ngIf="images.length === 0">
+              No images uploaded yet.
+            </div>
+
+            <!-- Image Grid -->
+            <div class="image-grid"
+                *ngIf="images.length > 0">
+
+              <div class="image-card"
+                  *ngFor="let img of images">
+
+                <div class="image-wrapper">
+
+                  <img
+                    [src]="getImageUrl(img.imageUrl)"
+                    alt="Product Image" />
+
+                  <span
+                    class="primary-badge"
+                    *ngIf="img.isPrimary">
+                    Primary
+                  </span>
+
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="image-actions"
+                    *ngIf="!isViewMode">
+
+                  <button
+                    type="button"
+                    class="img-btn"
+                    *ngIf="!img.isPrimary && img.id"
+                    (click)="setPrimary(img.id)">
+                    Set Primary
+                  </button>
+
+                  <button
+                    type="button"
+                    class="img-btn danger"
+                    *ngIf="img.id"
+                    (click)="deleteImage(img.id)">
+                    Delete
+                  </button>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="section-header"></div>
+
+            <div class="form-field">
+              <label>Remarks</label>
+              <textarea
+                rows="4"
+                [(ngModel)]="product.remarks"
+                [disabled]="isViewMode">
+              </textarea>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ========================================================= -->
+      <!-- COLUMN 4 – AUDIT + UPDATE INFO -->
+      <!-- ========================================================= -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+
+            <div class="section-header">Audit Info</div>
+
+            <div class="form-field">
+              <label>Created By</label>
+              <input type="text"
+                    [(ngModel)]="product.createdBy"
+                    readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Created Date</label>
+              <input type="text"
+                    [(ngModel)]="product.createdDate"
+                    readonly>
+            </div>
+
+            <div class="section-header">Update Info</div>
+
+            <div class="form-field">
+              <label>Updated By</label>
+              <input type="text"
+                    [(ngModel)]="product.updatedBy"
+                    readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Updated Date</label>
+              <input type="text"
+                    [(ngModel)]="product.updatedDate"
+                    readonly>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

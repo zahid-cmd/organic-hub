@@ -1,0 +1,183 @@
+<!-- PAGE SUB HEADER (STANDARD – DO NOT TOUCH) -->
+<app-page-sub-header title="Sales Quotation">
+  <div page-actions class="subheader-actions">
+    <button class="ch-btn primary">Save</button>
+    <button class="ch-btn">Reset</button>
+    <button class="ch-btn" (click)="goBack()">Back</button>
+  </div>
+</app-page-sub-header>
+
+<!-- PAGE BODY -->
+<div class="pi-body">
+
+  <!-- LEFT : 25% -->
+  <div class="pi-col pi-left">
+
+    <!-- Quotation Details -->
+    <div class="pi-box">
+      <div class="pi-box-title">Quotation Details</div>
+
+      <div class="pi-row">
+        <div class="pi-field">
+          <label>Quotation Number</label>
+          <input type="text"
+                 [(ngModel)]="quotation.quotationNo"
+                 readonly disabled>
+        </div>
+
+        <div class="pi-field">
+          <label>Quotation Date</label>
+          <input type="date"
+                 [(ngModel)]="quotation.quotationDate">
+        </div>
+      </div>
+
+      <div class="pi-field pi-full">
+        <label>Customer</label>
+        <select [(ngModel)]="quotation.customer">
+          <option value="">Select Customer</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Quotation Summary -->
+    <div class="pi-box">
+      <div class="pi-box-title">Summary</div>
+
+      <div class="pi-row-2">
+        <div class="pi-field">
+          <label>Total Value</label>
+          <input type="number"
+                 [(ngModel)]="quotation.productValue"
+                 readonly disabled>
+        </div>
+
+        <div class="pi-field">
+          <label>Discount</label>
+          <input type="number"
+                 [(ngModel)]="quotation.discount"
+                 (input)="recalculateTotals()">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CENTER : 50% -->
+  <div class="pi-col pi-center">
+
+    <!-- ✅ STANDARD FULL-HEIGHT CENTER BOX -->
+    <div class="pi-box pi-center-box">
+
+      <!-- Add Product -->
+      <div class="pi-box pi-add-product">
+        <div class="pi-box-title">Add Product</div>
+
+        <div class="pi-add-row">
+          <select>
+            <option value="">Select Product</option>
+          </select>
+
+          <input type="number" placeholder="Qty">
+          <input type="number" placeholder="Rate">
+
+          <input type="number"
+                 placeholder="Amount"
+                 [value]="entry.quantity * entry.rate || ''"
+                 readonly disabled>
+
+          <input type="number"
+                 placeholder="Stock"
+                 readonly disabled>
+        </div>
+
+        <div class="pi-add-action">
+          <button class="ch-btn primary">Add</button>
+        </div>
+      </div>
+
+      <!-- Product Cart -->
+      <div class="pi-box pi-cart">
+        <div class="pi-box-title">Product Cart</div>
+
+        <div class="pi-cart-table-wrapper">
+          <table class="product-table">
+
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Product</th>
+                <th>Part No</th>
+                <th>Code</th>
+                <th class="txt-center">Qty</th>
+                <th class="txt-right">Rate</th>
+                <th class="txt-right">Amount</th>
+                <th class="txt-center">Action</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngFor="let item of items; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ item.product }}</td>
+                <td>—</td>
+                <td>{{ item.product }}</td>
+                <td class="txt-center">{{ item.quantity }}</td>
+                <td class="txt-right">{{ item.rate }}</td>
+                <td class="txt-right">{{ item.amount }}</td>
+                <td class="txt-center">
+                  <button class="remove-btn" (click)="removeItem(i)">×</button>
+                </td>
+              </tr>
+
+              <tr *ngIf="items.length === 0">
+                <td colspan="8" class="cart-empty">
+                  No products added to cart
+                </td>
+              </tr>
+            </tbody>
+
+            <!-- TOTAL ROW (DO NOT REMOVE) -->
+            <tfoot>
+              <tr class="cart-total-row">
+                <td colspan="4" class="txt-right">Total</td>
+                <td class="txt-center">{{ totalQty }}</td>
+                <td></td>
+                <td class="txt-right">{{ quotation.productValue }}</td>
+                <td></td>
+              </tr>
+            </tfoot>
+
+          </table>
+        </div>
+      </div>
+
+    </div>
+    <!-- ✅ END CENTER BOX -->
+
+  </div>
+
+  <!-- RIGHT : 25% -->
+  <div class="pi-col pi-right">
+
+    <div class="pi-box pi-shelf">
+      <div class="pi-box-title">Product Shelf</div>
+
+      <div class="pi-shelf-search">
+        <input type="text" placeholder="Search product...">
+      </div>
+
+      <div class="pi-shelf-list">
+        <div class="pi-product-card" *ngFor="let p of products">
+          <div class="pi-product-img">
+            <img src="assets/Logo.png" alt="Product">
+          </div>
+          <div class="pi-product-name">{{ p.name }}</div>
+          <div class="pi-product-stock">Stock: {{ p.stock }}</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

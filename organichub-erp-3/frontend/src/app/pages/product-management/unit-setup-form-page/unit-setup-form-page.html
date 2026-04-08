@@ -1,0 +1,151 @@
+<div class="page-body">
+
+  <!-- ✅ SERVICE TOAST -->
+  <app-organic-toast></app-organic-toast>
+
+  <app-page-sub-header title="Create / Update Unit">
+    <div page-actions class="subheader-actions">
+
+      <button
+        type="button"
+        class="ch-btn"
+        *ngIf="!isViewMode"
+        (click)="onSave()">
+        {{ mode === 'edit' ? 'Update' : 'Save' }}
+      </button>
+
+      <button
+        class="ch-btn"
+        *ngIf="!isViewMode"
+        (click)="onClear()">
+        Clear
+      </button>
+
+      <button
+        class="ch-btn"
+        type="button"
+        (click)="onBack()">
+        Back
+      </button>
+
+    </div>
+  </app-page-sub-header>
+
+  <!-- PAGE CONTENT -->
+  <div class="page-body-content">
+
+    <!-- FORM BODY -->
+    <div class="form-body">
+
+      <!-- COLUMN 1 -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+            <div class="section-header">Unit Identification</div>
+
+            <div class="form-field">
+              <label>Unit Code</label>
+              <input
+                type="text"
+                [(ngModel)]="unit.unitCode"
+                [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>Unit Name</label>
+              <input
+                type="text"
+                [(ngModel)]="unit.unitName"
+                [disabled]="isViewMode">
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- COLUMN 2 -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+            <div class="section-header">Status</div>
+
+            <div class="form-field">
+              <label>Status</label>
+              <select
+                [(ngModel)]="unit.status"
+                [disabled]="isViewMode">
+                <option value="">Select Status</option>
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label>Remarks</label>
+              <input
+                type="text"
+                [(ngModel)]="unit.remarks"
+                [disabled]="isViewMode">
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- COLUMN 3 -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+            <div class="section-header">Audit Info</div>
+
+            <div class="form-field">
+              <label>Created By</label>
+              <input
+                type="text"
+                [(ngModel)]="unit.createdBy"
+                readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Creation Date</label>
+              <input
+                type="text"
+                [(ngModel)]="unit.createdDate"
+                readonly>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- COLUMN 4 -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+            <div class="section-header">Update Info</div>
+
+            <div class="form-field">
+              <label>Updated By</label>
+              <input
+                type="text"
+                [(ngModel)]="unit.updatedBy"
+                readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Updated Date</label>
+              <input
+                type="text"
+                [(ngModel)]="unit.updatedDate"
+                readonly>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div> <!-- form-body -->
+
+  </div> <!-- page-body-content -->
+
+</div> <!-- page-body -->

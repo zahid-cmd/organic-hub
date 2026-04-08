@@ -1,0 +1,83 @@
+<div class="page-container">
+
+  <div class="page-body">
+
+    <!-- PAGE SUB HEADER -->
+    <app-page-sub-header title="Search & Filter Raw Materials">
+      <div page-actions class="subheader-actions">
+        <button class="ch-btn" (click)="onAdd()">Add</button>
+        <button class="ch-btn" (click)="onClear()">Clear</button>
+        <button class="ch-btn" (click)="onBack()">Back</button>
+      </div>
+    </app-page-sub-header>
+
+    <div class="page-body-content">
+
+      <!-- SEARCH AREA -->
+      <app-search-area
+        [searchText]="searchText"
+        [status]="statusFilter"
+        [statusOptions]="statusOptions"
+        (searchChange)="onSearch($event)"
+        (statusChange)="onStatusChange($event)">
+      </app-search-area>
+
+      <!-- LIST -->
+      <div class="ch-list-body">
+        <div class="ch-list-table">
+
+          <!-- HEADER -->
+          <div class="ch-list-row ch-list-header">
+            <div class="col col-sl">#</div>
+            <div class="col">Material Code</div>
+            <div class="col">Material Name</div>
+            <div class="col">Base Unit</div>
+            <div class="col">Status</div>
+            <div class="col col-actions">Actions</div>
+          </div>
+
+          <!-- BODY -->
+          <div class="ch-list-body-rows">
+            <div
+              class="ch-list-row"
+              *ngFor="let rm of pagedRows; let i = index">
+
+              <div class="col col-sl">{{ serial(i) }}</div>
+              <div class="col">{{ rm.materialCode }}</div>
+              <div class="col">{{ rm.materialName }}</div>
+              <div class="col">{{ rm.baseUnit }}</div>
+              <div class="col">{{ rm.status }}</div>
+
+              <div class="col col-actions action-icons">
+                <button class="icon-btn view" (click)="onView(i)">
+                  <i class="fa fa-eye"></i>
+                </button>
+                <button class="icon-btn edit" (click)="onEdit(i)">
+                  <i class="fa fa-pen"></i>
+                </button>
+                <button class="icon-btn delete" (click)="onDelete(i)">
+                  <i class="fa fa-trash"></i>
+                </button>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- PAGINATION -->
+      <div class="ch-pagination">
+        <app-pagination
+          [totalRecords]="totalRecords"
+          [pageSize]="pageSize"
+          [currentPage]="currentPage"
+          (pageChange)="onPageChange($event)"
+          (pageSizeChange)="onPageSizeChange($event)">
+        </app-pagination>
+      </div>
+
+    </div>
+  </div>
+
+</div>

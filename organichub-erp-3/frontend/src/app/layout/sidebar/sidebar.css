@@ -1,0 +1,225 @@
+/* ======================================================
+   SIDEBAR CONTAINER – ORGANIC HUB
+====================================================== */
+.app-sidebar {
+  position: fixed;
+  top: 64px;
+  left: 0;
+  width: 300px;
+  height: calc(100vh - 64px);
+
+  background: linear-gradient(
+    180deg,
+    #123A26 0%,      /* deep forest green */
+    #0E2F1F 60%,
+    #0A2418 100%     /* darkest base */
+  );
+
+  color: #F4FBEF;
+  padding-top: 10px;
+}
+
+/* Accent bar – golden oil tone */
+.app-sidebar::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    #F2B705,
+    #D99A00
+  );
+}
+.menu-item {
+  color: #E6F2EA;
+}
+
+.menu-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.menu-item.active {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+/* ======================================================
+   RESET
+====================================================== */
+.sidebar-menu,
+.sidebar-submenu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ======================================================
+   GRID STRUCTURE (LEVEL 1 & 2)
+====================================================== */
+.menu-item,
+.submenu-item {
+  display: grid;
+  grid-template-columns: 22px 1fr 18px;
+  align-items: center;
+  column-gap: 12px;
+  cursor: pointer;
+}
+
+/* ======================================================
+   MAIN MENU – LEVEL 1
+====================================================== */
+.menu-item {
+  padding: 13px 22px;
+  font-size: 17px;
+  font-weight: 500;
+  color: #D6EBD8;
+}
+
+.menu-item i {
+  font-size: 15px;
+  color: #F4C430; /* sun yellow icons */
+}
+
+.menu-item:hover {
+  background: rgba(143, 179, 57, 0.18);
+  color: #ffffff;
+}
+
+.menu-item.active {
+  background: linear-gradient(
+    90deg,
+    rgba(143, 179, 57, 0.35),
+    rgba(244, 196, 48, 0.35)
+  );
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* ======================================================
+   SUB MENU – LEVEL 2
+====================================================== */
+.sidebar-submenu {
+  margin: 4px 0;
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+.submenu-item {
+  position: relative;
+  padding: 8px 22px 8px 56px;
+  font-size: 15px;
+  color: #DDEFE0;
+}
+
+.submenu-item i {
+  font-size: 13px;
+  color: #F28C28; /* soft orange */
+  opacity: 0.9;
+}
+
+.submenu-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+}
+
+/* ======================================================
+   SUBMENU LINK (routerLink)
+====================================================== */
+.submenu-item a {
+  display: contents;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* ======================================================
+   ACTIVE SUBMENU
+====================================================== */
+.submenu-item a.router-link-active {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.submenu-item a.router-link-active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    #F28C28,
+    #F4C430
+  );
+}
+
+/* ======================================================
+   CHILD MENU – LEVEL 3
+====================================================== */
+.child-menu {
+  margin: 4px 0;
+}
+
+.child-menu .submenu-item {
+  padding: 6px 22px 6px 86px;
+  font-size: 14px;
+  color: #CFE9D2;
+}
+
+.child-menu .submenu-item i {
+  font-size: 8px;
+  color: #F4C430;
+  opacity: 0.8;
+}
+
+/* ======================================================
+   ARROWS
+====================================================== */
+.arrow {
+  font-size: 12px;
+  color: #F4C430;
+  opacity: 0.7;
+  transition: transform 0.2s ease;
+}
+
+.arrow.rotate {
+  transform: rotate(90deg);
+}
+
+/* ======================================================
+   DISABLED ITEMS
+====================================================== */
+.submenu-item.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* ======================================================
+   COLLAPSED SIDEBAR
+====================================================== */
+.app-sidebar.collapsed {
+  width: 72px;
+}
+
+.app-sidebar.collapsed span,
+.app-sidebar.collapsed .arrow {
+  display: none !important;
+}
+
+.app-sidebar.collapsed .menu-item,
+.app-sidebar.collapsed .submenu-item {
+  display: flex;
+  justify-content: center;
+  padding: 12px 0 !important;
+}
+
+.app-sidebar.collapsed i {
+  font-size: 18px;
+}
+
+.app-sidebar.collapsed .sidebar-submenu,
+.app-sidebar.collapsed .child-menu {
+  display: none !important;
+}

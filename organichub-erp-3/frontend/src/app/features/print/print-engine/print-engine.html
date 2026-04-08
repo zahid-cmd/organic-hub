@@ -1,0 +1,250 @@
+<div class="pdf-viewer">
+
+  <!-- ================= TOP TOOLBAR ================= -->
+
+  <div class="pdf-toolbar">
+
+    <!-- LEFT -->
+    <div class="pt-left">
+
+      <button class="pt-back-btn" (click)="goBack()">
+        <svg viewBox="0 0 24 24">
+          <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" fill="none"/>
+        </svg>
+        Back
+      </button>
+
+      <div class="pt-title">
+        {{module}}-{{id}}
+      </div>
+
+    </div>
+
+    <!-- CENTER -->
+    <div class="pt-center">
+
+      <div class="pt-page-indicator">
+        {{currentPage}} / {{pages.length}}
+      </div>
+
+      <button class="pt-zoom-btn" (click)="zoomOut()">
+        <svg viewBox="0 0 24 24">
+          <path d="M5 12h14" stroke="currentColor" stroke-width="2" fill="none"/>
+        </svg>
+      </button>
+
+      <div class="pt-zoom">{{zoom}}%</div>
+
+      <button class="pt-zoom-btn" (click)="zoomIn()">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" fill="none"/>
+        </svg>
+      </button>
+
+    </div>
+
+    <!-- RIGHT -->
+    <div class="pt-right pt-actions">
+
+      <button class="pt-action-btn pdf" (click)="downloadPdf()" title="Download PDF">
+        <svg viewBox="0 0 24 24">
+          <path d="M6 2h9l5 5v15H6z" stroke="currentColor" stroke-width="1.6" fill="none"/>
+          <text x="12" y="17" text-anchor="middle" font-size="7" fill="currentColor">PDF</text>
+        </svg>
+      </button>
+
+      <button class="pt-action-btn excel" (click)="downloadExcel()" title="Export Excel">
+        <svg viewBox="0 0 24 24">
+          <rect x="4" y="3" width="16" height="18" rx="2" stroke="currentColor" stroke-width="1.6" fill="none"/>
+          <text x="12" y="17" text-anchor="middle" font-size="7" fill="currentColor">XLS</text>
+        </svg>
+      </button>
+
+      <button class="pt-action-btn print" (click)="print()" title="Print">
+        <svg viewBox="0 0 24 24">
+          <path d="M6 9V3h12v6" stroke="currentColor" stroke-width="1.6" fill="none"/>
+          <rect x="6" y="14" width="12" height="7" stroke="currentColor" stroke-width="1.6" fill="none"/>
+          <rect x="3" y="9" width="18" height="6" rx="2" stroke="currentColor" stroke-width="1.6" fill="none"/>
+        </svg>
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================= BODY ================= -->
+
+  <div class="pdf-body">
+
+    <!-- ===== LEFT THUMB PANEL ===== -->
+
+    <div class="pdf-thumbnails">
+
+      <div class="thumb"
+           *ngFor="let p of pages"
+           [class.active]="p===currentPage"
+           (click)="goToPage(p)">
+
+        <div class="thumb-sheet">
+          <div class="thumb-inner" [attr.id]="'thumb-'+p"></div>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- ===== CENTER CANVAS ===== -->
+
+    <div class="pdf-canvas">
+
+      <div class="pdf-scale"
+           [style.transform]="'scale('+zoom/100+')'">
+
+        <div class="page-wrapper">
+
+          <div *ngIf="documentData">
+
+            <div class="invoice-page"
+                 *ngFor="let pageItems of pagedItems; let pageIndex=index"
+                 [attr.id]="'page-'+(pageIndex+1)">
+
+              <!-- WATERMARK -->
+              <div class="watermark" *ngIf="documentData.status">
+                {{documentData.status}}
+              </div>
+
+              <!-- HEADER -->
+              <div class="header">
+                <div class="logo-box">
+                  <img src="/Logo.png">
+                </div>
+
+                <div class="company">
+                  <h2>Organic Hub</h2>
+                  <p>Suite #26, 6th Floor</p>
+                  <p>DOHS Shopping Complex, Mirpur, Dhaka 1216</p>
+                  <p>Phone: +8801896057950</p>
+                </div>
+              </div>
+
+              <!-- INFO -->
+              <div class="info-section">
+
+                <div class="info-card">
+                  <div class="info-title">
+                    {{ module === 'sales-invoice' ? 'CUSTOMER' : 'SUPPLIER' }}
+                  </div>
+
+                  <div class="row"><span>Name</span>
+                    <b>{{documentData.supplierName || documentData.customerName || '-'}}</b>
+                  </div>
+
+                  <div class="row"><span>Phone</span>
+                    <b>{{documentData.supplierPhone || documentData.customerPhone || '-'}}</b>
+                  </div>
+
+                  <div class="row"><span>Address</span>
+                    <b>{{documentData.supplierAddress || documentData.customerAddress || '-'}}</b>
+                  </div>
+                </div>
+
+                <div class="info-card right">
+
+                  <div class="info-title">
+                    {{ module === 'purchase-order' ? 'PURCHASE ORDER' :
+                       module === 'purchase-invoice' ? 'PURCHASE INVOICE' : '' }}
+                  </div>
+
+                  <div class="row"><span>No</span>
+                    <b>{{documentData.invoiceNo || documentData.orderNo || '-'}}</b>
+                  </div>
+
+                  <div class="row"><span>Date</span>
+                    <b>{{(documentData.invoiceDate || documentData.orderDate) | date:'dd-MMM-yyyy'}}</b>
+                  </div>
+
+                  <div class="row" *ngIf="documentData.location">
+                    <span>Location</span><b>{{documentData.location}}</b>
+                  </div>
+
+                  <div class="row" *ngIf="documentData.reference">
+                    <span>Reference</span><b>{{documentData.reference}}</b>
+                  </div>
+
+                </div>
+
+              </div>
+
+              <!-- TABLE -->
+              <table class="items-table">
+                <thead>
+                  <tr>
+                    <th class="sl">SL</th>
+                    <th class="product">Product</th>
+                    <th class="qty">Qty</th>
+                    <th class="rate">Rate</th>
+                    <th class="amt">Amount</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr *ngFor="let item of pageItems; let i=index">
+                    <td class="sl">{{(pageIndex*itemsPerPage)+i+1}}</td>
+                    <td class="product">{{item.productName}}</td>
+                    <td class="qty">{{item.quantity}}</td>
+                    <td class="rate">{{item.rate | number:'1.0-2'}}</td>
+                    <td class="amt">{{item.amount | number:'1.0-2'}}</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div class="page-total" *ngIf="pages.length > 1">
+                Page Total : {{getPageTotal(pageItems) | number}}
+              </div>
+
+              <!-- TOTAL -->
+              <div class="erp-total-zone" *ngIf="pageIndex===pages.length-1">
+
+                <div class="words-area">
+                  <span class="label">In Words :</span>
+                  <span class="text">{{amountInWords}}</span>
+                </div>
+
+                <div class="summary-block">
+
+                  <div class="summary-row">
+                    <span>Total Items</span>
+                    <span>{{resolveItems(documentData).length}}</span>
+                  </div>
+
+                  <div class="summary-row grand">
+                    <span>Total Value</span>
+                    <span>{{documentData.totalAmount | number}}</span>
+                  </div>
+
+                </div>
+
+              </div>
+
+              <!-- SIGN -->
+              <div class="signature" *ngIf="pageIndex===pages.length-1">
+                <div class="sign"><div class="line"></div>{{preparedBy || 'Prepared By'}}</div>
+                <div class="sign"><div class="line"></div>Checked By</div>
+                <div class="sign"><div class="line"></div>Authorized By</div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

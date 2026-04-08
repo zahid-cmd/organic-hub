@@ -1,0 +1,151 @@
+<!-- PAGE SUB HEADER -->
+<app-page-sub-header title="Process Costing">
+  <div page-actions class="subheader-actions">
+    <button class="ch-btn primary" (click)="onSave()">Save</button>
+    <button class="ch-btn" (click)="onReset()">Reset</button>
+    <button class="ch-btn" (click)="goBack()">Back</button>
+  </div>
+</app-page-sub-header>
+
+<div class="pi-body">
+
+  <!-- LEFT PANEL -->
+  <div class="pi-col pi-left">
+
+    <!-- PROCESS DETAILS -->
+    <div class="pi-box">
+      <div class="pi-box-title">Process Details</div>
+
+      <div class="pi-row">
+        <div class="pi-field">
+          <label>Batch No</label>
+          <input type="text" [(ngModel)]="process.batchNo" readonly>
+        </div>
+
+        <div class="pi-field">
+          <label>Process Date</label>
+          <input type="date" [(ngModel)]="process.processDate">
+        </div>
+      </div>
+
+      <div class="pi-field pi-full">
+        <label>Invoice No</label>
+        <select [(ngModel)]="selectedInvoiceNo" (change)="onInvoiceChange()">
+          <option value="">Select Invoice</option>
+          <option *ngFor="let inv of invoices" [value]="inv.invoiceNo">
+            {{ inv.invoiceNo }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <!-- COST SUMMARY -->
+    <div class="pi-box">
+      <div class="pi-box-title">Cost Summary</div>
+
+      <div class="pi-row-2">
+        <div class="pi-field">
+          <label>Material Cost</label>
+          <input type="number" [value]="materialCost" readonly>
+        </div>
+
+        <div class="pi-field">
+          <label>Total Cost</label>
+          <input type="number" [value]="materialCost" readonly>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CENTER PANEL -->
+  <div class="pi-col pi-center">
+    <div class="pi-center-box">
+
+      <!-- ADD RAW MATERIAL -->
+      <div class="pi-box">
+        <div class="pi-box-title">Add Raw Material</div>
+
+        <!-- 🔹 ROW 1 : RAW MATERIAL FROM INVOICE -->
+        <div class="pi-add-row row-1">
+          <select [(ngModel)]="entry.material" (change)="onMaterialChange()">
+            <option value="">Select Raw Material</option>
+            <option *ngFor="let m of invoiceMaterials" [value]="m.name">
+              {{ m.name }}
+            </option>
+          </select>
+
+          <input type="number" placeholder="Invoice Qty" [value]="entry.invoiceQty" disabled>
+          <input type="number" placeholder="Loss / Gain %" [(ngModel)]="entry.lossGain" (input)="recalculateRow1()">
+          <input type="number" placeholder="Net Qty" [value]="entry.netQty" disabled>
+          <input type="number" placeholder="Invoice Rate" [value]="entry.invoiceRate" disabled>
+          <input type="number" placeholder="Effective Rate" [value]="entry.effectiveRate" disabled>
+          <input type="number" placeholder="Invoice Amount" [value]="entry.invoiceAmount" disabled>
+        </div>
+
+        <!-- 🔹 ROW 2 : PRODUCT CONVERSION -->
+        <div class="pi-add-row row-2">
+          <select>...</select>
+          <input placeholder="Pack Size" disabled>
+          <input placeholder="Unit Qty" disabled>
+          <input placeholder="Unit Input">
+          <input placeholder="Eff. Rate / Unit" disabled>
+          <input placeholder="Amount" disabled>
+
+          <!-- ✅ ADD BUTTON MOVED HERE -->
+          <button class="ch-btn primary pi-add-inline">Add</button>
+        </div>
+
+      <!-- MATERIAL CONSUMPTION -->
+      <div class="pi-box pi-cart">
+        <div class="pi-box-title">Material Consumption</div>
+          <table class="product-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Invoice</th>
+                <th>Material</th>
+                <th class="txt-center">Net Qty</th>
+                <th class="txt-right">Eff. Rate</th>
+                <th class="txt-right">Amount</th>
+                <th>Product</th>
+                <th class="txt-center">Unit Qty</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngFor="let r of materials; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ r.invoiceNo }}</td>
+                <td>{{ r.material }}</td>
+                <td class="txt-center">{{ r.netQty }}</td>
+                <td class="txt-right">{{ r.effectiveRate }}</td>
+                <td class="txt-right">{{ r.amount }}</td>
+                <td>{{ r.product }}</td>
+                <td class="txt-center">{{ r.unitQty }}</td>
+              </tr>
+
+              <tr *ngIf="materials.length === 0">
+                <td colspan="8" class="cart-empty">No material added</td>
+              </tr>
+            </tbody>
+
+            <!-- ✅ TOTAL ROW -->
+            <tfoot>
+              <tr class="cart-total-row">
+                <td colspan="3" class="txt-right">Total</td>
+                <td class="txt-center">{{ totalNetQty }}</td>
+                <td></td>
+                <td class="txt-right">{{ totalAmount }}</td>
+                <td></td>
+                <td class="txt-center">{{ totalUnitQty }}</td>
+              </tr>
+            </tfoot>
+          </table>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>

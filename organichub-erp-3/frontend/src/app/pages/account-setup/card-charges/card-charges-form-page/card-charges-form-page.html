@@ -1,0 +1,153 @@
+<div class="page-body">
+
+  <app-organic-toast></app-organic-toast>
+
+  <app-page-sub-header title="Create / Update Card Charges">
+    <div page-actions class="subheader-actions">
+
+      <button class="ch-btn"
+              *ngIf="!isViewMode"
+              (click)="onSave()">
+        {{ mode === 'edit' ? 'Update' : 'Save' }}
+      </button>
+
+      <button class="ch-btn"
+              *ngIf="!isViewMode"
+              (click)="onClear()">
+        Clear
+      </button>
+
+      <button class="ch-btn"
+              (click)="onBack()">
+        Back
+      </button>
+
+    </div>
+  </app-page-sub-header>
+
+  <div class="page-body-content">
+    <div class="form-body">
+
+      <!-- COLUMN 1 -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+            <div class="section-header">POS Information</div>
+
+            <div class="form-field">
+              <label>POS Ledger</label>
+              <select [(ngModel)]="charge.posLedgerId"
+                      [disabled]="isViewMode">
+                <option [ngValue]="null">Select POS Ledger</option>
+                <option *ngFor="let p of posLedgers"
+                        [ngValue]="p.id">
+                  {{ p.accountName }}
+                </option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label>Status</label>
+              <select [(ngModel)]="charge.status"
+                      [disabled]="isViewMode">
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+              </select>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- COLUMN 2 -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+            <div class="section-header">Card Charges</div>
+
+            <div class="form-field">
+              <label>Card Name</label>
+              <select [(ngModel)]="charge.cardSetupId"
+                      [disabled]="isViewMode">
+                <option [ngValue]="null">Select Card</option>
+                <option *ngFor="let c of cardSetups"
+                        [ngValue]="c.id">
+                  {{ c.cardName }}
+                </option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label>Card Charges (%)</label>
+              <input
+                type="number"
+                min="0"
+                step="0.01"
+                [(ngModel)]="charge.chargePercent"
+                [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>Remarks</label>
+              <textarea
+                rows="3"
+                [(ngModel)]="charge.remarks"
+                [disabled]="isViewMode">
+              </textarea>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- COLUMN 3 -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+            <div class="section-header">System Information</div>
+
+            <div class="form-field">
+              <label>Created By</label>
+              <input type="text"
+                     [(ngModel)]="charge.createdBy"
+                     readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Created On</label>
+              <input type="text"
+                     [(ngModel)]="charge.createdDate"
+                     readonly>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- COLUMN 4 -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+            <div class="section-header">Audit Information</div>
+
+            <div class="form-field">
+              <label>Updated By</label>
+              <input type="text"
+                     [(ngModel)]="charge.updatedBy"
+                     readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Updated Date</label>
+              <input type="text"
+                     [(ngModel)]="charge.updatedDate"
+                     readonly>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

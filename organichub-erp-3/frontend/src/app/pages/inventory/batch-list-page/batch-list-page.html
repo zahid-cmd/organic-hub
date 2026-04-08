@@ -1,0 +1,158 @@
+<div class="page-container">
+
+  <div class="page-body">
+
+    <app-page-sub-header title="Inventory Batches">
+      <div page-actions class="subheader-actions">
+        <button class="ch-btn" (click)="onRefresh()">Refresh</button>
+        <button class="ch-btn" (click)="onBack()">Back</button>
+      </div>
+    </app-page-sub-header>
+
+    <div class="page-body-content">
+
+      <!-- SEARCH -->
+      <app-search-area
+        [searchText]="searchText"
+        (searchChange)="onSearch($event)">
+      </app-search-area>
+
+      <!-- LIST -->
+      <div class="ch-list-body">
+
+        <!-- EMPTY STATE -->
+        <div *ngIf="totalRecords === 0" class="ch-empty-state">
+
+          <div class="ch-empty-icon">
+            <i class="fa fa-box-open"></i>
+          </div>
+
+          <div class="ch-empty-title">
+            No Batches Found
+          </div>
+
+          <div class="ch-empty-subtitle">
+            Posted Purchase Invoices will generate batches automatically.
+          </div>
+
+        </div>
+
+        <!-- TABLE -->
+        <div class="ch-list-table" *ngIf="totalRecords > 0">
+
+          <!-- HEADER -->
+          <div class="ch-list-row ch-list-header">
+
+            <div class="col col-sl">#</div>
+
+            <div class="col">Batch No</div>
+
+            <div class="col txt-center">Batch Date</div>
+
+            <div class="col">Product</div>
+
+            <div class="col">Source</div>
+
+            <div class="col">Warehouse</div>
+
+            <div class="col amount txt-right">Unit Cost</div>
+
+            <div class="col amount txt-right">Qty In</div>
+
+            <div class="col amount txt-right">Qty Out</div>
+
+            <div class="col amount txt-right">Balance</div>
+
+            <!-- ⭐ ACTION COLUMN -->
+            <div class="col col-actions txt-center">Action</div>
+
+          </div>
+
+          <!-- ROWS -->
+          <div class="ch-list-body-rows">
+
+            <div
+              class="ch-list-row"
+              *ngFor="let b of pagedBatches; let i = index">
+
+              <div class="col col-sl">
+                {{ serial(i) }}
+              </div>
+
+              <div class="col">
+                {{ b.batchNo }}
+              </div>
+
+              <div class="col txt-center">
+                {{ b.batchDate | date:'dd MMM yyyy' }}
+              </div>
+
+              <div class="col">
+                {{ b.productName }}
+              </div>
+
+              <div class="col">
+                {{ b.sourceNo }}
+              </div>
+
+              <div class="col">
+                {{ b.warehouseName }}
+              </div>
+
+              <div class="col amount txt-right">
+                {{ b.unitCost | number:'1.2-2' }}
+              </div>
+
+              <div class="col amount txt-right text-success">
+                {{ b.qtyIn | number:'1.2-2' }}
+              </div>
+
+              <div class="col amount txt-right text-danger">
+                {{ b.qtyOut | number:'1.2-2' }}
+              </div>
+
+              <div class="col amount txt-right fw-bold">
+                {{ b.qtyBalance | number:'1.2-2' }}
+              </div>
+
+              <!-- ⭐ ACTION BUTTON -->
+              <div class="col col-actions txt-center action-icons">
+
+                <!-- ⭐ VIEW BUTTON -->
+              <button
+                class="icon-btn view"
+                title="View Movement"
+                [disabled]="!b.productId || b.productId === 0"
+                (click)="openBatchMovement(b.batchId, b.productId)">
+
+                <i class="fa-solid fa-eye"></i>
+
+              </button>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- PAGINATION -->
+      <div class="ch-pagination" *ngIf="totalRecords > 0">
+
+        <app-pagination
+          [totalRecords]="totalRecords"
+          [pageSize]="pageSize"
+          [currentPage]="currentPage"
+          (pageChange)="onPageChange($event)"
+          (pageSizeChange)="onPageSizeChange($event)">
+        </app-pagination>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,188 @@
+.page-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.page-body-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* LIST BODY */
+.ch-list-body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.ch-list-table {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* =========================
+   HEADER
+========================= */
+.ch-list-header {
+  flex-shrink: 0;
+  display: grid;
+  grid-template-columns:
+    60px
+    160px
+    140px
+    2fr
+    140px
+    120px
+    160px;
+  align-items: center;
+  height: 44px;
+  background: #e8f3e4;
+  font-size: 14px;
+  font-weight: 600;
+  border-bottom: 1px solid #e0e6f1;
+}
+
+/* HEADER ALIGNMENT (POSITION-BASED) */
+.ch-list-header > .col:nth-child(5) {
+  text-align: right; /* Total Amount */
+}
+
+.ch-list-header > .col:nth-child(6) {
+  text-align: center; /* Status */
+}
+
+.ch-list-header > .col-actions {
+  text-align: center;
+}
+
+/* =========================
+   BODY ROWS
+========================= */
+.ch-list-body-rows {
+  flex: 1;
+  min-height: 0;
+  overflow-y: hidden;
+}
+
+.ch-list-body-rows.scrollable {
+  overflow-y: auto;
+}
+
+.ch-list-row {
+  display: grid;
+  grid-template-columns:
+    60px
+    160px
+    140px
+    2fr
+    140px
+    120px
+    160px;
+  align-items: center;
+  min-height: 42px; /* 🔒 LOCKED */
+  font-size: 14px;
+  border-bottom: 1px solid #eef0f4;
+}
+
+.ch-list-row:last-child {
+  border-bottom: none;
+}
+
+/* CELLS */
+.col {
+  padding: 0 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.col-sl {
+  text-align: center;
+}
+
+.col.amount {
+  text-align: right;
+  font-weight: 600;
+}
+
+.col.status {
+  text-align: center;
+}
+
+/* =========================
+   ACTION ICONS
+========================= */
+.action-icons {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.icon-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  border: none;
+  background: #f4f6fb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.icon-btn i {
+  font-size: 14px;
+}
+
+.icon-btn.view {
+  color: #2f6b3f;
+}
+
+.icon-btn.edit {
+  color: #e87b06;
+}
+
+/* INVOICE PRINT / VIEW ICON */
+.icon-btn.print {
+  color: #1f7a4d;
+  background: #e8f3e4;
+}
+
+.icon-btn.print:hover {
+  background: #dff0e7;
+}
+
+.icon-btn:hover {
+  background: #e5e7eb;
+}
+
+.icon-btn:active {
+  transform: scale(0.96);
+}
+
+/* =========================
+   SCROLLBAR
+========================= */
+.ch-list-body-rows::-webkit-scrollbar {
+  width: 6px;
+}
+
+.ch-list-body-rows::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}

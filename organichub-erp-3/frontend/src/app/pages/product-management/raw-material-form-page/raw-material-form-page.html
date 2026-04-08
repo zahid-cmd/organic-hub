@@ -1,0 +1,127 @@
+<div class="page-body">
+
+  <app-page-sub-header title="Create / Update Raw Material">
+    <div page-actions class="subheader-actions">
+
+      <button
+        class="ch-btn"
+        *ngIf="!isViewMode"
+        (click)="onSave()">
+        Save
+      </button>
+
+      <button
+        class="ch-btn"
+        *ngIf="!isViewMode"
+        (click)="onClear()">
+        Clear
+      </button>
+
+      <button
+        class="ch-btn"
+        (click)="onBack()">
+        Back
+      </button>
+
+    </div>
+  </app-page-sub-header>
+
+  <div class="page-body-content">
+
+    <div class="form-body">
+
+      <!-- COLUMN 1 -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+            <div class="section-header">Raw Material Info</div>
+
+            <div class="form-field">
+              <label>Material Code</label>
+              <input type="text" [(ngModel)]="raw.materialCode" disabled>
+            </div>
+
+            <div class="form-field">
+              <label>Material Name</label>
+              <input
+                type="text"
+                [(ngModel)]="raw.materialName"
+                [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>Base Unit</label>
+              <select
+                [(ngModel)]="raw.baseUnit"
+                [disabled]="isViewMode">
+                <option value="Gram">Gram</option>
+                <option value="Kg">Kg</option>
+                <option value="Litre">Litre</option>
+              </select>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- COLUMN 2 -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+            <div class="section-header">Status</div>
+
+            <div class="form-field">
+              <label>Status</label>
+              <select
+                [(ngModel)]="raw.status"
+                [disabled]="isViewMode">
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label>Remarks</label>
+              <input
+                type="text"
+                [(ngModel)]="raw.remarks"
+                [disabled]="isViewMode">
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- COLUMN 3 -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+            <div class="section-header">Audit Info</div>
+
+            <div class="form-field">
+              <label>Created By</label>
+              <input type="text" [(ngModel)]="raw.createdBy" disabled>
+            </div>
+
+            <div class="form-field">
+              <label>Created Date</label>
+              <input type="text" [(ngModel)]="raw.createdDate" disabled>
+            </div>
+
+            <div class="form-field">
+              <label>Updated By</label>
+              <input type="text" [(ngModel)]="raw.updatedBy" disabled>
+            </div>
+
+            <div class="form-field">
+              <label>Updated Date</label>
+              <input type="text" [(ngModel)]="raw.updatedDate" disabled>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

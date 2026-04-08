@@ -1,0 +1,239 @@
+/* =====================================================
+   PAGE WRAPPER
+===================================================== */
+.page-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.page-body-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* =====================================================
+   LIST BODY
+===================================================== */
+.ch-list-body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* =====================================================
+   TABLE CONTAINER
+===================================================== */
+.ch-list-table {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* =====================================================
+   TABLE HEADER
+===================================================== */
+.ch-list-header {
+  flex-shrink: 0;
+  display: grid;
+  grid-template-columns:
+    0.5fr   /* # */
+    1.2fr   /* Ledger Code */
+    1.5fr   /* Ledger Name */
+    1.2fr   /* SubGroup Code */
+    1.5fr   /* SubGroup Name */
+    1fr     /* Group Code */
+    1.5fr   /* Group Name */
+    0.8fr   /* Status */
+    0.8fr;  /* Actions */
+
+  align-items: center;
+  height: 44px;
+  background: #e8f3e4;
+  font-size: 14px;
+  font-weight: 600;
+  border-bottom: 1px solid #e0e6f1;
+}
+
+/* =====================================================
+   TABLE BODY
+===================================================== */
+.ch-list-body-rows {
+  flex: 1;
+  min-height: 0;
+  max-height: calc(10 * 43px);
+  overflow-y: auto;
+}
+
+/* =====================================================
+   TABLE ROW
+===================================================== */
+.ch-list-row {
+  display: grid;
+  grid-template-columns:
+    0.5fr   /* # */
+    1.2fr   /* Ledger Code */
+    1.5fr   /* Ledger Name */
+    1.2fr   /* SubGroup Code */
+    1.5fr   /* SubGroup Name */
+    1fr     /* Group Code */
+    1.5fr   /* Group Name */
+    0.8fr   /* Status */
+    0.8fr;  /* Actions */
+
+  align-items: center;
+  min-height: 42px;
+  font-size: 14px;
+  border-bottom: 1px solid #eef0f4;
+}
+
+/* =====================================================
+   TABLE CELLS
+===================================================== */
+.col {
+  padding: 0 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.col-sl {
+  text-align: center;
+}
+
+/* =====================================================
+   ACTION COLUMN
+===================================================== */
+.col-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+/* =====================================================
+   ACTION ICONS
+===================================================== */
+.icon-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  border: none;
+  background: #f4f6fb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.icon-btn.view { color: #2f6b3f; }
+.icon-btn.edit { color: #c48a12; }
+.icon-btn.delete { color: #dc2626; }
+
+.icon-btn:hover {
+  background: #e5e7eb;
+}
+
+/* =====================================================
+   STATUS BADGE
+===================================================== */
+.status-badge {
+  padding: 4px 10px;
+  border-radius: 14px;
+  font-size: 13px;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.status-badge.active {
+  background: #d4f5df;
+  color: #2e7d32;
+}
+
+.status-badge.inactive {
+  background: #ffe5e5;
+  color: #c62828;
+}
+
+/* =====================================================
+   EMPTY STATE (FIXED + CENTERED)
+===================================================== */
+.ch-empty-state {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.ch-empty-state i {
+  font-size: 42px;
+  color: #9ca3af;
+  margin-bottom: 12px;
+}
+
+.empty-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.empty-sub {
+  font-size: 14px;
+  color: #6b7280;
+  margin-top: 6px;
+}
+
+/* =====================================================
+   SCROLLBAR
+===================================================== */
+.ch-list-body-rows::-webkit-scrollbar {
+  width: 6px;
+}
+
+.ch-list-body-rows::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+
+.ch-empty-state {
+  height: 460px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+}
+
+.sortable {
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.2s ease;
+}
+
+.ch-list-header .sortable:hover {
+  color: #2e7d32;   /* Organic green */
+}

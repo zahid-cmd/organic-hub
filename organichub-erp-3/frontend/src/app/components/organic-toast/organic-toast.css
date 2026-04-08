@@ -1,0 +1,111 @@
+.organic-toast {
+  position: fixed;
+  top: 85px;
+  right: 30px;
+  min-width: 360px;
+  max-width: 420px;
+
+  padding: 16px 20px;
+  border-radius: 14px;
+
+  backdrop-filter: blur(6px);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
+
+  z-index: 9999;
+  animation: slideIn 0.25s ease forwards;
+}
+
+/* =========================
+   SUCCESS
+========================= */
+.organic-toast.success {
+  background: linear-gradient(135deg, #1f5f3d, #2e7d53);
+  color: #ffffff;
+  border-left: 6px solid #a5d6a7;
+}
+
+/* =========================
+   ERROR
+========================= */
+.organic-toast.error {
+  background: linear-gradient(135deg, #7a1e1e, #b02a2a);
+  color: #ffffff;
+  border-left: 6px solid #f5a3a3;
+}
+
+/* =========================
+   CONFIRM MODE (Warning Style)
+========================= */
+.organic-toast.warning {
+  background: linear-gradient(135deg, #d4b63f, #e0c55a);
+  color: #1f1f1f;
+  border-left: 6px solid #6e5c00;
+}
+
+/* =========================
+   CONTENT
+========================= */
+.toast-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.toast-message {
+  flex: 1;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/* =========================
+   ACTION BUTTONS
+========================= */
+.toast-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.toast-btn {
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+/* Confirm button */
+.toast-btn.confirm {
+  background-color: #1f5f3d;
+  color: white;
+}
+
+.toast-btn.confirm:hover {
+  background-color: #164a2f;
+}
+
+/* Cancel button */
+.toast-btn.cancel {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+.toast-btn.cancel:hover {
+  background-color: #e0e0e0;
+}
+
+/* =========================
+   ANIMATION
+========================= */
+@keyframes slideIn {
+  from {
+    transform: translateY(-15px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

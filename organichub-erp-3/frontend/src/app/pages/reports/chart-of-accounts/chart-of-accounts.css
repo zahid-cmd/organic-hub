@@ -1,0 +1,321 @@
+/* =========================================================
+ENTERPRISE WORKSPACE LAYOUT
+========================================================= */
+
+.workspace-page{
+  display:flex;
+  gap:20px;
+  height:calc(100vh - 210px);
+}
+
+
+/* =========================================================
+LEFT TREE
+========================================================= */
+
+.workspace-tree{
+  flex:0 0 420px;
+  min-width:380px;
+  max-width:480px;
+
+  background:#fff;
+  border-radius:12px;
+  border:1px solid #e5e7eb;
+
+  display:flex;
+  flex-direction:column;
+  box-shadow:0 6px 18px rgba(0,0,0,.06);
+}
+
+.workspace-tree-header{
+  padding:16px 20px;
+  height: 40px;
+  border-bottom:1px solid #eef1f4;
+  background:linear-gradient(135deg,#f7faf7,#edf6ed);
+}
+
+.workspace-tree-title{
+  font-size:17px;
+  font-weight:700;
+}
+
+.workspace-tree-sub{
+  font-size:13px;
+  color:#6b7280;
+}
+
+.workspace-tree-body{
+  flex:1;
+  overflow:auto;
+  padding:12px;
+}
+
+.workspace-tree-body::-webkit-scrollbar{ width:6px }
+.workspace-tree-body::-webkit-scrollbar-thumb{
+  background:#cfe3cf;
+  border-radius:20px;
+}
+
+
+/* =========================================================
+TREE NODE
+========================================================= */
+
+.workspace-tree-list{
+  list-style:none;
+  padding-left:4px;
+  font-size:14px;
+}
+
+.workspace-tree-list ul{
+  list-style:none;
+  padding-left:24px;
+  border-left:1px dashed #e3e8ee;
+}
+
+.workspace-tree-node{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  margin:4px 0;
+}
+
+.workspace-expand{
+  width:16px;
+  text-align:center;
+  cursor:pointer;
+  color:#9ca3af;
+}
+
+.arrow{
+  display:inline-block;
+  transition:.25s;
+}
+
+.arrow.rotated{
+  transform:rotate(90deg);
+}
+
+.workspace-node-pill{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:6px 10px;
+  border-radius:20px;
+  background:#f6faf6;
+  cursor:pointer;
+}
+
+.workspace-node-pill:hover{
+  background:#eaf6ea;
+}
+
+.workspace-node-pill.selected{
+  background:#dff3e2;
+  color:#14532d;
+  font-weight:600;
+}
+
+.workspace-node-code{
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius:6px;
+  padding:2px 6px;
+  font-size:13px;
+}
+
+
+/* =========================================================
+RIGHT PANEL
+========================================================= */
+
+.workspace-panel{
+  flex:1;
+  background:#fff;
+  border-radius:12px;
+  border:1px solid #e5e7eb;
+  display:flex;
+  flex-direction:column;
+  box-shadow:0 6px 18px rgba(0,0,0,.06);
+}
+
+.workspace-panel-header{
+  padding:16px 20px;
+  height: 40px;
+  border-bottom:1px solid #eef1f4;
+  background:linear-gradient(90deg,#eef6ee,#f7faf7);
+}
+
+.workspace-panel-title{
+  font-size:20px;
+  font-weight:700;
+}
+
+.workspace-panel-meta{
+  font-size:13px;
+  color:#6b7280;
+}
+
+
+/* =========================================================
+TABLE ZONE
+========================================================= */
+
+.workspace-table-zone{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  padding:16px;
+}
+
+.workspace-table-caption{
+  font-size:15px;
+  font-weight:700;
+  margin-bottom:10px;
+}
+
+.workspace-table-wrapper{
+  flex:1;
+  border:1px solid #eef1f4;
+  border-radius:10px;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+}
+
+
+/* =========================================================
+⭐ MASTER GRID TABLE (Inventory Style Applied)
+========================================================= */
+
+.workspace-table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:14px;
+  table-layout:fixed;
+}
+
+/* HEAD + BODY SAME STRUCTURE */
+.workspace-table thead,
+.workspace-table tbody{
+  display:block;
+  width:100%;
+}
+
+/* SCROLL ONLY BODY */
+.workspace-table tbody{
+  flex:1;
+  overflow:auto;
+}
+
+.workspace-table tbody::-webkit-scrollbar{ width:6px }
+.workspace-table tbody::-webkit-scrollbar-thumb{
+  background:#cfe3cf;
+  border-radius:20px;
+}
+
+/* ⭐ PERFECT GRID (Inventory Ratio) */
+.workspace-table.coa thead tr,
+.workspace-table.coa tbody tr{
+  display:grid;
+  grid-template-columns:
+    .5fr     /* Serial */
+    2.2fr    /* Code */
+    6.5fr    /* Name */
+    1fr;     /* Status */
+  align-items:center;
+  width:100%;
+}
+
+
+/* =========================================================
+CELL DESIGN
+========================================================= */
+
+.workspace-table th{
+  padding:10px;
+  text-align:left;
+  font-weight:600;
+  border-bottom:1px solid #e5e7eb;
+  background:#f3f6f3;
+}
+
+.workspace-table td{
+  padding:10px;
+  border-bottom:1px solid #f1f3f5;
+
+  display:flex;
+  align-items:center;
+
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
+
+.workspace-table tbody tr:hover{
+  background:#f8fbf8;
+}
+
+
+/* =========================================================
+COLUMN ALIGNMENT
+========================================================= */
+
+/* SERIAL CENTER */
+.workspace-table th:first-child,
+.workspace-table td:first-child{
+  justify-content:center;
+  text-align:center;
+}
+
+/* STATUS CENTER */
+.workspace-table th:last-child,
+.workspace-table td:last-child{
+  justify-content:center;
+  text-align:center;
+}
+
+/* CODE + NAME STRICT LEFT */
+.workspace-table th:nth-child(2),
+.workspace-table th:nth-child(3),
+.workspace-table td:nth-child(2),
+.workspace-table td:nth-child(3){
+  justify-content:flex-start;
+  text-align:left;
+}
+
+
+/* =========================================================
+STATUS BADGE
+========================================================= */
+
+.status{
+  padding:4px 12px;
+  border-radius:20px;
+  font-size:13px;
+  font-weight:600;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:72px;
+}
+
+.status.active{
+  background:#dcfce7;
+  color:#166534;
+}
+
+.status.inactive{
+  background:#fee2e2;
+  color:#991b1b;
+}
+
+.row-selected{
+  background:#e6f4ea !important;
+}
+
+.loading{
+  padding-left:20px;
+  font-size:12px;
+  color:#9ca3af;
+}

@@ -1,0 +1,244 @@
+<div class="page-body">
+
+  <!-- GLOBAL TOAST -->
+  <app-organic-toast></app-organic-toast>
+
+  <!-- PAGE HEADER -->
+  <app-page-sub-header title="Create / Update Company">
+    <div page-actions class="subheader-actions">
+
+      <button
+        type="button"
+        class="ch-btn"
+        *ngIf="!isViewMode"
+        (click)="onSave()">
+        {{ mode === 'edit' ? 'Update' : 'Save' }}
+      </button>
+
+      <button
+        type="button"
+        class="ch-btn"
+        *ngIf="!isViewMode"
+        (click)="onClear()">
+        Clear
+      </button>
+
+      <button
+        type="button"
+        class="ch-btn"
+        (click)="onBack()">
+        Back
+      </button>
+
+    </div>
+  </app-page-sub-header>
+
+  <!-- PAGE CONTENT -->
+  <div class="page-body-content">
+
+    <div class="form-body">
+
+      <!-- COLUMN 1 -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+
+            <div class="section-header">Company Information</div>
+
+            <div class="form-field">
+              <label>Company Code</label>
+              <input
+                type="text"
+                [(ngModel)]="company.companyCode"
+                readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Company Name</label>
+              <input
+                type="text"
+                [(ngModel)]="company.companyName"
+                [disabled]="isViewMode">
+            </div>
+
+            <!-- ============================= -->
+            <!-- COMPANY LOGO (BEFORE STATUS) -->
+            <!-- ============================= -->
+            <div class="form-field logo-field">
+              <label>Company Logo</label>
+
+              <div class="logo-wrapper">
+
+                <!-- Preview -->
+                <div class="logo-preview">
+                  <img
+                    *ngIf="getLogoUrl()"
+                    [src]="getLogoUrl()"
+                    alt="Company Logo" />
+
+                  <div *ngIf="!getLogoUrl()" class="no-logo">
+                    No Logo
+                  </div>
+                </div>
+
+                <input
+                  type="file"
+                  (change)="onLogoSelect($event)"
+                  [disabled]="isViewMode">
+
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label>Status</label>
+              <select
+                [(ngModel)]="company.status"
+                [disabled]="isViewMode">
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label>Remarks</label>
+              <textarea
+                [(ngModel)]="company.remarks"
+                [disabled]="isViewMode"></textarea>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- COLUMN 2 -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+
+            <div class="section-header">Contact Information</div>
+
+            <div class="form-field">
+              <label>Primary Phone</label>
+              <input
+                type="text"
+                [(ngModel)]="company.primaryPhone"
+                [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>Secondary Phone</label>
+              <input
+                type="text"
+                [(ngModel)]="company.secondaryPhone"
+                [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>Email</label>
+              <input
+                type="email"
+                [(ngModel)]="company.email"
+                [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>Website</label>
+              <input
+                type="text"
+                [(ngModel)]="company.website"
+                [disabled]="isViewMode">
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- COLUMN 3 -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+
+            <div class="section-header">Tax & Registration</div>
+
+            <div class="form-field">
+              <label>TIN</label>
+              <input
+                type="text"
+                [(ngModel)]="company.tin"
+                [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>BIN</label>
+              <input
+                type="text"
+                [(ngModel)]="company.bin"
+                [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>VAT Payment Code</label>
+              <input
+                type="text"
+                [(ngModel)]="company.vatPaymentCode"
+                [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>Ownership Type</label>
+              <input
+                type="text"
+                [(ngModel)]="company.ownershipType"
+                [disabled]="isViewMode">
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- COLUMN 4 -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+
+            <div class="section-header">System Information</div>
+
+            <div class="form-field">
+              <label>Created By</label>
+              <input
+                type="text"
+                [(ngModel)]="company.createdBy"
+                readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Created Date</label>
+              <input
+                type="text"
+                [(ngModel)]="company.createdDate"
+                readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Updated By</label>
+              <input
+                type="text"
+                [(ngModel)]="company.updatedBy"
+                readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Updated Date</label>
+              <input
+                type="text"
+                [(ngModel)]="company.updatedDate"
+                readonly>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

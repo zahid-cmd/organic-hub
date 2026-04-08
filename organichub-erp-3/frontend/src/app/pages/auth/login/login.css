@@ -1,0 +1,479 @@
+/* ========================================
+   GLOBAL WRAPPER
+======================================== */
+.login-wrapper {
+  height: 100vh;
+  width: 100%;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ========================================
+   FULL WIDTH GREEN BACKGROUND
+======================================== */
+.brand-section {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    #1e5f48,
+    #2f8b6b,
+    #3aa27a
+  );
+  display: flex;
+  align-items: center;
+  padding-left: 8%;
+  color: white;
+}
+
+/* Brand Content */
+.brand-content {
+  max-width: 520px;
+  z-index: 5;
+}
+
+.brand-logo {
+  width: 200px;
+  margin-bottom: 30px;
+    border: none;
+  border-radius: 12px;
+}
+
+.brand-content h1 {
+  font-size: 42px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.tagline {
+  font-size: 16px;
+  opacity: 0.9;
+  margin-bottom: 35px;
+}
+
+.brand-features div {
+  margin-bottom: 14px;
+  font-size: 15px;
+  opacity: 0.95;
+}
+
+/* ========================================
+   FIXED 3D BLOCKS (BOTTOM LEFT)
+======================================== */
+.background-blocks {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 600px;
+  height: 250px;
+  pointer-events: none;
+}
+
+.bg-block {
+  position: absolute;
+  border-radius: 18px;
+  box-shadow:
+    0 30px 60px rgba(0,0,0,0.35),
+    inset -8px -8px 15px rgba(0,0,0,0.15),
+    inset 6px 6px 12px rgba(255,255,255,0.15);
+}
+
+/* Blocks */
+.block-1 {
+  width: 160px;
+  height: 160px;
+  background: linear-gradient(145deg, #ff8c42, #ff6b00);
+  bottom: 40px;
+  left: 80px;
+  transform: rotate(12deg);
+}
+
+.block-2 {
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(145deg, #ffd84d, #ffb700);
+  bottom: 20px;
+  left: 200px;
+  transform: rotate(-8deg);
+}
+
+.block-3 {
+  width: 140px;
+  height: 140px;
+  background: linear-gradient(145deg, #ff5f6d, #e63946);
+  bottom: 50px;
+  left: 300px;
+  transform: rotate(10deg);
+}
+
+.block-4 {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(145deg, #ffb347, #ff8c00);
+  bottom: 0;
+  left: 420px;
+  transform: rotate(-6deg);
+}
+
+.block-5 {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(145deg, #f94144, #d62828);
+  bottom: 30px;
+  left: 480px;
+  transform: rotate(8deg);
+}
+
+/* ========================================
+   FLOATING BLUE PANEL
+======================================== */
+.login-section {
+  position: absolute;
+  right: 80px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 520px;
+
+  min-height: 680px;
+
+  background: linear-gradient(
+    160deg,
+    #2c3e73,
+    #3f57a6,
+    #5b6fd6
+  );
+
+  border-radius: 40px;
+  padding: 70px 45px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  /* Premium layered shadow */
+  box-shadow:
+    0 60px 100px rgba(0, 0, 0, 0.55),
+    0 25px 50px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  
+  position: absolute;
+  overflow: hidden;
+}
+.login-section::before {
+  content: "";
+  position: absolute;
+  top: -150px;
+  right: -150px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(
+    circle,
+    rgba(255,255,255,0.25),
+    transparent 60%
+  );
+  filter: blur(80px);
+}
+/* Login Card */
+.login-card {
+  width: 100%;
+  max-width: 380px;
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(22px);
+  border-radius: 18px;
+  padding: 40px;
+  box-shadow:
+    0 25px 60px rgba(0,0,0,0.4),
+    inset 0 0 0 1px rgba(255,255,255,0.15);
+  color: white;
+}
+
+.login-card h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.login-subtitle {
+  font-size: 20px;
+  opacity: 0.85;
+  margin-bottom: 28px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  background: rgba(255,255,255,0.18);
+  border-radius: 12px;
+  margin-bottom: 18px;
+  padding: 14px;
+}
+
+.input-group input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+  color: white;
+}
+
+.input-group input::placeholder {
+  color: rgba(255,255,255,0.75);
+}
+
+.login-btn {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #00c48c, #00a676);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+  font-size: 20px;
+}
+
+.login-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0,200,140,0.45);
+}
+
+.card-footer {
+  margin-top: 25px;
+  font-size: 12px;
+  opacity: 0.75;
+  text-align: center;
+}
+
+.login-footer {
+  margin-top: 30px;
+  font-size: 12px;
+  opacity: 0.75;
+}
+
+/* ========================================
+   3D CUBE STYLE BOXES
+======================================== */
+
+.background-blocks {
+  perspective: 1200px;
+}
+
+.cube {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  transform-style: preserve-3d;
+  transform: rotateX(45deg) rotateY(45deg);
+  border-radius: 8px;
+}
+
+/* Cube Face Illusion */
+.cube::before,
+.cube::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+}
+
+/* Top Face */
+.cube::before {
+  transform: translateZ(35px);
+  background: linear-gradient(145deg, #4cc9f0, #4361ee);
+}
+
+/* Side Face */
+.cube::after {
+  transform: rotateY(90deg) translateZ(35px);
+  background: linear-gradient(145deg, #3a0ca3, #7209b7);
+}
+
+/* Subtle Depth Shadow */
+.cube {
+  box-shadow:
+    0 25px 40px rgba(0,0,0,0.35),
+    inset -4px -4px 10px rgba(0,0,0,0.2),
+    inset 4px 4px 8px rgba(255,255,255,0.15);
+}
+
+/* Individual Cube Positions */
+
+.cube-1 {
+  bottom: 120px;
+  left: 120px;
+  transform: rotateX(50deg) rotateY(30deg);
+}
+
+.cube-2 {
+  bottom: 90px;
+  left: 260px;
+  transform: rotateX(40deg) rotateY(60deg);
+}
+
+.cube-3 {
+  bottom: 140px;
+  left: 360px;
+  transform: rotateX(55deg) rotateY(20deg);
+}
+
+/* ========================================
+   ORGANIC GREEN 4-SIDE 3D CUBES
+======================================== */
+
+.background-blocks {
+  perspective: 1400px;
+}
+
+/* Main cube container */
+.green-cube {
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  transform-style: preserve-3d;
+  transform: rotateX(45deg) rotateY(-35deg);
+}
+
+/* Common face styling */
+.green-cube .face {
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  border-radius: 12px;
+  box-shadow:
+    inset -6px -6px 12px rgba(0,0,0,0.25),
+    inset 6px 6px 12px rgba(255,255,255,0.08);
+}
+
+/* FRONT */
+.green-cube .front {
+  background: linear-gradient(145deg, #2f8b6b, #1e5f48);
+  transform: translateZ(45px);
+}
+
+/* RIGHT */
+.green-cube .right {
+  background: linear-gradient(145deg, #1e5f48, #164a39);
+  transform: rotateY(90deg) translateZ(45px);
+}
+
+/* LEFT */
+.green-cube .left {
+  background: linear-gradient(145deg, #3aa27a, #2f8b6b);
+  transform: rotateY(-90deg) translateZ(45px);
+}
+
+/* TOP */
+.green-cube .top {
+  background: linear-gradient(145deg, #4cc38a, #2f8b6b);
+  transform: rotateX(90deg) translateZ(45px);
+}
+
+/* Premium Shadow */
+.green-cube {
+  box-shadow:
+    0 35px 55px rgba(0,0,0,0.4);
+}
+
+/* Individual Positions */
+
+.cube-a {
+  bottom: 120px;
+  left: 140px;
+}
+
+.cube-b {
+  bottom: 60px;
+  left: 340px;
+  transform: rotateX(50deg) rotateY(20deg);
+}
+
+/* ========================================
+   FULL 6-SIDE ORGANIC 3D CUBES
+======================================== */
+
+.background-blocks {
+  perspective: 1500px;
+}
+
+/* Main Cube */
+.green-cube {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  transform-style: preserve-3d;
+  transform: rotateX(45deg) rotateY(-35deg);
+}
+
+/* Common Face Style */
+.green-cube .face {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 14px;
+  box-shadow:
+    inset -6px -6px 15px rgba(0,0,0,0.25),
+    inset 6px 6px 12px rgba(255,255,255,0.08);
+}
+
+/* FRONT */
+.green-cube .front {
+  background: linear-gradient(145deg, #2f8b6b, #1e5f48);
+  transform: translateZ(50px);
+}
+
+/* BACK */
+.green-cube .back {
+  background: linear-gradient(145deg, #164a39, #0f3b2c);
+  transform: rotateY(180deg) translateZ(50px);
+}
+
+/* RIGHT */
+.green-cube .right {
+  background: linear-gradient(145deg, #1e5f48, #164a39);
+  transform: rotateY(90deg) translateZ(50px);
+}
+
+/* LEFT */
+.green-cube .left {
+  background: linear-gradient(145deg, #3aa27a, #2f8b6b);
+  transform: rotateY(-90deg) translateZ(50px);
+}
+
+/* TOP */
+.green-cube .top {
+  background: linear-gradient(145deg, #4cc38a, #2f8b6b);
+  transform: rotateX(90deg) translateZ(50px);
+}
+
+/* BOTTOM */
+.green-cube .bottom {
+  background: linear-gradient(145deg, #145c45, #0f3b2c);
+  transform: rotateX(-90deg) translateZ(50px);
+}
+
+/* Premium Depth Shadow */
+.green-cube {
+  box-shadow:
+    0 45px 65px rgba(0,0,0,0.45);
+}
+
+/* Positioning */
+
+.cube-a {
+  bottom: 130px;
+  left: 150px;
+}
+
+.cube-b {
+  bottom: 70px;
+  left: 360px;
+  transform: rotateX(55deg) rotateY(15deg);
+}

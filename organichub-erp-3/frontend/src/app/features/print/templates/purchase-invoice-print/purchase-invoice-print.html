@@ -1,0 +1,85 @@
+<div class="print-paper">
+
+  <!-- HEADER -->
+  <div class="print-header">
+
+    <div class="logo">
+      <img src="assets/Logo.png">
+    </div>
+
+    <div class="company">
+      <div class="title">Organic Hub ERP</div>
+      <div>Suite #26, 6th Floor</div>
+      <div>DOHS Shopping Complex, Mirpur, Dhaka</div>
+      <div>Phone : +8801896057950</div>
+    </div>
+
+  </div>
+
+  <!-- INFO BLOCK -->
+  <div class="info-row">
+
+    <div class="info-box">
+      <div class="box-title">SUPPLIER</div>
+
+      <div><b>Name :</b> {{data?.supplierName}}</div>
+      <div><b>Phone :</b> {{data?.supplierPhone}}</div>
+      <div><b>Address :</b> {{data?.supplierAddress}}</div>
+    </div>
+
+    <div class="info-box">
+      <div class="box-title">PURCHASE INVOICE</div>
+
+      <div><b>Invoice :</b> {{data?.invoiceNo}}</div>
+      <div><b>Date :</b> {{data?.invoiceDate | date}}</div>
+      <div><b>Status :</b> {{data?.status}}</div>
+    </div>
+
+  </div>
+
+  <!-- TABLE -->
+  <table class="print-table">
+
+    <thead>
+      <tr>
+        <th>SL</th>
+        <th>Product</th>
+        <th>Qty</th>
+        <th>Rate</th>
+        <th>Amount</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr *ngFor="let i of data?.items; let idx=index">
+        <td>{{idx+1}}</td>
+        <td>{{i.productName}}</td>
+        <td>{{i.quantity}}</td>
+        <td>{{i.rate}}</td>
+        <td>{{i.amount}}</td>
+      </tr>
+
+    </tbody>
+
+  </table>
+
+  <!-- TOTAL -->
+  <div class="total-area">
+
+    <div>Total Items : {{data?.items?.length}}</div>
+
+    <div class="grand">
+      Invoice Value : {{data?.totalAmount}}
+    </div>
+
+  </div>
+
+  <!-- SIGN -->
+  <div class="sign-row">
+    <div>Prepared By</div>
+    <div>Checked By</div>
+    <div>Authorized By</div>
+  </div>
+
+</div>

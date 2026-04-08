@@ -1,0 +1,204 @@
+<div class="page-body">
+
+  <!-- 🔥 ORGANIC TOAST -->
+  <app-organic-toast></app-organic-toast>
+
+  <!-- SUB HEADER -->
+  <app-page-sub-header title="Create / Update Supplier">
+    <div page-actions class="subheader-actions">
+
+      <button
+        type="button"
+        class="ch-btn"
+        *ngIf="!isViewMode"
+        (click)="onSave()">
+        {{ saveButtonLabel }}
+      </button>
+
+      <button
+        type="button"
+        class="ch-btn"
+        *ngIf="!isViewMode"
+        (click)="onClear()">
+        Clear
+      </button>
+
+      <button
+        type="button"
+        class="ch-btn"
+        (click)="onBack()">
+        Back
+      </button>
+
+    </div>
+  </app-page-sub-header>
+
+  <div class="page-body-content">
+
+    <!-- LOADING -->
+    <div class="ch-loading" *ngIf="loading">
+      <i class="fa fa-spinner fa-spin"></i>
+      Loading supplier...
+    </div>
+
+    <!-- FORM -->
+    <div class="form-body" *ngIf="!loading">
+
+      <!-- COLUMN 1 -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+            <div class="section-header">Parental Control</div>
+
+            <div class="form-field">
+              <label>Account Sub Group</label>
+              <input type="text"
+                    [(ngModel)]="supplier.accountSubGroupName"
+                    readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Sub Group Code</label>
+              <input type="text"
+                    [(ngModel)]="supplier.subGroupCode"
+                    readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Status</label>
+              <select [(ngModel)]="supplier.status"
+                      [disabled]="isViewMode">
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+              </select>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- COLUMN 2 -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+            <div class="section-header">Supplier Information</div>
+
+            <div class="form-field">
+              <label>Supplier Code</label>
+              <input type="text"
+                     [(ngModel)]="supplier.supplierCode"
+                     readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Supplier Ledger Name</label>
+              <input type="text"
+                     [value]="supplierDisplayName"
+                     readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Supplier Name</label>
+              <input type="text"
+                     [(ngModel)]="supplier.supplierName"
+                     [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>Primary Phone</label>
+              <input type="text"
+                     [(ngModel)]="supplier.primaryPhone"
+                     [disabled]="isViewMode">
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- COLUMN 3 -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+            <div class="section-header">Contact Information</div>
+
+            <!-- 🔥 NEW FIELD -->
+            <div class="form-field">
+              <label>Contact Person</label>
+              <input type="text"
+                     [(ngModel)]="supplier.contactPerson"
+                     [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>Phone</label>
+              <input type="text"
+                     [(ngModel)]="supplier.phone"
+                     [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>Email</label>
+              <input type="text"
+                     [(ngModel)]="supplier.email"
+                     [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>Address</label>
+              <input type="text"
+                     [(ngModel)]="supplier.address"
+                     [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>Remarks</label>
+              <input type="text"
+                     [(ngModel)]="supplier.remarks"
+                     [disabled]="isViewMode">
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- COLUMN 4 -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+            <div class="section-header">Audit Info</div>
+
+            <div class="form-field">
+              <label>Created By</label>
+              <input type="text"
+                     [(ngModel)]="supplier.createdBy"
+                     readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Created Date</label>
+              <input type="text"
+                     [(ngModel)]="supplier.createdDate"
+                     readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Updated By</label>
+              <input type="text"
+                     [(ngModel)]="supplier.updatedBy"
+                     readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Updated Date</label>
+              <input type="text"
+                     [(ngModel)]="supplier.updatedDate"
+                     readonly>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

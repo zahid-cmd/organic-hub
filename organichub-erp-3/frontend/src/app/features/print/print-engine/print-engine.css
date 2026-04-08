@@ -1,0 +1,650 @@
+/* =========================================================
+   PDF VIEWER SHELL (GOOGLE STYLE)
+========================================================= */
+
+.pdf-viewer{
+height:100vh;
+background:#202124;
+display:flex;
+flex-direction:column;
+overflow:hidden;
+font-family:Segoe UI, Arial, sans-serif;
+}
+
+
+/* ================= TOP TOOLBAR ================= */
+
+.pdf-toolbar{
+height:56px;
+background:#303134;
+color:#fff;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 16px;
+flex-shrink:0;
+}
+
+.pt-left,.pt-center,.pt-right{
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.pt-title{
+font-size:14px;
+opacity:.9;
+}
+
+.pt-btn,.pt-icon{
+height:32px;
+min-width:32px;
+border:none;
+background:transparent;
+color:#fff;
+cursor:pointer;
+border-radius:4px;
+}
+
+.pt-btn:hover,.pt-icon:hover{
+background:rgba(255,255,255,.12);
+}
+
+.pt-page{
+background:#000;
+padding:4px 10px;
+border-radius:4px;
+font-size:13px;
+}
+
+.pt-zoom{
+width:50px;
+text-align:center;
+font-size:13px;
+}
+
+
+/* ================= BODY GRID ================= */
+
+.pdf-body{
+flex:1;
+display:grid;
+grid-template-columns:150px 1fr;
+overflow:hidden;
+}
+
+
+/* ================= THUMB PANEL ================= */
+
+.pdf-thumbnails{
+background:#171717;
+padding:14px 10px;
+overflow:auto;
+}
+
+.thumb{
+margin-bottom:14px;
+cursor:pointer;
+}
+
+.thumb-sheet{
+
+width:170px;
+height:240px;
+overflow:hidden;
+background:#eaeaea;
+border-radius:4px;
+position:relative;
+display:flex;
+align-items:flex-start;
+justify-content:flex-start;
+}
+
+.thumb-inner{
+position:absolute;
+top:0;
+left:0;
+}
+
+.thumb.active .thumb-sheet{
+outline:3px solid #4c8bf5;
+}
+
+
+/* ================= PAGE CANVAS ================= */
+
+.pdf-canvas{
+
+overflow:auto;
+
+display:flex;
+justify-content:center;
+align-items:flex-start;
+
+padding-top:40px;
+padding-bottom:80px;
+
+}
+
+.pdf-scale{
+transform-origin:top center;
+transition:.18s ease;
+}
+
+
+/* =========================================================
+   DOCUMENT PAGE DESIGN (UNCHANGED — ORGANIC THEME)
+========================================================= */
+
+.page-wrapper{
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:46px;
+}
+
+.invoice-page{
+
+width:794px;
+min-height:1123px;
+
+background:#fff;
+
+padding:36px;
+margin:0 auto 48px auto;
+
+box-shadow:
+0 1px 3px rgba(0,0,0,.6),
+0 10px 28px rgba(0,0,0,.65);
+
+position:relative;
+
+display:flex;
+flex-direction:column;
+justify-content:flex-start;
+
+}
+
+
+/* ================= HEADER ================= */
+
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+border-bottom:1px solid #e4e7eb;
+padding-bottom:10px;
+margin-bottom:14px;
+}
+
+.logo-box{
+width:85px;
+flex-shrink:0;
+}
+
+.logo-box img{
+width:100%;
+}
+
+.company{
+text-align:right;
+}
+
+.company h2{
+margin:0;
+font-size:22px;
+}
+
+.company p{
+margin:2px 0;
+font-size:13px;
+color:#555;
+}
+
+
+/* ================= INFO ================= */
+
+.info-section{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:16px;
+margin-bottom:12px;
+}
+
+.info-card{
+border:1px solid #e4e7eb;
+background:#fafafa;
+padding:10px 16px;
+display:flex;
+flex-direction:column;
+}
+
+.info-card.right{
+text-align:right;
+}
+
+.info-title{
+font-weight:700;
+font-size:15px;
+border-bottom:1px solid #e4e7eb;
+padding-bottom:4px;
+margin-bottom:6px;
+}
+
+.row{
+display:flex;
+justify-content:space-between;
+font-size:14px;
+padding:2px 0;
+}
+
+
+/* ================= TABLE ================= */
+
+.items-table{
+width:100%;
+border-collapse:collapse;
+font-size:14px;
+table-layout:fixed;
+}
+
+.items-table th{
+background:#f4f6f8;
+border:1px solid #e4e7eb;
+padding:9px;
+}
+
+.items-table td{
+border:1px solid #e4e7eb;
+padding:8px 10px;
+}
+
+.sl{width:60px;text-align:center}
+.qty{width:80px;text-align:center}
+.rate{width:130px;text-align:right;padding-right:14px}
+.amt{width:150px;text-align:right;padding-right:14px}
+
+.product{
+text-align:left;
+word-break:break-word;
+white-space:normal;
+}
+
+.items-table tbody tr:nth-child(even){
+background:#fafafa;
+}
+
+
+/* ================= TOTAL ZONE ================= */
+
+.erp-total-zone{
+display:grid;
+grid-template-columns:1fr 320px;
+gap:26px;
+align-items:start;
+margin-top:2px;
+}
+
+.words-area{
+font-size:14px;
+line-height:1.6;
+padding-top:6px;
+}
+
+.summary-block{
+width:320px;
+justify-self:end;
+padding-right:14px;
+}
+
+.summary-row{
+display:grid;
+grid-template-columns:1fr auto;
+padding:6px 0;
+border-bottom:1px solid #e4e7eb;
+font-size:15px;
+}
+
+.summary-row.grand{
+font-size:18px;
+font-weight:700;
+border-top:2px solid #000;
+border-bottom:none;
+padding-top:8px;
+}
+
+
+/* ================= SIGNATURE ================= */
+
+.signature{
+margin-top:55px;
+display:flex;
+justify-content:space-between;
+text-align:center;
+}
+
+.sign{
+width:200px;
+}
+
+.line{
+border-top:1px solid #444;
+margin-bottom:6px;
+}
+
+
+/* ================= WATERMARK ================= */
+
+.watermark{
+position:absolute;
+top:45%;
+left:50%;
+transform:translate(-50%,-50%) rotate(-25deg);
+font-size:110px;
+color:rgba(0,0,0,0.05);
+font-weight:700;
+pointer-events:none;
+white-space:nowrap;
+}
+
+/* =========================================
+   TOOLBAR UX POLISH
+========================================= */
+
+.pt-left{
+gap:18px;
+}
+
+.pt-back{
+display:flex;
+align-items:center;
+gap:8px;
+padding:0 10px;
+height:34px;
+background:rgba(255,255,255,.08);
+border-radius:6px;
+cursor:pointer;
+font-size:13px;
+}
+
+.pt-back:hover{
+background:rgba(255,255,255,.18);
+}
+
+.pt-title{
+opacity:.75;
+font-weight:500;
+}
+
+
+/* =========================================
+   ACTION BUTTON GROUP (EXPORT / PRINT)
+========================================= */
+
+.pt-actions{
+display:flex;
+gap:8px;
+}
+
+.pt-action-btn{
+height:34px;
+padding:0 14px;
+border-radius:6px;
+background:rgba(255,255,255,.08);
+cursor:pointer;
+display:flex;
+align-items:center;
+gap:8px;
+font-size:13px;
+}
+
+.pt-action-btn:hover{
+background:rgba(255,255,255,.18);
+}
+
+
+/* =========================================
+   THUMB PANEL IMPROVEMENT
+========================================= */
+
+.pdf-body{
+grid-template-columns:190px 1fr;
+}
+
+.pdf-thumbnails{
+border-right:1px solid rgba(255,255,255,.06);
+padding:18px 12px;
+}
+
+.thumb{
+transition:.15s;
+}
+
+.thumb:hover{
+transform:translateY(-2px);
+}
+
+.thumb-sheet{
+height:210px;
+border-radius:4px;
+box-shadow:0 4px 14px rgba(0,0,0,.5);
+font-weight:600;
+}
+
+.thumb.active .thumb-sheet{
+outline:3px solid #4c8bf5;
+}
+
+/* ================= LEFT PANEL WIDTH UPGRADE ================= */
+
+.pdf-body{
+grid-template-columns:360px 1fr;
+}
+
+
+/* ================= REAL THUMBNAIL LOOK ================= */
+
+.pdf-thumbnails{
+padding:20px 14px;
+}
+
+.thumb-sheet{
+
+width:150px;
+height:210px;
+
+background:#fff;
+border-radius:3px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:13px;
+font-weight:600;
+color:#444;
+
+box-shadow:
+0 1px 3px rgba(0,0,0,.6),
+0 8px 24px rgba(0,0,0,.5);
+
+border:1px solid #dcdcdc;
+
+margin:auto;
+}
+
+
+.thumb.active .thumb-sheet{
+outline:3px solid #4c8bf5;
+}
+
+
+/* subtle hover realism */
+
+.thumb:hover .thumb-sheet{
+transform:translateY(-3px);
+box-shadow:
+0 6px 14px rgba(0,0,0,.6),
+0 16px 40px rgba(0,0,0,.6);
+transition:.18s;
+}
+
+/* ================= REAL VIEWER ICON BUTTON ================= */
+
+.pt-icon-btn{
+height:36px;
+width:36px;
+border-radius:6px;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+font-size:16px;
+background:rgba(255,255,255,.08);
+}
+
+.pt-icon-btn:hover{
+background:rgba(255,255,255,.18);
+}
+
+
+/* ===== BACK BUTTON ===== */
+
+.pt-back-btn{
+display:flex;
+align-items:center;
+gap:8px;
+background:#4b5563;
+color:#fff;
+border:none;
+padding:8px 16px;
+border-radius:10px;
+font-weight:600;
+cursor:pointer;
+transition:.25s;
+}
+
+.pt-back-btn svg{
+width:18px;
+height:18px;
+}
+
+.pt-back-btn:hover{
+background:#374151;
+}
+
+
+/* ===== PAGE INDICATOR ===== */
+
+.pt-page-indicator{
+background:#000;
+color:#fff;
+padding:4px 12px;
+border-radius:6px;
+font-size:12px;
+font-weight:600;
+}
+
+
+/* ===== ZOOM BUTTON ===== */
+
+.pt-zoom-btn{
+width:36px;
+height:36px;
+border-radius:8px;
+border:1px solid rgba(255,255,255,.08);
+background:#2c3137;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+}
+
+.pt-zoom-btn svg{
+width:18px;
+height:18px;
+color:#d1d5db;
+}
+
+
+/* ===== ACTION BUTTONS ===== */
+
+.pt-action-btn{
+width:46px;
+height:42px;
+border-radius:12px;
+border:1px solid rgba(255,255,255,.08);
+background:linear-gradient(145deg,#3a3f46,#2b2f34);
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+transition:.25s;
+box-shadow:0 6px 16px rgba(0,0,0,.35);
+}
+
+.pt-action-btn svg{
+width:22px;
+height:22px;
+color:#e5e7eb;
+}
+
+.pt-action-btn:hover{
+transform:translateY(-2px);
+box-shadow:0 12px 24px rgba(0,0,0,.55);
+}
+
+
+/* semantic hover */
+
+.pt-action-btn.pdf:hover{
+background:linear-gradient(145deg,#dc2626,#b91c1c);
+}
+
+.pt-action-btn.excel:hover{
+background:linear-gradient(145deg,#16a34a,#15803d);
+}
+
+.pt-action-btn.print:hover{
+background:linear-gradient(145deg,#2563eb,#1d4ed8);
+}
+
+
+/* =========================================================
+   PRINT MODE (CRITICAL)
+========================================================= */
+
+@media print{
+
+body{
+background:#fff !important;
+}
+
+.pdf-toolbar,
+.pdf-thumbnails{
+display:none !important;
+}
+
+.pdf-viewer{
+background:#fff !important;
+}
+
+.pdf-body{
+display:block !important;
+}
+
+.pdf-canvas{
+padding:0 !important;
+}
+
+.invoice-page{
+box-shadow:none !important;
+margin:0 !important;
+padding:20px !important;
+}
+
+.page-wrapper{
+width:100% !important;
+}
+
+}

@@ -1,0 +1,212 @@
+/* ======================================================
+   TOP BAR – DEEP ORGANIC
+====================================================== */
+.topbar {
+  height: 64px;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: linear-gradient(
+    90deg,
+    #0F3A24 0%,
+    #1E5A3A 60%,
+    #2A7049 100%
+  );
+
+  color: #ffffff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+.user-btn {
+  background: #1E5A3A;
+}
+
+.user-btn:hover {
+  background: #2A7049;
+}
+
+
+/* ======================================================
+   LEFT SECTION
+====================================================== */
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-left: 16px;           /* 🔒 MATCH SIDEBAR EDGE */
+}
+
+/* ======================================================
+   LOGO
+====================================================== */
+.app-logo {
+  height: 36px;                 /* 🔒 LOCKED */
+  display: block;
+}
+
+/* ======================================================
+   SIDEBAR TOGGLE BUTTON
+====================================================== */
+.menu-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+
+  color: #ffffff;
+  font-size: 20px;
+  line-height: 1;
+
+  cursor: pointer;
+  padding: 6px;
+
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+/* 🔥 POSITION FIX (AS YOU LOCKED IT) */
+.menu-btn {
+  margin-left: 94px;
+  position: relative;
+  top: 1px;
+}
+
+.menu-btn:hover {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+/* ======================================================
+   WELCOME TEXT
+====================================================== */
+.welcome-text {
+  font-size: 17px;
+  font-weight: 400;
+  white-space: nowrap;
+  opacity: 0.95;
+}
+
+/* ======================================================
+   RIGHT SECTION
+====================================================== */
+.topbar-right {
+  padding-right: 16px;          /* 🔒 LOCKED */
+  position: relative;
+}
+
+/* ======================================================
+   USER DROPDOWN CONTAINER
+====================================================== */
+.user-dropdown {
+  position: relative;
+  width: 200px;
+}
+
+/* ======================================================
+   USER BUTTON
+====================================================== */
+.user-btn {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 500;
+
+  padding: 6px 14px;
+  border-radius: 8px;
+
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  transition: background 0.2s ease, border 0.2s ease;
+}
+
+.user-btn:hover {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+/* Caret */
+.user-btn .caret {
+  font-size: 12px;
+  opacity: 0.85;
+}
+
+/* ======================================================
+   USER DROPDOWN MENU
+====================================================== */
+.user-menu {
+  position: absolute;
+  top: 46px;
+  right: 0;
+
+  width: 220px;                /* 🔒 FIXED WIDTH */
+  background: #ffffff;
+
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+
+  padding: 6px 0;
+  z-index: 1000;
+}
+
+/* ======================================================
+   DROPDOWN ITEMS
+====================================================== */
+.user-menu .menu-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 10px 16px;
+
+  background: transparent;
+  border: none;
+  text-align: left;
+
+  font-size: 14px;
+  font-weight: 500;
+  color: #1F5F3B;
+
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+/* ICON */
+.user-menu .menu-item .icon {
+  width: 20px;
+  text-align: center;
+  font-size: 15px;
+}
+
+/* HOVER */
+.user-menu .menu-item:hover {
+  background: #EEF6EA;
+}
+
+/* LOGOUT (ORGANIC WARNING) */
+.user-menu .menu-item.logout {
+  color: #C2410C;   /* organic orange */
+}
+
+.user-menu .menu-item.logout:hover {
+  background: #FFF1E6;
+}
+/* ======================================================
+   BRAND TEXT (AFTER LOGO)
+====================================================== */
+.brand-text {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+
+  color: #f7f4e9; /* 🔥 organic gold */
+
+  margin-left: 6px;
+  margin-right: 18px;
+
+  white-space: nowrap;
+  line-height: 1;
+}

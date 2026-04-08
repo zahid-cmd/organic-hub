@@ -1,0 +1,168 @@
+<div class="page-container">
+
+  <div class="page-body">
+
+    <app-page-sub-header title="Search & Filter Purchase Orders">
+      <div page-actions class="subheader-actions">
+        <button class="ch-btn" (click)="onAdd()">Add</button>
+        <button class="ch-btn" (click)="onClear()">Clear</button>
+        <button class="ch-btn" (click)="onBack()">Back</button>
+      </div>
+    </app-page-sub-header>
+
+    <div class="page-body-content">
+
+      <!-- SEARCH -->
+      <app-search-area
+        [searchText]="searchText"
+        [status]="statusFilter"
+        [statusOptions]="statusOptions"
+        (searchChange)="onSearch($event)"
+        (statusChange)="onStatusChange($event)">
+      </app-search-area>
+
+
+      <!-- LIST -->
+      <div class="ch-list-body">
+
+        <!-- EMPTY STATE (FULL PAGE STYLE LIKE SUPPLIER) -->
+        <div
+          *ngIf="totalRecords === 0"
+          class="ch-empty-state">
+
+          <div class="ch-empty-icon">
+            <i class="fa fa-folder-open"></i>
+          </div>
+
+          <div class="ch-empty-title">
+            No Purchase Orders Found
+          </div>
+
+          <div class="ch-empty-subtitle">
+            Try adjusting search or filters.
+          </div>
+
+        </div>
+
+        <!-- TABLE (ONLY SHOW IF DATA EXISTS) -->
+        <div
+          class="ch-list-table"
+          *ngIf="totalRecords > 0">
+
+          <!-- HEADER -->
+          <div class="ch-list-row ch-list-header">
+
+            <div class="col col-sl">
+              #
+            </div>
+
+            <div class="col">
+              PO No
+            </div>
+
+            <div class="col">
+              PO Date
+            </div>
+
+            <div class="col">
+              Supplier Name
+            </div>
+
+            <div class="col amount txt-right">
+              Total Amount
+            </div>
+
+            <div class="col">
+              Status
+            </div>
+
+            <div class="col col-actions txt-center">
+              Actions
+            </div>
+
+          </div>
+
+          <!-- ROWS -->
+          <!-- ROWS -->
+          <div class="ch-list-body-rows">
+
+            <div
+              class="ch-list-row"
+              *ngFor="let order of pagedOrders; let i = index">
+
+              <div class="col col-sl">{{ serial(i) }}</div>
+
+              <div class="col">{{ order.orderNo }}</div>
+
+              <div class="col">
+                {{ order.orderDate | date:'dd MMM yyyy' }}
+              </div>
+
+              <div class="col">{{ order.supplierName }}</div>
+
+              <div class="col amount">
+                {{ order.totalAmount | number:'1.0-0' }}
+              </div>
+
+              <div class="col">{{ order.status }}</div>
+
+              <div class="col col-actions action-icons">
+
+                <!-- PRINT -->
+                <button
+                  class="icon-btn print"
+                  title="View Purchase Order"
+                  (click)="onOrderPrint(i)">
+                  <i class="fa fa-file-invoice"></i>
+                </button>
+
+                <!-- VIEW -->
+                <button
+                  class="icon-btn view"
+                  title="View"
+                  (click)="onView(order)">
+                  <i class="fa fa-eye"></i>
+                </button>
+
+                <!-- EDIT -->
+                <button
+                  class="icon-btn edit"
+                  (click)="onEdit(order)"
+                  [disabled]="order.status === 'Processed'"
+                  [title]="order.status === 'Processed'
+                    ? 'Processed PO cannot be edited'
+                    : 'Edit'">
+
+                  <i class="fa fa-pencil"></i>
+
+                </button>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- PAGINATION -->
+      <div
+        class="ch-pagination"
+        *ngIf="totalRecords > 0">
+
+        <app-pagination
+          [totalRecords]="totalRecords"
+          [pageSize]="pageSize"
+          [currentPage]="currentPage"
+          (pageChange)="onPageChange($event)"
+          (pageSizeChange)="onPageSizeChange($event)">
+        </app-pagination>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>

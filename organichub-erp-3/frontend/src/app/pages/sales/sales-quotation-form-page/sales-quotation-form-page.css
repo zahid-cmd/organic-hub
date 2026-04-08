@@ -1,0 +1,417 @@
+/* ===============================
+   ROOT LAYOUT
+=============================== */
+
+.pi-body {
+  height: calc(100vh - var(--page-offset));
+  display: flex;
+  gap: 12px;
+
+  /* ✅ FIX: top & bottom padding */
+  padding: 12px 0px;
+  padding-bottom: 20px;
+  box-sizing: border-box;
+}
+
+/* ===============================
+   COLUMNS
+=============================== */
+
+.pi-col {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* LEFT COLUMN – FULL HEIGHT WHITE PANEL */
+.pi-left {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+
+  /* ✅ FIX */
+  background: #ffffff;
+  border-radius: 6px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.pi-center {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pi-right {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+
+  /* keep symmetry */
+  background: #ffffff;
+  border-radius: 6px;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+/* ===============================
+   BOXES
+=============================== */
+
+.pi-box {
+  background: #ffffff;
+  border: 1px solid #e1e1e1;
+  border-radius: 6px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pi-box-title {
+  font-size: 13px;
+  font-weight: 600;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 6px;
+  margin-bottom: 6px;
+}
+
+/* ===============================
+   FORM FIELDS (GLOBAL)
+=============================== */
+
+.pi-box label {
+  font-size: 12px;
+  color: #444;
+}
+
+.pi-box input,
+.pi-box select,
+.pi-box textarea {
+  height: 36px;
+  font-size: 12px;
+  padding: 0 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.pi-box textarea {
+  height: 72px;
+  padding-top: 4px;
+}
+
+.pi-box input[readonly] {
+  background-color: #f5f5f5;
+  font-weight: 600;
+}
+
+.pi-box textarea {
+  height: 72px;
+  padding-top: 4px;
+  resize: none;              /* 🔒 disable expand */
+  overflow-y: auto;          /* allow scroll if text exceeds */
+}
+
+/* ===============================
+   ROW SYSTEM
+=============================== */
+
+.pi-row,
+.pi-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.pi-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pi-full {
+  width: 100%;
+}
+
+/* ===============================
+   ADD PRODUCT SECTION
+=============================== */
+
+.pi-add-product {
+  flex: 0 0 auto;
+}
+
+.pi-add-row {
+  display: grid;
+  grid-template-columns: 4fr 0.7fr 1.2fr 1.2fr 0.7fr;
+  gap: 10px;
+  align-items: center;
+}
+
+.pi-add-row select,
+.pi-add-row input {
+  width: 100%;
+  height: 36px;
+  font-size: 13px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.pi-add-row input {
+  text-align: center;
+}
+
+.pi-add-row input[readonly] {
+  background-color: #f5f5f5;
+  color: #666;
+}
+
+.pi-add-action {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* ===============================
+   PRODUCT CART
+=============================== */
+
+.pi-cart {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.pi-cart-table-wrapper {
+  flex: 1;
+  overflow-y: auto;
+  border-top: 1px solid #e5e5e5;
+}
+
+/* ===============================
+   PRODUCT TABLE
+=============================== */
+
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.product-table thead th {
+  position: sticky;
+  top: 0;
+  background: #f6f7f4;
+  border-bottom: 1px solid #ddd;
+  padding: 8px;
+  font-weight: 600;
+  z-index: 2;
+}
+
+.product-table td {
+  padding: 6px 8px;
+  border-bottom: 1px solid #eee;
+}
+
+.cart-empty {
+  text-align: center;
+  padding: 20px;
+  color: #888;
+  font-style: italic;
+}
+
+.cart-total-row td {
+  font-weight: 600;
+  background: #f3f5ef;
+  border-top: 2px solid #dcdcdc;
+}
+
+/* ===============================
+   PRODUCT SHELF
+=============================== */
+
+.pi-shelf {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.pi-shelf-search {
+  margin-bottom: 8px;
+}
+
+.pi-shelf-search input {
+  width: 100%;
+  height: 30px;
+  padding: 4px 8px;
+  font-size: 12px;
+  border: 1px solid #9fb89a;
+  border-radius: 4px;
+}
+
+.pi-shelf-list {
+  flex: 1;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 8px;
+  align-content: flex-start;
+}
+
+/* ===============================
+   PRODUCT CARD
+=============================== */
+
+.pi-product-card {
+  height: 110px;
+  border: 1px solid #e1e1e1;
+  border-radius: 6px;
+  padding: 6px 4px 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  cursor: pointer;
+}
+
+.pi-product-card:hover {
+  border-color: #5fae3b;
+  background: #f6fbf3;
+  transform: translateY(-1px);
+}
+
+.pi-product-img {
+  width: 48px;
+  height: 48px;
+  background: #f3f3f3;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pi-product-img img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.pi-product-name {
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.pi-product-stock {
+  font-size: 11px;
+  color: #666;
+  text-align: center;
+}
+
+/* ===============================
+   FIX: ADD PRODUCT BUTTON STYLE
+=============================== */
+
+.pi-add-action .ch-btn.primary {
+  height: 32px;
+  min-width: 72px;
+  padding: 0 18px;
+
+  background: linear-gradient(135deg, #1f7a3a 0%, #5fae3b 100%);
+  color: #ffffff;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  border: 1px solid #1f7a3a;
+  border-radius: 6px;
+
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  transition: all 0.25s ease;
+}
+
+.pi-add-action .ch-btn.primary:hover {
+  background: linear-gradient(135deg, #16612e 0%, #4e9a33 100%);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+  transform: translateY(-1px);
+}
+/* ===============================
+   LEFT COLUMN – BOX SPACING
+=============================== */
+
+.pi-left {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* 👈 space between Order Details & Order Summary */
+}
+
+/* ===============================
+   CENTER COLUMN MAIN BOX
+=============================== */
+.pi-center-box {
+  flex: 1;
+  background: #ffffff;
+  border: 1px solid #e1e1e1;
+  border-radius: 6px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+/* ✅ Make Order Summary fill remaining height */
+.pi-left .pi-box:last-child {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ✅ Center align Order Number & Order Date inputs */
+.pi-left .pi-box:first-of-type 
+.pi-row .pi-field input {
+  text-align: center;
+  font-weight: 600;
+}
+/* =====================================================
+   THEME INPUT BORDERS – CLICKABLE ONLY
+===================================================== */
+
+/* Base state */
+.pi-body input:not([readonly]):not([disabled]),
+.pi-body select:not([disabled]),
+.pi-body textarea:not([readonly]):not([disabled]) {
+  border: 1px solid #9fb89a;          /* soft theme green */
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hover */
+.pi-body input:not([readonly]):not([disabled]):hover,
+.pi-body select:not([disabled]):hover,
+.pi-body textarea:not([readonly]):not([disabled]):hover {
+  border-color: #5fae3b;
+}
+
+/* Focus (ACTIVE) */
+.pi-body input:not([readonly]):not([disabled]):focus,
+.pi-body select:not([disabled]):focus,
+.pi-body textarea:not([readonly]):not([disabled]):focus {
+  outline: none;
+  border-color: #1f7a3a;
+  box-shadow: 0 0 0 2px rgba(95, 174, 59, 0.25);
+}
+
+/* Readonly & disabled (locked look) */
+.pi-body input[readonly],
+.pi-body input[disabled],
+.pi-body textarea[readonly],
+.pi-body textarea[disabled],
+.pi-body select[disabled] {
+  border-color: #d0d0d0;
+  background-color: #f5f5f5;
+  box-shadow: none;
+  cursor: not-allowed;
+}

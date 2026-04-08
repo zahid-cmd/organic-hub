@@ -1,0 +1,70 @@
+/* =====================================================
+   ORGANIC HUB SEARCH AREA
+===================================================== */
+.oh-search-area {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  padding: 10px 0px;
+  border-radius: 6px;
+}
+
+/* =====================================================
+   SEARCH INPUT
+===================================================== */
+.oh-search-box {
+  flex: 1;
+}
+
+.oh-search-input {
+  width: 15%;
+  height: 38px;
+
+  padding: 0 10px;
+  font-size: 14px;
+
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  outline: none;
+
+  background: #ffffff;
+  color: #111827;
+}
+
+.oh-search-input::placeholder {
+  color: #9ca3af;
+}
+
+.oh-search-input:focus {
+  border-color: #6b8e23;
+  box-shadow: 0 0 0 2px rgba(107, 142, 35, 0.15);
+}
+
+/* =====================================================
+   STATUS SELECT
+===================================================== */
+.oh-status-box {
+  width: 160px;
+}
+
+.oh-status-select {
+  width: 100%;
+  height: 38px;
+
+  padding: 0 10px;
+  font-size: 14px;
+
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  color: #111827;
+  cursor: pointer;
+}
+
+.oh-status-select:focus {
+  border-color: #6b8e23;
+  box-shadow: 0 0 0 2px rgba(107, 142, 35, 0.15);
+  outline: none;
+}

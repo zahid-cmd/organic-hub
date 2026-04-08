@@ -1,0 +1,410 @@
+/* ======================================================
+   DASHBOARD CONTAINER
+   (Dashboard must NOT control height)
+====================================================== */
+.dashboard-container {
+  width: 100%;
+  display: block; /* keep simple */
+}
+
+/* ======================================================
+   DASHBOARD GRID – 3 × 3 (FULL WIDTH)
+====================================================== */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 🔑 FORCE 3 COLUMNS */
+  gap: 16px;
+  width: 100%;
+}
+
+/* ======================================================
+   DASHBOARD WIDGET
+====================================================== */
+.dashboard-widget {
+  position: relative;
+
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 16px 16px 16px 20px; /* space for accent bar */
+  border: 1px solid #e4e8f0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 8px;
+
+  min-height: 140px;
+
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.dashboard-widget:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+/* ======================================================
+   LEFT ACCENT BAR
+====================================================== */
+.dashboard-widget::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  border-radius: 8px 0 0 8px;
+  background: transparent;
+}
+
+/* Accent colors */
+.dashboard-widget.accent-blue::before {
+  background: #2563eb;
+}
+
+.dashboard-widget.accent-green::before {
+  background: #16a34a;
+}
+
+.dashboard-widget.accent-red::before {
+  background: #dc2626;
+}
+
+/* ======================================================
+   WIDGET CONTENT
+====================================================== */
+.widget-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.widget-value {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1e293b;
+  line-height: 1.2;
+}
+
+.widget-meta {
+  font-size: 12px;
+  color: #64748b;
+}
+
+/* ======================================================
+   DUMMY MINI CHART
+====================================================== */
+.widget-chart {
+  margin-top: 12px;
+  height: 48px;
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+/* chart bars */
+.widget-chart span {
+  flex: 1;
+  background: rgba(59, 130, 246, 0.35);
+  border-radius: 4px 4px 0 0;
+  transition: background 0.25s ease;
+}
+
+/* hover */
+.dashboard-widget:hover .widget-chart span {
+  background: rgba(59, 130, 246, 0.6);
+}
+
+/* color matching */
+.dashboard-widget.accent-green .widget-chart span {
+  background: rgba(34, 197, 94, 0.35);
+}
+
+.dashboard-widget.accent-red .widget-chart span {
+  background: rgba(239, 68, 68, 0.35);
+}
+
+.dashboard-widget.accent-blue .widget-chart span {
+  background: rgba(59, 130, 246, 0.35);
+}
+/* =========================
+   KPI ROW
+========================= */
+.dashboard-kpi-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.kpi-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 16px;
+  border-left: 5px solid;
+}
+
+.kpi-card.green { border-color: #16a34a; }
+.kpi-card.blue  { border-color: #2563eb; }
+.kpi-card.amber { border-color: #f59e0b; }
+.kpi-card.red   { border-color: #dc2626; }
+
+.kpi-label { font-size: 13px; color: #64748b; }
+.kpi-value { font-size: 26px; font-weight: 700; }
+.kpi-trend { font-size: 12px; }
+
+/* =========================
+   ADVANCED GRID
+========================= */
+.dashboard-grid-advanced {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.dash-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid #e5e7eb;
+}
+
+.dash-card.wide {
+  grid-column: span 2;
+}
+
+.card-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+/* =========================
+   BAR CHART
+========================= */
+.bar-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  height: 180px;
+}
+
+.bar-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.bar {
+  width: 18px;
+  border-radius: 4px;
+}
+
+.bar.sales { background: #22c55e; 
+width: 60px;}
+.bar.purchase { background: #60a5fa; width: 60px;}
+
+/* =========================
+   DONUT CHART
+========================= */
+.donut-chart {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: conic-gradient(
+    #22c55e 0% 60%,
+    #3b82f6 60% 85%,
+    #f59e0b 85% 100%
+  );
+  margin: 0 auto;
+  position: relative;
+}
+
+.donut-center {
+  position: absolute;
+  inset: 20px;
+  background: #fff;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+}
+
+.donut-legend {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 12px;
+  font-size: 12px;
+}
+
+/* =========================
+   PROGRESS
+========================= */
+.progress {
+  background: #e5e7eb;
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress span {
+  display: block;
+  height: 100%;
+  background: #22c55e;
+}
+
+/* =========================
+   CASH BOX
+========================= */
+.cash-box {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  text-align: center;
+}
+
+.cash-box span {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.cash-box strong {
+  font-size: 18px;
+}
+/* ======================================================
+   🔧 GRID STABILITY FIX
+====================================================== */
+.dashboard-grid-advanced {
+  grid-auto-rows: minmax(220px, auto);
+}
+
+/* Wide cards need more height */
+.dash-card.wide {
+  min-height: 260px;
+}
+
+/* ======================================================
+   🔧 BAR CHART FIX
+====================================================== */
+.bar-chart {
+  height: 160px;              /* reduce height */
+  padding-top: 10px;
+  overflow: hidden;
+}
+
+.bar-group span {
+  font-size: 12px;
+  color: #64748b;
+}
+
+/* Prevent bars from overflowing */
+.bar {
+  max-height: 140px;
+}
+
+/* ======================================================
+   🔧 STOCK HEALTH ALIGNMENT
+====================================================== */
+.cash-box {
+  align-items: center;
+}
+
+.cash-box div {
+  padding: 12px;
+  border-radius: 10px;
+  background: #f8fafc;
+}
+
+/* ======================================================
+   🔧 INVENTORY PROGRESS FIX
+====================================================== */
+.dash-card label {
+  display: block;
+  font-size: 12px;
+  color: #475569;
+  margin: 10px 0 4px;
+}
+
+.progress {
+  margin-bottom: 8px;
+}
+
+/* ======================================================
+   🔧 DONUT CENTER ALIGNMENT
+====================================================== */
+.donut-center {
+  text-align: center;
+  line-height: 1.2;
+  font-weight: 700;
+}
+/* =========================
+   PRODUCT BAR CHARTS
+========================= */
+.product-bar-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.product-bar span {
+  font-size: 13px;
+  color: #334155;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.bar-wrap {
+  width: 100%;
+  height: 8px;
+  background: #e5e7eb;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 0.3s ease;
+}
+
+/* Fast movers – green */
+.bar-fill.fast {
+  background: linear-gradient(90deg, #22c55e, #16a34a);
+}
+
+/* Slow movers – amber/red */
+.bar-fill.slow {
+  background: linear-gradient(90deg, #f59e0b, #dc2626);
+}
+
+/* ======================================================
+   🔧 MOBILE SAFETY
+====================================================== */
+@media (max-width: 768px) {
+  .dash-card.wide {
+    grid-column: span 1;
+    min-height: auto;
+  }
+}
+
+/* ======================================================
+   RESPONSIVE FALLBACKS
+====================================================== */
+@media (max-width: 1200px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .widget-value {
+    font-size: 24px;
+  }
+}

@@ -1,0 +1,139 @@
+<div class="page-container">
+
+  <app-organic-toast></app-organic-toast>
+
+  <div class="page-body">
+
+    <app-page-sub-header title="Search & Filter Product Prices">
+      <div page-actions class="subheader-actions">
+        <button class="ch-btn" (click)="onAdd()">Add</button>
+        <button class="ch-btn" (click)="onClear()">Clear</button>
+        <button class="ch-btn" (click)="onBack()">Back</button>
+      </div>
+    </app-page-sub-header>
+
+    <div class="page-body-content">
+
+      <div class="ch-loading" *ngIf="loading">
+        <i class="fa fa-spinner fa-spin"></i>
+        Loading product prices...
+      </div>
+
+      <div class="ch-error" *ngIf="!loading && error">
+        {{ error }}
+      </div>
+
+      <ng-container *ngIf="!loading && !error">
+
+        <app-search-area
+          [searchText]="searchText"
+          [status]="statusFilter"
+          [statusOptions]="statusOptions"
+          (searchChange)="onSearch($event)"
+          (statusChange)="onStatusChange($event)">
+        </app-search-area>
+
+        <div class="ch-list-body" *ngIf="pagedPrices.length > 0; else emptyState">
+
+          <div class="ch-list-table">
+
+            <!-- HEADER -->
+            <div class="ch-list-row ch-list-header">
+              <div class="col col-sl">#</div>
+              <div class="col sortable" (click)="onSort('productName')">Product</div>
+              <div class="col sortable" (click)="onSort('oldPrice')">Old Price</div>
+              <div class="col sortable" (click)="onSort('price')">Current Price</div>
+              <div class="col sortable" (click)="onSort('status')">Status</div>
+              <div class="col col-actions">Actions</div>
+            </div>
+
+            <!-- ROWS -->
+            <div class="ch-list-body-rows">
+
+              <div
+                class="ch-list-row"
+                *ngFor="let row of pagedPrices; let i = index">
+
+                <div class="col col-sl">
+                  {{ serial(i) }}
+                </div>
+
+                <div class="col">
+                  {{ row.productName }}
+                </div>
+
+                <div class="col">
+                  {{ row.oldPrice | number:'1.2-2' }}
+                </div>
+
+                <div class="col">
+                  {{ row.price | number:'1.2-2' }}
+                </div>
+
+                <div class="col">
+                  <span
+                    class="status-badge"
+                    [class.active]="row.status === 'Active'"
+                    [class.inactive]="row.status === 'Inactive'">
+                    {{ row.status }}
+                  </span>
+                </div>
+
+                <div class="col col-actions action-icons">
+                  <button
+                    type="button"
+                    class="icon-btn edit"
+                    (click)="onEdit(row)"
+                    title="Update Price">
+                    <i class="fa fa-pen"></i>
+                  </button>
+
+                  <button
+                    type="button"
+                    class="icon-btn history"
+                    (click)="openHistory(row)"
+                    title="Price History">
+                    <i class="fa fa-clock"></i>
+                  </button>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+        <ng-template #emptyState>
+          <div class="ch-empty-state">
+            <i class="fa fa-folder-open"></i>
+            <div class="empty-title">No Product Prices Found</div>
+            <div class="empty-sub">Try adjusting search or filters.</div>
+          </div>
+        </ng-template>
+
+        <div *ngIf="totalRecords > 0">
+          <app-pagination
+            [totalRecords]="totalRecords"
+            [pageSize]="pageSize"
+            [currentPage]="currentPage"
+            (pageChange)="onPageChange($event)"
+            (pageSizeChange)="onPageSizeChange($event)">
+          </app-pagination>
+        </div>
+
+      </ng-container>
+
+    </div>
+  </div>
+
+  <app-history-drawer
+    *ngIf="showHistory"
+    [title]="'Price History'"
+    [subtitle]="selectedProductName"
+    [history]="historyData"
+    [loading]="historyLoading"
+    (close)="closeHistory()">
+  </app-history-drawer>
+
+</div>

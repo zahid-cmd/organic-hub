@@ -1,0 +1,671 @@
+<nav class="app-sidebar" [class.collapsed]="collapsed">
+  <ul class="sidebar-menu">
+
+    <!-- =========================
+         DASHBOARD
+    ========================== -->
+    <li
+      class="menu-item"
+      routerLink="/dashboard"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }">
+      <i class="fa-solid fa-gauge"></i>
+      <span>Dashboard</span>
+    </li>
+
+    <!-- =========================
+        PRODUCT MANAGEMENT
+    ========================== -->
+    <li class="menu-item" (click)="toggleMenu('product')">
+      <i class="fa-solid fa-boxes-stacked"></i>
+      <span>Product Management</span>
+      <i class="fa-solid fa-angle-right arrow"
+        [class.rotate]="isOpen('product')"></i>
+    </li>
+
+    <li *ngIf="isOpen('product')">
+      <ul class="sidebar-submenu">
+
+        <!-- UNIT SETUP -->
+        <li class="submenu-item"
+            routerLink="/product/unit-setup"
+            routerLinkActive="active">
+          <i class="fa-solid fa-ruler-combined"></i>
+          <span>Unit Setup</span>
+        </li>
+
+        <!-- ✅ PRODUCT TYPE (NEW – AFTER UNIT SETUP) -->
+        <li class="submenu-item"
+            routerLink="/product-type"
+            routerLinkActive="active">
+          <i class="fa-solid fa-layer-group"></i>
+          <span>Product Type</span>
+        </li>
+
+        <!-- PRODUCT CATEGORY -->
+        <li class="submenu-item"
+            routerLink="/product-category"
+            routerLinkActive="active">
+          <i class="fa-solid fa-tags"></i>
+          <span>Product Category</span>
+        </li>
+
+        <!-- PRODUCT SUB CATEGORY -->
+        <li class="submenu-item"
+            routerLink="/product/sub-category"
+            routerLinkActive="active">
+          <i class="fa-solid fa-tag"></i>
+          <span>Product Sub Category</span>
+        </li>
+        <!-- PRODUCT MASTER -->
+        <li class="submenu-item"
+            routerLink="/product"
+            routerLinkActive="active">
+          <i class="fa-solid fa-box"></i>
+          <span>Product Master</span>
+        </li>
+        <!-- PRODUCT SALE PRICE -->
+        <li class="submenu-item"
+            routerLink="/product/sale-price"
+            routerLinkActive="active">
+          <i class="fa-solid fa-money-bill-wave"></i>
+          <span>Product Price Setup</span>
+        </li>
+
+
+      </ul>
+    </li>
+
+
+
+    <!-- =========================
+         CLIENT MANAGEMENT
+    ========================== -->
+    <li class="menu-item" (click)="toggleMenu('client')">
+      <i class="fa-solid fa-users"></i>
+      <span>Client Management</span>
+      <i class="fa-solid fa-angle-right arrow"
+         [class.rotate]="isOpen('client')"></i>
+    </li>
+
+    <li *ngIf="isOpen('client')">
+      <ul class="sidebar-submenu">
+        <li class="submenu-item" routerLink="/supplier" routerLinkActive="active">
+          <i class="fa-solid fa-truck-field"></i>
+          <span>Supplier Profiles</span>
+        </li>
+        <li class="submenu-item" routerLink="/customer" routerLinkActive="active">
+          <i class="fa-solid fa-user"></i>
+          <span>Customer Profiles</span>
+        </li>
+      </ul>
+    </li>
+
+    <!-- =========================
+         PURCHASE
+    ========================== -->
+    <li class="menu-item" (click)="toggleMenu('purchase')">
+      <i class="fa-solid fa-cart-shopping"></i>
+      <span>Procurement</span>
+      <i class="fa-solid fa-angle-right arrow"
+        [class.rotate]="isOpen('purchase')"></i>
+    </li>
+
+    <li *ngIf="isOpen('purchase')">
+      <ul class="sidebar-submenu">
+
+        <!-- ✅ NEW: PROCESS COSTING -->
+        <li class="submenu-item"
+            routerLink="/purchase/order"
+            routerLinkActive="active">
+          <i class="fa-solid fa-file-lines"></i>
+          <span>Purchase Order</span>
+        </li>
+
+        <li class="submenu-item"
+            routerLink="/purchase/invoice"
+            routerLinkActive="active">
+          <i class="fa-solid fa-file-invoice"></i>
+          <span>Purchase Invoice</span>
+        </li>
+        <li class="submenu-item"
+            routerLink="/purchase/process-costing"
+            routerLinkActive="active">
+          <i class="fa-solid fa-industry"></i>
+          <span>Process Costing</span>
+        </li>
+        <li class="submenu-item"
+            routerLink="/purchase/return"
+            routerLinkActive="active">
+          <i class="fa-solid fa-rotate-left"></i>
+          <span>Purchase Return</span>
+        </li>
+        <li class="submenu-item"
+            routerLink="/test-page"
+            routerLinkActive="active">
+          <i class="fa-solid fa-flask"></i>
+          <span>Test Page</span>
+        </li>
+
+      </ul>
+    </li>
+
+
+    <!-- =========================
+         SALES
+    ========================== -->
+    <li class="menu-item" (click)="toggleMenu('sales')">
+      <i class="fa-solid fa-cash-register"></i>
+      <span>Sales</span>
+      <i class="fa-solid fa-angle-right arrow"
+         [class.rotate]="isOpen('sales')"></i>
+    </li>
+
+    <li *ngIf="isOpen('sales')">
+      <ul class="sidebar-submenu">
+
+        <!-- ONLINE ORDERS (NEW) -->
+        <li class="submenu-item"
+            routerLink="/sales/online-orders"
+            routerLinkActive="active">
+          <i class="fa-solid fa-globe"></i>
+          <span>Online Orders</span>
+        </li>
+
+        <!-- SALES QUOTATION -->
+        <li class="submenu-item"
+            routerLink="/sales/quotation"
+            routerLinkActive="active">
+          <i class="fa-solid fa-quote-right"></i>
+          <span>Sales Quotation</span>
+        </li>
+
+        <!-- SALES INVOICE -->
+        <li class="submenu-item"
+            routerLink="/sales/invoice"
+            routerLinkActive="active">
+          <i class="fa-solid fa-file-invoice-dollar"></i>
+          <span>Sales Invoice</span>
+        </li>
+
+        <!-- SALES RETURN -->
+        <li class="submenu-item"
+            routerLink="/sales/return"
+            routerLinkActive="active">
+          <i class="fa-solid fa-rotate-left"></i>
+          <span>Sales Return</span>
+        </li>
+
+      </ul>
+    </li>
+
+
+    <!-- =========================
+        STORE MANAGEMENT
+    ========================== -->
+    <li class="menu-item" (click)="toggleMenu('store')">
+      <i class="fa-solid fa-warehouse"></i>
+      <span>Store Management</span>
+
+      <i class="fa-solid fa-angle-right arrow"
+        [class.rotate]="isOpen('store')"></i>
+    </li>
+
+    <!-- SUB MENU -->
+    <ul class="sidebar-submenu" *ngIf="isOpen('store')">
+
+      <!-- PRODUCT LEDGER -->
+      <li class="submenu-item"
+          routerLink="/store-management/product-ledger"
+          routerLinkActive="active">
+        <i class="fa-solid fa-book-open"></i>
+        <span>Product Ledger</span>
+      </li>
+
+      <!-- INVENTORY SUMMARY -->
+      <li class="submenu-item"
+          routerLink="/store-management/inventory-summary"
+          routerLinkActive="active">
+        <i class="fa-solid fa-layer-group"></i>
+        <span>Inventory Summary</span>
+      </li>
+
+      <!-- INVENTORY DETAILS -->
+      <li class="submenu-item"
+          routerLink="/store-management/inventory-details"
+          routerLinkActive="active">
+        <i class="fa-solid fa-table-list"></i>
+        <span>Inventory Details</span>
+      </li>
+
+        <!-- ⭐ NEW -->
+      <li class="submenu-item"
+          routerLink="/store-management/batch-list"
+          routerLinkActive="active">
+        <i class="fa-solid fa-cubes"></i>
+        <span>Batch List</span>
+      </li>
+
+    </ul>
+
+
+
+    <!-- =========================
+         TRANSACTION MANAGEMENT
+    ========================== -->
+    <li class="menu-item" (click)="toggleMenu('transaction')">
+      <i class="fa-solid fa-money-bill-transfer"></i>
+      <span>Transaction Management</span>
+      <i class="fa-solid fa-angle-right arrow"
+         [class.rotate]="isOpen('transaction')"></i>
+    </li>
+
+    <li *ngIf="isOpen('transaction')">
+      <ul class="sidebar-submenu">
+        <li class="submenu-item disabled"><i class="fa-solid fa-receipt"></i><span>Receipt Voucher</span></li>
+        <li class="submenu-item disabled"><i class="fa-solid fa-money-bill-wave"></i><span>Payment Voucher</span></li>
+        <li class="submenu-item disabled"><i class="fa-solid fa-pen"></i><span>Journal Voucher</span></li>
+        <li class="submenu-item disabled"><i class="fa-solid fa-right-left"></i><span>Fund Transfer</span></li>
+        <li class="submenu-item disabled"><i class="fa-solid fa-wallet"></i><span>Daily Expenses</span></li>
+      </ul>
+    </li>
+
+    <!-- =========================
+         ACCOUNT MANAGEMENT
+    ========================== -->
+    <li class="menu-item" (click)="toggleMenu('account')">
+      <i class="fa-solid fa-book"></i>
+      <span>Account Management</span>
+      <i class="fa-solid fa-angle-right arrow"
+         [class.rotate]="isOpen('account')"></i>
+    </li>
+
+    <li *ngIf="isOpen('account')">
+      <ul class="sidebar-submenu">
+        <li class="submenu-item disabled"><i class="fa-solid fa-sitemap"></i><span>Chart of Accounts</span></li>
+        <li class="submenu-item disabled"><i class="fa-solid fa-scale-balanced"></i><span>Trial Balance</span></li>
+        <li class="submenu-item disabled"><i class="fa-solid fa-chart-pie"></i><span>Income Statement</span></li>
+        <li class="submenu-item disabled"><i class="fa-solid fa-building-columns"></i><span>Balance Sheet</span></li>
+      </ul>
+    </li>
+
+    <!-- =========================
+     GENERAL SETUP
+    ========================== -->
+    <li
+      class="menu-item"
+      (click)="toggleMenu('general')"
+      [class.active]="isOpen('general')">
+
+      <i class="fa-solid fa-gear"></i>
+      <span>General Setup</span>
+
+      <i
+        class="fa-solid fa-angle-right arrow"
+        [class.rotate]="isOpen('general')">
+      </i>
+    </li>
+
+    <li *ngIf="isOpen('general')">
+      <ul class="sidebar-submenu">
+
+        <!-- COMPANY SETUP -->
+        <li
+          class="submenu-item"
+          routerLink="/general-setup/company-setup"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: false }">
+
+          <i class="fa-solid fa-building"></i>
+          <span>Company Setup</span>
+        </li>
+
+        <!-- BRANCH SETUP -->
+        <li
+          class="submenu-item"
+          routerLink="/general-setup/branch-setup"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: false }">
+
+          <i class="fa-solid fa-code-branch"></i>
+          <span>Branch Setup</span>
+        </li>
+
+        <!-- WAREHOUSE SETUP -->
+        <li
+          class="submenu-item"
+          routerLink="/general-setup/warehouse-setup"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: false }">
+
+          <i class="fa-solid fa-warehouse"></i>
+          <span>Warehouse Setup</span>
+        </li>
+        <!-- CONFIGURATION SETTINGS -->
+        <li
+          class="submenu-item"
+          routerLink="/general-setup/configuration-settings"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: false }">
+
+          <i class="fa-solid fa-sliders"></i>
+          <span>Configuration Settings</span>
+        </li>
+
+      </ul>
+    </li>
+
+
+    <!-- =========================
+        ACCOUNT SETUP
+    ========================== -->
+    <li class="menu-item" (click)="toggleMenu('accountSetup')">
+      <i class="fa-solid fa-layer-group"></i>
+      <span>Account Setup</span>
+      <i
+        class="fa-solid fa-angle-right arrow"
+        [class.rotate]="isOpen('accountSetup')">
+      </i>
+    </li>
+
+    <li *ngIf="isOpen('accountSetup')">
+      <ul class="sidebar-submenu">
+
+        <!-- ACCOUNT CLASS -->
+        <li
+          class="submenu-item"
+          routerLink="/account-class"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }">
+
+          <i class="fa-solid fa-layer-group"></i>
+          <span>Account Class</span>
+        </li>
+
+        <!-- ACCOUNT GROUP -->
+        <li
+          class="submenu-item"
+          routerLink="/account-group"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }">
+
+          <i class="fa-solid fa-object-group"></i>
+          <span>Account Group</span>
+        </li>
+
+        <!-- ACCOUNT SUBGROUP (NOW ACTIVE) -->
+        <li
+          class="submenu-item"
+          routerLink="/account-subgroup"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }">
+
+          <i class="fa-solid fa-diagram-project"></i>
+          <span>Account Subgroup</span>
+        </li>
+
+
+        <!-- GENERAL LEDGER -->
+        <li
+          class="submenu-item"
+          routerLink="/general-ledger"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }">
+
+          <i class="fa-solid fa-book"></i>
+          <span>General Ledger</span>
+        </li>
+
+
+        <!-- CASH ACCOUNT -->
+        <li
+          class="submenu-item"
+          routerLink="/cash-account"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }">
+
+          <i class="fa-solid fa-cash-register"></i>
+          <span>Cash Account</span>
+        </li>
+
+
+        <!-- BANK ACCOUNTS (LOCKED) -->
+        <li
+          class="submenu-item"
+          routerLink="/bank-account"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }">
+
+          <i class="fa-solid fa-building-columns"></i>
+          <span>Bank Account</span>
+        </li>
+
+
+        <!-- POS ACCOUNTS (LOCKED) -->
+        <li
+          class="submenu-item"
+          routerLink="/pos-account"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }">
+          <i class="fa-solid fa-store"></i>
+          <span>POS Account</span>
+        </li>
+
+
+        <!-- MFS ACCOUNT -->
+        <li
+          class="submenu-item"
+          routerLink="/mfs-account"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }">
+
+          <i class="fa-solid fa-mobile-screen-button"></i>
+          <span>MFS Accounts</span>
+        </li>
+
+        <!-- BANK SETUP -->
+        <li
+          class="submenu-item"
+          routerLink="/bank-setup"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }">
+
+          <i class="fa-solid fa-building-columns"></i>
+          <span>Bank Setup</span>
+        </li>
+
+
+        <!-- CARD SETUP -->
+        <li
+          class="submenu-item"
+          routerLink="/card-setup"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }">
+
+          <i class="fa-solid fa-credit-card"></i>
+          <span>Card Setup</span>
+        </li>
+
+
+        <!-- CARD CHARGES -->
+        <li
+          class="submenu-item"
+          routerLink="/card-charges"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }">
+
+          <i class="fa-solid fa-percent"></i>
+          <span>Card Charges</span>
+        </li>
+
+
+
+
+      </ul>
+    </li>
+
+
+    <!-- =========================
+         SECURITY MANAGEMENT
+    ========================== -->
+    <li class="menu-item" (click)="toggleMenu('security')">
+      <i class="fa-solid fa-shield-halved"></i>
+      <span>Security Management</span>
+      <i class="fa-solid fa-angle-right arrow"
+         [class.rotate]="isOpen('security')"></i>
+    </li>
+
+    <li *ngIf="isOpen('security')">
+      <ul class="sidebar-submenu">
+        <li class="submenu-item disabled"><i class="fa-solid fa-user-lock"></i><span>User Account</span></li>
+        <li class="submenu-item disabled"><i class="fa-solid fa-users-gear"></i><span>Role Management</span></li>
+      </ul>
+    </li>
+
+<!-- =========================
+     REPORTS
+========================== -->
+<li class="menu-item" (click)="toggleMenu('reports')">
+  <i class="fa-solid fa-chart-line"></i>
+  <span>Reports</span>
+  <i
+    class="fa-solid fa-angle-right arrow"
+    [class.rotate]="isOpen('reports')">
+  </i>
+</li>
+
+<li *ngIf="isOpen('reports')">
+  <ul class="sidebar-submenu">
+
+      <!-- =========================
+          FINANCIAL REPORTS
+      ========================== -->
+      <li class="submenu-item" (click)="toggleSubMenu('financialReports')">
+        <i class="fa-solid fa-coins"></i>
+        <span>Financial Reports</span>
+        <i
+          class="fa-solid fa-angle-right arrow"
+          [class.rotate]="isSubOpen('financialReports')">
+        </i>
+      </li>
+
+      <li *ngIf="isSubOpen('financialReports')">
+        <ul class="sidebar-submenu nested">
+
+          <!-- ⭐ NEW MENU -->
+          <li
+            class="submenu-item"
+            routerLink="/reports/chart-of-accounts"
+            routerLinkActive="active">
+            <i class="fa-solid fa-sitemap"></i>
+            <span>Chart of Accounts</span>
+          </li>
+
+          <li
+            class="submenu-item"
+            routerLink="/reports/cash-ledger"
+            routerLinkActive="active">
+            <i class="fa-solid fa-cash-register"></i>
+            <span>Cash Ledger</span>
+          </li>
+
+          <li
+            class="submenu-item"
+            routerLink="/reports/bank-ledger"
+            routerLinkActive="active">
+            <i class="fa-solid fa-building-columns"></i>
+            <span>Bank Ledger</span>
+          </li>
+
+          <li
+            class="submenu-item"
+            routerLink="/reports/mfs-ledger"
+            routerLinkActive="active">
+            <i class="fa-solid fa-mobile-screen-button"></i>
+            <span>MFS Ledger</span>
+          </li>
+
+          <li
+            class="submenu-item"
+            routerLink="/reports/pos-ledger"
+            routerLinkActive="active">
+            <i class="fa-solid fa-store"></i>
+            <span>POS Ledger</span>
+          </li>
+
+          <li
+            class="submenu-item"
+            routerLink="/reports/general-ledger"
+            routerLinkActive="active">
+            <i class="fa-solid fa-book"></i>
+            <span>General Ledger</span>
+          </li>
+
+          <li
+            class="submenu-item"
+            routerLink="/reports/auto-journal"
+            routerLinkActive="active">
+            <i class="fa-solid fa-receipt"></i>
+            <span>Auto Journal</span>
+          </li>
+
+        </ul>
+      </li>
+
+      <!-- =========================
+          INVENTORY REPORTS
+      ========================== -->
+      <li class="submenu-item" (click)="toggleSubMenu('inventoryReports')">
+        <i class="fa-solid fa-boxes-stacked"></i>
+        <span>Inventory Reports</span>
+
+        <i
+          class="fa-solid fa-angle-right arrow"
+          [class.rotate]="isSubOpen('inventoryReports')">
+        </i>
+      </li>
+
+      <li *ngIf="isSubOpen('inventoryReports')">
+        <ul class="sidebar-submenu nested">
+
+          <!-- ⭐ NEW MENU -->
+          <li
+            class="submenu-item"
+            routerLink="/reports/chart-of-inventory"
+            routerLinkActive="active">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>Chart of Inventory</span>
+          </li>
+
+          <!-- Inventory Report 1 -->
+          <li
+            class="submenu-item"
+            routerLink="/reports/inventory-report-1"
+            routerLinkActive="active">
+            <i class="fa-solid fa-file-lines"></i>
+            <span>Inventory Report 1</span>
+          </li>
+
+          <!-- Inventory Report 2 -->
+          <li
+            class="submenu-item"
+            routerLink="/reports/inventory-report-2"
+            routerLinkActive="active">
+            <i class="fa-solid fa-file-lines"></i>
+            <span>Inventory Report 2</span>
+          </li>
+
+          <!-- Inventory Report 3 -->
+          <li
+            class="submenu-item"
+            routerLink="/reports/inventory-report-3"
+            routerLinkActive="active">
+            <i class="fa-solid fa-file-lines"></i>
+            <span>Inventory Report 3</span>
+          </li>
+
+        </ul>
+      </li>
+
+  </ul>
+</li>

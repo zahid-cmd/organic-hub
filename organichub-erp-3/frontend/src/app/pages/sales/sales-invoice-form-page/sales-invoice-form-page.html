@@ -1,0 +1,279 @@
+<!-- PAGE SUB HEADER (STANDARD – DO NOT TOUCH) -->
+<app-page-sub-header title="Sales Invoice">
+  <div page-actions class="subheader-actions">
+    <button class="ch-btn primary">Save</button>
+    <button class="ch-btn">Reset</button>
+    <button class="ch-btn" (click)="goBack()">Back</button>
+  </div>
+</app-page-sub-header>
+
+<!-- PAGE BODY -->
+<div class="pi-body">
+
+  <!-- LEFT : 25% -->
+  <div class="pi-col pi-left">
+
+    <div class="pi-box">
+      <div class="pi-box-title">Invoice Details</div>
+
+      <div class="pi-row">
+        <div class="pi-field">
+          <label>Invoice Number</label>
+          <input type="text" readonly disabled>
+        </div>
+
+        <div class="pi-field">
+          <label>Invoice Date</label>
+          <input type="date">
+        </div>
+      </div>
+
+      <div class="pi-row">
+        <div class="pi-field">
+          <label>Location</label>
+          <select>
+            <option>Select Location</option>
+          </select>
+        </div>
+
+        <div class="pi-field">
+          <label>Reference</label>
+          <input type="text">
+        </div>
+      </div>
+
+      <div class="pi-field pi-full">
+        <label>Customer</label>
+        <select>
+          <option>Select Customer</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="pi-box">
+      <div class="pi-box-title">Invoice Summary</div>
+
+      <div class="pi-row-2">
+        <div class="pi-field">
+          <label>Product Value</label>
+          <input type="number" readonly disabled>
+        </div>
+
+        <div class="pi-field">
+          <label>Invoice Value</label>
+          <input type="number" readonly disabled>
+        </div>
+      </div>
+
+      <div class="pi-row-2">
+        <div class="pi-field">
+          <label>Delivery Charges</label>
+          <input type="number">
+        </div>
+
+        <div class="pi-field">
+          <label>Discount</label>
+          <input type="number">
+        </div>
+      </div>
+
+      <div class="pi-field">
+        <label>Notes / Remarks</label>
+        <textarea class="pi-notes"></textarea>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CENTER : 50% -->
+  <div class="pi-col pi-center">
+
+    <!-- ✅ STANDARD FULL-HEIGHT CENTER BOX -->
+    <div class="pi-box pi-center-box">
+
+      <!-- ================= PRODUCT MODE ================= -->
+      <ng-container *ngIf="mode === 'product'">
+
+        <div class="pi-box pi-add-product">
+          <div class="pi-box-title">Add Product</div>
+
+          <div class="pi-add-row">
+            <select><option>Select Product</option></select>
+            <input type="number" placeholder="Qty">
+            <input type="number" placeholder="Rate">
+            <input type="number" placeholder="Amount" readonly disabled>
+            <input type="number" placeholder="Stock" readonly disabled>
+          </div>
+
+          <div class="pi-add-action">
+            <button class="ch-btn primary" (click)="goToCheckout()">Checkout</button>
+            <button class="ch-btn primary">Add</button>
+          </div>
+        </div>
+
+        <div class="pi-box pi-cart">
+          <div class="pi-box-title">Product Cart</div>
+
+          <div class="pi-cart-table-wrapper">
+            <table class="product-table">
+
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Product</th>
+                  <th>Part No</th>
+                  <th>Code</th>
+                  <th class="txt-center">Qty</th>
+                  <th class="txt-right">Rate</th>
+                  <th class="txt-right">Amount</th>
+                  <th class="txt-center">Action</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td colspan="8" class="cart-empty">
+                    No products added to cart
+                  </td>
+                </tr>
+              </tbody>
+
+              <tfoot>
+                <tr class="cart-total-row">
+                  <td colspan="4" class="txt-right">Total</td>
+                  <td class="txt-center">0</td>
+                  <td></td>
+                  <td class="txt-right">0</td>
+                  <td></td>
+                </tr>
+              </tfoot>
+
+            </table>
+          </div>
+        </div>
+
+      </ng-container>
+
+      <!-- ================= PAYMENT MODE ================= -->
+      <ng-container *ngIf="mode === 'payment'">
+
+        <div class="pi-box pi-add-product pi-payment">
+          <div class="pi-box-title">Add Payment</div>
+
+          <div class="pi-add-row">
+            <select>
+              <option>Payment Mode</option>
+              <option>Cash</option>
+              <option>Bank</option>
+              <option>Card</option>
+              <option>MFS</option>
+            </select>
+
+            <select>
+              <option>Select Account</option>
+            </select>
+
+            <input type="number" placeholder="Amount">
+            <input type="text" placeholder="Balance" readonly>
+          </div>
+
+          <div class="pi-add-action">
+            <button class="ch-btn primary" (click)="backToProducts()">Back</button>
+            <button class="ch-btn primary">Add</button>
+          </div>
+        </div>
+
+        <div class="pi-box pi-cart">
+          <div class="pi-box-title">Payment Cart</div>
+
+          <div class="pi-cart-table-wrapper">
+            <table class="product-table">
+
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Mode</th>
+                  <th>Account</th>
+                  <th>Reference</th>
+                  <th class="txt-right">Amount</th>
+                  <th class="txt-center">Action</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td colspan="6" class="cart-empty">
+                    No payments added
+                  </td>
+                </tr>
+              </tbody>
+
+              <tfoot>
+                <tr class="cart-total-row">
+                  <td colspan="4" class="txt-right">Total</td>
+                  <td class="txt-right">0</td>
+                  <td></td>
+                </tr>
+              </tfoot>
+
+            </table>
+          </div>
+        </div>
+
+      </ng-container>
+
+    </div>
+    <!-- ✅ END CENTER BOX -->
+
+  </div>
+
+  <!-- RIGHT : 25% -->
+  <div class="pi-col pi-right">
+
+    <div class="pi-box pi-shelf">
+      <div class="pi-box-title">Product Shelf</div>
+
+      <div class="pi-shelf-search">
+        <input type="text" placeholder="Search product...">
+      </div>
+
+      <div class="pi-shelf-list">
+
+        <div class="pi-product-card">
+          <div class="pi-product-img">
+            <img src="assets/Logo.png" alt="Product">
+          </div>
+          <div class="pi-product-name">Organic Rice</div>
+          <div class="pi-product-stock">Stock: 120</div>
+        </div>
+
+        <div class="pi-product-card">
+          <div class="pi-product-img">
+            <img src="assets/Logo.png" alt="Product">
+          </div>
+          <div class="pi-product-name">Wheat Flour</div>
+          <div class="pi-product-stock">Stock: 85</div>
+        </div>
+
+        <div class="pi-product-card">
+          <div class="pi-product-img">
+            <img src="assets/Logo.png" alt="Product">
+          </div>
+          <div class="pi-product-name">Mustard Oil</div>
+          <div class="pi-product-stock">Stock: 40</div>
+        </div>
+
+        <div class="pi-product-card">
+          <div class="pi-product-img">
+            <img src="assets/Logo.png" alt="Product">
+          </div>
+          <div class="pi-product-name">Sugar</div>
+          <div class="pi-product-stock">Stock: 150</div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,375 @@
+<div class="page-body">
+
+  <!-- PAGE SUB HEADER -->
+
+  <app-page-sub-header title="Test Page - Purchase Order Layout">
+
+
+<div page-actions class="subheader-actions">
+
+  <button type="button" class="ch-btn primary">
+    Save
+  </button>
+
+  <button type="button" class="ch-btn">
+    Reset
+  </button>
+
+  <button type="button" class="ch-btn">
+    Back
+  </button>
+
+</div>
+
+
+  </app-page-sub-header>
+
+  <div class="page-body-content">
+
+
+<div class="pi-body">
+
+  <!-- LEFT COLUMN -->
+  <div class="pi-col pi-left">
+
+    <!-- ORDER DETAILS -->
+    <div class="pi-box">
+
+      <div class="pi-box-title">
+        Order Details
+      </div>
+
+      <div class="pi-row">
+
+        <div class="pi-field">
+          <label>Order Number</label>
+          <input type="text" placeholder="Auto Generated">
+        </div>
+
+        <div class="pi-field">
+          <label>Order Date</label>
+          <input type="date">
+        </div>
+
+      </div>
+
+      <div class="pi-field pi-full">
+
+        <label>Supplier</label>
+
+        <select>
+          <option>Select Supplier</option>
+          <option>Supplier A</option>
+          <option>Supplier B</option>
+        </select>
+
+      </div>
+
+      <div class="pi-field pi-full">
+
+        <label>Status</label>
+
+        <select>
+          <option>Draft</option>
+          <option>Approved</option>
+          <option>Processed</option>
+        </select>
+
+      </div>
+
+    </div>
+
+
+    <!-- ADD PRODUCT -->
+    <div class="pi-box pi-add-product">
+
+      <div class="pi-box-title">
+        Add Product
+      </div>
+
+      <div class="pi-add-row">
+
+        <select>
+          <option>Select Sub Category</option>
+          <option>Category 1</option>
+          <option>Category 2</option>
+        </select>
+
+        <select>
+          <option>Select Product</option>
+          <option>Product A</option>
+          <option>Product B</option>
+        </select>
+
+        <div class="pi-qty-rate-row">
+
+          <input type="number" placeholder="Qty">
+          <input type="number" placeholder="Rate">
+
+        </div>
+
+        <div class="pi-amount-stock-row">
+
+          <input type="text" placeholder="Amount">
+          <input type="text" placeholder="Stock">
+
+        </div>
+
+      </div>
+
+      <div class="pi-add-action">
+
+        <div class="pi-add-action">
+          <button type="button" class="pi-add-btn">
+            Add
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- CENTER COLUMN -->
+  <div class="pi-col pi-center">
+
+    <div class="pi-center-box">
+
+      <!-- ORDER SUMMARY -->
+      <div class="pi-box">
+
+        <div class="pi-box-title">
+          Order Summary
+        </div>
+
+        <div class="pi-summary-row">
+
+          <label>Order Value</label>
+          <input type="text" class="txt-right" placeholder="0">
+
+        </div>
+
+      </div>
+
+      <!-- PRODUCT CART -->
+      <div class="pi-box pi-cart">
+
+        <div class="pi-box-title">
+          Product Cart
+        </div>
+
+        <div class="pi-cart-table-wrapper">
+
+          <table class="product-table">
+
+            <thead>
+              <tr>
+                <th class="col-no">#</th>
+                <th class="col-product">Product</th>
+                <th class="col-qty">Qty</th>
+                <th class="col-rate">Rate</th>
+                <th class="col-amount">Amount</th>
+                <th class="col-action">Action</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <!-- ROW 1 -->
+              <tr>
+                <td class="col-no">1</td>
+                <td class="col-product">Product A</td>
+
+                <td class="col-qty">
+                  <div class="qty-control">
+                    <button class="qty-btn minus">−</button>
+                    <input class="qty-input" type="number" value="2">
+                    <button class="qty-btn plus">+</button>
+                  </div>
+                </td>
+
+                <td class="col-rate">100</td>
+                <td class="col-amount">200</td>
+                <td class="col-action">
+                  <button class="remove-btn">×</button>
+                </td>
+              </tr>
+
+              <!-- ROW 2 -->
+              <tr>
+                <td class="col-no">2</td>
+                <td class="col-product">Product B</td>
+
+                <td class="col-qty">
+                  <div class="qty-control">
+                    <button class="qty-btn minus">−</button>
+                    <input class="qty-input" type="number" value="3">
+                    <button class="qty-btn plus">+</button>
+                  </div>
+                </td>
+
+                <td class="col-rate">150</td>
+                <td class="col-amount">450</td>
+                <td class="col-action">
+                  <button class="remove-btn">×</button>
+                </td>
+              </tr>
+
+              <!-- ROW 3 -->
+              <tr>
+                <td class="col-no">3</td>
+                <td class="col-product">Product C</td>
+
+                <td class="col-qty">
+                  <div class="qty-control">
+                    <button class="qty-btn minus">−</button>
+                    <input class="qty-input" type="number" value="1">
+                    <button class="qty-btn plus">+</button>
+                  </div>
+                </td>
+
+                <td class="col-rate">80</td>
+                <td class="col-amount">80</td>
+                <td class="col-action">
+                  <button class="remove-btn">×</button>
+                </td>
+              </tr>
+
+              <!-- ROW 4 -->
+              <tr>
+                <td class="col-no">4</td>
+                <td class="col-product">Product D</td>
+
+                <td class="col-qty">
+                  <div class="qty-control">
+                    <button class="qty-btn minus">−</button>
+                    <input class="qty-input" type="number" value="5">
+                    <button class="qty-btn plus">+</button>
+                  </div>
+                </td>
+
+                <td class="col-rate">120</td>
+                <td class="col-amount">600</td>
+                <td class="col-action">
+                  <button class="remove-btn">×</button>
+                </td>
+              </tr>
+
+              <!-- ROW 5 -->
+              <tr>
+                <td class="col-no">5</td>
+                <td class="col-product">Product E</td>
+
+                <td class="col-qty">
+                  <div class="qty-control">
+                    <button class="qty-btn minus">−</button>
+                    <input class="qty-input" type="number" value="2">
+                    <button class="qty-btn plus">+</button>
+                  </div>
+                </td>
+
+                <td class="col-rate">90</td>
+                <td class="col-amount">180</td>
+                <td class="col-action">
+                  <button class="remove-btn">×</button>
+                </td>
+              </tr>
+
+            </tbody>
+
+            <tfoot>
+              <tr class="cart-total-row">
+                <td></td>
+                <td class="total-label">Total</td>
+                <td class="col-qty">26</td>
+                <td></td>
+                <td class="col-amount">2520</td>
+                <td></td>
+              </tr>
+            </tfoot>
+
+          </table>
+
+        </div>
+
+      </div>
+
+
+      <!-- NOTES -->
+      <div class="pi-box pi-notes-box">
+
+        <div class="pi-box-title">
+          Notes / Remarks
+        </div>
+
+        <textarea class="pi-notes"></textarea>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- RIGHT COLUMN -->
+<!-- RIGHT COLUMN -->
+<div class="pi-col pi-right">
+
+  <div class="pi-shelf">
+
+    <div class="pi-shelf-header">
+
+      <div class="pi-shelf-title">
+        Product Shelf
+      </div>
+
+      <div class="pi-shelf-search">
+
+        <span class="pi-search-icon">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </span>
+
+        <input
+          type="text"
+          placeholder="Search product..." />
+
+      </div>
+
+    </div>
+
+    <!-- Product Grid -->
+    <div class="pi-shelf-list">
+
+      <div
+        class="pi-product-card"
+        *ngFor="let i of [].constructor(40)">
+
+        <div class="pi-product-img">
+          <img src="/Logo.png" />
+        </div>
+
+        <div class="pi-product-name">
+          Product Name
+        </div>
+
+        <div class="pi-product-stock">
+          Stock: 10
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+</div>
+
+
+  </div>
+
+</div>

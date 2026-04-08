@@ -1,0 +1,148 @@
+<div class="page-container">
+
+  <!-- GLOBAL TOAST -->
+  <app-organic-toast></app-organic-toast>
+
+  <div class="page-body">
+
+    <!-- PAGE HEADER -->
+    <app-page-sub-header title="Search & Filter Branches">
+      <div page-actions class="subheader-actions">
+        <button class="ch-btn" (click)="onAdd()">Add</button>
+        <button class="ch-btn" (click)="onClear()">Clear</button>
+        <button class="ch-btn" (click)="onBack()">Back</button>
+      </div>
+    </app-page-sub-header>
+
+    <div class="page-body-content">
+
+      <!-- SEARCH AREA -->
+      <app-search-area
+        [searchText]="searchText"
+        [status]="statusFilter"
+        [statusOptions]="statusOptions"
+        (searchChange)="onSearch($event)"
+        (statusChange)="onStatusChange($event)">
+      </app-search-area>
+
+      <div class="ch-list-body">
+
+        <!-- ============================= -->
+        <!-- TABLE (WHEN DATA EXISTS) -->
+        <!-- ============================= -->
+        <div
+          class="ch-list-table"
+          *ngIf="filteredBranches.length > 0; else emptyState">
+
+          <!-- TABLE HEADER -->
+          <div class="ch-list-row ch-list-header">
+            <div class="col col-sl">#</div>
+            <div class="col">Branch Code</div>
+            <div class="col">Branch Name</div>
+            <div class="col">Email</div>
+            <div class="col">Phone</div>
+            <div class="col">Status</div>
+            <div class="col col-actions">Actions</div>
+          </div>
+
+          <!-- TABLE BODY -->
+          <div class="ch-list-body-rows">
+
+            <div
+              class="ch-list-row"
+              *ngFor="let row of filteredBranches; let i = index">
+
+              <div class="col col-sl">
+                {{ serial(i) }}
+              </div>
+
+              <div class="col">
+                {{ row.branchCode }}
+              </div>
+
+              <div class="col">
+                {{ row.branchName }}
+              </div>
+
+              <div class="col">
+                {{ row.email || '-' }}
+              </div>
+
+              <div class="col">
+                {{ row.primaryPhone || '-' }}
+              </div>
+
+              <div class="col">
+                <span
+                  class="status-badge"
+                  [class.active]="row.status === 'Active'"
+                  [class.inactive]="row.status === 'Inactive'">
+                  {{ row.status }}
+                </span>
+              </div>
+
+              <div class="col col-actions action-icons">
+
+                <!-- VIEW -->
+                <button
+                  type="button"
+                  class="icon-btn view"
+                  (click)="onView(row)">
+                  <i class="fa fa-eye"></i>
+                </button>
+
+                <!-- EDIT -->
+                <button
+                  type="button"
+                  class="icon-btn edit"
+                  (click)="onEdit(row)">
+                  <i class="fa fa-pen"></i>
+                </button>
+
+                <!-- DELETE -->
+                <button
+                  type="button"
+                  class="icon-btn delete"
+                  (click)="onDelete(row)">
+                  <i class="fa fa-trash"></i>
+                </button>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- ============================= -->
+        <!-- LARGE EMPTY STATE (STANDARD) -->
+        <!-- ============================= -->
+        <ng-template #emptyState>
+          <div class="ch-empty-state">
+            <i class="fa fa-folder-open empty-icon"></i>
+            <div class="empty-title">No Branches Found</div>
+            <div class="empty-subtitle">
+              Try adjusting search or filters.
+            </div>
+          </div>
+        </ng-template>
+
+        <!-- PAGINATION -->
+      <div *ngIf="totalRecords > 0">
+        <app-pagination
+          [totalRecords]="totalRecords"
+          [pageSize]="pageSize"
+          [currentPage]="currentPage"
+          (pageChange)="onPageChange($event)"
+          (pageSizeChange)="onPageSizeChange($event)">
+        </app-pagination>
+      </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

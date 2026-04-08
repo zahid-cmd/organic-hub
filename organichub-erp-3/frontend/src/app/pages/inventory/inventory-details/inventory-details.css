@@ -1,0 +1,203 @@
+/* =====================================================
+   PAGE SUB HEADER
+===================================================== */
+.ch-page-subheader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 56px;
+  padding: 8px 12px;
+  background: linear-gradient(90deg, #0A2418, #8FB339, #F4C430);
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.subheader-left,
+.subheader-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ch-input {
+  height: 36px;
+  padding: 0 10px;
+  font-size: 13px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+}
+
+.ch-btn {
+  height: 36px;
+  padding: 0 14px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+}
+
+.ch-btn.primary {
+  background: #4f7f52;
+  color: #ffffff;
+  border-color: #4f7f52;
+}
+
+.icon-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+}
+
+/* =====================================================
+   REPORT HEADER
+===================================================== */
+.ledger-report-wrapper {
+  width: 85%;
+  margin: 16px auto 0;
+  padding: 0 30px;
+  background: #ffffff;
+  box-sizing: border-box;
+}
+
+.ledger-report-header {
+  display: flex;
+  align-items: center;
+  padding: 12px 0;
+}
+
+.ledger-report-left img {
+  height: 100px;
+}
+
+.ledger-report-right {
+  margin-left: auto;
+  text-align: right;
+}
+
+.ledger-report-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #eab308;
+}
+
+.ledger-report-divider {
+  height: 2px;
+  border-top: 1px solid #6b7280;
+  border-bottom: 1px solid #6b7280;
+  margin: 8px -30px;
+}
+
+/* =====================================================
+   META ROW
+===================================================== */
+.ledger-meta-row {
+  width: 85%;
+  margin: 0 auto;
+  padding: 10px 30px;
+  display: flex;
+  justify-content: space-between;
+  background: #ffffff;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+/* =====================================================
+   INVENTORY TABLE WRAPPER
+===================================================== */
+.ledger-table-wrapper {
+  width: 85%;
+  margin: 0 auto 24px;
+  background: #ffffff;
+  box-sizing: border-box;
+}
+
+/* =====================================================
+   GRID DEFINITION (SINGLE SOURCE OF TRUTH)
+===================================================== */
+.inventory-table-header,
+.inventory-row {
+  display: grid;
+  grid-template-columns:
+    60px        /* # */
+    2.5fr       /* Product */
+    140px       /* Code */
+    repeat(8, minmax(90px, 1fr)); /* Qty / Amt */
+}
+
+/* =====================================================
+   HEADER (FIXED)
+===================================================== */
+.inventory-table-header {
+  background: #edf6e8;
+  font-weight: 700;
+  text-align: center;
+  border-top: 1px solid #cbd5e1;
+  border-bottom: 1px solid #cbd5e1;
+}
+
+.inventory-table-header > div {
+  padding: 10px;
+  border-right: 1px solid #d1d5db;
+}
+
+.inventory-table-header > div:last-child {
+  border-right: none;
+}
+
+/* =====================================================
+   SCROLLABLE BODY (ONLY THIS SCROLLS)
+===================================================== */
+.inventory-table-scroll {
+  max-height: 460px;
+  overflow-y: auto;
+}
+
+.inventory-table-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.inventory-table-scroll::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+/* =====================================================
+   BODY ROWS
+===================================================== */
+.inventory-row {
+  font-size: 14px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.inventory-row > div {
+  padding: 8px 10px;
+  border-right: 1px solid #e5e7eb;
+  box-sizing: border-box;
+}
+
+.inventory-row > div:last-child {
+  border-right: none;
+}
+
+.inventory-row:hover {
+  background: #f9fafb;
+}
+
+/* =====================================================
+   TOTAL ROW (FIXED – OUTSIDE SCROLL)
+===================================================== */
+.inventory-row.inventory-total {
+  background: #fefce8;
+  font-weight: 700;
+  border-top: 1px solid #adb1b8;    /* existing top line */
+  border-bottom: 1px solid #acafb4; /* ✅ NEW bottom line */
+}
+
+/* =====================================================
+   ALIGNMENTS
+===================================================== */
+.center { text-align: center; }
+.right  { text-align: right; }

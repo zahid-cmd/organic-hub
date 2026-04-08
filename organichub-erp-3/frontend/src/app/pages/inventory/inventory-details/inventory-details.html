@@ -1,0 +1,411 @@
+<!-- =========================
+     PAGE SUB HEADER
+========================= -->
+<div class="ch-page-subheader">
+  <div class="subheader-left">
+    <input type="date" class="ch-input" />
+    <input type="date" class="ch-input" />
+    <button class="ch-btn primary">Submit</button>
+  </div>
+
+  <div class="subheader-right">
+    <button class="ch-btn">Back</button>
+    <button class="icon-btn" (click)="printPage()">
+      <i class="fa fa-print"></i>
+    </button>
+  </div>
+</div>
+
+<!-- =========================
+     REPORT HEADER
+========================= -->
+<div class="ledger-report-wrapper">
+  <div class="ledger-report-header">
+    <div class="ledger-report-left">
+      <img src="/assets/Logo.png" alt="Organic Hub" />
+    </div>
+
+    <div class="ledger-report-right">
+      <h2>ORGANIC HUB</h2>
+      <div class="ledger-report-title">Inventory Details Report</div>
+      <div class="ledger-report-meta">
+        Suite # 02, 6th Floor, DOHS Shopping Complex, Mirpur, Dhaka 1216
+      </div>
+    </div>
+  </div>
+
+  <div class="ledger-report-divider"></div>
+</div>
+
+<!-- =========================
+     META ROW
+========================= -->
+<div class="ledger-meta-row">
+  <div>Product-wise Inventory Movement</div>
+  <div><strong>Period:</strong> 01-01-2026 to 31-01-2026</div>
+</div>
+
+<!-- =========================
+     INVENTORY TABLE
+========================= -->
+<div class="ledger-table-wrapper">
+
+  <!-- HEADER (FIXED) -->
+  <div class="inventory-table-header">
+    <div>#</div>
+    <div>Product Name</div>
+    <div>Product Code</div>
+
+    <div>Opening Qty</div>
+    <div>Opening Amt</div>
+    <div>Purchase Qty</div>
+    <div>Purchase Amt</div>
+    <div>Sale Qty</div>
+    <div>Sale Amt</div>
+    <div>Closing Qty</div>
+    <div>Closing Amt</div>
+  </div>
+
+  <!-- BODY (LONG ENOUGH FOR 2+ PAGES) -->
+  <div class="inventory-table-scroll">
+    <div class="inventory-table-body">
+
+      <!-- 🔁 REPEAT BLOCK (40+ rows) -->
+      <!-- ROW 1 -->
+      <div class="inventory-row">
+        <div class="center">1</div>
+        <div>Organic Rice – Miniket</div>
+        <div class="center">RICE-001</div>
+        <div class="right">100</div><div class="right">5,000</div>
+        <div class="right">50</div><div class="right">2,600</div>
+        <div class="right">30</div><div class="right">1,950</div>
+        <div class="right">120</div><div class="right">5,650</div>
+      </div>
+
+      <!-- ROW 2 -->
+      <div class="inventory-row">
+        <div class="center">2</div>
+        <div>Organic Oil – Mustard</div>
+        <div class="center">OIL-014</div>
+        <div class="right">40</div><div class="right">4,800</div>
+        <div class="right">20</div><div class="right">2,600</div>
+        <div class="right">15</div><div class="right">2,100</div>
+        <div class="right">45</div><div class="right">5,300</div>
+      </div>
+
+      <!-- COPY BELOW ROWS AS-IS (DO NOT CHANGE) -->
+      <!-- ===== DUPLICATE 20–30 TIMES ===== -->
+
+      <!-- ROW -->
+      <div class="inventory-row">
+        <div class="center">3</div>
+        <div>Organic Rice – Miniket</div>
+        <div class="center">RICE-001</div>
+        <div class="right">100</div><div class="right">5,000</div>
+        <div class="right">50</div><div class="right">2,600</div>
+        <div class="right">30</div><div class="right">1,950</div>
+        <div class="right">120</div><div class="right">5,650</div>
+      </div>
+
+      <div class="inventory-row">
+        <div class="center">4</div>
+        <div>Organic Oil – Mustard</div>
+        <div class="center">OIL-014</div>
+        <div class="right">40</div><div class="right">4,800</div>
+        <div class="right">20</div><div class="right">2,600</div>
+        <div class="right">15</div><div class="right">2,100</div>
+        <div class="right">45</div><div class="right">5,300</div>
+      </div>
+      <!-- ROW 1 -->
+      <div class="inventory-row">
+        <div class="center">5</div>
+        <div>Organic Rice – Miniket</div>
+        <div class="center">RICE-001</div>
+        <div class="right">100</div><div class="right">5,000</div>
+        <div class="right">50</div><div class="right">2,600</div>
+        <div class="right">30</div><div class="right">1,950</div>
+        <div class="right">120</div><div class="right">5,650</div>
+      </div>
+
+      <!-- ROW 2 -->
+      <div class="inventory-row">
+        <div class="center">6</div>
+        <div>Organic Oil – Mustard</div>
+        <div class="center">OIL-014</div>
+        <div class="right">40</div><div class="right">4,800</div>
+        <div class="right">20</div><div class="right">2,600</div>
+        <div class="right">15</div><div class="right">2,100</div>
+        <div class="right">45</div><div class="right">5,300</div>
+      </div>
+
+      <!-- COPY BELOW ROWS AS-IS (DO NOT CHANGE) -->
+      <!-- ===== DUPLICATE 20–30 TIMES ===== -->
+
+      <!-- ROW -->
+      <div class="inventory-row">
+        <div class="center">7</div>
+        <div>Organic Rice – Miniket</div>
+        <div class="center">RICE-001</div>
+        <div class="right">100</div><div class="right">5,000</div>
+        <div class="right">50</div><div class="right">2,600</div>
+        <div class="right">30</div><div class="right">1,950</div>
+        <div class="right">120</div><div class="right">5,650</div>
+      </div>
+
+      <div class="inventory-row">
+        <div class="center">8</div>
+        <div>Organic Oil – Mustard</div>
+        <div class="center">OIL-014</div>
+        <div class="right">40</div><div class="right">4,800</div>
+        <div class="right">20</div><div class="right">2,600</div>
+        <div class="right">15</div><div class="right">2,100</div>
+        <div class="right">45</div><div class="right">5,300</div>
+      </div>
+      <!-- ROW 1 -->
+      <div class="inventory-row">
+        <div class="center">9</div>
+        <div>Organic Rice – Miniket</div>
+        <div class="center">RICE-001</div>
+        <div class="right">100</div><div class="right">5,000</div>
+        <div class="right">50</div><div class="right">2,600</div>
+        <div class="right">30</div><div class="right">1,950</div>
+        <div class="right">120</div><div class="right">5,650</div>
+      </div>
+
+      <!-- ROW 2 -->
+      <div class="inventory-row">
+        <div class="center">10</div>
+        <div>Organic Oil – Mustard</div>
+        <div class="center">OIL-014</div>
+        <div class="right">40</div><div class="right">4,800</div>
+        <div class="right">20</div><div class="right">2,600</div>
+        <div class="right">15</div><div class="right">2,100</div>
+        <div class="right">45</div><div class="right">5,300</div>
+      </div>
+
+      <!-- COPY BELOW ROWS AS-IS (DO NOT CHANGE) -->
+      <!-- ===== DUPLICATE 20–30 TIMES ===== -->
+
+      <!-- ROW -->
+      <div class="inventory-row">
+        <div class="center">11</div>
+        <div>Organic Rice – Miniket</div>
+        <div class="center">RICE-001</div>
+        <div class="right">100</div><div class="right">5,000</div>
+        <div class="right">50</div><div class="right">2,600</div>
+        <div class="right">30</div><div class="right">1,950</div>
+        <div class="right">120</div><div class="right">5,650</div>
+      </div>
+
+      <div class="inventory-row">
+        <div class="center">12</div>
+        <div>Organic Oil – Mustard</div>
+        <div class="center">OIL-014</div>
+        <div class="right">40</div><div class="right">4,800</div>
+        <div class="right">20</div><div class="right">2,600</div>
+        <div class="right">15</div><div class="right">2,100</div>
+        <div class="right">45</div><div class="right">5,300</div>
+      </div>
+      <!-- ROW 1 -->
+      <div class="inventory-row">
+        <div class="center">13</div>
+        <div>Organic Rice – Miniket</div>
+        <div class="center">RICE-001</div>
+        <div class="right">100</div><div class="right">5,000</div>
+        <div class="right">50</div><div class="right">2,600</div>
+        <div class="right">30</div><div class="right">1,950</div>
+        <div class="right">120</div><div class="right">5,650</div>
+      </div>
+
+      <!-- ROW 2 -->
+      <div class="inventory-row">
+        <div class="center">14</div>
+        <div>Organic Oil – Mustard</div>
+        <div class="center">OIL-014</div>
+        <div class="right">40</div><div class="right">4,800</div>
+        <div class="right">20</div><div class="right">2,600</div>
+        <div class="right">15</div><div class="right">2,100</div>
+        <div class="right">45</div><div class="right">5,300</div>
+      </div>
+
+      <!-- COPY BELOW ROWS AS-IS (DO NOT CHANGE) -->
+      <!-- ===== DUPLICATE 20–30 TIMES ===== -->
+
+      <!-- ROW -->
+      <div class="inventory-row">
+        <div class="center">15</div>
+        <div>Organic Rice – Miniket</div>
+        <div class="center">RICE-001</div>
+        <div class="right">100</div><div class="right">5,000</div>
+        <div class="right">50</div><div class="right">2,600</div>
+        <div class="right">30</div><div class="right">1,950</div>
+        <div class="right">120</div><div class="right">5,650</div>
+      </div>
+
+      <div class="inventory-row">
+        <div class="center">16</div>
+        <div>Organic Oil – Mustard</div>
+        <div class="center">OIL-014</div>
+        <div class="right">40</div><div class="right">4,800</div>
+        <div class="right">20</div><div class="right">2,600</div>
+        <div class="right">15</div><div class="right">2,100</div>
+        <div class="right">45</div><div class="right">5,300</div>
+      </div>
+      <!-- ROW 1 -->
+      <div class="inventory-row">
+        <div class="center">17</div>
+        <div>Organic Rice – Miniket</div>
+        <div class="center">RICE-001</div>
+        <div class="right">100</div><div class="right">5,000</div>
+        <div class="right">50</div><div class="right">2,600</div>
+        <div class="right">30</div><div class="right">1,950</div>
+        <div class="right">120</div><div class="right">5,650</div>
+      </div>
+
+      <!-- ROW 2 -->
+      <div class="inventory-row">
+        <div class="center">18</div>
+        <div>Organic Oil – Mustard</div>
+        <div class="center">OIL-014</div>
+        <div class="right">40</div><div class="right">4,800</div>
+        <div class="right">20</div><div class="right">2,600</div>
+        <div class="right">15</div><div class="right">2,100</div>
+        <div class="right">45</div><div class="right">5,300</div>
+      </div>
+
+      <!-- COPY BELOW ROWS AS-IS (DO NOT CHANGE) -->
+      <!-- ===== DUPLICATE 20–30 TIMES ===== -->
+
+      <!-- ROW -->
+      <div class="inventory-row">
+        <div class="center">19</div>
+        <div>Organic Rice – Miniket</div>
+        <div class="center">RICE-001</div>
+        <div class="right">100</div><div class="right">5,000</div>
+        <div class="right">50</div><div class="right">2,600</div>
+        <div class="right">30</div><div class="right">1,950</div>
+        <div class="right">120</div><div class="right">5,650</div>
+      </div>
+
+      <div class="inventory-row">
+        <div class="center">20</div>
+        <div>Organic Oil – Mustard</div>
+        <div class="center">OIL-014</div>
+        <div class="right">40</div><div class="right">4,800</div>
+        <div class="right">20</div><div class="right">2,600</div>
+        <div class="right">15</div><div class="right">2,100</div>
+        <div class="right">45</div><div class="right">5,300</div>
+      </div>
+      <!-- ROW 1 -->
+      <div class="inventory-row">
+        <div class="center">21</div>
+        <div>Organic Rice – Miniket</div>
+        <div class="center">RICE-001</div>
+        <div class="right">100</div><div class="right">5,000</div>
+        <div class="right">50</div><div class="right">2,600</div>
+        <div class="right">30</div><div class="right">1,950</div>
+        <div class="right">120</div><div class="right">5,650</div>
+      </div>
+
+      <!-- ROW 2 -->
+      <div class="inventory-row">
+        <div class="center">22</div>
+        <div>Organic Oil – Mustard</div>
+        <div class="center">OIL-014</div>
+        <div class="right">40</div><div class="right">4,800</div>
+        <div class="right">20</div><div class="right">2,600</div>
+        <div class="right">15</div><div class="right">2,100</div>
+        <div class="right">45</div><div class="right">5,300</div>
+      </div>
+
+      <!-- COPY BELOW ROWS AS-IS (DO NOT CHANGE) -->
+      <!-- ===== DUPLICATE 20–30 TIMES ===== -->
+
+      <!-- ROW -->
+      <div class="inventory-row">
+        <div class="center">23</div>
+        <div>Organic Rice – Miniket</div>
+        <div class="center">RICE-001</div>
+        <div class="right">100</div><div class="right">5,000</div>
+        <div class="right">50</div><div class="right">2,600</div>
+        <div class="right">30</div><div class="right">1,950</div>
+        <div class="right">120</div><div class="right">5,650</div>
+      </div>
+
+      <div class="inventory-row">
+        <div class="center">24</div>
+        <div>Organic Oil – Mustard</div>
+        <div class="center">OIL-014</div>
+        <div class="right">40</div><div class="right">4,800</div>
+        <div class="right">20</div><div class="right">2,600</div>
+        <div class="right">15</div><div class="right">2,100</div>
+        <div class="right">45</div><div class="right">5,300</div>
+      </div>
+      <!-- ROW 1 -->
+      <div class="inventory-row">
+        <div class="center">25</div>
+        <div>Organic Rice – Miniket</div>
+        <div class="center">RICE-001</div>
+        <div class="right">100</div><div class="right">5,000</div>
+        <div class="right">50</div><div class="right">2,600</div>
+        <div class="right">30</div><div class="right">1,950</div>
+        <div class="right">120</div><div class="right">5,650</div>
+      </div>
+
+      <!-- ROW 2 -->
+      <div class="inventory-row">
+        <div class="center">26</div>
+        <div>Organic Oil – Mustard</div>
+        <div class="center">OIL-014</div>
+        <div class="right">40</div><div class="right">4,800</div>
+        <div class="right">20</div><div class="right">2,600</div>
+        <div class="right">15</div><div class="right">2,100</div>
+        <div class="right">45</div><div class="right">5,300</div>
+      </div>
+
+      <!-- COPY BELOW ROWS AS-IS (DO NOT CHANGE) -->
+      <!-- ===== DUPLICATE 20–30 TIMES ===== -->
+
+      <!-- ROW -->
+      <div class="inventory-row">
+        <div class="center">27</div>
+        <div>Organic Rice – Miniket</div>
+        <div class="center">RICE-001</div>
+        <div class="right">100</div><div class="right">5,000</div>
+        <div class="right">50</div><div class="right">2,600</div>
+        <div class="right">30</div><div class="right">1,950</div>
+        <div class="right">120</div><div class="right">5,650</div>
+      </div>
+
+      <div class="inventory-row">
+        <div class="center">28</div>
+        <div>Organic Oil – Mustard</div>
+        <div class="center">OIL-014</div>
+        <div class="right">40</div><div class="right">4,800</div>
+        <div class="right">20</div><div class="right">2,600</div>
+        <div class="right">15</div><div class="right">2,100</div>
+        <div class="right">45</div><div class="right">5,300</div>
+      </div>
+
+      <!-- ✅ KEEP DUPLICATING UNTIL ~40 ROWS -->
+
+    </div>
+  </div>
+
+  <!-- TOTAL (FIXED – LAST PAGE ONLY) -->
+  <div class="inventory-row inventory-total">
+    <div></div>
+    <div><strong>Total</strong></div>
+    <div></div>
+
+    <div class="right"><strong>140</strong></div>
+    <div class="right"><strong>9,800</strong></div>
+    <div class="right"><strong>70</strong></div>
+    <div class="right"><strong>5,200</strong></div>
+    <div class="right"><strong>45</strong></div>
+    <div class="right"><strong>4,050</strong></div>
+    <div class="right"><strong>165</strong></div>
+    <div class="right"><strong>10,950</strong></div>
+  </div>
+
+</div>

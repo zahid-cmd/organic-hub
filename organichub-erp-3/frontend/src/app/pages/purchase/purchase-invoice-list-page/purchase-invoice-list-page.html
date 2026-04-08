@@ -1,0 +1,201 @@
+<div class="page-container">
+
+  <div class="page-body">
+
+    <app-page-sub-header title="Search & Filter Purchase Invoices">
+      <div page-actions class="subheader-actions">
+        <button class="ch-btn" (click)="onAdd()">Add</button>
+        <button class="ch-btn" (click)="onClear()">Clear</button>
+        <button class="ch-btn" (click)="onBack()">Back</button>
+      </div>
+    </app-page-sub-header>
+
+    <div class="page-body-content">
+
+      <!-- SEARCH + STATUS FILTER ROW -->
+      <div class="ch-filter-bar">
+
+        <app-search-area
+          class="search-flex"
+          [searchText]="searchText"
+          (searchChange)="onSearch($event)">
+        </app-search-area>
+
+        <!-- STATUS FILTER -->
+        <select
+          class="status-filter"
+          [(ngModel)]="statusFilter"
+          (change)="onStatusChange()">
+
+          <option value="ALL">All Status</option>
+          <option value="DRAFT">Draft</option>
+          <option value="FINAL">Final</option>
+          <option value="CANCELLED">Cancelled</option>
+
+        </select>
+
+      </div>
+
+
+      <!-- LIST -->
+      <div class="ch-list-body">
+
+        <!-- EMPTY STATE -->
+        <div
+          *ngIf="totalRecords === 0"
+          class="ch-empty-state">
+
+          <div class="ch-empty-icon">
+            <i class="fa fa-folder-open"></i>
+          </div>
+
+          <div class="ch-empty-title">
+            No Purchase Invoices Found
+          </div>
+
+          <div class="ch-empty-subtitle">
+            Try adjusting search or filters.
+          </div>
+
+        </div>
+
+
+        <!-- TABLE -->
+        <div
+          class="ch-list-table"
+          *ngIf="totalRecords > 0">
+
+          <!-- HEADER -->
+          <div class="ch-list-row ch-list-header">
+
+            <div class="col col-sl">#</div>
+
+            <div class="col">Invoice No</div>
+
+            <div class="col">Invoice Date</div>
+
+            <div class="col">Supplier Name</div>
+
+            <div class="col amount txt-right">
+              Product Value
+            </div>
+
+            <div class="col amount txt-right">
+              Invoice Value
+            </div>
+
+            <div class="col">PO No</div>
+
+            <div class="col">PO Date</div>
+
+            <div class="col">Status</div>
+
+            <div class="col col-actions txt-center">
+              Actions
+            </div>
+
+          </div>
+
+          <!-- ROWS -->
+          <div class="ch-list-body-rows">
+
+            <div
+              class="ch-list-row"
+              *ngFor="let invoice of pagedInvoices; let i = index">
+
+              <div class="col col-sl">{{ serial(i) }}</div>
+
+              <div class="col">{{ invoice.invoiceNo }}</div>
+
+              <div class="col">
+                {{ invoice.invoiceDate | date:'dd MMM yyyy' }}
+              </div>
+
+              <div class="col">{{ invoice.supplierName }}</div>
+
+              <!-- ⭐ STATUS BADGE -->
+
+              <div class="col amount txt-right">
+                {{ invoice.productValue | number:'1.0-0' }}
+              </div>
+
+              <div class="col amount txt-right">
+                {{ invoice.invoiceValue | number:'1.0-0' }}
+              </div>
+
+              <div class="col">{{ invoice.purchaseOrderNo }}</div>
+
+              <div class="col">
+                {{ invoice.purchaseOrderDate | date:'dd MMM yyyy' }}
+              </div>
+
+              <div class="col">
+
+                <span
+                  class="status-badge"
+                  [ngClass]="{
+                    'status-draft': invoice.status === 'Draft',
+                    'status-posted': invoice.status === 'Posted'
+                  }">
+
+                  {{ invoice.status }}
+
+                </span>
+
+              </div>
+              
+              <div class="col col-actions action-icons">
+
+                <button
+                  class="icon-btn print"
+                  title="Print"
+                  (click)="onInvoicePrint(i)">
+                  <i class="fa fa-file-invoice"></i>
+                </button>
+
+                <button
+                  class="icon-btn view"
+                  title="View"
+                  (click)="onView(invoice)">
+                  <i class="fa fa-eye"></i>
+                </button>
+
+                <!-- ⭐ EDIT DISABLED IF POSTED -->
+                <button
+                  class="icon-btn edit"
+                  title="Edit"
+                  [disabled]="invoice.status === 'Posted'"
+                  (click)="onEdit(invoice)">
+                  <i class="fa fa-pen"></i>
+                </button>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- PAGINATION -->
+      <div
+        class="ch-pagination"
+        *ngIf="totalRecords > 0">
+
+        <app-pagination
+          [totalRecords]="totalRecords"
+          [pageSize]="pageSize"
+          [currentPage]="currentPage"
+          (pageChange)="onPageChange($event)"
+          (pageSizeChange)="onPageSizeChange($event)">
+        </app-pagination>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>

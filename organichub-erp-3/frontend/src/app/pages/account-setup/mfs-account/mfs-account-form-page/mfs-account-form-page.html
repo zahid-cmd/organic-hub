@@ -1,0 +1,227 @@
+<div class="page-body">
+
+  <app-organic-toast></app-organic-toast>
+
+  <app-page-sub-header title="Create / Update MFS Account">
+    <div page-actions class="subheader-actions">
+
+      <button type="button"
+              class="ch-btn"
+              *ngIf="!isViewMode"
+              (click)="onSave()">
+        {{ mode === 'edit' ? 'Update' : 'Save' }}
+      </button>
+
+      <button type="button"
+              class="ch-btn"
+              *ngIf="!isViewMode"
+              (click)="onClear()">
+        Clear
+      </button>
+
+      <button type="button"
+              class="ch-btn"
+              (click)="onBack()">
+        Back
+      </button>
+
+    </div>
+  </app-page-sub-header>
+
+  <div class="page-body-content">
+    <div class="form-body">
+
+      <!-- ================= COLUMN 1 ================= -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+
+            <div class="section-header">Basic Information</div>
+
+            <!-- Branch -->
+            <div class="form-field">
+              <label>Branch</label>
+              <select [(ngModel)]="mfsAccount.branchId"
+                      (ngModelChange)="onBranchChange()"
+                      [disabled]="isViewMode">
+                <option [ngValue]="null" disabled>Select Branch</option>
+                <option *ngFor="let b of branches"
+                        [ngValue]="b.id">
+                  {{ b.branchCode }} - {{ b.branchName }}
+                </option>
+              </select>
+            </div>
+
+            <!-- SubGroup -->
+            <div class="form-field">
+              <label>Account SubGroup</label>
+              <input type="text"
+                     value="Cash With MFS"
+                     readonly />
+            </div>
+
+            <!-- SubGroup Code -->
+            <div class="form-field">
+              <label>Account SubGroup Code</label>
+              <input type="text"
+                     value="SUB-01-05-001"
+                     readonly />
+            </div>
+
+            <!-- Status -->
+            <div class="form-field">
+              <label>Status</label>
+              <select [(ngModel)]="mfsAccount.status"
+                      [disabled]="isViewMode">
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+              </select>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= COLUMN 2 ================= -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+
+            <div class="section-header">MFS Account Details</div>
+
+            <!-- Account Code -->
+            <div class="form-field">
+              <label>Account Code</label>
+              <input type="text"
+                     [(ngModel)]="mfsAccount.accountCode"
+                     readonly>
+            </div>
+
+            <!-- Operator -->
+            <div class="form-field">
+              <label>MFS Operator</label>
+              <select [(ngModel)]="mfsAccount.mfsOperator"
+                      (change)="updateLedger()"
+                      [disabled]="isViewMode">
+                <option [ngValue]="null" disabled>Select Operator</option>
+                <option *ngFor="let op of mfsOperators"
+                        [ngValue]="op">
+                  {{ op }}
+                </option>
+              </select>
+            </div>
+
+            <!-- Wallet -->
+            <div class="form-field">
+              <label>Wallet / Merchant Number</label>
+              <input type="text"
+                     [(ngModel)]="mfsAccount.walletOrMerchantNumber"
+                     (input)="updateLedger()"
+                     [disabled]="isViewMode">
+            </div>
+
+            <!-- Auto Ledger -->
+            <div class="form-field">
+              <label>MFS Ledger</label>
+              <input type="text"
+                     [(ngModel)]="mfsAccount.mfsLedgerName"
+                     readonly>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= COLUMN 3 ================= -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+
+            <div class="section-header">Operational Settings</div>
+
+            <!-- Linked Bank -->
+            <div class="form-field">
+              <label>Linked Bank Account</label>
+              <select [(ngModel)]="mfsAccount.linkedBankAccountId"
+                      [disabled]="isViewMode || !mfsAccount.branchId">
+                <option [ngValue]="null">Select Bank Account</option>
+                <option *ngFor="let bank of bankAccounts"
+                        [ngValue]="bank.id">
+                  {{ bank.bankAccountName }}
+                </option>
+              </select>
+            </div>
+
+            <!-- Collection -->
+            <div class="form-field">
+              <label>Collection Account</label>
+              <select [(ngModel)]="mfsAccount.isCollectionAccount"
+                      [disabled]="isViewMode">
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+            </div>
+
+            <!-- Payment -->
+            <div class="form-field">
+              <label>Payment Account</label>
+              <select [(ngModel)]="mfsAccount.isPaymentAccount"
+                      [disabled]="isViewMode">
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+            </div>
+
+            <!-- Remarks -->
+            <div class="form-field">
+              <label>Remarks</label>
+              <textarea [(ngModel)]="mfsAccount.remarks"
+                        [disabled]="isViewMode"></textarea>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= COLUMN 4 ================= -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+
+            <div class="section-header">Audit Information</div>
+
+            <div class="form-field">
+              <label>Created By</label>
+              <input type="text"
+                     [(ngModel)]="mfsAccount.createdBy"
+                     readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Created Date</label>
+              <input type="text"
+                     [(ngModel)]="mfsAccount.createdDate"
+                     readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Updated By</label>
+              <input type="text"
+                     [(ngModel)]="mfsAccount.updatedBy"
+                     readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Updated Date</label>
+              <input type="text"
+                     [(ngModel)]="mfsAccount.updatedDate"
+                     readonly>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

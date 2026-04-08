@@ -1,0 +1,689 @@
+<app-organic-toast></app-organic-toast>
+
+<div class="page-body">
+
+  <app-page-sub-header title="Add / Update Purchase Invoice">
+
+    <div page-actions class="subheader-actions">
+
+      <!-- ================= STATUS BADGE ================= -->
+
+      <div
+        class="pi-status-box"
+        [ngClass]="{
+          'draft': status === 'Draft',
+          'posted': status === 'Posted'
+        }">
+
+        <span class="status-dot"></span>
+
+        <span class="status-text">
+          {{ status }}
+        </span>
+
+      </div>
+
+      <!-- ================= SAVE DRAFT ================= -->
+
+      <button
+        type="button"
+        class="ch-btn"
+        (click)="onSaveDraft()"
+        *ngIf="mode !== 'view' && status !== 'Posted'"
+        [disabled]="saving">
+
+        {{ saving && status === 'Draft'
+            ? 'Saving...'
+            : 'Save Draft' }}
+
+      </button>
+
+      <!-- ================= POST ================= -->
+
+      <button
+        type="button"
+        class="ch-btn primary"
+        (click)="onPost()"
+        *ngIf="mode !== 'view' && status !== 'Posted'"
+        [disabled]="saving">
+
+        {{ saving && status === 'Posted'
+            ? 'Posting...'
+            : 'Post Invoice' }}
+
+      </button>
+
+      <!-- ================= RESET ================= -->
+
+      <button
+        type="button"
+        class="ch-btn"
+        (click)="onReset()"
+        *ngIf="mode !== 'view' && status !== 'Posted'"
+        [disabled]="saving">
+
+        Reset
+
+      </button>
+
+      <!-- ================= BACK ================= -->
+
+      <button
+        type="button"
+        class="ch-btn"
+        (click)="onBack()"
+        [disabled]="saving">
+
+        Back
+
+      </button>
+
+    </div>
+
+  </app-page-sub-header>
+
+  <div class="page-body-content">
+
+    <div class="pi-body">
+
+      <!-- ================= LEFT ================= -->
+
+      <div class="pi-col pi-left">
+
+        <div class="pi-box">
+
+          <div class="pi-box-title">Invoice Details</div>
+
+          <div class="pi-row">
+
+            <div class="pi-field">
+              <label>Invoice Number</label>
+              <input type="text"
+                    [(ngModel)]="invoice.invoiceNumber"
+                    readonly>
+            </div>
+
+            <div class="pi-field">
+              <label>Invoice Date</label>
+              <input type="date"
+                    [(ngModel)]="invoice.invoiceDate"
+                    [disabled]="mode==='view'">
+            </div>
+
+          </div>
+
+          <div class="pi-field pi-full"
+              *ngIf="mode==='add' ? isPurchaseOrderMandatory : isEditPoDrivenInvoice">
+
+            <label>Purchase Order *</label>
+
+            <select
+              [(ngModel)]="selectedPurchaseOrderId"
+              (ngModelChange)="onPurchaseOrderChange()"
+              [disabled]="mode==='view' || (mode==='edit' && isEditPoDrivenInvoice)">
+
+              <option [ngValue]="null">Select Purchase Order</option>
+
+              <option
+                *ngFor="let po of purchaseOrders; trackBy: trackByPoId"
+                [ngValue]="po.id">
+                {{ po.orderNo }}
+              </option>
+
+            </select>
+
+          </div>
+
+          <div class="pi-row">
+
+            <div class="pi-field">
+              <label>Location *</label>
+                <select
+                  [(ngModel)]="invoice.warehouseId"
+                [disabled]="mode==='view'||isInvoiceEntryLocked">
+
+                <option [ngValue]="null">Select Location</option>
+
+                <option *ngFor="let w of warehouses"
+                        [ngValue]="w.id">
+                  {{w.warehouseName}}
+                </option>
+
+              </select>
+            </div>
+
+            <div class="pi-field">
+              <label>Reference *</label>
+              <input
+                type="text"
+                placeholder="Enter Reference"
+                [(ngModel)]="invoice.reference"
+                [disabled]="mode==='view'||isInvoiceEntryLocked">
+            </div>
+
+          </div>
+
+          <div class="pi-field pi-full">
+
+            <label>Supplier *</label>
+
+            <select
+              [(ngModel)]="invoice.supplierId"
+              [disabled]="mode==='view'||isInvoiceEntryLocked||isPurchaseOrderMandatory">
+
+              <option [ngValue]="null">Select Supplier</option>
+
+              <option *ngFor="let s of suppliers"
+                      [ngValue]="s.id">
+                {{s.supplierName}}
+              </option>
+
+            </select>
+
+          </div>
+
+          <div class="pi-row">
+
+            <!-- PURCHASE TYPE -->
+
+            <div class="pi-field pi-full">
+
+              <label>Purchase Type</label>
+
+              <select
+                [(ngModel)]="selectedPurchaseTypeId"
+                (ngModelChange)="onPurchaseTypeChange()"
+                [disabled]="mode==='view' || isPoDriven || isPurchaseTypeLockedByCart">
+
+                <option [ngValue]="null">Select Purchase Type</option>
+
+                <option *ngFor="let t of purchaseTypes"
+                        [ngValue]="t.id">
+                  {{t.typeName}}
+                </option>
+
+              </select>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- ADD PRODUCT -->
+
+        <div class="pi-box"
+            [class.disabled-section]="isInvoiceEntryLocked || isPoDriven">
+
+          <div class="pi-box-title">Add Product</div>
+
+          <div class="pi-field pi-full">
+            <label>Sub Category</label>
+            <select
+              [(ngModel)]="entry.productSubCategoryId"
+              (ngModelChange)="onSubCategoryChange()"
+              [disabled]="isInvoiceEntryLocked">
+
+              <option [ngValue]="null">Select Sub Category</option>
+
+              <option *ngFor="let sc of productSubCategories"
+                      [ngValue]="sc.id">
+                {{sc.subCategoryName}}
+              </option>
+
+            </select>
+          </div>
+
+          <div class="pi-field pi-full">
+            <label>Product</label>
+              <select
+                #productSelect
+                class="pi-select"
+                [(ngModel)]="entry.productId"
+                (change)="onProductChange()"
+                (keydown.enter)="focusEntryQty()"
+                [disabled]="isInvoiceEntryLocked">
+
+                <option [ngValue]="null" disabled selected>
+                  Select Product
+                </option>
+
+                <option *ngFor="let p of filteredProducts"
+                        [ngValue]="p.id">
+                  {{ p.productName }}
+                </option>
+
+              </select>
+          </div>
+
+          <div class="pi-row">
+            <div class="pi-field">
+              <input type="number"
+                    #entryQtyInput
+                    placeholder="Enter Qty"
+                    [(ngModel)]="entry.quantity"
+                    (keydown.enter)="focusEntryRate()"
+                    [disabled]="isInvoiceEntryLocked">
+            </div>
+
+            <div class="pi-field">
+              <input type="number"
+                    #entryRateInput
+                    placeholder="Enter Rate"
+                    [(ngModel)]="entry.rate"
+                    (keydown.enter)="focusEntryLoss()"
+                    [disabled]="isInvoiceEntryLocked">
+            </div>
+          </div>
+
+          <div class="pi-row">
+            <div class="pi-field">
+              <input type="number"
+                    #entryLossInput
+                    placeholder="Normal Loss %"
+                    [(ngModel)]="entry.normalLoss"
+                    (keydown.enter)="focusEntryAddBtn()"
+                    [disabled]="isInvoiceEntryLocked">
+            </div>
+
+            <div class="pi-field">
+              <input type="text"
+                    placeholder="Net Qty"
+                    [value]="effectiveNetQty!==null?(effectiveNetQty|number:'1.2-2'):''"
+                    readonly>
+            </div>
+          </div>
+
+          <div class="pi-row">
+            <div class="pi-field">
+              <input type="text"
+                    placeholder="Amount"
+                    [value]="effectiveAmount!==null?(effectiveAmount|number:'1.2-2'):''"
+                    readonly>
+            </div>
+
+            <div class="pi-field">
+              <input type="text"
+                    placeholder="Effective Rate"
+                    [value]="effectiveRate!==null?(effectiveRate|number:'1.2-2'):''"
+                    readonly>
+            </div>
+          </div>
+
+          <div class="pi-row">
+            <div class="pi-field">
+              <label>Stock</label>
+              <input type="text"
+                    placeholder="Stock"
+                    [value]="selectedProductStock??''"
+                    readonly>
+            </div>
+
+            <div class="pi-field pi-add-field">
+              <label>&nbsp;</label>
+              <button class="pi-add-btn"
+                      #entryAddBtn
+                      (click)="addItem()"
+                      (keydown.enter)="addItem()"
+                      [disabled]="isInvoiceEntryLocked">
+                Add
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ================= CENTER ================= -->
+
+      <div class="pi-col pi-center">
+
+        <div class="pi-center-box">
+
+          <div class="pi-box">
+
+            <div class="pi-box-title">Invoice Summary</div>
+
+            <div class="pi-summary-row">
+
+            <div class="pi-summary-item">
+              <label>Product Value</label>
+              <input type="text"
+                    placeholder="Amount"
+                    [value]="invoice.productValue!=null ? (invoice.productValue | number:'1.2-2') : ''"
+                    readonly>
+            </div>
+
+            <div class="pi-summary-item">
+              <label>Primary Transport</label>
+              <input type="number"
+                    placeholder="Amount"
+                    [(ngModel)]="invoice.primaryTransport"
+                    (ngModelChange)="onExtraCostChange()"
+                    [disabled]="!invoice.items?.length">
+            </div>
+
+            <div class="pi-summary-item">
+              <label>Secondary Transport</label>
+              <input type="number"
+                    placeholder="Amount"
+                    [(ngModel)]="invoice.secondaryTransport"
+                    (ngModelChange)="onExtraCostChange()"
+                    [disabled]="!invoice.items?.length">
+            </div>
+
+            <div class="pi-summary-item">
+              <label>Discount</label>
+              <input type="number"
+                    placeholder="Amount"
+                    [(ngModel)]="invoice.discount"
+                    (ngModelChange)="onExtraCostChange()"
+                    [disabled]="!invoice.items?.length">
+            </div>
+
+            <div class="pi-summary-item highlight">
+              <label>Invoice Value</label>
+              <input type="text"
+                    placeholder="Amount"
+                    [value]="invoice.invoiceValue!=null ? (invoice.invoiceValue | number:'1.2-2') : ''"
+                    readonly>
+            </div>
+
+            </div>
+
+          </div>
+
+          <div class="pi-box pi-cart">
+
+            <div class="pi-box-title">Product Cart</div>
+
+            <div class="pi-cart-table-wrapper">
+
+              <table class="product-table">
+
+                <thead>
+                  <tr>
+                    <th class="col-no">#</th>
+                    <th>Product</th>
+                    <th class="col-qty">Qty</th>
+                    <th class="col-rate">Rate</th>
+                    <th class="col-amount">Amount</th>
+                    <th class="col-action">Action</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+
+                  <tr *ngFor="let item of invoice.items; let i=index"
+                      (dblclick)="openCartEditPopup(item,i)">
+
+                    <td class="col-no">
+                      {{ i + 1 }}
+                    </td>
+
+                    <td>
+                      {{ item.productName }}
+                    </td>
+
+                    <td class="col-qty">
+
+
+                      <div class="qty-control">
+
+                        <button class="qty-btn"
+                                (click)="decreaseQty(item)"
+                                [disabled]="isPoDriven || mode === 'view'">
+                                −
+                        </button>
+
+                        <input class="qty-input"
+                              type="text"
+                              [value]="item.qty | number:'1.2-2'"
+                              readonly>
+
+                        <button class="qty-btn"
+                                (click)="increaseQty(item)"
+                                [disabled]="isPoDriven || mode === 'view'">
+                                +
+                        </button>
+
+                      </div>
+
+
+
+                    </td>
+
+                    <td class="col-rate">
+                      {{ item.rate | number:'1.2-2' }}
+                    </td>
+
+                    <td class="col-amount">
+                      {{ (item.qty || 0) * (item.rate || 0) | number:'1.2-2' }}
+                    </td>
+
+                    <td class="col-action">
+                      <button
+                        class="remove-btn"
+                        (click)="removeItem(i)"
+                        [disabled]="isPoDriven || mode === 'view'">
+                        ×
+                      </button>
+                    </td>
+
+                  </tr>
+
+                </tbody>
+
+                <tfoot>
+
+                  <tr>
+
+                    <td class="col-no"></td>
+
+                    <td>
+                      <b>Total</b>
+                    </td>
+
+                    <td class="col-qty">
+                      <b>
+                        {{ totalQty != null ? (totalQty | number:'1.2-2') : '-' }}
+                      </b>
+                    </td>
+
+                    <td class="col-rate"></td>
+
+                    <td class="col-amount">
+                      <b>
+                        {{ totalAmount != null ? (totalAmount | number:'1.2-2') : '-' }}
+                      </b>
+                    </td>
+
+                    <td class="col-action"></td>
+
+                  </tr>
+
+                </tfoot>
+
+              </table>
+
+            </div>
+
+          </div>
+
+          <div class="pi-box">
+            <div class="pi-box-title">Notes / Remarks</div>
+            <textarea [(ngModel)]="invoice.notes" [disabled]="!invoice.items?.length"></textarea>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ================= RIGHT ================= -->
+
+      <div class="pi-col pi-right">
+
+        <div class="pi-shelf">
+
+          <div class="pi-shelf-header">
+
+            <div class="pi-shelf-title">Product Shelf</div>
+
+            <div class="pi-shelf-search">
+              <input
+                type="text"
+                placeholder="Search product..."
+                [(ngModel)]="productSearch"
+                (ngModelChange)="filterShelfProducts()">
+            </div>
+
+          </div>
+
+          <div class="pi-shelf-list">
+
+            <div
+              class="pi-product-card"
+              *ngFor="let p of shelfProducts"
+              (click)="!isPoDriven && documentType!=='PO' && mode!=='view' && openShelfPopup(p)"
+              [class.disabled-card]="isPoDriven || mode==='view'">
+
+              <div class="pi-product-img">
+                <img [src]="p.imageUrl || '/Logo.png'">
+              </div>
+
+              <div class="pi-product-name">
+                {{p.productName}}
+              </div>
+
+              <div class="pi-product-stock">
+                Stock: {{p.stock ?? p.stockQty ?? 0}}
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+</div>
+
+
+<!-- ================= POPUP ================= -->
+
+<div class="po-popup-overlay" *ngIf="showShelfPopup">
+
+  <div class="po-popup">
+
+    <div class="po-popup-header">
+      <div class="popup-title">
+        {{popupProduct?.productName}}
+      </div>
+
+      <button
+        class="popup-close"
+        (click)="closeShelfPopup()">
+        ×
+      </button>
+    </div>
+
+    <!-- ROW 1 -->
+
+    <div class="popup-row">
+
+      <div class="popup-field">
+        <label>Qty</label>
+        <input
+          #qtyInput
+          type="number"
+          [(ngModel)]="popupQty"
+          (keydown.enter)="focusRate()"
+          (click)="$event.target.select()">
+      </div>
+
+      <div class="popup-field">
+        <label>Rate</label>
+          <input
+            #rateInput
+            type="number"
+            [(ngModel)]="popupRate"
+            (keydown.enter)="focusLoss()"
+            (click)="$event.target.select()">
+      </div>
+
+      <div class="popup-field">
+        <label>Normal Loss %</label>
+          <input
+            #lossInput
+            type="number"
+            [(ngModel)]="popupLoss"
+            (keydown.enter)="focusAddBtn()"
+            (click)="$event.target.select()">
+      </div>
+
+      <div class="popup-field">
+        <label>Stock</label>
+        <input type="text"
+               [value]="popupProduct?.stock ?? ''"
+               readonly>
+      </div>
+
+    </div>
+
+    <!-- ROW 2 -->
+
+    <div class="popup-row">
+
+      <div class="popup-field">
+        <label>Net Qty</label>
+        <input type="text"
+              class="amount-field"
+              [value]="popupNetQty!==null ? (popupNetQty | number:'1.2-2') : ''"
+              readonly>
+      </div>
+
+      <div class="popup-field">
+        <label>Amount</label>
+        <input type="text"
+              class="amount-field"
+              [value]="popupAmount!==null ? (popupAmount | number:'1.2-2') : ''"
+              readonly>
+      </div>
+
+      <div class="popup-field">
+        <label>Effective Rate</label>
+        <input type="text"
+              class="amount-field"
+              [value]="popupEffectiveRate!==null ? (popupEffectiveRate | number:'1.2-2') : ''"
+              readonly>
+      </div>
+
+    </div>
+
+    <!-- ACTIONS -->
+
+    <div class="po-popup-actions">
+
+      <button
+        type="button"
+        class="popup-btn cancel-btn"
+        (click)="closeShelfPopup()">
+        Cancel
+      </button>
+
+      <button
+        #addBtn
+        type="button"
+        class="popup-btn add-btn"
+        (click)="addFromPopup()"
+        (keydown.enter)="addFromPopup()">
+        {{ isPopupEditMode ? 'Update' : 'Add' }}
+      </button>
+
+    </div>
+
+</div>

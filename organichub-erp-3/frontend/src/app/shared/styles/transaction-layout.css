@@ -1,0 +1,94 @@
+/* =========================================
+TRANSACTION PAGE LAYOUT ENGINE
+========================================= */
+
+/* MAIN GRID */
+
+.pi-body{
+display:grid;
+grid-template-columns:380px 1fr 380px;
+gap:10px;
+padding:8px 0;
+height:100%;
+}
+
+/* COLUMN PANEL */
+
+.pi-col{
+display:flex;
+flex-direction:column;
+background:#fff;
+border:1px solid #cfded4;
+border-radius:6px;
+padding:12px;
+min-width:0;
+}
+
+/* BOX */
+
+.pi-box{
+display:flex;
+flex-direction:column;
+gap:6px;
+border:1px solid #cfded4;
+border-radius:6px;
+padding:12px;
+background:#fff;
+}
+
+/* FORM GRID */
+
+.pi-row{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:8px;
+}
+
+/* INPUT STANDARD */
+
+input,
+select{
+height:35px;
+border:1px solid #b7d2c2;
+border-radius:4px;
+padding:0 8px;
+font-size:14px;
+}
+
+/* ADD PRODUCT AREA */
+
+.pi-add-row{
+display:flex;
+flex-direction:column;
+gap:6px;
+}
+
+/* PRODUCT GRID */
+
+.pi-shelf-list{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+grid-auto-rows:110px;
+gap:10px;
+overflow-y:auto;
+}
+
+/* PRODUCT CARD */
+
+.pi-product-card{
+height:110px;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+border:1px solid #cfded4;
+border-radius:6px;
+padding:8px;
+background:#fff;
+}
+
+.pi-product-img img{
+width:48px;
+height:48px;
+object-fit:contain;
+}

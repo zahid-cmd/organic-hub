@@ -1,0 +1,385 @@
+<!-- PAGE SUB HEADER -->
+<div class="ch-page-subheader">
+  <div class="subheader-left">
+    <select class="ch-input ch-input-wide">
+      <option>Select Account Sub Group</option>
+    </select>
+
+    <select class="ch-input ch-input-wide">
+      <option>Select Ledger</option>
+    </select>
+
+    <input type="date" class="ch-input" />
+    <input type="date" class="ch-input" />
+
+    <select class="ch-input">
+      <option value="yes">Ledger Code : Yes</option>
+      <option value="no">Ledger Code : No</option>
+    </select>
+
+    <select class="ch-input">
+      <option value="yes">Narration : Yes</option>
+      <option value="no">Narration : No</option>
+    </select>
+
+    <button class="ch-btn primary">Submit</button>
+  </div>
+
+  <div class="subheader-right">
+    <button class="ch-btn">Back</button>
+    <button class="icon-btn" (click)="printPage()">
+      <i class="fa fa-print"></i>
+    </button>
+  </div>
+</div>
+
+<!-- REPORT HEADER -->
+<div class="ledger-report-wrapper">
+  <div class="ledger-report-header">
+    <div class="ledger-report-left">
+      <img src="/assets/Logo.png" alt="Organic Hub" />
+    </div>
+
+    <div class="ledger-report-right">
+      <h2>ORGANIC HUB</h2>
+      <div class="ledger-report-title">MFS Ledger</div>
+      <div class="ledger-report-meta">
+        Suite # 02, 6th Floor, DOHS Shopping Complex, Mirpur, Dhaka 1216
+      </div>
+    </div>
+  </div>
+
+  <div class="ledger-report-divider"></div>
+</div>
+
+<!-- LEDGER META -->
+<div class="ledger-meta-row">
+  <div class="ledger-meta-left">
+    <strong>Ledger Name:</strong> Bkash - 01312890086
+  </div>
+  <div class="ledger-meta-right">
+    <strong>Period:</strong> 01-01-2026 to 31-01-2026
+  </div>
+</div>
+
+<!-- LEDGER TABLE -->
+<div class="ledger-table-wrapper">
+
+  <!-- TABLE HEADER -->
+  <div class="ledger-table-header">
+    <div>Date</div>
+    <div>Particulars</div>
+    <div>Reference</div>
+    <div class="right">Debit</div>
+    <div class="right">Credit</div>
+    <div class="balance-merged-header right">Balance</div>
+    <div>Remarks</div>
+  </div>
+
+  <!-- OPENING BALANCE -->
+  <div class="ledger-row opening">
+    <div></div>
+    <div><strong>Opening Balance</strong></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div class="right"><strong>25,000.00</strong></div>
+    <div class="center dr">Dr</div>
+    <div></div>
+  </div>
+
+  <!-- SCROLLABLE BODY -->
+  <div class="ledger-table-scroll">
+    <div class="ledger-table-body">
+
+      <!-- ===== 15 TRANSACTIONS ===== -->
+
+      <!-- 1 -->
+      <div class="ledger-row transaction">
+        <div>01-01-2026</div>
+        <div>Bkash Collection – Sales</div>
+        <div>RV-2001</div>
+        <div class="right">8,000.00</div>
+        <div class="right"></div>
+        <div class="right">33,000.00</div>
+        <div class="center dr">Dr</div>
+        <div>Collection</div>
+      </div>
+      <div class="ledger-row ledger-remarks">
+        <div></div>
+        <div class="remarks-cell"><strong>Narration :</strong> Bkash collection from customer</div>
+        <div></div><div></div><div></div><div></div><div></div><div></div>
+      </div>
+
+      <!-- 2 -->
+      <div class="ledger-row transaction">
+        <div>01-01-2026</div>
+        <div>Bkash Transfer to Bank</div>
+        <div>PV-2002</div>
+        <div class="right"></div>
+        <div class="right">10,000.00</div>
+        <div class="right">23,000.00</div>
+        <div class="center cr">Cr</div>
+        <div>Transfer</div>
+      </div>
+      <div class="ledger-row ledger-remarks">
+        <div></div>
+        <div class="remarks-cell"><strong>Narration :</strong> Transferred to bank account</div>
+        <div></div><div></div><div></div><div></div><div></div><div></div>
+      </div>
+
+      <!-- 3 -->
+      <div class="ledger-row transaction">
+        <div>02-01-2026</div>
+        <div>Bkash Collection – Online Order</div>
+        <div>RV-2003</div>
+        <div class="right">6,500.00</div>
+        <div class="right"></div>
+        <div class="right">29,500.00</div>
+        <div class="center dr">Dr</div>
+        <div>Online Sale</div>
+      </div>
+      <div class="ledger-row ledger-remarks">
+        <div></div>
+        <div class="remarks-cell"><strong>Narration :</strong> Online sales via Bkash</div>
+        <div></div><div></div><div></div><div></div><div></div><div></div>
+      </div>
+
+      <!-- 4 -->
+      <div class="ledger-row transaction">
+        <div>02-01-2026</div>
+        <div>Bkash Service Charge</div>
+        <div>PV-2004</div>
+        <div class="right"></div>
+        <div class="right">150.00</div>
+        <div class="right">29,350.00</div>
+        <div class="center cr">Cr</div>
+        <div>Charge</div>
+      </div>
+      <div class="ledger-row ledger-remarks">
+        <div></div>
+        <div class="remarks-cell"><strong>Narration :</strong> Bkash transaction charge</div>
+        <div></div><div></div><div></div><div></div><div></div><div></div>
+      </div>
+
+      <!-- 5–15 (intentionally repetitive for scroll validation) -->
+      <!-- Copy same pattern with small amount/date changes -->
+
+      <!-- 15 -->
+      <div class="ledger-row transaction">
+        <div>07-01-2026</div>
+        <div>Bkash Collection – Retail Sale</div>
+        <div>RV-2015</div>
+        <div class="right">4,000.00</div>
+        <div class="right"></div>
+        <div class="right">38,200.00</div>
+        <div class="center dr">Dr</div>
+        <div>Retail</div>
+      </div>
+      <div class="ledger-row ledger-remarks">
+        <div></div>
+        <div class="remarks-cell"><strong>Narration :</strong> Retail sale via Bkash</div>
+        <div></div><div></div><div></div><div></div><div></div><div></div>
+      </div>
+      <!-- 1 -->
+      <div class="ledger-row transaction">
+        <div>01-01-2026</div>
+        <div>Bkash Collection – Sales</div>
+        <div>RV-2001</div>
+        <div class="right">8,000.00</div>
+        <div class="right"></div>
+        <div class="right">33,000.00</div>
+        <div class="center dr">Dr</div>
+        <div>Collection</div>
+      </div>
+      <div class="ledger-row ledger-remarks">
+        <div></div>
+        <div class="remarks-cell"><strong>Narration :</strong> Bkash collection from customer</div>
+        <div></div><div></div><div></div><div></div><div></div><div></div>
+      </div>
+
+      <!-- 2 -->
+      <div class="ledger-row transaction">
+        <div>01-01-2026</div>
+        <div>Bkash Transfer to Bank</div>
+        <div>PV-2002</div>
+        <div class="right"></div>
+        <div class="right">10,000.00</div>
+        <div class="right">23,000.00</div>
+        <div class="center cr">Cr</div>
+        <div>Transfer</div>
+      </div>
+      <div class="ledger-row ledger-remarks">
+        <div></div>
+        <div class="remarks-cell"><strong>Narration :</strong> Transferred to bank account</div>
+        <div></div><div></div><div></div><div></div><div></div><div></div>
+      </div>
+
+      <!-- 3 -->
+      <div class="ledger-row transaction">
+        <div>02-01-2026</div>
+        <div>Bkash Collection – Online Order</div>
+        <div>RV-2003</div>
+        <div class="right">6,500.00</div>
+        <div class="right"></div>
+        <div class="right">29,500.00</div>
+        <div class="center dr">Dr</div>
+        <div>Online Sale</div>
+      </div>
+      <div class="ledger-row ledger-remarks">
+        <div></div>
+        <div class="remarks-cell"><strong>Narration :</strong> Online sales via Bkash</div>
+        <div></div><div></div><div></div><div></div><div></div><div></div>
+      </div>
+
+      <!-- 4 -->
+      <div class="ledger-row transaction">
+        <div>02-01-2026</div>
+        <div>Bkash Service Charge</div>
+        <div>PV-2004</div>
+        <div class="right"></div>
+        <div class="right">150.00</div>
+        <div class="right">29,350.00</div>
+        <div class="center cr">Cr</div>
+        <div>Charge</div>
+      </div>
+      <div class="ledger-row ledger-remarks">
+        <div></div>
+        <div class="remarks-cell"><strong>Narration :</strong> Bkash transaction charge</div>
+        <div></div><div></div><div></div><div></div><div></div><div></div>
+      </div>
+
+      <!-- 5–15 (intentionally repetitive for scroll validation) -->
+      <!-- Copy same pattern with small amount/date changes -->
+
+      <!-- 15 -->
+      <div class="ledger-row transaction">
+        <div>07-01-2026</div>
+        <div>Bkash Collection – Retail Sale</div>
+        <div>RV-2015</div>
+        <div class="right">4,000.00</div>
+        <div class="right"></div>
+        <div class="right">38,200.00</div>
+        <div class="center dr">Dr</div>
+        <div>Retail</div>
+      </div>
+      <div class="ledger-row ledger-remarks">
+        <div></div>
+        <div class="remarks-cell"><strong>Narration :</strong> Retail sale via Bkash</div>
+        <div></div><div></div><div></div><div></div><div></div><div></div>
+      </div>
+      <!-- 1 -->
+      <div class="ledger-row transaction">
+        <div>01-01-2026</div>
+        <div>Bkash Collection – Sales</div>
+        <div>RV-2001</div>
+        <div class="right">8,000.00</div>
+        <div class="right"></div>
+        <div class="right">33,000.00</div>
+        <div class="center dr">Dr</div>
+        <div>Collection</div>
+      </div>
+      <div class="ledger-row ledger-remarks">
+        <div></div>
+        <div class="remarks-cell"><strong>Narration :</strong> Bkash collection from customer</div>
+        <div></div><div></div><div></div><div></div><div></div><div></div>
+      </div>
+
+      <!-- 2 -->
+      <div class="ledger-row transaction">
+        <div>01-01-2026</div>
+        <div>Bkash Transfer to Bank</div>
+        <div>PV-2002</div>
+        <div class="right"></div>
+        <div class="right">10,000.00</div>
+        <div class="right">23,000.00</div>
+        <div class="center cr">Cr</div>
+        <div>Transfer</div>
+      </div>
+      <div class="ledger-row ledger-remarks">
+        <div></div>
+        <div class="remarks-cell"><strong>Narration :</strong> Transferred to bank account</div>
+        <div></div><div></div><div></div><div></div><div></div><div></div>
+      </div>
+
+      <!-- 3 -->
+      <div class="ledger-row transaction">
+        <div>02-01-2026</div>
+        <div>Bkash Collection – Online Order</div>
+        <div>RV-2003</div>
+        <div class="right">6,500.00</div>
+        <div class="right"></div>
+        <div class="right">29,500.00</div>
+        <div class="center dr">Dr</div>
+        <div>Online Sale</div>
+      </div>
+      <div class="ledger-row ledger-remarks">
+        <div></div>
+        <div class="remarks-cell"><strong>Narration :</strong> Online sales via Bkash</div>
+        <div></div><div></div><div></div><div></div><div></div><div></div>
+      </div>
+
+      <!-- 4 -->
+      <div class="ledger-row transaction">
+        <div>02-01-2026</div>
+        <div>Bkash Service Charge</div>
+        <div>PV-2004</div>
+        <div class="right"></div>
+        <div class="right">150.00</div>
+        <div class="right">29,350.00</div>
+        <div class="center cr">Cr</div>
+        <div>Charge</div>
+      </div>
+      <div class="ledger-row ledger-remarks">
+        <div></div>
+        <div class="remarks-cell"><strong>Narration :</strong> Bkash transaction charge</div>
+        <div></div><div></div><div></div><div></div><div></div><div></div>
+      </div>
+
+      <!-- 5–15 (intentionally repetitive for scroll validation) -->
+      <!-- Copy same pattern with small amount/date changes -->
+
+      <!-- 15 -->
+      <div class="ledger-row transaction">
+        <div>07-01-2026</div>
+        <div>Bkash Collection – Retail Sale</div>
+        <div>RV-2015</div>
+        <div class="right">4,000.00</div>
+        <div class="right"></div>
+        <div class="right">38,200.00</div>
+        <div class="center dr">Dr</div>
+        <div>Retail</div>
+      </div>
+      <div class="ledger-row ledger-remarks">
+        <div></div>
+        <div class="remarks-cell"><strong>Narration :</strong> Retail sale via Bkash</div>
+        <div></div><div></div><div></div><div></div><div></div><div></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TOTAL -->
+  <div class="ledger-row ledger-total">
+    <div></div>
+    <div><strong>Total</strong></div>
+    <div></div>
+    <div class="right"><strong>18,500.00</strong></div>
+    <div class="right"><strong>10,150.00</strong></div>
+    <div class="right"></div>
+    <div></div>
+  </div>
+
+  <!-- CLOSING BALANCE -->
+  <div class="ledger-row opening">
+    <div></div>
+    <div><strong>Closing Balance</strong></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div class="right"><strong>38,200.00</strong></div>
+    <div class="center dr">Dr</div>
+    <div></div>
+  </div>
+
+</div>

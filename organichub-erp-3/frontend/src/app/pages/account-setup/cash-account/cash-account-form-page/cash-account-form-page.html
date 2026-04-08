@@ -1,0 +1,197 @@
+<div class="page-body">
+
+  <app-organic-toast></app-organic-toast>
+
+  <app-page-sub-header title="Create / Update Cash Account">
+    <div page-actions class="subheader-actions">
+
+      <button type="button"
+              class="ch-btn"
+              *ngIf="!isViewMode"
+              (click)="onSave()">
+        {{ mode === 'edit' ? 'Update' : 'Save' }}
+      </button>
+
+      <button type="button"
+              class="ch-btn"
+              *ngIf="!isViewMode"
+              (click)="onClear()">
+        Clear
+      </button>
+
+      <button type="button"
+              class="ch-btn"
+              (click)="onBack()">
+        Back
+      </button>
+
+    </div>
+  </app-page-sub-header>
+
+  <div class="page-body-content">
+    <div class="form-body">
+
+      <!-- COLUMN 1 -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+
+            <div class="section-header">Basic Information</div>
+
+            <!-- Branch -->
+            <div class="form-field">
+              <label>Branch</label>
+              <select [(ngModel)]="account.branchId"
+                      (ngModelChange)="updateCashAccountName()"
+                      [disabled]="isViewMode">
+                <option [ngValue]="null" disabled>Select Branch</option>
+                <option *ngFor="let b of branches"
+                        [ngValue]="b.id">
+                  {{ b.branchCode }} - {{ b.branchName }}
+                </option>
+              </select>
+            </div>
+
+            <!-- Account SubGroup -->
+            <div class="form-field">
+              <label>Account SubGroup</label>
+              <input type="text"
+                    value="Cash In Hand"
+                    readonly />
+            </div>
+
+            <!-- Account SubGroup Code -->
+            <div class="form-field">
+              <label>Account SubGroup Code</label>
+              <input type="text"
+                    value="SUB-01-03-001"
+                    readonly />
+            </div>
+
+            <!-- Status -->
+            <div class="form-field">
+              <label>Status</label>
+              <select [(ngModel)]="account.status"
+                      [disabled]="isViewMode">
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+              </select>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- COLUMN 2 -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+
+            <div class="section-header">Account Details</div>
+
+            <div class="form-field">
+              <label>Account Code</label>
+              <input type="text"
+                     [(ngModel)]="account.accountCode"
+                     readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Account Name</label>
+              <input type="text"
+                    [(ngModel)]="account.accountName"
+                    (ngModelChange)="updateCashAccountName()"
+                    [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>Cash Account Name</label>
+              <input type="text"
+                     [(ngModel)]="account.cashAccountName"
+                     readonly>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- COLUMN 3 -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+
+            <div class="section-header">Cash Settings</div>
+
+            <!-- Collection Account -->
+            <div class="form-field">
+              <label>Collection Account</label>
+              <select [(ngModel)]="account.isCollectionAccount"
+                      [disabled]="isViewMode">
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+            </div>
+
+            <!-- Payment Account -->
+            <div class="form-field">
+              <label>Payment Account</label>
+              <select [(ngModel)]="account.isPaymentAccount"
+                      [disabled]="isViewMode">
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+            </div>
+
+            <!-- Remarks -->
+            <div class="form-field">
+              <label>Remarks</label>
+              <textarea [(ngModel)]="account.remarks"
+                        [disabled]="isViewMode"></textarea>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- COLUMN 4 -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+
+            <div class="section-header">Audit Information</div>
+
+            <div class="form-field">
+              <label>Created By</label>
+              <input type="text"
+                     [(ngModel)]="account.createdBy"
+                     readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Created Date</label>
+              <input type="text"
+                     [(ngModel)]="account.createdDate"
+                     readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Updated By</label>
+              <input type="text"
+                     [(ngModel)]="account.updatedBy"
+                     readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Updated Date</label>
+              <input type="text"
+                     [(ngModel)]="account.updatedDate"
+                     readonly>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

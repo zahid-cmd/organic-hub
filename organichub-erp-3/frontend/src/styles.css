@@ -1,0 +1,135 @@
+/* ======================================================
+   GLOBAL LOCK
+====================================================== */
+
+html,
+body{
+height:100%;
+margin:0;
+padding:0;
+
+overflow:hidden;   /* disable browser scroll */
+
+font-family:"Segoe UI", Roboto, sans-serif;
+background:#f4f6f5;
+}
+
+/* propagate height to Angular root */
+
+app-root{
+height:100%;
+display:flex;
+flex-direction:column;
+}
+
+
+/* ======================================================
+   EMPTY STATE COMPONENT
+====================================================== */
+
+.ch-empty-state{
+text-align:center;
+padding:60px 20px;
+color:#6b7280;
+}
+
+.ch-empty-state i{
+font-size:36px;
+margin-bottom:12px;
+color:#c4c4c4;
+}
+
+.ch-empty-state .empty-title{
+font-size:16px;
+font-weight:600;
+margin-bottom:6px;
+}
+
+.ch-empty-state .empty-sub{
+font-size:13px;
+opacity:0.8;
+}
+
+
+/* =========================================================
+   UNIVERSAL ERP FORM LAYOUT ENGINE
+   (Auto stretch form pages)
+========================================================= */
+
+.form-page{
+flex:1;
+min-height:0;
+display:flex;
+}
+
+.form-layout{
+flex:1;
+display:flex;
+gap:12px;
+min-height:0;
+}
+
+/* left / right sidebars */
+
+.form-left,
+.form-right{
+flex:0 0 25%;
+display:flex;
+flex-direction:column;
+min-height:0;
+}
+
+/* center workspace */
+
+.form-center{
+flex:1;
+display:flex;
+flex-direction:column;
+min-height:0;
+}
+
+/* stacked center layout */
+
+.form-center-stack{
+flex:1;
+display:flex;
+flex-direction:column;
+gap:12px;
+min-height:0;
+}
+
+/* scrollable content zone */
+
+.form-scroll{
+flex:1;
+min-height:0;
+overflow:auto;
+}
+
+
+/* ======================================================
+   ERP AUTO HEIGHT ENGINE
+   Makes pages fill screen inside layout
+====================================================== */
+
+.page-container{
+flex:1;
+min-height:0;
+display:flex;
+flex-direction:column;
+}
+
+.ch-main-content{
+flex:1;
+min-height:0;
+display:flex;
+flex-direction:column;
+}
+
+
+.page-body-content{
+height:100%;
+min-height:0;
+display:flex;
+flex-direction:column;
+}

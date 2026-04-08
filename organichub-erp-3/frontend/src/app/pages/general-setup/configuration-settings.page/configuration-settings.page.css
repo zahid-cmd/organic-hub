@@ -1,0 +1,428 @@
+/* ======================================================
+   FORM GRID (LOCKED CONTRACT)
+====================================================== */
+.form-body {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+
+  height: calc(100vh - var(--page-offset));
+  padding: 0px;
+  padding-top: 8px;
+  box-sizing: border-box;
+
+  align-items: stretch;
+}
+
+
+/* ======================================================
+   COLUMN (LOCKED)
+====================================================== */
+.form-col {
+  display: flex;
+  flex-direction: column;
+  height: 100%;               /* 🔑 REQUIRED */
+}
+
+/* ======================================================
+   GROUP BOX (SECTION CONTAINER)
+====================================================== */
+.form-group-box {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 16px;
+  box-sizing: border-box;
+
+  height: 100%;               /* 🔑 REQUIRED */
+  display: flex;
+  flex-direction: column;
+}
+
+/* ======================================================
+   SECTION
+====================================================== */
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ======================================================
+   SECTION HEADER
+====================================================== */
+.section-header {
+  font-size: 16px;
+  font-weight: 600;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 4px;
+}
+
+/* ======================================================
+   FIELD
+====================================================== */
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-field label {
+  font-size: 14px;
+  color: #374151;
+}
+
+/* ======================================================
+   INPUT + SELECT (UNIFIED & FIXED)
+====================================================== */
+.form-field input,
+.form-field select {
+  height: 36px;
+  width: 100%;
+
+  padding: 4px 10px;
+  font-size: 14px;
+  line-height: 1.2;
+
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  box-sizing: border-box;
+
+  background-color: #ffffff;
+  color: #111827;
+
+  /* 🔑 REMOVE BROWSER DEFAULTS */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+/* ======================================================
+   SELECT DROPDOWN ARROW (STANDARD)
+====================================================== */
+.form-field select {
+  background-image:
+    linear-gradient(45deg, transparent 50%, #6b7280 50%),
+    linear-gradient(135deg, #6b7280 50%, transparent 50%);
+  background-position:
+    calc(100% - 18px) 50%,
+    calc(100% - 12px) 50%;
+  background-size:
+    6px 6px,
+    6px 6px;
+  background-repeat: no-repeat;
+}
+
+/* ======================================================
+   FOCUS STYLE (STANDARD)
+====================================================== */
+.form-field input:focus,
+.form-field select:focus {
+  outline: none;
+  border-color: #1f7a3a;
+  box-shadow: 0 0 0 2px rgba(95, 174, 59, 0.25);
+}
+
+/* ======================================================
+   VIEW MODE / READ ONLY
+====================================================== */
+.form-field input:disabled,
+.form-field select:disabled {
+  background: #f9fafb;
+  color: #6b7280;
+  cursor: not-allowed;
+}
+/* =========================================
+   TEXTAREA – MATCH INPUT STYLE
+========================================= */
+.form-field textarea {
+  width: 100%;
+  height: 88px;                /* fixed double height */
+  resize: none;                /* no expand */
+  padding: 10px 12px;
+
+  background: #ffffff;         /* SAME as inputs */
+  border: 1px solid #e5e7eb;   /* SAME as inputs */
+  border-radius: 6px;          /* SAME as inputs */
+
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #111827;
+  box-sizing: border-box;
+}
+
+/* Focus state – match input */
+.form-field textarea:focus {
+  outline: none;
+  border-color: #1f7a3a;
+  box-shadow: 0 0 0 2px rgba(95, 174, 59, 0.25);
+}
+/* ===============================
+   COMPANY LOGO
+================================ */
+.logo-field {
+  margin-bottom: 12px;
+}
+
+.logo-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.logo-preview {
+  width: 120px;
+  height: 120px;
+  border: 1px dashed #cbd5e1;
+  border-radius: 6px;
+  background: #f9fafb;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 12px;
+  color: #64748b;
+  overflow: hidden;
+}
+
+.logo-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.logo-wrapper input[type="file"] {
+  font-size: 12px;
+}
+
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.logo-preview {
+  width: 110px;
+  height: 110px;
+  border: 1px dashed #cbd5e1;
+  border-radius: 6px;
+  background: #f9fafb;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 12px;
+  color: #64748b;
+  overflow: hidden;
+}
+
+.logo-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* =========================
+   MODAL OVERLAY
+========================= */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* =========================
+   MODAL BOX
+========================= */
+.modal-box {
+  width: 480px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+  overflow: hidden;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+/* =========================
+   HEADER
+========================= */
+/* =========================
+   MODAL HEADER – LIGHT GOLD
+========================= */
+.modal-header {
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    #f8f8f8 35%,
+    #f6f1d8 70%,
+    #e8d89a 100%
+  );
+
+  color: #2b2b2b;
+
+  padding: 8px 14px;   /* 🔽 reduced from 14px */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border-bottom: 1px solid #e6d7a8;
+}
+
+
+.modal-title {
+  font-size: 14px;     /* was 16px */
+  font-weight: 600;
+  color: #6b5e2e;
+}
+.modal-actions {
+  display: flex;
+  gap: 8px;
+}
+.icon-btn {
+  background: #ffffff;
+  border: 1px solid #e6d7a8;
+}
+
+.icon-btn:hover {
+  background: #d4af37;
+  color: #ffffff;
+  border-color: #d4af37;
+}
+/* =========================
+   BODY
+========================= */
+.modal-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* =========================
+   FIELDS (ERP STYLE)
+========================= */
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  height: 36px;
+  padding: 6px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.form-field textarea {
+  height: 80px;
+  resize: none;
+}
+/* =========================
+   ICON BUTTONS
+========================= */
+.icon-btn {
+  width: 36px;
+  height: 34px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #ffffff;
+  color: #1f2937;
+  transition: all 0.2s ease;
+}
+
+/* Save Button */
+.save-btn:hover {
+  background: #16a34a;
+  color: #ffffff;
+}
+
+/* Close Button */
+.close-btn:hover {
+  background: #dc2626;
+  color: #ffffff;
+}
+
+/* =========================
+   CONFIG CARD
+========================= */
+.config-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 10px;
+  margin-top: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  transition: 0.2s ease;
+}
+
+.config-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.code {
+  font-weight: 600;
+  font-size: 13px;
+  color: #6b5e2e;
+}
+
+.card-name {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #374151;
+}
+
+.card-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.yes-icon {
+  color: #16a34a;
+}
+
+.no-icon {
+  color: #dc2626;
+}
+
+.edit-icon {
+  cursor: pointer;
+  color: #2563eb;
+}
+
+.edit-icon:hover {
+  color: #1d4ed8;
+}
+
+/* =========================
+   ANIMATION
+========================= */
+@keyframes fadeIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}

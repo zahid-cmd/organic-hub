@@ -1,0 +1,1102 @@
+/* =====================================================
+HOST
+===================================================== */
+
+:host{
+display:flex;
+flex-direction:column;
+height:100%;
+min-height:0;
+}
+
+
+/* =====================================================
+PAGE BODY
+===================================================== */
+
+.page-body{
+flex:1;
+display:flex;
+flex-direction:column;
+min-height:0;
+}
+
+.page-body-content{
+flex:1;
+display:flex;
+flex-direction:column;
+min-height:0;
+padding:0;
+}
+
+
+/* =====================================================
+MAIN GRID
+===================================================== */
+
+.pi-body{
+flex:1;
+display:grid;
+grid-template-columns:380px 1fr 380px;
+gap:10px;
+padding:8px 0;
+min-height:0;        /* ADD */
+align-items:stretch; /* ADD ⭐ */
+}
+
+
+/* =====================================================
+COLUMN PANELS
+===================================================== */
+
+.pi-col{
+display:flex;
+flex-direction:column;
+background:#fff;
+border:1px solid #cfded4;
+border-radius:6px;
+padding:12px;
+min-width:0;
+min-height:0;
+overflow:hidden;
+}
+
+
+/* =====================================================
+BOX
+===================================================== */
+
+.pi-box{
+display:flex;
+flex-direction:column;
+gap:8px;
+border:1px solid #cfded4;
+border-radius:6px;
+padding:12px;
+background:#fff;
+flex:0 0 auto;              /* ⭐ PREVENT STRETCH */
+}
+
+.pi-box-title{
+font-size:15px;
+font-weight:600;
+border-bottom:1px solid #e7efe9;
+padding-bottom:6px;
+}
+
+
+/* =====================================================
+LEFT PANEL
+===================================================== */
+
+.pi-left{
+gap:12px;
+}
+
+
+/* =====================================================
+FORM GRID
+===================================================== */
+
+.pi-row{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:8px;
+}
+
+.pi-field{
+display:flex;
+flex-direction:column;
+gap:4px;
+font-size:14px;
+}
+
+.pi-full{
+grid-column:1 / -1;
+}
+
+
+/* =====================================================
+INPUTS
+===================================================== */
+
+input,
+select{
+height:30px;
+padding:0 10px;
+font-size:14px;
+border:1px solid #b7d2c2;
+border-radius:4px;
+outline:none;
+width:100%;
+box-sizing:border-box;
+}
+
+input:focus,
+select:focus{
+border-color:#2f6f3e;
+box-shadow:0 0 0 1px rgba(47,111,62,0.15);
+}
+
+input[readonly],
+input[type="date"]{
+text-align:center;
+}
+
+
+/* =====================================================
+TEXTAREA
+===================================================== */
+
+textarea{
+height:60px;
+padding:6px;
+font-size:14px;
+border:1px solid #b7d2c2;
+border-radius:4px;
+resize:none;
+}
+
+textarea:focus{
+border-color:#2f6f3e;
+box-shadow:0 0 0 1px rgba(47,111,62,0.15);
+}
+
+
+/* =====================================================
+ADD PRODUCT
+===================================================== */
+
+.pi-add-row{
+display:flex;
+flex-direction:column;
+gap:6px;
+}
+
+.pi-qty-rate-row,
+.pi-amount-stock-row{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:6px;
+}
+
+.pi-add-action{
+display:flex;
+justify-content:flex-end;
+}
+
+
+/* =====================================================
+ADD BUTTON ⭐ FINAL EFFECTIVE
+===================================================== */
+
+.pi-add-btn{
+height:30px;
+max-width: 60px;
+padding:0 16px;
+font-size:14px;
+font-weight:600;
+border-radius:4px;
+border:1px solid #2f6f3e;
+background:linear-gradient(180deg,#4f9f62,#2f6f3e);
+color:#fff;
+cursor:pointer;
+}
+
+.pi-add-btn:hover{
+background:linear-gradient(180deg,#5ab26d,#2f6f3e);
+}
+
+/* ⭐ FINAL SIZE */
+.pi-add-product .pi-add-btn{
+height:26px !important;
+padding:0 10px !important;
+min-width:60px !important;
+font-size:12px !important;
+border-radius:4px !important;
+}
+
+/* =========================================
+ADD BUTTON RIGHT ALIGN FIX ⭐ ONLY ALIGNMENT
+========================================= */
+
+.pi-row .pi-add-field{
+display:flex;
+justify-content:flex-end;
+}
+
+/* =========================================
+ADD BUTTON REAL RIGHT ALIGN FIX ⭐⭐⭐
+========================================= */
+
+.pi-add-field{
+width:100%;
+display:flex;
+justify-content:flex-end;
+}
+
+.pi-add-field .pi-add-btn{
+margin-left:auto;
+}
+
+/* ⭐ ADD BUTTON FOCUS ERP STYLE */
+
+.pi-add-btn:focus{
+  outline:none;
+  border-color:#ff9800;
+  box-shadow:0 0 0 2px rgba(255,152,0,.35);
+}
+
+/* Optional hover enhancement */
+.pi-add-btn:hover{
+  border-color:#ff9800;
+}
+/* =====================================================
+CENTER PANEL ⭐ MAIN FIX
+===================================================== */
+
+.pi-center{
+display:flex;
+flex-direction:column;
+flex:1;
+min-height:0;
+}
+
+.pi-center-box{
+display:flex;
+flex-direction:column;
+flex:1;
+min-height:0;
+gap:10px;
+}
+
+
+/* =====================================================
+SUMMARY GRID
+===================================================== */
+
+.pi-summary-row{
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:16px;
+width:100%;
+}
+
+.pi-summary-item{
+display:flex;
+flex-direction:column;
+gap:4px;
+}
+
+.pi-summary-item label{
+font-size:13px;
+font-weight:500;
+color:#444;
+}
+
+.pi-summary-item input{
+height:36px;
+border:1px solid #dcdcdc;
+border-radius:6px;
+padding:0 10px;
+text-align:right;
+background:#fafafa;
+font-weight:600;
+}
+
+
+/* =====================================================
+PRODUCT CART ⭐ CRITICAL
+===================================================== */
+
+.pi-cart{
+display:flex;
+flex-direction:column;
+flex:1;                /* ⭐ grow */
+min-height:0;
+overflow:hidden;
+}
+
+.pi-cart-table-wrapper{
+flex:1;                /* ⭐ scroll area */
+min-height:0;
+overflow-y:auto;
+overflow-x:hidden;
+}
+
+
+/* =====================================================
+TABLE
+===================================================== */
+
+.product-table{
+width:100%;
+border-collapse:collapse;
+font-size:14px;
+table-layout:fixed;
+}
+
+.product-table thead th{
+background:#f4f7f5;
+font-weight:600;
+padding:8px;
+border-bottom:1px solid #d9e6de;
+position:sticky;
+top:0;
+z-index:2;
+}
+
+.product-table tbody td{
+padding:7px 8px;
+border-bottom:1px solid #edf2ef;
+vertical-align:middle;
+}
+
+.product-table tbody tr:nth-child(even){
+background:#fbfdfb;
+}
+
+.product-table tbody tr:hover{
+background:#f7fbf8;
+}
+
+
+/* =====================================================
+TOTAL ROW
+===================================================== */
+
+.product-table tfoot td{
+position:sticky;
+bottom:0;
+background:#eef3ef;
+z-index:3;
+border-top:1px solid #d9e6de;
+padding:10px 8px;
+font-weight:700;
+}
+
+
+/* =====================================================
+TABLE COLUMNS
+===================================================== */
+
+.col-no{width:40px;text-align:center;}
+.col-qty{width:110px;text-align:center;}
+.col-rate{width:110px;text-align:right;}
+.col-amount{width:120px;text-align:right;}
+.col-action{width:70px;text-align:center;}
+
+
+/* =====================================================
+REMOVE BUTTON
+===================================================== */
+
+.remove-btn{
+width:24px;
+height:24px;
+border:1px solid #e55353;
+border-radius:4px;
+background:#fff;
+color:#e55353;
+cursor:pointer;
+}
+
+.remove-btn:hover{
+background:#e55353;
+color:#fff;
+}
+
+
+/* =====================================================
+NOTES ⭐ FINAL ORGANIC BORDER
+===================================================== */
+
+.pi-notes-box{
+margin-top:auto;
+flex:0 0 auto;
+border:1px solid #7fbf7f !important;
+border-radius:6px;
+}
+
+.pi-notes-box textarea{
+border:.5px solid #7fbf7f !important;
+}
+/* =========================================
+ORGANIC GREEN FOCUS BORDER ⭐ FINAL
+========================================= */
+
+input:focus,
+select:focus,
+textarea:focus{
+border:.5px solid #3f8f4f !important;
+box-shadow:0 0 0 1px rgba(63,143,79,.15);
+outline:none;
+}
+
+/* Notes special stronger focus */
+
+.pi-notes:focus{
+border:1px solid #2f7a3f !important;
+box-shadow:0 0 0 2px rgba(47,122,63,.18);
+}
+
+
+/* =====================================================
+PRODUCT SHELF (UNCHANGED)
+===================================================== */
+.pi-right{
+display:flex;
+flex-direction:column;
+flex:1;
+min-height:0;   /* VERY IMPORTANT */
+}
+
+.pi-shelf{
+display:flex;
+flex-direction:column;
+flex:1;
+min-height:0;
+overflow:hidden;
+}
+
+.pi-shelf-header{
+display:flex;
+flex-direction:column;
+gap:6px;
+border-bottom:1px solid #e7efe9;
+padding-bottom:6px;
+margin-bottom:8px;
+}
+
+.pi-shelf-list{
+flex:1;
+min-height:0;
+overflow-y:auto;
+
+display:grid;
+grid-template-columns:repeat(2,1fr);
+
+/* ⭐ THIS IS THE REAL FIX */
+grid-auto-rows:max-content;   /* let card define height */
+row-gap:14px;                 /* vertical gap like PO */
+column-gap:10px;
+
+padding-right:4px;
+align-content:start;
+}
+
+/* =====================================================
+PRODUCT CARD
+===================================================== */
+
+.pi-product-card{
+border:1px solid #cfded4;
+border-radius:6px;
+padding:10px 8px;
+text-align:center;
+cursor:pointer;
+background:#fff;
+
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+
+/* ⭐ remove fixed height */
+min-height:110px;
+}
+
+.pi-product-card:hover{
+background:#f7f9f8;
+}
+
+.pi-product-img img{
+width:48px;
+height:48px;
+object-fit:contain;
+margin-bottom:6px;
+}
+
+.pi-product-name{
+font-size:13px;
+font-weight:500;
+height:28px;
+overflow:hidden;
+}
+
+.pi-product-stock{
+font-size:10px;
+color:#6b7280;
+}
+/* PO Driven Shelf Lock */
+
+.po-shelf-locked{
+  opacity:.45;
+  filter:grayscale(.35);
+}
+
+.shelf-disabled{
+  pointer-events:none;
+  cursor:not-allowed;
+}
+
+.disabled-card{
+  pointer-events: none;
+  opacity: .45;
+  filter: grayscale(100%);
+  cursor: not-allowed;
+}
+/* =========================
+INPUT CENTER ALIGN FIX
+========================= */
+
+.pi-qty-rate-row input,
+.pi-amount-stock-row input,
+.pi-row input[type="number"],
+.pi-row input[readonly]{
+text-align:center !important;
+}
+
+/* =========================
+QTY CONTROL TABLE FIX
+========================= */
+
+.product-table td{
+vertical-align:middle !important;
+}
+
+.qty-control{
+display:inline-flex !important;
+align-items:center;
+justify-content:center;
+gap:6px;
+}
+
+.qty-btn{
+width:26px;
+height:26px;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.qty-input{
+width:80px;
+height:30px;
+text-align:center;
+}
+
+/* =====================================================
+SCROLLBAR
+===================================================== */
+
+.pi-cart-table-wrapper,
+.pi-shelf-list{
+scrollbar-width: thin;
+scrollbar-color: #7fb069 #eef4ef;
+}
+
+.pi-cart-table-wrapper::-webkit-scrollbar,
+.pi-shelf-list::-webkit-scrollbar{
+width:6px;
+}
+
+.pi-cart-table-wrapper::-webkit-scrollbar-track,
+.pi-shelf-list::-webkit-scrollbar-track{
+background:#eef4ef;
+border-radius:10px;
+}
+
+.pi-cart-table-wrapper::-webkit-scrollbar-thumb,
+.pi-shelf-list::-webkit-scrollbar-thumb{
+background:linear-gradient(
+180deg,
+#9fdc6c,
+#ffd95e,
+#f6a64b
+);
+border-radius:10px;
+}
+
+/* =====================================================
+POPUP DESIGN (ERP GLOBAL LAYER FINAL)
+===================================================== */
+
+.po-popup-overlay{
+
+position:fixed;
+inset:0;
+
+background:rgba(0,0,0,0.35);
+
+display:flex;
+
+/* ⭐ VERY IMPORTANT FIX */
+align-items:flex-start;        /* allow vertical movement */
+justify-content:center;
+
+overflow-y:auto;               /* allow scroll inside overlay */
+
+padding:80px 20px;             /* breathing space top/bottom */
+
+z-index:999999;
+
+pointer-events:auto;
+
+}
+
+
+/* =========================
+POPUP BOX
+========================= */
+
+.po-popup{
+
+width:680px;
+max-width:92vw;
+
+background:#ffffff;
+
+border-radius:16px;
+
+box-shadow:0 30px 80px rgba(0,0,0,0.35);
+
+padding:18px;
+
+position:relative;
+
+animation: popupFade .18s ease;
+
+}
+
+
+/* ⭐ Smooth Appear */
+
+@keyframes popupFade{
+from{
+transform:translateY(40px);
+opacity:0;
+}
+to{
+transform:translateY(0);
+opacity:1;
+}
+}
+
+
+/* =========================
+HEADER
+========================= */
+
+.po-popup-header{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+padding-bottom:12px;
+border-bottom:1px solid #e9ecef;
+margin-bottom:20px;
+
+/* ⭐ future drag support */
+cursor:move;
+
+}
+
+.popup-title{
+font-size:18px;
+font-weight:600;
+color:#2f4f3e;
+}
+
+
+/* =========================
+CLOSE BUTTON
+========================= */
+
+.popup-close{
+
+width:36px;
+height:36px;
+
+border-radius:10px;
+border:none;
+
+background:#f1f3f4;
+
+font-size:18px;
+cursor:pointer;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+transition:.2s;
+
+}
+
+.popup-close:hover{
+background:#e55353;
+color:#fff;
+}
+
+
+/* =========================
+FIELDS GRID
+========================= */
+
+.popup-row{
+
+display:grid;
+grid-template-columns:1fr 1fr 1fr 1fr;
+
+column-gap:28px;
+row-gap:14px;
+
+margin-top:22px;
+align-items:end;
+
+}
+
+/* second row spacing */
+
+.popup-row + .popup-row{
+margin-top:16px;
+}
+
+
+/* =========================
+FIELD
+========================= */
+
+.popup-field{
+display:flex;
+flex-direction:column;
+}
+
+.popup-field label{
+font-size:14px;
+margin-bottom:4px;
+}
+
+.popup-field input{
+
+width:100%;
+height:40px;
+
+padding:0 12px;
+
+border:1px solid #d9dee3;
+border-radius:8px;
+
+font-size:14px;
+text-align:right;
+
+background:#fff;
+
+transition:.2s;
+
+}
+
+.popup-field input:focus{
+outline:none;
+border-color:#4f7f4f;
+box-shadow:0 0 0 2px rgba(79,127,79,.15);
+}
+
+
+/* =========================
+SPECIAL FIELDS
+========================= */
+
+.amount-field{
+background:#f3f6f3;
+font-weight:600;
+color:#2f4f3e;
+}
+
+
+/* =========================
+ACTIONS
+========================= */
+
+.po-popup-actions{
+
+display:flex;
+justify-content:flex-end;
+gap:8px;
+
+margin-top:22px;
+
+}
+
+.popup-btn{
+
+width:75px;
+height:40px;
+
+border:none;
+border-radius:8px;
+
+font-size:14px;
+cursor:pointer;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+transition:.2s;
+
+}
+
+
+/* CANCEL BUTTON */
+
+.cancel-btn{
+background:linear-gradient(
+180deg,
+#ffd95e,
+#f6b73c,
+#e49b1f
+);
+color:#ffffff;
+}
+
+.cancel-btn:hover{
+background:linear-gradient(
+180deg,
+#ffe57a,
+#f7c34a,
+#e8a62b
+);
+}
+
+
+/* ADD / UPDATE BUTTON */
+
+.add-btn{
+background:linear-gradient(
+180deg,
+#6fb06f,
+#4f7f4f,
+#3f6b3f
+);
+color:#ffffff;
+}
+
+.add-btn:hover{
+background:linear-gradient(
+180deg,
+#7fc47f,
+#5a925a,
+#356235
+);
+}
+
+/* =====================================================
+ADD PRODUCT (PO FINAL — SAME LOGIC AS PI)
+===================================================== */
+
+.pi-add-product .pi-field{
+display:flex;
+flex-direction:column;
+gap:4px;
+}
+
+/* ⭐ Sub Category FULL WIDTH */
+.pi-add-product .pi-field:nth-child(1) select{
+width:100%;
+}
+
+/* ⭐ Product FULL WIDTH */
+.pi-add-product .pi-field:nth-child(2) select{
+width:100%;
+}
+
+/* ⭐ Qty + Rate SIDE BY SIDE */
+.pi-add-product .pi-field:nth-child(3){
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:8px;
+}
+
+/* ⭐ Amount + Stock SIDE BY SIDE */
+.pi-add-product .pi-field:nth-child(4){
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:8px;
+}
+
+.pi-add-product .pi-field:nth-child(4) input{
+background:#f3f6f3;
+font-weight:600;
+text-align:center;
+}
+
+/* ⭐ ADD BUTTON SMALL RIGHT */
+.pi-add-product .pi-field:nth-child(5){
+display:flex;
+justify-content:flex-end;
+margin-top:6px;
+}
+
+.pi-add-product .pi-add-btn{
+height:30px;
+padding:0 18px;
+min-width:90px;
+font-size:13px;
+}
+
+/* ⭐⭐⭐ FINAL PO ADD PRODUCT FIX ⭐⭐⭐ */
+
+/* Sub Category FULL WIDTH */
+.pi-add-product .pi-field:nth-of-type(1){
+display:flex;
+flex-direction:column;
+}
+
+/* Product FULL WIDTH */
+.pi-add-product .pi-field:nth-of-type(2){
+display:flex;
+flex-direction:column;
+}
+
+/* Qty + Rate SIDE BY SIDE */
+.pi-add-product .pi-field:nth-of-type(3){
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:8px;
+}
+
+/* Amount + Stock SIDE BY SIDE */
+.pi-add-product .pi-field:nth-of-type(4){
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:8px;
+}
+
+/* ADD button small right */
+.pi-add-product .pi-field:nth-of-type(5){
+display:flex;
+justify-content:flex-end;
+}
+
+.pi-add-product .pi-add-btn{
+width:auto;
+height:30px;
+padding:0 18px;
+font-size:13px;
+}
+
+.disabled-section{
+opacity:.45;
+pointer-events:none;
+filter:grayscale(.3);
+}
+
+.add-btn:focus{
+  outline:none;
+  border:2px solid #ff9800;
+  box-shadow:
+    0 0 0 2px rgba(255,152,0,.25),
+    inset 0 0 0 1px rgba(0,0,0,.15);
+}
+
+.shelf-disabled{
+  pointer-events:none;
+  opacity:.45;
+  filter:grayscale(.3);
+}
+
+
+/* =========================================
+STATUS BOX — ENTERPRISE FINAL
+========================================= */
+
+.pi-status-box{
+
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+
+  height:32px;
+  padding:0 16px;
+
+  border-radius:10px;
+
+  font-size:14px;
+  font-weight:600;
+  letter-spacing:.3px;
+
+  border:1px solid transparent;
+
+  transition:.25s;
+
+}
+
+
+/* ===== DOT ===== */
+
+.pi-status-box .status-dot{
+
+  width:14px;
+  height:14px;
+  border-radius:50%;
+
+  box-shadow:
+    inset 0 2px 4px rgba(255,255,255,.6),
+    inset 0 -2px 6px rgba(0,0,0,.18),
+    0 1px 2px rgba(0,0,0,.25);
+
+}
+
+
+/* =========================================
+DRAFT
+========================================= */
+
+.pi-status-box.draft{
+
+  background:linear-gradient(135deg,#fff6d6,#ffe7a0);
+  color:#7a5a00;
+  border-color:#f3d27a;
+
+}
+
+.pi-status-box.draft .status-dot{
+
+  background:
+    radial-gradient(circle at 30% 30%, #ffe7a0, #d39b00);
+
+}
+
+
+/* =========================================
+POSTED
+========================================= */
+
+.pi-status-box.posted{
+
+  background:linear-gradient(135deg,#e7fff1,#c8f7db);
+  color:#0b7a45;
+  border-color:#9fe3bf;
+
+}
+
+.pi-status-box.posted .status-dot{
+
+  background:
+    radial-gradient(circle at 30% 30%, #8be3a4, #2f9e5a);
+
+}
+
+
+/* =========================================
+HEADER ALIGN FIX
+========================================= */
+
+.subheader-actions{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}

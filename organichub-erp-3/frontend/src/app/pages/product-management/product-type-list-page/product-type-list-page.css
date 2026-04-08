@@ -1,0 +1,200 @@
+/* ===================================================== */
+/* STANDARD LIST STRUCTURE                               */
+/* ===================================================== */
+
+.ch-list-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.ch-list-table {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* ===================================================== */
+/* GRID (FR BASED STANDARD)                              */
+/* ===================================================== */
+
+.ch-list-header {
+  display: grid;
+  grid-template-columns:
+    0.4fr
+    1.2fr
+    3fr
+    0.8fr
+    0.8fr
+    1fr
+    0.8fr
+    0.5fr;
+
+  align-items: center;
+  height: 44px;
+  background-color: #e8f3e4; /* LOCKED */
+  font-weight: 600;
+  border-bottom: 1px solid #e0e6f1;
+}
+
+.ch-list-row {
+  display: grid;
+  grid-template-columns:
+    0.4fr
+    1.2fr
+    3fr
+    0.8fr
+    0.8fr
+    1fr
+    0.8fr
+    0.5fr;
+
+  align-items: center;
+  min-height: 42px;
+  border-bottom: 1px solid #eef0f4;
+}
+
+.ch-list-body-rows {
+  max-height: calc(10 * 43px);
+  overflow-y: auto;
+}
+
+/* ===================================================== */
+/* CELLS                                                  */
+/* ===================================================== */
+
+.col {
+  padding: 0 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.col-sl {
+  text-align: center;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* ===================================================== */
+/* SORTABLE                                               */
+/* ===================================================== */
+
+.sortable {
+  cursor: pointer;
+}
+
+.sortable:hover {
+  background-color: #e8f3e4;
+  color: #2e7d32;
+}
+
+/* ===================================================== */
+/* FLAG BADGE                                             */
+/* ===================================================== */
+
+.flag-badge {
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.flag-badge.yes {
+  background: #d4f5df;
+  color: #2e7d32;
+}
+
+.flag-badge.no {
+  background: #ffe5e5;
+  color: #c62828;
+}
+
+/* ===================================================== */
+/* STATUS BADGE                                           */
+/* ===================================================== */
+
+.status-badge {
+  padding: 4px 10px;
+  border-radius: 14px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.status-badge.active {
+  background: #d4f5df;
+  color: #2e7d32;
+}
+
+.status-badge.inactive {
+  background: #ffe5e5;
+  color: #c62828;
+}
+
+/* ===================================================== */
+/* ACTIONS                                                */
+/* ===================================================== */
+
+.col-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.action-icons {
+  display: flex;
+  gap: 8px;
+}
+
+.icon-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  border: none;
+  background: #f4f6fb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.icon-btn.view { color: #2f6b3f; }
+.icon-btn.edit { color: #c48a12; }
+.icon-btn.delete { color: #dc2626; }
+
+.icon-btn:hover {
+  background: #e5e7eb;
+}
+/* If Status is the 2nd last column */
+.ch-list-header .col:nth-last-child(2),
+.ch-list-row .col:nth-last-child(2) {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* =====================================================
+   EMPTY STATE
+===================================================== */
+.ch-empty-state {
+  flex: 1;                          /* 🔥 controls height filling */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;          /* 🔥 vertical centering */
+
+  background: #ffffff;              /* 🔥 background color */
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+
+  text-align: center;
+  padding: 40px 20px;
+}

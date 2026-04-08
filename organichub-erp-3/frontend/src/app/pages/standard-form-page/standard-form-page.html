@@ -1,0 +1,198 @@
+<!-- =====================================================
+     PAGE BODY
+===================================================== -->
+<div class="page-body">
+
+  <!-- =====================================================
+       PAGE BODY HEADER
+  ===================================================== -->
+  <app-page-sub-header title="Create / Update Record">
+    <div page-actions class="subheader-actions">
+
+      <!-- SAVE (HIDDEN IN VIEW MODE) -->
+      <button
+        class="ch-btn"
+        *ngIf="!isViewMode">
+        Save
+      </button>
+
+      <!-- CLEAR (HIDDEN IN VIEW MODE) -->
+      <button
+        class="ch-btn"
+        *ngIf="!isViewMode"
+        (click)="onClear()">
+        Clear
+      </button>
+
+      <!-- BACK (ALWAYS VISIBLE) -->
+      <button
+        class="ch-btn"
+        (click)="onBack()">
+        Back
+      </button>
+
+    </div>
+  </app-page-sub-header>
+
+  <!-- =====================================================
+       PAGE BODY CONTENT
+  ===================================================== -->
+  <div class="page-body-content">
+
+    <div class="form-body">
+
+      <!-- COLUMN 1 -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+            <div class="section-header">Section 1</div>
+
+            <div class="form-field">
+              <label>Field 1.1</label>
+              <input type="text" [readonly]="isViewMode" [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>Field 1.2</label>
+              <input type="text" [readonly]="isViewMode" [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>Field 1.3</label>
+              <input type="text" [readonly]="isViewMode" [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>Field 1.4</label>
+              <input type="text" [readonly]="isViewMode" [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>Field 1.5</label>
+              <input type="text" [readonly]="isViewMode" [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>Field 1.6</label>
+              <input type="text" [readonly]="isViewMode" [disabled]="isViewMode">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- COLUMN 2 -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+            <div class="section-header">Section 2</div>
+
+            <div class="form-field">
+              <label>Field 2.1</label>
+              <input type="text" [readonly]="isViewMode" [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>Field 2.2</label>
+              <input type="text" [readonly]="isViewMode" [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>Field 2.3</label>
+              <input type="text" [readonly]="isViewMode" [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>Field 2.4</label>
+              <input type="text" [readonly]="isViewMode" [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>Field 2.5</label>
+              <input type="text" [readonly]="isViewMode" [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>Field 2.6</label>
+              <input type="text" [readonly]="isViewMode" [disabled]="isViewMode">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- COLUMN 3 -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+            <div class="section-header">Section 3</div>
+
+            <div class="form-field">
+              <label>Field 3.1</label>
+              <input type="text" [readonly]="isViewMode" [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>Field 3.2</label>
+              <input type="text" [readonly]="isViewMode" [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>Field 3.3</label>
+              <input type="text" [readonly]="isViewMode" [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>Field 3.4</label>
+              <input type="text" [readonly]="isViewMode" [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>Field 3.5</label>
+              <input type="text" [readonly]="isViewMode" [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>Field 3.6</label>
+              <input type="text" [readonly]="isViewMode" [disabled]="isViewMode">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- COLUMN 4 -->
+      <div class="form-col col-split">
+        <div class="form-group-box">
+
+          <div class="form-section">
+            <div class="section-header">Section 4</div>
+
+            <div class="form-field">
+              <label>Field 4.1</label>
+              <input type="text" [readonly]="isViewMode" [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>Field 4.2</label>
+              <input type="text" [readonly]="isViewMode" [disabled]="isViewMode">
+            </div>
+          </div>
+
+          <div class="form-section section-bottom">
+            <div class="section-header">Section 5</div>
+
+            <div class="form-field">
+              <label>Field 5.1</label>
+              <input type="text" [readonly]="isViewMode" [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>Field 5.2</label>
+              <input type="text" [readonly]="isViewMode" [disabled]="isViewMode">
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

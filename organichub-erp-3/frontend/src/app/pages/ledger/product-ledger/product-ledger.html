@@ -1,0 +1,243 @@
+<!-- =========================
+     PAGE SUB HEADER
+========================= -->
+<div class="ch-page-subheader">
+  <div class="subheader-left">
+
+    <!-- Product Category -->
+    <select class="ch-input ch-input-wide"
+            [(ngModel)]="productCategoryId"
+            (change)="onCategoryChange()">
+
+      <option [ngValue]="null">Select Product Category</option>
+      <option *ngFor="let c of categories"
+              [ngValue]="c.id">
+        {{ c.categoryName }}
+      </option>
+
+    </select>
+
+
+    <!-- Product Sub Category -->
+    <select class="ch-input ch-input-wide"
+            [(ngModel)]="productSubCategoryId"
+            (change)="onSubCategoryChange()">
+
+      <option [ngValue]="null">Select Product Sub Category</option>
+
+      <option *ngFor="let sc of subCategories"
+              [ngValue]="sc.id">
+        {{ sc.subCategoryName }}
+      </option>
+
+    </select>
+
+
+    <!-- Product Ledger (MAIN DRIVER) -->
+    <select class="ch-input ch-input-wide"
+            [(ngModel)]="productLedgerId">
+
+      <option [ngValue]="null">Select Product Ledger</option>
+
+      <option *ngFor="let p of filteredProducts"
+              [ngValue]="p.id">
+        {{ p.productName }}
+      </option>
+
+    </select>
+
+    <!-- From / To Date -->
+    <input type="date"
+           class="ch-input"
+           [(ngModel)]="fromDate" />
+
+    <input type="date"
+           class="ch-input"
+           [(ngModel)]="toDate" />
+
+    <!-- Submit -->
+  <button class="ch-btn primary" (click)="submit()">
+    Submit
+  </button>
+
+  </div>
+
+  <div class="subheader-right">
+
+    <!-- RESET -->
+    <button class="ch-btn reset-btn" (click)="resetFilters()">
+      Reset
+    </button>
+
+    <!-- BACK -->
+    <button class="ch-btn" (click)="goBack()">
+      Back
+    </button>
+
+    <!-- PRINT -->
+    <button class="icon-btn" (click)="printPage()">
+      <i class="fa fa-print"></i>
+    </button>
+
+  </div>
+</div>
+
+<!-- =========================
+     REPORT HEADER
+========================= -->
+<div class="ledger-report-wrapper">
+  <div class="ledger-report-header">
+    <div class="ledger-report-left">
+      <img src="/assets/Logo.png" alt="Organic Hub" />
+    </div>
+
+    <div class="ledger-report-right">
+      <h2>ORGANIC HUB</h2>
+      <div class="ledger-report-title">Product Ledger</div>
+      <div class="ledger-report-meta">
+        Suite # 02, 6th Floor, DOHS Shopping Complex, Mirpur, Dhaka 1216
+      </div>
+    </div>
+  </div>
+
+  <div class="ledger-report-divider"></div>
+</div>
+
+<!-- =========================
+     LEDGER META
+========================= -->
+<div class="ledger-meta-row">
+  <div class="ledger-meta-left">
+    <strong>Product:</strong> {{ selectedProductName || '-' }}
+  </div>
+  <div class="ledger-meta-right">
+    <strong>Period:</strong>
+    {{ fromDate | date:'dd-MM-yyyy' }} to {{ toDate | date:'dd-MM-yyyy' }}
+  </div>
+</div>
+
+
+<!-- =========================
+     LEDGER TABLE
+========================= -->
+<div class="ledger-table-wrapper">
+
+  <!-- HEADER -->
+  <div class="ledger-table-header">
+    <div>Date</div>
+    <div>Particulars</div>
+    <div>Reference</div>
+    <div class="right">Unit Rate</div>
+    <div class="right">Receipt</div>
+    <div class="right">Issue</div>
+    <div class="right">Balance</div>
+    <div>Remarks</div>
+  </div>
+
+  <!-- OPENING BALANCE -->
+  <div class="ledger-row opening" *ngIf="ledger.length > 0 || openingBalance !== 0">
+    <div></div>
+    <div><strong>Opening Balance</strong></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+
+    <div class="right fw-bold">
+      {{ openingBalance | number:'1.2-2' }}
+    </div>
+
+    <div></div>
+  </div>
+
+  <!-- SCROLL BODY -->
+  <div class="ledger-table-scroll">
+
+    <div class="ledger-table-body">
+
+      <!-- DATA ROW -->
+      <div class="ledger-row"
+          *ngFor="let row of ledger">
+
+        <!-- DATE -->
+        <div>{{ row.date | date:'dd-MM-yyyy' }}</div>
+
+        <!-- PARTICULARS -->
+        <div>{{ row.particulars }}</div>
+
+        <!-- REFERENCE -->
+        <div>{{ row.reference }}</div>
+
+        <!-- UNIT RATE -->
+        <div class="right">
+          {{ row.unitRate | number:'1.2-2' }}
+        </div>
+
+        <!-- RECEIPT -->
+        <div class="right text-success">
+          {{ row.receipt | number:'1.2-2' }}
+        </div>
+
+        <!-- ISSUE -->
+        <div class="right text-danger">
+          {{ row.issue | number:'1.2-2' }}
+        </div>
+
+        <!-- BALANCE -->
+        <div class="right fw-bold"
+            [ngClass]="{'text-danger': row.balance < 0}">
+          {{ row.balance | number:'1.2-2' }}
+        </div>
+
+        <!-- REMARKS -->
+        <div>{{ row.remarks }}</div>
+
+      </div>
+
+      <!-- EMPTY STATE -->
+      <div class="ledger-row empty-row" *ngIf="ledger.length === 0 && openingBalance === 0">
+        <div class="empty-state">
+          No data found
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- TOTAL -->
+  <div class="ledger-row ledger-total" *ngIf="ledger.length > 0">
+    <div></div>
+    <div><strong>Total</strong></div>
+    <div></div>
+    <div></div>
+
+    <div class="right">
+      <strong>{{ totalIn | number:'1.2-2' }}</strong>
+    </div>
+
+    <div class="right">
+      <strong>{{ totalOut | number:'1.2-2' }}</strong>
+    </div>
+
+    <div></div>
+    <div></div>
+  </div>
+
+  <!-- CLOSING -->
+  <div class="ledger-row ledger-closing" *ngIf="ledger.length > 0 || openingBalance !== 0">
+    <div></div>
+    <div><strong>Closing Balance</strong></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+
+    <div class="right fw-bold">
+      {{ (ledger.length > 0 ? ledger[ledger.length - 1].balance : openingBalance) | number:'1.2-2' }}
+    </div>
+
+    <div></div>
+  </div>
+
+</div>

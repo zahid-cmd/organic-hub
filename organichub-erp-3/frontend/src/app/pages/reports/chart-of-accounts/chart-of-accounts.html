@@ -1,0 +1,242 @@
+<app-page-sub-header title="Accounts Tree with Subgroup, Group & Class"></app-page-sub-header>
+
+<div class="workspace-page">
+
+  <!-- ================= LEFT TREE ================= -->
+
+  <div class="workspace-tree">
+
+    <div class="workspace-tree-header">
+      <div class="workspace-tree-title">Chart Structure</div>
+      <div class="workspace-tree-sub">Financial hierarchy</div>
+    </div>
+
+    <div class="workspace-tree-body">
+
+      <ul class="workspace-tree-list">
+
+        <ng-container *ngFor="let node of treeData">
+          <ng-template
+            [ngTemplateOutlet]="treeNodeTemplate"
+            [ngTemplateOutletContext]="{ $implicit: node }">
+          </ng-template>
+        </ng-container>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================= RIGHT WORKSPACE ================= -->
+
+  <div class="workspace-panel">
+
+    <!-- HEADER -->
+
+    <div class="workspace-panel-header">
+
+      <div class="workspace-panel-title">
+        {{ selectedNode?.name || 'Account Details' }}
+      </div>
+
+      <div class="workspace-panel-meta" *ngIf="selectedNode">
+        {{ selectedNode.code }} • {{ selectedNode.level }}
+      </div>
+
+    </div>
+
+
+    <!-- TABLE ZONE -->
+
+    <div class="workspace-table-zone">
+
+      <!-- ================= GROUP ================= -->
+
+      <ng-container *ngIf="mode === 'groupList'">
+
+        <div class="workspace-table-caption">Groups</div>
+
+        <div class="workspace-table-wrapper">
+
+          <table class="workspace-table coa">
+
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Group Code</th>
+                <th>Group Name</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <tr *ngFor="let g of groupList; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ g.groupCode }}</td>
+                <td>{{ g.groupName }}</td>
+
+                <td>
+                  <span class="status"
+                        [class.active]="g.status === 'Active'"
+                        [class.inactive]="g.status !== 'Active'">
+                    {{ g.status }}
+                  </span>
+                </td>
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </ng-container>
+
+
+      <!-- ================= SUB GROUP ================= -->
+
+      <ng-container *ngIf="mode === 'subGroupList'">
+
+        <div class="workspace-table-caption">Sub Groups</div>
+
+        <div class="workspace-table-wrapper">
+
+          <table class="workspace-table coa">
+
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Sub Group Code</th>
+                <th>Sub Group Name</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <tr *ngFor="let sg of subGroupList; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ sg.subGroupCode }}</td>
+                <td>{{ sg.subGroupName }}</td>
+
+                <td>
+                  <span class="status"
+                        [class.active]="sg.status === 'Active'"
+                        [class.inactive]="sg.status !== 'Active'">
+                    {{ sg.status }}
+                  </span>
+                </td>
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </ng-container>
+
+
+      <!-- ================= LEDGER ================= -->
+
+      <ng-container *ngIf="mode === 'ledgerList'">
+
+        <div class="workspace-table-caption">Ledgers</div>
+
+        <div class="workspace-table-wrapper">
+
+          <table class="workspace-table coa">
+
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Ledger Code</th>
+                <th>Ledger Name</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <tr
+                *ngFor="let l of ledgerList; let i = index"
+                (click)="selectLedgerRow(l)"
+                [class.row-selected]="selectedLedger && selectedLedger.id === l.id">
+
+                <td>{{ i + 1 }}</td>
+                <td>{{ l.ledgerCode }}</td>
+                <td>{{ l.ledgerName }}</td>
+
+                <td>
+                  <span class="status"
+                        [class.active]="l.status === 'Active'"
+                        [class.inactive]="l.status !== 'Active'">
+                    {{ l.status }}
+                  </span>
+                </td>
+
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </ng-container>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ================= TREE TEMPLATE ================= -->
+
+<ng-template #treeNodeTemplate let-node>
+
+  <li>
+
+    <div class="workspace-tree-node">
+
+      <div
+        class="workspace-expand"
+        *ngIf="node.hasChildren"
+        (click)="toggleNode(node); $event.stopPropagation()">
+
+        <span class="arrow" [class.rotated]="node.expanded">›</span>
+
+      </div>
+
+      <div
+        class="workspace-node-pill"
+        [class.selected]="selectedNode?.nodeKey === node.nodeKey"
+        (click)="selectNode(node); $event.stopPropagation()">
+
+        <span class="workspace-node-code">{{ node.code }}</span>
+        <span class="workspace-node-title">{{ node.name }}</span>
+
+      </div>
+
+    </div>
+
+    <ul *ngIf="node.expanded">
+
+      <li *ngIf="node.loading" class="loading">Loading...</li>
+
+      <ng-container *ngFor="let child of node.children">
+        <ng-template
+          [ngTemplateOutlet]="treeNodeTemplate"
+          [ngTemplateOutletContext]="{ $implicit: child }">
+        </ng-template>
+      </ng-container>
+
+    </ul>
+
+  </li>
+
+</ng-template>

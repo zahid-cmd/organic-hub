@@ -1,0 +1,158 @@
+/* ======================================================
+   FORM GRID (FIXED HEIGHT – 4 COLUMNS)  🔒 LOCKED
+====================================================== */
+.form-body {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+
+  height: calc(100vh - var(--page-offset));
+  padding-top: 8px;
+  box-sizing: border-box;
+
+  align-items: stretch;
+}
+
+
+/* ======================================================
+   COLUMN
+====================================================== */
+.form-col {
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* Column 4 split */
+.form-col.col-split {
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* ======================================================
+   GROUP BOX
+====================================================== */
+.form-group-box {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 16px;
+  box-sizing: border-box;
+
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* ======================================================
+   SECTION
+====================================================== */
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+
+/* Column 4 bottom separation */
+.section-bottom {
+  padding-top: 16px;
+  border-top: 1px dashed #e5e7eb;
+}
+
+
+/* ======================================================
+   SECTION HEADER
+====================================================== */
+.section-header {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+
+/* ======================================================
+   FIELD
+====================================================== */
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-field label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+}
+
+
+/* ======================================================
+   INPUT BASE STYLE  ✅ FIXED CLEAN LOOK
+====================================================== */
+.form-field input,
+.form-field select,
+.form-field textarea {
+  height: 34px;
+  padding: 6px 10px;
+  font-size: 14px;
+
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  box-sizing: border-box;
+
+  background-color: #ffffff;   /* 🔥 FIX GREY ISSUE */
+  color: #111827;              /* 🔥 Strong text */
+
+  outline: none;
+  transition: border-color 0.15s ease,
+              box-shadow 0.15s ease,
+              background-color 0.15s ease;
+}
+
+
+/* ======================================================
+   FOCUS STYLE (STANDARD ORGANIC GREEN)
+====================================================== */
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  border-color: #1f7a3a;
+  box-shadow: 0 0 0 2px rgba(95, 174, 59, 0.25);
+}
+
+
+/* ======================================================
+   READ ONLY FIELD (Customer Display Name)
+====================================================== */
+.form-field input[readonly] {
+  background-color: #f3f4f6;
+  color: #374151;
+  cursor: not-allowed;
+}
+
+
+/* ======================================================
+   DISABLED (VIEW MODE)
+====================================================== */
+.form-field input:disabled,
+.form-field select:disabled,
+.form-field textarea:disabled {
+  background-color: #f9fafb;
+  color: #9ca3af;
+  cursor: not-allowed;
+  border-color: #e5e7eb;
+}
+
+
+/* ======================================================
+   TEXTAREA
+====================================================== */
+.form-field textarea {
+  min-height: 70px;
+  resize: none;
+}

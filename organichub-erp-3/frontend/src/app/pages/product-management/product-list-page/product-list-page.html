@@ -1,0 +1,195 @@
+<div class="page-container">
+
+  <app-organic-toast></app-organic-toast>
+
+  <div class="page-body">
+
+    <!-- PAGE SUB HEADER -->
+    <app-page-sub-header title="Search & Filter Products">
+      <div page-actions class="subheader-actions">
+        <button class="ch-btn" (click)="onAdd()">Add</button>
+        <button class="ch-btn" (click)="onClear()">Clear</button>
+        <button class="ch-btn" (click)="onBack()">Back</button>
+      </div>
+    </app-page-sub-header>
+
+    <!-- BODY -->
+    <div class="page-body-content">
+
+      <!-- ================= LOADING ================= -->
+      <div class="ch-loading" *ngIf="loading">
+        <i class="fa fa-spinner fa-spin"></i>
+        Loading products...
+      </div>
+
+      <!-- ================= ERROR ================= -->
+      <div class="ch-error" *ngIf="!loading && error">
+        {{ error }}
+      </div>
+
+      <!-- ================= MAIN CONTENT ================= -->
+      <ng-container *ngIf="!loading && !error">
+
+        <!-- SEARCH AREA -->
+        <app-search-area
+          [searchText]="searchText"
+          [status]="statusFilter"
+          [statusOptions]="statusOptions"
+          (searchChange)="onSearch($event)"
+          (statusChange)="onStatusChange($event)">
+        </app-search-area>
+
+        <!-- LIST -->
+        <div class="ch-list-body"
+             *ngIf="pagedProducts.length > 0; else emptyState">
+
+          <div class="ch-list-table">
+
+            <!-- HEADER -->
+            <div class="ch-list-row ch-list-header">
+
+              <div class="col col-sl">#</div>
+
+              <div class="col sortable"
+                   (click)="onSort('productCode')">
+                Product Code
+              </div>
+
+              <div class="col sortable"
+                   (click)="onSort('productName')">
+                Product Name
+              </div>
+
+              <div class="col sortable"
+                   (click)="onSort('sku')">
+                SKU
+              </div>
+
+              <div class="col sortable"
+                   (click)="onSort('unitName')">
+                Unit
+              </div>
+
+              <div class="col sortable"
+                   (click)="onSort('categoryName')">
+                Category
+              </div>
+
+              <div class="col sortable"
+                   (click)="onSort('subCategoryName')">
+                Sub Category
+              </div>
+
+              <div class="col sortable"
+                   (click)="onSort('status')">
+                Status
+              </div>
+
+              <div class="col col-actions">
+                Actions
+              </div>
+
+            </div>
+
+            <!-- BODY ROWS -->
+            <div class="ch-list-body-rows">
+
+              <div class="ch-list-row"
+                   *ngFor="let product of pagedProducts; let i = index">
+
+                <div class="col col-sl">
+                  {{ serial(i) }}
+                </div>
+
+                <div class="col">
+                  {{ product.productCode }}
+                </div>
+
+                <div class="col">
+                  {{ product.productName }}
+                </div>
+
+                <div class="col">
+                  {{ product.sku }}
+                </div>
+
+                <div class="col">
+                  {{ product.unitName }}
+                </div>
+
+                <div class="col">
+                  {{ product.categoryName }}
+                </div>
+
+                <div class="col">
+                  {{ product.subCategoryName }}
+                </div>
+
+                <div class="col">
+                  <span
+                    class="status-badge"
+                    [class.active]="product.status === 'Active'"
+                    [class.inactive]="product.status === 'Inactive'">
+                    {{ product.status }}
+                  </span>
+                </div>
+
+                <div class="col col-actions action-icons">
+
+                  <button type="button"
+                          class="icon-btn view"
+                          (click)="onView(product)">
+                    <i class="fa fa-eye"></i>
+                  </button>
+
+                  <button type="button"
+                          class="icon-btn edit"
+                          (click)="onEdit(product)">
+                    <i class="fa fa-pen"></i>
+                  </button>
+
+                  <button type="button"
+                          class="icon-btn delete"
+                          (click)="onDelete(product)">
+                    <i class="fa fa-trash"></i>
+                  </button>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+        <!-- EMPTY STATE -->
+        <ng-template #emptyState>
+          <div class="ch-empty-state">
+            <i class="fa fa-box-open"></i>
+            <div class="empty-title">
+              No Products Found
+            </div>
+            <div class="empty-sub">
+              Try adjusting search or filters.
+            </div>
+          </div>
+        </ng-template>
+
+        <!-- PAGINATION -->
+        <div *ngIf="totalRecords > 0">
+          <app-pagination
+            [totalRecords]="totalRecords"
+            [pageSize]="pageSize"
+            [currentPage]="currentPage"
+            (pageChange)="onPageChange($event)"
+            (pageSizeChange)="onPageSizeChange($event)">
+          </app-pagination>
+        </div>
+
+      </ng-container>
+
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,127 @@
+<!-- ================= OVERLAY ================= -->
+<div class="drawer-overlay" (click)="onClose()"></div>
+
+<!-- ================= DRAWER ================= -->
+<div class="history-drawer" (click)="$event.stopPropagation()">
+
+  <!-- ================= HEADER ================= -->
+  <div class="history-header">
+
+    <div class="header-left">
+
+      <div class="header-title">
+        <i class="fa fa-chart-line"></i>
+        {{ title }}
+      </div>
+
+      <div class="header-product" *ngIf="subtitle">
+        {{ subtitle }}
+      </div>
+
+    </div>
+
+    <button class="close-btn" (click)="onClose()">
+      <i class="fa fa-times"></i>
+    </button>
+
+  </div>
+
+  <!-- ================= BODY ================= -->
+  <div class="history-body">
+
+    <!-- LOADING -->
+    <div class="loading" *ngIf="loading">
+      <i class="fa fa-spinner fa-spin"></i>
+      Loading history...
+    </div>
+
+    <!-- TIMELINE -->
+    <ng-container *ngIf="!loading && history.length > 0">
+
+      <div
+        class="timeline-item"
+        *ngFor="let item of history; let i = index">
+
+        <!-- Timeline Dot -->
+        <div
+          class="timeline-dot"
+          [class.current]="item.isCurrent">
+        </div>
+
+        <!-- Credit Card -->
+        <div
+          class="price-card"
+          [class.current-card]="item.isCurrent">
+
+          <!-- CARD TOP -->
+          <div class="card-top">
+
+            <div class="card-price">
+              {{ item.newPrice | number:'1.2-2' }}
+            </div>
+
+            <div
+              class="badge-current"
+              *ngIf="item.isCurrent">
+              CURRENT
+            </div>
+
+          </div>
+
+          <!-- CARD MIDDLE -->
+          <div class="card-middle">
+
+            <!-- Old Price -->
+            <div>
+              <div class="small-label">Old Price</div>
+              <div class="small-value">
+                {{ item.oldPrice | number:'1.2-2' }}
+              </div>
+            </div>
+
+            <!-- Change -->
+            <div
+              class="change-wrapper"
+              *ngIf="i !== history.length - 1"
+              [class.up]="getPriceDifference(i) > 0"
+              [class.down]="getPriceDifference(i) < 0"
+              [class.neutral]="getPriceDifference(i) === 0">
+
+              <div class="small-label">Change</div>
+
+              <div class="small-value">
+                <i
+                  class="fa"
+                  [class.fa-arrow-up]="getPriceDifference(i) > 0"
+                  [class.fa-arrow-down]="getPriceDifference(i) < 0">
+                </i>
+
+                {{ getPriceDifference(i) | number:'1.2-2' }}
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- CARD BOTTOM -->
+          <div class="card-bottom">
+            <div>{{ item.effectiveFrom | date:'medium' }}</div>
+            <div *ngIf="item.remarks">{{ item.remarks }}</div>
+            <div>{{ item.createdBy }}</div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </ng-container>
+
+    <!-- EMPTY STATE -->
+    <div class="empty" *ngIf="!loading && history.length === 0">
+      <i class="fa fa-folder-open"></i>
+      <div>No History Available.</div>
+    </div>
+
+  </div>
+
+</div>

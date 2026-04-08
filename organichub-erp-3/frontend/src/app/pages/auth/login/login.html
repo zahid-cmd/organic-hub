@@ -1,0 +1,113 @@
+<div class="login-wrapper">
+
+  <!-- FULL GREEN BACKGROUND CONTENT -->
+  <div class="brand-section">
+
+    <div class="brand-content">
+      <img src="/Logo.png" class="brand-logo" alt="Organic Hub">
+
+      <h1>Organic Hub ERP</h1>
+
+      <p class="tagline">
+        Intelligent Enterprise Resource Planning System
+      </p>
+
+      <div class="brand-features">
+        <div>✔ Sales & Purchase Automation</div>
+        <div>✔ Inventory & Costing Control</div>
+        <div>✔ Financial & Ledger Management</div>
+        <div>✔ Secure Role-Based Access</div>
+      </div>
+    </div>
+
+    <!-- 3D BLOCKS -->
+    <div class="background-blocks">
+      <div class="bg-block block-1"></div>
+      <div class="bg-block block-2"></div>
+      <div class="bg-block block-3"></div>
+      <div class="bg-block block-4"></div>
+      <div class="bg-block block-5"></div>
+
+      <!-- 3D CUBES -->
+      <div class="cube cube-1"></div>
+      <div class="cube cube-2"></div>
+      <div class="cube cube-3"></div>
+
+      <!-- GREEN 3D ICONIC CUBES -->
+<!-- FULL 3D GREEN CUBES (6 SIDES) -->
+      <div class="green-cube cube-a">
+        <span class="face front"></span>
+        <span class="face back"></span>
+        <span class="face right"></span>
+        <span class="face left"></span>
+        <span class="face top"></span>
+        <span class="face bottom"></span>
+      </div>
+
+      <div class="green-cube cube-b">
+        <span class="face front"></span>
+        <span class="face back"></span>
+        <span class="face right"></span>
+        <span class="face left"></span>
+        <span class="face top"></span>
+        <span class="face bottom"></span>
+      </div>
+    </div>
+    
+
+  </div>
+
+
+  <!-- FLOATING LOGIN PANEL -->
+  <div class="login-section">
+
+    <div class="login-card">
+
+      <h2>Welcome Back</h2>
+      <p class="login-subtitle">
+        Sign in to continue to your dashboard
+      </p>
+
+      <form (ngSubmit)="onSubmit()" class="login-form">
+
+        <div class="input-group">
+          <span class="input-icon">👤</span>
+          <input
+            type="text"
+            placeholder="Username"
+            [(ngModel)]="username"
+            name="username"
+            required
+          />
+        </div>
+
+        <div class="input-group">
+          <span class="input-icon">🔒</span>
+          <input
+            type="password"
+            placeholder="Password"
+            [(ngModel)]="password"
+            name="password"
+            required
+          />
+        </div>
+
+        <button type="submit" class="login-btn" [disabled]="loading">
+          {{ loading ? 'Signing in...' : 'Login' }}
+        </button>
+
+      </form>
+
+      <div class="card-footer">
+        Secure Access • Role Based Authentication
+      </div>
+
+    </div>
+
+    <div class="login-footer">
+      © 2026 Organic Hub ERP. All rights reserved.
+    </div>
+
+  </div>
+
+</div>

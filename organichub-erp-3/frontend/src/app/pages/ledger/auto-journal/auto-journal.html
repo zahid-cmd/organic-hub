@@ -1,0 +1,284 @@
+<!-- =====================================================
+     PAGE SUB HEADER
+===================================================== -->
+<div class="ch-page-subheader">
+
+  <div class="subheader-left">
+
+    <select class="ch-input ch-input-wide">
+      <option>Select Module</option>
+    </select>
+
+    <select class="ch-input ch-input-wide">
+      <option>Select Sub Module</option>
+    </select>
+
+    <input type="date" class="ch-input" />
+    <input type="date" class="ch-input" />
+
+    <button class="ch-btn primary">Submit</button>
+
+  </div>
+
+  <div class="subheader-right">
+    <button class="ch-btn">Back</button>
+    <button class="icon-btn" (click)="printPage()">
+      <i class="fa fa-print"></i>
+    </button>
+  </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     REPORT HEADER
+===================================================== -->
+<div class="journal-report-wrapper">
+
+  <div class="journal-report-header">
+
+    <div class="journal-report-left">
+      <img src="/assets/Logo.png" alt="Organic Hub" />
+    </div>
+
+    <div class="journal-report-right">
+      <h2>ORGANIC HUB</h2>
+      <div class="journal-report-title">Auto Journal</div>
+      <div class="journal-report-meta">
+        Suite # 02, 6th Floor, DOHS Shopping Complex, Mirpur, Dhaka 1216
+      </div>
+    </div>
+
+  </div>
+
+  <div class="journal-divider"></div>
+
+</div>
+
+
+
+<!-- =====================================================
+     CONTEXT RIBBON
+===================================================== -->
+<div class="journal-context-ribbon">
+
+  <div class="journal-context-left">
+    <strong>Module:</strong> Purchase
+    <span class="divider">|</span>
+    <strong>Sub Module:</strong> Purchase Invoice
+  </div>
+
+  <div class="journal-context-right">
+    <strong>Period:</strong> 01-01-2026 to 31-01-2026
+  </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     SCROLLABLE JOURNAL BODY
+===================================================== -->
+<div class="journal-scroll">
+
+  <div class="journal-container">
+
+    <!-- =========================
+         JOURNAL CARD 1
+    ========================== -->
+    <div class="journal-card">
+
+      <div class="journal-voucher-header">
+        <div class="voucher-left">
+          <strong>Invoice Number / Journal:</strong>
+          <span class="voucher-number">JV-0001</span>
+        </div>
+        <div class="voucher-right">
+          <strong>Date:</strong>
+          <span>01-01-2026</span>
+        </div>
+      </div>
+
+      <div class="journal-grid">
+        <div class="journal-row">
+          <div>Inventory Account</div>
+          <div class="right debit">500,000.00</div>
+          <div class="right"></div>
+        </div>
+        <div class="journal-row">
+          <div>Accounts Payable</div>
+          <div class="right"></div>
+          <div class="right credit">500,000.00</div>
+        </div>
+      </div>
+
+      <div class="journal-narration">
+        <strong>Narration:</strong> Inventory purchased through supplier invoice.
+      </div>
+
+      <div class="journal-total">
+        <div>Total</div>
+        <div class="right">500,000.00</div>
+        <div class="right">500,000.00</div>
+      </div>
+
+    </div>
+
+
+    <!-- =========================
+         JOURNAL CARD 2
+    ========================== -->
+    <div class="journal-card">
+      <div class="journal-voucher-header">
+        <div class="voucher-left">
+          <strong>Invoice Number / Journal:</strong>
+          <span class="voucher-number">JV-0002</span>
+        </div>
+        <div class="voucher-right">
+          <strong>Date:</strong>
+          <span>03-01-2026</span>
+        </div>
+      </div>
+
+      <div class="journal-grid">
+        <div class="journal-row">
+          <div>Accounts Receivable</div>
+          <div class="right debit">300,000.00</div>
+          <div class="right"></div>
+        </div>
+        <div class="journal-row">
+          <div>Sales Revenue</div>
+          <div class="right"></div>
+          <div class="right credit">300,000.00</div>
+        </div>
+      </div>
+
+      <div class="journal-narration">
+        <strong>Narration:</strong> Sales invoice generated.
+      </div>
+
+      <div class="journal-total">
+        <div>Total</div>
+        <div class="right">300,000.00</div>
+        <div class="right">300,000.00</div>
+      </div>
+    </div>
+
+
+    <!-- CARD 3 -->
+    <div class="journal-card">
+      <div class="journal-voucher-header">
+        <div class="voucher-left">
+          <strong>Invoice Number / Journal:</strong>
+          <span class="voucher-number">JV-0003</span>
+        </div>
+        <div class="voucher-right">
+          <strong>Date:</strong>
+          <span>05-01-2026</span>
+        </div>
+      </div>
+
+      <div class="journal-grid">
+        <div class="journal-row">
+          <div>Expense Account</div>
+          <div class="right debit">120,000.00</div>
+          <div class="right"></div>
+        </div>
+        <div class="journal-row">
+          <div>Cash Account</div>
+          <div class="right"></div>
+          <div class="right credit">120,000.00</div>
+        </div>
+      </div>
+
+      <div class="journal-narration">
+        <strong>Narration:</strong> Utility expense paid in cash.
+      </div>
+
+      <div class="journal-total">
+        <div>Total</div>
+        <div class="right">120,000.00</div>
+        <div class="right">120,000.00</div>
+      </div>
+    </div>
+
+
+    <!-- CARD 4 -->
+    <div class="journal-card">
+      <div class="journal-voucher-header">
+        <div class="voucher-left">
+          <strong>Invoice Number / Journal:</strong>
+          <span class="voucher-number">JV-0004</span>
+        </div>
+        <div class="voucher-right">
+          <strong>Date:</strong>
+          <span>08-01-2026</span>
+        </div>
+      </div>
+
+      <div class="journal-grid">
+        <div class="journal-row">
+          <div>Purchase Account</div>
+          <div class="right debit">250,000.00</div>
+          <div class="right"></div>
+        </div>
+        <div class="journal-row">
+          <div>Bank Account</div>
+          <div class="right"></div>
+          <div class="right credit">250,000.00</div>
+        </div>
+      </div>
+
+      <div class="journal-narration">
+        <strong>Narration:</strong> Bank payment for purchase.
+      </div>
+
+      <div class="journal-total">
+        <div>Total</div>
+        <div class="right">250,000.00</div>
+        <div class="right">250,000.00</div>
+      </div>
+    </div>
+
+
+    <!-- CARD 5 -->
+    <div class="journal-card">
+      <div class="journal-voucher-header">
+        <div class="voucher-left">
+          <strong>Invoice Number / Journal:</strong>
+          <span class="voucher-number">JV-0005</span>
+        </div>
+        <div class="voucher-right">
+          <strong>Date:</strong>
+          <span>10-01-2026</span>
+        </div>
+      </div>
+
+      <div class="journal-grid">
+        <div class="journal-row">
+          <div>Salary Expense</div>
+          <div class="right debit">400,000.00</div>
+          <div class="right"></div>
+        </div>
+        <div class="journal-row">
+          <div>Bank Account</div>
+          <div class="right"></div>
+          <div class="right credit">400,000.00</div>
+        </div>
+      </div>
+
+      <div class="journal-narration">
+        <strong>Narration:</strong> Monthly salary payment.
+      </div>
+
+      <div class="journal-total">
+        <div>Total</div>
+        <div class="right">400,000.00</div>
+        <div class="right">400,000.00</div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

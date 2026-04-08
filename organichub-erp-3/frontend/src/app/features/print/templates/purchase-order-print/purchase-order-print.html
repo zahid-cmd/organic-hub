@@ -1,0 +1,218 @@
+<div class="page-wrapper">
+
+  <!-- ================= RIBBON ================= -->
+  <div class="print-ribbon">
+
+    <!-- LEFT -->
+    <div class="ribbon-left">
+
+      <button class="toolbar-btn back" (click)="goBack()">
+        <i class="fa fa-arrow-left"></i>
+        Back
+      </button>
+      <div class="export-dropdown">
+
+        <button class="toolbar-btn export" (click)="toggleExportMenu()">
+          <i class="fa fa-download"></i>
+          Export
+        </button>
+
+        <div class="export-menu" *ngIf="showExportMenu">
+
+          <button (click)="downloadPdf()">PDF</button>
+
+          <button (click)="downloadExcel()">Excel</button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- CENTER -->
+    <div class="ribbon-center">
+
+      <button
+        class="page-btn"
+        (click)="previousPage()"
+        [disabled]="currentPage === 1">
+        ◀ Prev
+      </button>
+
+      <button
+        class="page-btn"
+        *ngFor="let p of pages"
+        (click)="goToPage(p)"
+        [class.active]="p === currentPage">
+        {{p}}
+      </button>
+
+      <button
+        class="page-btn"
+        (click)="nextPage()"
+        [disabled]="currentPage === pages.length">
+        Next ▶
+      </button>
+
+    </div>
+
+
+    <!-- RIGHT -->
+    <div class="ribbon-right">
+
+      <button class="toolbar-btn print" (click)="print()">
+        <i class="fa fa-print"></i>
+        Print
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================= DOCUMENT ================= -->
+  <div *ngIf="purchaseOrder">
+
+    <div
+      class="invoice-page"
+      *ngFor="let pageItems of pagedItems; let pageIndex = index"
+      [attr.id]="'page-' + (pageIndex+1)">
+
+      <!-- HEADER -->
+      <div class="header">
+
+        <div class="logo">
+          <img src="/Logo.png">
+        </div>
+
+        <div class="company">
+          <h2>Organic Hub ERP</h2>
+          <p>Suite #26, 6th Floor</p>
+          <p>DOHS Shopping Complex, Mirpur, Dhaka 1216</p>
+          <p>Phone: +8801896057950</p>
+        </div>
+
+      </div>
+
+
+      <!-- SUPPLIER + PO -->
+      <div class="info-section">
+
+        <div class="info-card">
+
+          <div class="info-title">SUPPLIER</div>
+
+          <div class="info-body">
+            <p><strong>Name :</strong> Supplier Name Here</p>
+            <p><strong>Phone :</strong> Supplier Phone</p>
+            <p><strong>Address :</strong> Supplier Address</p>
+          </div>
+
+        </div>
+
+
+        <div class="info-card right-card">
+
+          <div class="info-title">PURCHASE ORDER</div>
+
+          <div class="info-body">
+            <p><strong>PO No :</strong> {{purchaseOrder.orderNo}}</p>
+            <p><strong>Date :</strong> {{purchaseOrder.orderDate | date:'dd-MMM-yyyy'}}</p>
+            <p><strong>Status :</strong> {{purchaseOrder.status}}</p>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ITEMS TABLE -->
+      <table class="items-table">
+
+        <thead>
+        <tr>
+        <th class="col-sl">SL</th>
+        <th class="col-product">Product</th>
+        <th class="col-qty">Qty</th>
+        <th class="col-rate">Unit Price</th>
+        <th class="col-total">Line Total</th>
+        </tr>
+        </thead>
+
+        <tbody>
+
+          <tr *ngFor="let item of pageItems; let i=index">
+
+            <td class="center">
+              {{(pageIndex * itemsPerPage) + i + 1}}
+            </td>
+
+            <td>
+              {{item.productName}}
+            </td>
+
+            <td class="right">
+              {{item.quantity}}
+            </td>
+
+            <td class="right">
+              {{item.rate | number:'1.0-0'}}
+            </td>
+
+            <td class="right">
+              {{item.amount | number:'1.0-0'}}
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+
+      <!-- TOTAL -->
+      <div
+        class="totals"
+        *ngIf="pageIndex === pages.length - 1">
+
+        <div class="total-row">
+          <span>Total Items</span>
+          <span>{{purchaseOrder.items.length}}</span>
+        </div>
+
+        <div class="total-row grand">
+          <span>Total Order Value</span>
+          <span>{{purchaseOrder.totalAmount | number:'1.0-0'}}</span>
+        </div>
+
+      </div>
+
+
+      <!-- SIGNATURE -->
+      <div
+        class="signature"
+        *ngIf="pageIndex === pages.length - 1">
+
+        <div class="sign">
+          <div class="line"></div>
+          <p>Prepared By</p>
+        </div>
+
+        <div class="sign">
+          <div class="line"></div>
+          <p>Checked By</p>
+        </div>
+
+        <div class="sign">
+          <div class="line"></div>
+          <p>Authorized By</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

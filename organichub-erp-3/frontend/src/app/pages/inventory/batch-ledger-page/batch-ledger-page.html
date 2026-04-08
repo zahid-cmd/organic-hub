@@ -1,0 +1,125 @@
+<div class="page-body">
+
+  <app-page-sub-header title="Batch Ledger">
+    <div page-actions class="subheader-actions">
+      <button class="ch-btn" (click)="onBack()">Back</button>
+    </div>
+  </app-page-sub-header>
+
+  <div class="page-body-content">
+
+    <!-- ================= FORM BODY ================= -->
+    <div class="form-body">
+
+      <!-- COLUMN 1 -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+            <div class="section-header">Batch Info</div>
+
+            <div class="form-field">
+              <label>Batch No</label>
+              <input type="text" [value]="batchId" readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Total Rows</label>
+              <input type="text" [value]="rows.length" readonly>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- COLUMN 2 -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+            <div class="section-header">Stock Summary</div>
+
+            <div class="form-field">
+              <label>Current Balance</label>
+              <input
+                type="text"
+                [value]="rows.length ? rows[rows.length-1].balance : 0"
+                readonly>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- COLUMN 3 -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+            <div class="section-header">Info</div>
+
+            <div class="form-field">
+              <label>First Movement</label>
+              <input
+                type="text"
+                [value]="rows.length ? (rows[0].date | date:'dd MMM yyyy') : ''"
+                readonly>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- COLUMN 4 -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+            <div class="section-header">Actions</div>
+
+            <div class="form-field">
+              <label>Ledger Status</label>
+              <input type="text" value="Active" readonly>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ================= LEDGER GRID ================= -->
+    <div class="ledger-grid-box">
+
+      <div class="ledger-grid-header">
+        Ledger Movement
+      </div>
+
+      <div class="ledger-grid-body">
+
+        <div class="ledger-row ledger-header">
+          <div>#</div>
+          <div>Date</div>
+          <div>Source</div>
+          <div class="txt-right">Qty In</div>
+          <div class="txt-right">Qty Out</div>
+          <div class="txt-right">Balance</div>
+          <div class="txt-right">Unit Cost</div>
+        </div>
+
+        <div
+          class="ledger-row"
+          *ngFor="let r of rows; let i = index">
+
+          <div>{{ i + 1 }}</div>
+          <div>{{ r.date | date:'dd MMM yyyy' }}</div>
+          <div>{{ r.source }}</div>
+          <div class="txt-right">{{ r.qtyIn }}</div>
+          <div class="txt-right">{{ r.qtyOut }}</div>
+          <div class="txt-right fw-bold">{{ r.balance }}</div>
+          <div class="txt-right">{{ r.unitCost }}</div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>

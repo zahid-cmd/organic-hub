@@ -1,0 +1,89 @@
+<div class="page-body">
+
+  <!-- PAGE SUB HEADER -->
+  <app-page-sub-header title="Search & Filter Sales Returns">
+    <div page-actions class="subheader-actions">
+      <button class="ch-btn" (click)="onAdd()">Add</button>
+      <button class="ch-btn" (click)="onClear()">Clear</button>
+      <button class="ch-btn" (click)="onBack()">Back</button>
+    </div>
+  </app-page-sub-header>
+
+  <div class="page-body-content">
+
+    <!-- SEARCH AREA -->
+    <app-search-area
+      [searchText]="searchText"
+      [status]="statusFilter"
+      [statusOptions]="statusOptions"
+      (searchChange)="onSearch($event)"
+      (statusChange)="onStatusChange($event)">
+    </app-search-area>
+
+    <!-- LIST -->
+    <div class="ch-list-body">
+      <div class="ch-list-table">
+
+        <!-- HEADER -->
+        <div class="ch-list-row ch-list-header">
+          <div class="col col-sl">#</div>
+          <div class="col">SR No</div>
+          <div class="col">SR Date</div>
+          <div class="col">Customer Name</div>
+          <div class="col">Return Amount</div>
+          <div class="col">Status</div>
+          <div class="col col-actions">Actions</div>
+        </div>
+
+        <!-- BODY ROWS -->
+        <div
+          class="ch-list-body-rows"
+          [class.scrollable]="pageSize > 10">
+
+          <div
+            class="ch-list-row"
+            *ngFor="let ret of pagedReturns; let i = index">
+
+            <div class="col col-sl">{{ serial(i) }}</div>
+            <div class="col">{{ ret.returnNo }}</div>
+            <div class="col">{{ ret.returnDate }}</div>
+            <div class="col">{{ ret.customerName }}</div>
+            <div class="col amount">{{ ret.totalAmount }}</div>
+            <div class="col status">{{ ret.status }}</div>
+
+            <div class="col col-actions action-icons">
+              <button
+                class="icon-btn print"
+                title="View Return"
+                (click)="onReturnView(i)">
+                <i class="fa fa-file-invoice"></i>
+              </button>
+
+              <button class="icon-btn view">
+                <i class="fa fa-eye"></i>
+              </button>
+              <button class="icon-btn edit">
+                <i class="fa fa-pen"></i>
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PAGINATION (OUTSIDE SCROLL AREA) -->
+    <div class="ch-pagination">
+      <app-pagination
+        [totalRecords]="totalRecords"
+        [pageSize]="pageSize"
+        [currentPage]="currentPage"
+        (pageChange)="onPageChange($event)"
+        (pageSizeChange)="onPageSizeChange($event)">
+      </app-pagination>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,102 @@
+/* ======================================================
+   FORM GRID
+====================================================== */
+.form-body {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  height: 400px;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+/* ======================================================
+   COLUMN
+====================================================== */
+.form-col {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Column 4 special behavior */
+.form-col.col-split {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ======================================================
+   GROUP BOX (SECTION CONTAINER)
+====================================================== */
+.form-group-box {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 16px;
+  box-sizing: border-box;
+
+  height: 100%;                /* 🔑 REQUIRED */
+  display: flex;
+  flex-direction: column;      /* 🔑 REQUIRED */
+}
+
+/* ======================================================
+   SECTION
+====================================================== */
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Space between sections inside same box */
+.form-group-box .form-section + .form-section {
+  margin-top: 128px;
+  padding-top: 16px;
+  border-top: 1px dashed #e5e7eb;
+}
+
+/* ======================================================
+   SECTION HEADER
+====================================================== */
+.section-header {
+  font-size: 18px;
+  font-weight: 600;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* ======================================================
+   FIELD
+====================================================== */
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-field label {
+  font-size: 16px;
+  color: #374151;
+}
+
+.form-field input {
+  height: 36px;
+  padding: 4px 8px;
+  font-size: 15px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+/* ======================================================
+   INPUT FOCUS / SELECTION STYLE (STANDARD)
+====================================================== */
+
+.form-field input {
+  outline: none; /* remove default black outline */
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.form-field input:focus {
+  border-color: #4f6fdc;            /* light blue */
+  box-shadow: 0 0 0 1px #93c5fd;    /* thin blue focus ring */
+}

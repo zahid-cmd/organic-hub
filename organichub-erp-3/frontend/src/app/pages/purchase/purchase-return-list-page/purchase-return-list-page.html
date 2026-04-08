@@ -1,0 +1,111 @@
+<div class="page-container">
+
+  <div class="page-body">
+
+    <!-- PAGE SUB HEADER -->
+    <app-page-sub-header title="Search & Filter Purchase Returns">
+      <div page-actions class="subheader-actions">
+        <button class="ch-btn" (click)="onAdd()">Add</button>
+        <button class="ch-btn" (click)="onClear()">Clear</button>
+        <button class="ch-btn" (click)="onBack()">Back</button>
+      </div>
+    </app-page-sub-header>
+
+    <div class="page-body-content">
+
+      <!-- SEARCH -->
+      <app-search-area
+        [searchText]="searchText"
+        [status]="statusFilter"
+        [statusOptions]="statusOptions"
+        (searchChange)="onSearch($event)"
+        (statusChange)="onStatusChange($event)">
+      </app-search-area>
+
+      <!-- LIST -->
+      <div class="ch-list-body">
+        <div class="ch-list-table">
+
+          <!-- HEADER -->
+          <div class="ch-list-row ch-list-header">
+            <div class="col col-sl">#</div>
+            <div class="col">PR No</div>
+            <div class="col">PR Date</div>
+            <div class="col">Supplier Name</div>
+            <div class="col amount">Return Amount</div>
+            <div class="col">Status</div>
+            <div class="col col-actions">Actions</div>
+          </div>
+
+          <!-- BODY ROWS -->
+          <div class="ch-list-body-rows">
+            <div
+              class="ch-list-row"
+              *ngFor="let ret of pagedReturns; let i = index">
+
+              <div class="col col-sl">{{ serial(i) }}</div>
+              <div class="col">{{ ret.returnNo }}</div>
+              <div class="col">{{ ret.returnDate }}</div>
+              <div class="col">{{ ret.supplierName }}</div>
+              <div class="col amount">{{ ret.totalAmount }}</div>
+              <div class="col">{{ ret.status }}</div>
+
+              <div class="col col-actions action-icons">
+
+                <!-- ✅ PRINT / VIEW RETURN -->
+                <button
+                  class="icon-btn print"
+                  title="View Return"
+                  (click)="onReturnPrint(i)">
+                  <i class="fa fa-file-invoice"></i>
+                </button>
+
+                <!-- VIEW -->
+                <button
+                  class="icon-btn view"
+                  title="View"
+                  (click)="onView(i)">
+                  <i class="fa fa-eye"></i>
+                </button>
+
+                <!-- EDIT -->
+                <button
+                  class="icon-btn edit"
+                  title="Edit"
+                  (click)="onEdit(i)">
+                  <i class="fa fa-pen"></i>
+                </button>
+
+              </div>
+
+            </div>
+
+            <!-- EMPTY STATE -->
+            <div
+              class="ch-list-row empty-row"
+              *ngIf="pagedReturns.length === 0">
+              <div class="col empty-text">
+                No purchase returns found
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- PAGINATION -->
+      <div class="ch-pagination">
+        <app-pagination
+          [totalRecords]="totalRecords"
+          [pageSize]="pageSize"
+          [currentPage]="currentPage"
+          (pageChange)="onPageChange($event)"
+          (pageSizeChange)="onPageSizeChange($event)">
+        </app-pagination>
+      </div>
+
+    </div>
+  </div>
+
+</div>

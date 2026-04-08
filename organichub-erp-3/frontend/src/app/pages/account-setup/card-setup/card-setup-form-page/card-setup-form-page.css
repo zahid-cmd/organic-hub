@@ -1,0 +1,183 @@
+/* ======================================================
+   FORM GRID – STANDARD CONTRACT (4 FIXED COLUMNS)
+====================================================== */
+.form-body {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+
+  /* 🔒 CONTRACT HEIGHT (NO SCROLL) */
+  height: 100%;
+  box-sizing: border-box;
+
+  align-items: stretch;
+}
+
+/* ======================================================
+   COLUMN (FULL HEIGHT – STRETCH)
+====================================================== */
+.form-col {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+/* ======================================================
+   GROUP BOX (SECTION CONTAINER – FULL HEIGHT)
+====================================================== */
+.form-group-box {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+
+  padding: 16px;
+  box-sizing: border-box;
+
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+/* ======================================================
+   SECTION (INTERNAL FLEX LAYOUT)
+====================================================== */
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  height: 100%;
+}
+
+/* ======================================================
+   SECTION HEADER
+====================================================== */
+.section-header {
+  flex-shrink: 0;
+
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
+
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* ======================================================
+   FIELD
+====================================================== */
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-field label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+}
+
+/* ======================================================
+   INPUT + SELECT (UNIFIED HEIGHT – ERP STANDARD)
+====================================================== */
+.form-field input,
+.form-field select {
+  height: 36px;
+  width: 100%;
+
+  padding: 6px 10px;
+  font-size: 14px;
+  line-height: 1.2;
+
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  box-sizing: border-box;
+
+  background-color: #ffffff;
+  color: #111827;
+
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+/* ======================================================
+   TEXTAREA (CONTROLLED HEIGHT – NO RESIZE)
+====================================================== */
+.form-field textarea {
+  width: 100%;
+  height: 76px;              /* 🔒 FIXED DOUBLE HEIGHT */
+  resize: none;
+
+  padding: 8px 10px;
+  font-size: 14px;
+  line-height: 1.4;
+
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  box-sizing: border-box;
+
+  background-color: #ffffff;
+  color: #111827;
+
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* ======================================================
+   SELECT DROPDOWN ARROW (CLEAN ERP STYLE)
+====================================================== */
+.form-field select {
+  background-image:
+    linear-gradient(45deg, transparent 50%, #6b7280 50%),
+    linear-gradient(135deg, #6b7280 50%, transparent 50%);
+  background-position:
+    calc(100% - 16px) 50%,
+    calc(100% - 10px) 50%;
+  background-size:
+    6px 6px,
+    6px 6px;
+  background-repeat: no-repeat;
+}
+
+/* ======================================================
+   FOCUS STATE (ERP GREEN)
+====================================================== */
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  outline: none;
+  border-color: #1f7a3a;
+  box-shadow: 0 0 0 2px rgba(95, 174, 59, 0.25);
+}
+
+/* ======================================================
+   DISABLED / VIEW MODE
+====================================================== */
+.form-field input:disabled,
+.form-field select:disabled,
+.form-field textarea:disabled {
+  background: #f9fafb;
+  color: #6b7280;
+  cursor: not-allowed;
+}
+
+/* ======================================================
+   READONLY (SYSTEM FIELDS)
+====================================================== */
+.form-field input[readonly] {
+  background: #f3f4f6;
+  color: #374151;
+  cursor: default;
+}
+
+/* ======================================================
+   PREVENT OVERFLOW (CONTRACT PROTECTION)
+====================================================== */
+.form-group-box,
+.form-section {
+  overflow: hidden;
+}

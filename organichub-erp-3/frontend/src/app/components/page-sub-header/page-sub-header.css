@@ -1,0 +1,74 @@
+/* ===============================
+   PAGE SUB HEADER RIBBON – ORGANIC HUB
+================================ */
+.ch-page-subheader-ribbon {
+  height: 56px;                  /* 🔒 LOCKED */
+  background: linear-gradient(
+    90deg,
+    #0A2418 0%,    /* deep organic green */
+    #8FB339 55%,   /* fresh leaf green */
+    #F4C430 100%   /* golden yellow */
+
+  );
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 16px;
+  box-sizing: border-box;
+
+  border-radius: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+/* ===============================
+   TITLE
+================================ */
+.ch-page-subheader-ribbon h4 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+/* ===============================
+   ACTION CONTAINER (RIGHT SIDE)
+================================ */
+.ch-page-subheader-ribbon .subheader-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;            /* 🔒 STANDARD GAP */
+}
+
+/* ===============================
+   STANDARD ACTION BUTTON
+================================ */
+.ch-page-subheader-ribbon .ch-btn {
+  height: 34px;
+  min-width: 84px;
+  padding: 0 12px;
+
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 34px;
+  text-align: center;
+
+  background: #ffffff;
+  color: #1F5F3B;              /* organic green text */
+  border: 1px solid #D1E7D9;   /* soft green border */
+
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+/* ===============================
+   BUTTON HOVER (ORGANIC)
+================================ */
+.ch-page-subheader-ribbon .ch-btn:hover {
+  background: #EEF6EA;         /* light organic green */
+  border-color: #8FB339;
+}

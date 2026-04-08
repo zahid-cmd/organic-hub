@@ -1,0 +1,352 @@
+/* PAGE SUB HEADER */
+.ch-page-subheader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 56px;
+  padding: 8px 12px;
+  background: linear-gradient(90deg, #0A2418 0%, #8FB339 55%, #F4C430 100%);
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.subheader-left,
+.subheader-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* INPUTS */
+.ch-input {
+  height: 36px;
+  padding: 0 10px;
+  font-size: 13px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+}
+
+.ch-input-wide {
+  min-width: 220px;
+}
+
+/* GREEN FOCUS */
+.ch-input:focus {
+  outline: none;
+  border-color: #4f7f52;
+  box-shadow: 0 0 0 1px #4f7f52;
+}
+
+/* BUTTONS */
+.ch-btn {
+  height: 36px;
+  padding: 0 14px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.ch-btn.primary {
+  background: #4f7f52;
+  color: #ffffff;
+  border-color: #4f7f52;
+}
+
+.icon-btn {
+  height: 36px;
+  width: 36px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* REPORT WRAPPER */
+.ledger-report-wrapper {
+  width: 85%;
+  margin: 16px auto 0;
+  background: #ffffff;
+  padding: 0 24px;
+  box-sizing: border-box;
+}
+
+/* HEADER */
+.ledger-report-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+}
+
+/* LOGO */
+.ledger-report-left img {
+  height: 100px;
+}
+
+/* RIGHT TEXT */
+.ledger-report-right {
+  text-align: right;
+  line-height: 1.6;
+}
+
+.ledger-report-right h2 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: #2f6f44;
+}
+
+.ledger-report-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #eab308;
+}
+
+.ledger-report-meta {
+  font-size: 16px;
+  color: #111827;
+}
+
+/* DOUBLE DIVIDER – FULL WIDTH UNDER HEADER */
+.ledger-report-divider {
+  height: 2px;
+  border-top: 1px solid #6b7280;
+  border-bottom: 1px solid #6b7280;
+
+  /* 🔥 force full visual width */
+  margin-left: -30px;
+  margin-right: -30px;
+
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+
+/* META ROW */
+.ledger-meta-row {
+  width: 85%;
+  margin: 0 auto 12px;
+  padding: 10px 24px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  box-sizing: border-box;
+  background: #ffffff;
+  height: 40px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.ledger-meta-left,
+.ledger-meta-right {
+  white-space: nowrap;
+}
+.ledger-meta-row {
+  margin-bottom: 0;     /* 🔥 remove space below meta */
+  padding-bottom: 0;
+}
+
+/* =========================
+   LEDGER TABLE WRAPPER
+========================= */
+.ledger-table-wrapper {
+  width: 85%;
+  margin: 0 auto;
+  background: #ffffff;
+  box-sizing: border-box;
+}
+
+/* =========================
+   TABLE HEADER
+========================= */
+.ledger-table-header {
+  display: grid;
+  grid-template-columns:
+    110px       /* Date */
+    2fr         /* Particulars */
+    120px       /* Reference */
+    120px       /* Debit */
+    120px       /* Credit */
+    140px       /* Balance */
+    1.5fr;      /* Remarks */
+
+  background: #edf6e8;        /* soft green */
+  border-top: 1px solid #cbd5e1;
+  border-bottom: 1px solid #cbd5e1;
+
+  font-size: 16px;
+  font-weight: 700;
+  color: #111827;
+  text-align: center;
+
+}
+
+/* HEADER CELLS */
+.ledger-table-header > div {
+  padding: 8px 10px;
+  border-right: 1px solid #d1d5db;
+  box-sizing: border-box;
+}
+
+.ledger-table-header > div:last-child {
+  border-right: none;
+}
+
+/* ALIGN HELPERS */
+.right {
+  text-align: right;
+}
+.ledger-report-wrapper {
+  width: 85%;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 0 30px;   /* 🔥 single source of truth */
+}
+/* FIX: align table header with report content */
+.ledger-table-header {
+  padding-left: 0px;   /* same as report wrapper inner padding */
+  padding-right: 0px;
+}
+/* =========================
+   LEDGER TABLE BODY
+========================= */
+.ledger-table-body {
+  display: grid;
+}
+
+/* ROW */
+.ledger-row {
+  display: grid;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 14px;
+}
+.ledger-table-header,
+.ledger-row {
+  grid-template-columns:
+    110px
+    2fr
+    120px
+    120px
+    120px
+    140px
+    30px
+    1.5fr;
+}
+
+/* CELLS */
+.ledger-row > div {
+  padding: 8px 10px;
+  border-right: 1px solid #e5e7eb;
+  box-sizing: border-box;
+}
+
+.ledger-row > div:last-child {
+  border-right: none;
+}
+
+/* OPENING BALANCE STYLE */
+.ledger-row.opening {
+  background: #f8fafc;
+  font-weight: 600;
+}
+/* CENTER ALIGN: Date & Reference (HEADER) */
+.ledger-table-header > div:nth-child(1),
+.ledger-table-header > div:nth-child(3) {
+  text-align: center;
+}
+
+/* CENTER ALIGN: Date & Reference (ROWS) */
+.ledger-row > div:nth-child(1),
+.ledger-row > div:nth-child(3) {
+  text-align: center;
+}
+/* OPENING BALANCE ROW – light yellow */
+.ledger-row.opening {
+  background: #fff9db;   /* soft light yellow */
+  font-weight: 600;
+}
+
+/* OPENING BALANCE ROW – very light green */
+.ledger-row.opening {
+  background: #f0fdf4;   /* very light green */
+  font-weight: 600;
+}
+/* TOTAL ROW */
+.ledger-row.ledger-total {
+  background: #fefce8;              /* very light yellow (classic accounting) */
+  font-weight: 700;
+  border-top: 1px solid #aaadb2;
+}
+
+.ledger-row.ledger-total > div {
+  padding: 10px 10px;
+}
+/* TOTAL ROW */
+.ledger-row.ledger-total {
+  background: #fefce8;              /* very light yellow */
+  font-weight: 700;
+  border-top: 1px solid #adb1b8;    /* existing top line */
+  border-bottom: 1px solid #acafb4; /* ✅ NEW bottom line */
+}
+/* SCROLL AREA – ONLY TRANSACTION ROWS */
+.ledger-table-scroll {
+  max-height: 460px;      /* ~15 rows */
+  overflow-y: auto;
+}
+
+/* keep scrollbar clean */
+.ledger-table-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+.ledger-table-scroll::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+/* CLOSING BALANCE ROW */
+.ledger-row.ledger-closing {
+  background: #f0fdf4;              /* very light green */
+  font-weight: 700;
+  border-top: 1px solid #9ca3af;
+  border-bottom: 1.25px solid #6b7280; /* strong final line */
+}
+.center {
+  text-align: center;
+}
+
+.dr {
+  color: #166534;        /* dark green */
+  font-weight: 700;
+  width: 30px;
+}
+
+.cr {
+  color: #991b1b;        /* dark red */
+  width: 30px;
+  font-weight: 700;
+}
+/* REMARKS ROW */
+.ledger-row.ledger-remarks {
+  background: #f8fafc;        /* muted */
+  font-size: 13px;
+  color: #374151;
+}
+
+/* Align exactly under PARTICULARS column */
+.ledger-remarks .remarks-cell {
+  grid-column: 2 / 3;         /* 👈 Particulars column only */
+  padding: 8px 10px;
+  text-align: left;
+}
+/* MERGED BALANCE HEADER (Balance + Dr/Cr) */
+.balance-merged-header {
+  grid-column: span 2;          /* 🔥 merge two columns */
+  text-align: right;
+  padding-right: 18px;
+  border-right: 1px solid #d1d5db;
+}
+

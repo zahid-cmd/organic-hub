@@ -1,0 +1,249 @@
+<app-page-sub-header title="Inventory Tree with Product Category & Sub Category"></app-page-sub-header>
+
+<div class="coa-page">
+
+  <!-- ================= LEFT TREE NAVIGATOR ================= -->
+
+  <div class="tree-panel">
+
+    <div class="tree-header">
+      <div class="tree-title">Inventory Structure</div>
+      <div class="tree-sub">Product hierarchy</div>
+    </div>
+
+    <div class="tree-body">
+
+      <ul class="tree">
+
+        <ng-container *ngFor="let node of treeData">
+          <ng-template
+            [ngTemplateOutlet]="treeNodeTemplate"
+            [ngTemplateOutletContext]="{ $implicit: node }">
+          </ng-template>
+        </ng-container>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================= RIGHT WORKSPACE ================= -->
+
+  <div class="list-panel">
+
+    <!-- ===== Workspace Header ===== -->
+
+    <div class="workspace-head">
+
+      <div class="workspace-title">
+        {{ selectedNode?.name || 'Inventory Details' }}
+      </div>
+
+      <div class="workspace-meta" *ngIf="selectedNode">
+        {{ selectedNode.code }} • {{ selectedNode.level }}
+      </div>
+
+    </div>
+
+
+    <!-- ===== Workspace Body ===== -->
+
+    <div class="table-zone">
+
+      <!-- ========================================================= -->
+      <!-- ================= CATEGORY TABLE ========================= -->
+      <!-- ========================================================= -->
+
+      <ng-container *ngIf="mode === 'categoryList'">
+
+        <div class="table-caption">Categories</div>
+
+        <div class="table-wrapper">
+
+          <table class="ch-table category">
+
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Category Code</th>
+                <th>Category Name</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <tr *ngFor="let c of categoryList; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ c.categoryCode }}</td>
+                <td>{{ c.categoryName }}</td>
+
+                <td>
+                  <span
+                    class="status"
+                    [class.active]="c.status === 'Active'"
+                    [class.inactive]="c.status !== 'Active'">
+                    {{ c.status }}
+                  </span>
+                </td>
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </ng-container>
+
+
+      <!-- ========================================================= -->
+      <!-- ================= SUB CATEGORY TABLE ===================== -->
+      <!-- ========================================================= -->
+
+      <ng-container *ngIf="mode === 'subCategoryList'">
+
+        <div class="table-caption">Sub Categories</div>
+
+        <div class="table-wrapper">
+
+          <table class="ch-table subcategory">
+
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Sub Category Code</th>
+                <th>Sub Category Name</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <tr *ngFor="let sg of subCategoryList; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ sg.subCategoryCode }}</td>
+                <td>{{ sg.subCategoryName }}</td>
+
+                <td>
+                  <span
+                    class="status"
+                    [class.active]="sg.status === 'Active'"
+                    [class.inactive]="sg.status !== 'Active'">
+                    {{ sg.status }}
+                  </span>
+                </td>
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </ng-container>
+
+
+      <!-- ========================================================= -->
+      <!-- ================= PRODUCT TABLE ========================== -->
+      <!-- ========================================================= -->
+
+      <ng-container *ngIf="mode === 'productList'">
+
+        <div class="table-caption">Products</div>
+
+        <div class="table-wrapper">
+
+          <table class="ch-table product">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Product Code</th>
+                <th>Product Name</th>
+                <th>Unit</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <tr *ngFor="let p of productList; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ p.productCode }}</td>
+                <td>{{ p.productName }}</td>
+                <td>{{ p.unitName }}</td>
+
+                <td>
+                  <span
+                    class="status"
+                    [class.active]="p.status === 'Active'"
+                    [class.inactive]="p.status !== 'Active'">
+                    {{ p.status }}
+                  </span>
+                </td>
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </ng-container>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ========================================================= -->
+<!-- ================= ENTERPRISE TREE TEMPLATE =============== -->
+<!-- ========================================================= -->
+
+<ng-template #treeNodeTemplate let-node>
+
+  <li>
+
+    <div class="tree-node">
+
+      <div
+        class="expand-icon"
+        *ngIf="node.hasChildren"
+        (click)="toggleNode(node); $event.stopPropagation()">
+
+        <span class="arrow" [class.rotated]="node.expanded">›</span>
+
+      </div>
+
+      <div
+        class="node-pill"
+        [class.selected]="selectedNode?.nodeKey === node.nodeKey"
+        (click)="selectNode(node); $event.stopPropagation()">
+
+        <span class="node-code">{{ node.code }}</span>
+        <span class="node-title">{{ node.name }}</span>
+
+      </div>
+
+    </div>
+
+    <ul *ngIf="node.expanded">
+
+      <li *ngIf="node.loading" class="loading">Loading...</li>
+
+      <ng-container *ngFor="let child of node.children">
+        <ng-template
+          [ngTemplateOutlet]="treeNodeTemplate"
+          [ngTemplateOutletContext]="{ $implicit: child }">
+        </ng-template>
+      </ng-container>
+
+    </ul>
+
+  </li>
+
+</ng-template>

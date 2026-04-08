@@ -1,0 +1,196 @@
+<div class="page-body">
+
+  <!-- PAGE HEADER -->
+  <app-page-sub-header title="Create / Update Branch">
+    <div page-actions class="subheader-actions">
+      <button
+        class="ch-btn"
+        *ngIf="!isViewMode"
+        (click)="onSave()">
+        Save
+      </button>
+      <button class="ch-btn" *ngIf="!isViewMode" (click)="onClear()">Clear</button>
+      <button class="ch-btn" type="button" (click)="onBack()">Back</button>
+    </div>
+  </app-page-sub-header>
+
+  <!-- PAGE CONTENT -->
+  <div class="page-body-content">
+    <div class="form-body">
+
+      <!-- =================================================
+           COLUMN 1 : PARENTAL INFORMATION
+      ================================================== -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+            <div class="section-header">Parental Information</div>
+
+            <div class="form-field">
+              <label>Company Name</label>
+                <select [(ngModel)]="branch.companyId" [disabled]="isViewMode">
+
+                  <option [ngValue]="null">Select Company</option>
+
+                  <option *ngFor="let c of companies" [ngValue]="c.id">
+                    {{ c.companyName }}
+                  </option>
+
+                </select>
+            </div>
+
+            <div class="form-field">
+              <label>Branch Code</label>
+              <input
+                type="text"
+                [(ngModel)]="branch.branchCode"
+                readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Branch Name</label>
+              <input
+                type="text"
+                [(ngModel)]="branch.branchName"
+                [disabled]="isViewMode"
+                [class.invalid]="!branch.branchName && !isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>Status</label>
+              <select [(ngModel)]="branch.status" [disabled]="isViewMode">
+                <option value="">Select Status</option>
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+              </select>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- =================================================
+           COLUMN 2 : CONTACT INFORMATION
+      ================================================== -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+            <div class="section-header">Contact Information</div>
+
+            <div class="form-field">
+              <label>Primary Phone Number</label>
+                <input
+                  type="text"
+                  [(ngModel)]="branch.primaryPhone"
+                  [disabled]="isViewMode"
+                  [class.invalid]="!branch.primaryPhone && !isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>Secondary Phone Number</label>
+              <input
+                type="text"
+                [(ngModel)]="branch.secondaryPhone"
+                [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>Email</label>
+              <input
+                type="email"
+                [(ngModel)]="branch.email"
+                [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>Location</label>
+                <input
+                  type="text"
+                  [(ngModel)]="branch.location"
+                  [disabled]="isViewMode"
+                  [class.invalid]="!branch.location && !isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>Address</label>
+              <textarea
+                rows="3"
+                [(ngModel)]="branch.address"
+                [disabled]="isViewMode"></textarea>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- =================================================
+           COLUMN 3 : VAT INFORMATION
+      ================================================== -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+            <div class="section-header">VAT Information</div>
+
+            <div class="form-field">
+              <label>BIN</label>
+              <input
+                type="text"
+                [(ngModel)]="branch.bin"
+                [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>VAT Payment Code</label>
+              <input
+                type="text"
+                [(ngModel)]="branch.vatPaymentCode"
+                [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>Economic Activity</label>
+              <input
+                type="text"
+                [(ngModel)]="branch.economicActivity"
+                [disabled]="isViewMode">
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- =================================================
+           COLUMN 4 : SYSTEM INFORMATION
+      ================================================== -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+            <div class="section-header">System Information</div>
+
+            <div class="form-field">
+              <label>Created By</label>
+              <input type="text" [(ngModel)]="branch.createdBy" readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Creation Date</label>
+              <input type="text" [(ngModel)]="branch.createdDate" readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Updated By</label>
+              <input type="text" [(ngModel)]="branch.updatedBy" readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Updated Date</label>
+              <input type="text" [(ngModel)]="branch.updatedDate" readonly>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

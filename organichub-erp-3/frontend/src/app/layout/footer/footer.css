@@ -1,0 +1,113 @@
+/* ======================================================
+   FOOTER – ORGANIC HUB (FINAL)
+====================================================== */
+.app-footer {
+  height: 44px;                     /* 🔒 LOCKED */
+  width: 100%;
+
+  position: fixed;
+  bottom: 0;
+  left: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: linear-gradient(
+    90deg,
+    #0A2418,
+    #0F3A24,
+    #0A2418
+  );
+
+  color: #E6F2EA;
+  font-size: 13px;
+  font-weight: 400;
+
+  box-sizing: border-box;
+  z-index: 100;
+}
+
+/* ======================================================
+   TOP SHINE LINE (SUBTLE GOLD)
+====================================================== */
+.app-footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 2px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(242, 183, 5, 0.6),
+    transparent
+  );
+}
+
+/* ======================================================
+   LEFT ACCENT STRIP (ORGANIC GOLD)
+====================================================== */
+.footer-accent {
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  width: 4px;
+  height: 100%;
+
+  background: linear-gradient(
+    180deg,
+    #F2B705,
+    #D99A00
+  );
+}
+
+/* ======================================================
+   CENTER TEXT
+====================================================== */
+.footer-text {
+  text-align: center;
+  opacity: 0.95;
+  letter-spacing: 0.2px;
+  pointer-events: none;
+}
+
+/* ======================================================
+   RIGHT LOGO STRIP – CLEAN & FULL HEIGHT
+====================================================== */
+.footer-logo {
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  height: 100%;                  /* 🔒 FULL FOOTER HEIGHT */
+  width: 305px;
+
+    background: linear-gradient(
+    90deg,
+    #D99A00 0%,     /* deep gold (left) */
+    #F2B705 45%,    /* organic yellow */
+    #FFD45A 100%    /* soft light gold (right) */
+  );
+  
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;   /* ✅ LEFT ALIGN */
+
+  padding-left: 0px;            /* 🔥 breathing space from edge */
+  box-sizing: border-box;
+
+  border-left: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+/* LOGO IMAGE */
+.footer-logo img {
+  height: 100%;                  /* 🔒 FULL HEIGHT */
+  width: auto;
+  display: block;
+}
+

@@ -1,0 +1,10 @@
+<div class="ch-breadcrumb">
+  <ng-container *ngFor="let item of items; let last = last">
+    <span class="breadcrumb-item" [class.current]="last">
+      {{ item.label }}
+    </span>
+
+    <span *ngIf="!last" class="separator">›</span>
+  </ng-container>
+</div>
+

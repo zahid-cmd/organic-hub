@@ -1,0 +1,16 @@
+<div *ngIf="state.visible" class="organic-toast" [ngClass]="state.type">
+
+  <div class="toast-content">
+
+    <div class="toast-message">
+      {{ state.message }}
+    </div>
+
+    <div class="toast-actions" *ngIf="state.confirmMode">
+      <button class="toast-btn confirm" (click)="onConfirm()">Confirm</button>
+      <button class="toast-btn cancel" (click)="onCancel()">Cancel</button>
+    </div>
+
+  </div>
+
+</div>

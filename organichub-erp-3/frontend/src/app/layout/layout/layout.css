@@ -1,0 +1,203 @@
+/* ======================================================
+   APP SHELL (ROOT)
+====================================================== */
+
+.app-shell{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+}
+
+/* LEFT GLOBAL ACCENT BAR */
+
+.app-shell::before{
+  content:"";
+  position:fixed;
+  top:0;
+  left:0;
+  width:4px;
+  height:100vh;
+  background:#2563eb;
+  z-index:1000;
+}
+
+
+/* ======================================================
+   HEADER & FOOTER
+====================================================== */
+
+app-header{
+  height:64px;
+  flex-shrink:0;
+}
+
+app-footer{
+  height:40px;
+  flex-shrink:0;
+}
+
+
+/* ======================================================
+   APP BODY (SIDEBAR + CONTENT)
+====================================================== */
+.app-body{
+  flex:1;
+  display:flex;
+  min-height:0;
+}
+
+
+/* ======================================================
+   SIDEBAR
+====================================================== */
+
+.app-sidebar{
+  width:300px;
+  min-width:300px;
+  max-width:300px;
+  flex-shrink:0;
+  transition:width .25s ease;
+}
+
+.app-shell.sidebar-collapsed .app-sidebar{
+  width:72px;
+  min-width:72px;
+  max-width:72px;
+}
+
+
+/* ======================================================
+   MAIN CONTENT AREA
+====================================================== */
+
+.app-content{
+  flex:1;
+  min-width:0;
+
+  display:flex;
+  flex-direction:column;
+
+  min-height:0;
+
+  background:#f6f8fc;
+
+  overflow:hidden;
+}
+
+
+/* ======================================================
+   PAGE CONTAINER
+====================================================== */
+
+.page-container{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  min-height:0;
+  padding:16px;
+  gap:12px;
+  box-sizing:border-box;
+  overflow:hidden;
+}
+
+
+/* ======================================================
+   ROUTER CONTENT AREA
+====================================================== */
+
+.ch-main-content{
+  flex:1;
+  min-height:0;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;   /* IMPORTANT */
+}
+
+
+/* ======================================================
+   FIXED PAGE SECTIONS
+====================================================== */
+
+.ch-breadcrumb{
+  height:40px;
+  flex-shrink:0;
+}
+
+.ch-page-header{
+  height:72px;
+  flex-shrink:0;
+}
+
+.ch-page-subheader{
+  height:64px;
+  flex-shrink:0;
+}
+
+.ch-search-area{
+  height:56px;
+  flex-shrink:0;
+}
+
+
+/* ======================================================
+   PAGINATION
+====================================================== */
+
+.ch-pagination{
+  height:48px;
+  flex-shrink:0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:#fff;
+
+  border-top:1px solid #e5e7eb;
+}
+
+app-footer{
+  height:40px;
+  flex-shrink:0;
+  position:relative;
+  z-index:5;
+}
+/* ======================================================
+   PRINT MODE
+====================================================== */
+
+@media print{
+
+  app-header,
+  app-sidebar,
+  app-footer,
+  app-breadcrumb,
+  app-page-header{
+    display:none !important;
+  }
+
+  .app-shell,
+  .app-body,
+  .app-content,
+  .page-container,
+  .ch-main-content{
+    display:block !important;
+    height:auto !important;
+    min-height:auto !important;
+    overflow:visible !important;
+  }
+
+  .app-body{
+    display:block !important;
+  }
+
+  .app-content{
+    width:100% !important;
+  }
+
+  .page-container{
+    padding:0 !important;
+  }
+
+}

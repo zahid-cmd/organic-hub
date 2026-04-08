@@ -1,0 +1,196 @@
+<div class="page-body">
+
+  <app-organic-toast></app-organic-toast>
+
+  <app-page-sub-header title="Create / Update General Ledger">
+    <div page-actions class="subheader-actions">
+
+      <button
+        type="button"
+        class="ch-btn"
+        *ngIf="!isViewMode"
+        (click)="onSave()">
+        {{ mode === 'edit' ? 'Update' : 'Save' }}
+      </button>
+
+      <button
+        type="button"
+        class="ch-btn"
+        *ngIf="!isViewMode"
+        (click)="onClear()">
+        Clear
+      </button>
+
+      <button
+        type="button"
+        class="ch-btn"
+        (click)="onBack()">
+        Back
+      </button>
+
+    </div>
+  </app-page-sub-header>
+
+  <div class="page-body-content">
+    <div class="form-body">
+
+      <!-- ========================================= -->
+      <!-- COLUMN 1 -->
+      <!-- ========================================= -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+
+            <div class="section-header">Account Structure</div>
+
+            <!-- Account Group -->
+            <div class="form-field">
+              <label>Account Group</label>
+              <select
+                [(ngModel)]="ledger.groupId"
+                (ngModelChange)="onGroupChange($event)"
+                [disabled]="isViewMode">
+
+                <option [ngValue]="null" disabled>
+                  Select Account Group
+                </option>
+
+                <option
+                  *ngFor="let g of accountGroups"
+                  [ngValue]="g.id">
+                  {{ g.groupCode }} - {{ g.groupName }}
+                </option>
+
+              </select>
+            </div>
+
+            <!-- Account SubGroup -->
+            <div class="form-field">
+              <label>Account SubGroup</label>
+              <select
+                [(ngModel)]="ledger.subGroupId"
+                (ngModelChange)="onSubGroupChange($event)"
+                [disabled]="isViewMode || !ledger.groupId">
+
+                <option [ngValue]="null" disabled>
+                  Select Account SubGroup
+                </option>
+
+                <option
+                  *ngFor="let s of subGroups"
+                  [ngValue]="s.id">
+                  {{ s.subGroupCode }} - {{ s.subGroupName }}
+                </option>
+
+              </select>
+            </div>
+
+            <!-- Status -->
+            <div class="form-field">
+              <label>Status</label>
+              <select
+                [(ngModel)]="ledger.status"
+                [disabled]="isViewMode">
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+              </select>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================= -->
+      <!-- COLUMN 2 -->
+      <!-- ========================================= -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+
+            <div class="section-header">Ledger Information</div>
+
+            <div class="form-field">
+              <label>Ledger Code</label>
+              <input
+                type="text"
+                [(ngModel)]="ledger.ledgerCode"
+                readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Ledger Name</label>
+              <input
+                type="text"
+                [(ngModel)]="ledger.ledgerName"
+                [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>Remarks</label>
+              <textarea
+                [(ngModel)]="ledger.remarks"
+                [disabled]="isViewMode">
+              </textarea>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================= -->
+      <!-- COLUMN 3 -->
+      <!-- ========================================= -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+
+            <div class="section-header">Created Information</div>
+
+            <div class="form-field">
+              <label>Created By</label>
+              <input type="text"
+                     [(ngModel)]="ledger.createdBy"
+                     readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Created Date</label>
+              <input type="text"
+                     [(ngModel)]="ledger.createdDate"
+                     readonly>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================= -->
+      <!-- COLUMN 4 -->
+      <!-- ========================================= -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+
+            <div class="section-header">Updated Information</div>
+
+            <div class="form-field">
+              <label>Updated By</label>
+              <input type="text"
+                     [(ngModel)]="ledger.updatedBy"
+                     readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Updated Date</label>
+              <input type="text"
+                     [(ngModel)]="ledger.updatedDate"
+                     readonly>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

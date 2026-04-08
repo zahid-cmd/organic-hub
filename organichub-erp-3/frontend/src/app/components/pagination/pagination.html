@@ -1,0 +1,67 @@
+<div class="ch-pagination-wrap">
+
+  <!-- LEFT INFO -->
+  <div class="pg-info">
+    Showing
+    <strong>{{ startRecord }}</strong>
+    to
+    <strong>{{ endRecord }}</strong>
+    of
+    <strong>{{ totalRecords }}</strong>
+    Records
+  </div>
+
+  <!-- CENTER : PAGE NUMBERS -->
+  <div class="pg-pages">
+
+    <button
+      class="pg-btn"
+      (click)="changePage(1)"
+      [disabled]="currentPage === 1">
+      &laquo;
+    </button>
+
+    <button
+      class="pg-btn"
+      (click)="changePage(currentPage - 1)"
+      [disabled]="currentPage === 1">
+      &lsaquo;
+    </button>
+
+    <button
+      class="pg-btn"
+      *ngFor="let p of pages"
+      [class.active]="p === currentPage"
+      (click)="changePage(p)">
+      {{ p }}
+    </button>
+
+    <button
+      class="pg-btn"
+      (click)="changePage(currentPage + 1)"
+      [disabled]="currentPage === totalPages">
+      &rsaquo;
+    </button>
+
+    <button
+      class="pg-btn"
+      (click)="changePage(totalPages)"
+      [disabled]="currentPage === totalPages">
+      &raquo;
+    </button>
+
+  </div>
+
+  <!-- RIGHT : PAGE SIZE -->
+  <div class="pg-size-wrap">
+    <select
+      class="pg-size"
+      [value]="pageSize"
+      (change)="changePageSize($event)">
+      <option [value]="10">10</option>
+      <option [value]="20">20</option>
+      <option [value]="50">50</option>
+    </select>
+  </div>
+
+</div>

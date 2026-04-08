@@ -1,0 +1,74 @@
+<header class="topbar">
+
+  <!-- LEFT -->
+  <div class="topbar-left">
+
+  <img
+    src="/Logo.png"
+    class="app-logo"
+    width="40"
+    height="60"
+    alt="Organic Hub"
+  />
+
+
+  <!-- 🔥 BRAND TEXT -->
+  <span class="brand-text">Organic Hub</span>
+
+  <button
+    type="button"
+    class="menu-btn"
+    aria-label="Toggle sidebar"
+    (click)="toggleSidebar()"
+  >
+    ☰
+  </button>
+
+  <span class="welcome-text">
+    Welcome to Organic Hub CMS
+  </span>
+
+</div>
+
+
+  <!-- RIGHT -->
+  <div class="topbar-right">
+
+    <div class="user-dropdown">
+
+      <button
+        type="button"
+        class="user-btn"
+        aria-haspopup="menu"
+        [attr.aria-expanded]="userMenuOpen"
+        (click)="toggleUserMenu($event)"
+      >
+        Md. Zahidul Hoque
+        <span class="caret">▾</span>
+      </button>
+
+      <div
+        class="user-menu"
+        *ngIf="userMenuOpen"
+        role="menu"
+      >
+        <button type="button" class="menu-item">
+          <span class="icon">🔑</span>
+          Change Password
+        </button>
+
+        <button
+          type="button"
+          class="menu-item logout"
+          (click)="logout()"
+        >
+          <span class="icon">⏻</span>
+          Logout
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+
+</header>

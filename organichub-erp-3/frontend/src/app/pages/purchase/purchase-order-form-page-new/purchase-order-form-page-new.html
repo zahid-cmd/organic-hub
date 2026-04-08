@@ -1,0 +1,519 @@
+<app-organic-toast></app-organic-toast>
+
+<div class="page-body">
+
+  <!-- PAGE HEADER -->
+  <app-page-sub-header title="Add / Update Purchase Order">
+
+    <div page-actions class="subheader-actions">
+
+      <button
+        type="button"
+        class="ch-btn primary"
+        (click)="onSave()"
+        [disabled]="mode === 'view'">
+        {{ mode === 'edit' ? 'Update' : 'Save' }}
+      </button>
+
+      <button
+        type="button"
+        class="ch-btn"
+        (click)="onReset()"
+        *ngIf="mode !== 'view'">
+        Reset
+      </button>
+
+      <button
+        type="button"
+        class="ch-btn"
+        (click)="onBack()">
+        Back
+      </button>
+
+    </div>
+
+  </app-page-sub-header>
+
+  <div class="page-body-content">
+
+    <div class="pi-body">
+
+      <!-- LEFT -->
+      <div class="pi-col pi-left">
+
+        <div class="pi-box">
+
+          <div class="pi-box-title">Order Details</div>
+
+          <div class="pi-row">
+
+            <div class="pi-field">
+              <label>Order Number</label>
+              <input type="text"
+                     [(ngModel)]="order.orderNumber"
+                     readonly>
+            </div>
+
+            <div class="pi-field">
+              <label>Order Date</label>
+              <input type="date"
+                     [(ngModel)]="order.orderDate"
+                     [disabled]="mode === 'view'">
+            </div>
+
+          </div>
+
+          <div class="pi-field pi-full">
+
+            <label>Supplier</label>
+
+            <select [(ngModel)]="order.supplierId"
+                    [disabled]="mode === 'view'">
+
+              <option [ngValue]="null">Select Supplier</option>
+
+              <option *ngFor="let s of suppliers"
+                      [ngValue]="s.id">
+                {{ s.supplierName }}
+              </option>
+
+            </select>
+
+          </div>
+
+          <div class="pi-field pi-full">
+
+            <label>Purchase Type</label>
+
+              <select [(ngModel)]="selectedPurchaseTypeId"
+                      (ngModelChange)="onPurchaseTypeChange()"
+                      [disabled]="isPurchaseTypeLocked()">
+
+              <option [ngValue]="null">Select Purchase Type</option>
+
+              <option *ngFor="let pt of purchaseTypes"
+                      [ngValue]="pt.id">
+                {{ pt.typeName }}
+              </option>
+
+            </select>
+
+          </div>
+
+          <div class="pi-field pi-full">
+
+            <label>Status</label>
+
+            <select [(ngModel)]="order.status"
+                    [disabled]="mode === 'view'">
+              <option value="Draft">Draft</option>
+              <option value="Approved">Approved</option>
+              <option value="Processed">Processed</option>
+            </select>
+
+          </div>
+
+        </div>
+
+        <!-- ADD PRODUCT -->
+
+        <div class="pi-box">
+
+          <div class="pi-box-title">Add Product</div>
+
+          <div class="pi-field pi-full">
+
+            <label>Sub Category</label>
+
+            <select [(ngModel)]="selectedSubCategoryId"
+                    (ngModelChange)="onSubCategoryChange()"
+                    [disabled]="mode === 'view' || !selectedPurchaseTypeId">
+
+              <option [ngValue]="null">Select Sub Category</option>
+
+              <option *ngFor="let sc of subCategories"
+                      [ngValue]="sc.id">
+                {{ sc.subCategoryName }}
+              </option>
+
+            </select>
+
+          </div>
+
+          <div class="pi-field pi-full">
+
+            <label>Product</label>
+
+              <select
+                #productSelect
+                [(ngModel)]="selectedProductId"
+                (ngModelChange)="onProductChange()"
+                [disabled]="mode === 'view' || !selectedSubCategoryId">
+
+              <option [ngValue]="null">Select Product</option>
+
+              <option *ngFor="let p of filteredProducts"
+                [ngValue]="p.id">
+                {{ p.productName }}
+              </option>
+
+            </select>
+
+          </div>
+
+          <div class="pi-row">
+
+            <div class="pi-field">
+              <input
+                #qtyInput
+                type="number"
+                [(ngModel)]="addQty"
+                placeholder="Enter Qty"
+                class="txt-center"
+                (keydown.enter)="focusRateInput()"
+                (wheel)="$event.preventDefault()"
+                [disabled]="isLocked || !selectedProductId">
+            </div>
+
+            <div class="pi-field">
+              <input
+                #rateInput
+                type="number"
+                [(ngModel)]="addRate"
+                placeholder="Enter Rate"
+                class="txt-right"
+                min="0"
+                step="0.01"
+                inputmode="decimal"
+                (keydown.enter)="focusAddBtn()"
+                (wheel)="$event.preventDefault()"
+                [ngModelOptions]="{standalone:true}"
+                [disabled]="isLocked || !selectedProductId">
+            </div>
+
+          </div>
+
+          <div class="pi-row">
+
+            <div class="pi-field">
+              <input
+                type="text"
+                [value]="(addQty && addRate) ? (addQty * addRate | number:'1.2-2') : ''"
+                placeholder="Amount"
+                readonly>
+            </div>
+
+            <div class="pi-field">
+              <input
+                type="text"
+                [value]="selectedProductId ? getSelectedProductStock() : ''"
+                placeholder="Stock"
+                readonly>
+            </div>
+
+          </div>
+
+          <div class="pi-row">
+
+            <div class="pi-field"></div>
+
+            <div class="pi-field pi-add-field">
+
+              <button
+                #addBtn
+                class="pi-add-btn"
+                (click)="addProductToCart()"
+                (keydown.enter)="addProductToCart()"
+                [disabled]="isLocked || !selectedProductId">
+                Add
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- CENTER -->
+
+      <div class="pi-col pi-center">
+
+        <div class="pi-center-box">
+
+          <div class="pi-box">
+
+            <div class="pi-box-title">Order Summary</div>
+
+            <div class="pi-summary-row">
+
+              <div class="pi-summary-item">
+                <label>Order Value</label>
+                <input type="text"
+                       [value]="totalAmount !== null ? (totalAmount | number:'1.0-0') : ''"
+                       placeholder="-"
+                       readonly>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="pi-box pi-cart">
+
+            <div class="pi-box-title">Product Cart</div>
+
+            <div class="pi-cart-table-wrapper">
+
+              <table class="product-table">
+
+                <thead>
+                  <tr>
+                    <th class="col-no">#</th>
+                    <th class="col-product">Product</th>
+                    <th class="col-qty">Qty</th>
+                    <th class="col-rate">Rate</th>
+                    <th class="col-amount">Amount</th>
+                    <th class="col-action">Action</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+
+                      <tr
+                        *ngFor="let item of order.items; let i = index"
+                        (dblclick)="openCartEditPopup(item,i)"
+                        style="cursor:pointer"
+                      >
+
+                    <td class="col-no">{{ i + 1 }}</td>
+
+                    <td class="col-product">
+                      {{ item.productName }}
+                    </td>
+
+                    <td class="col-qty">
+
+                      <div class="qty-control">
+
+                        <button class="qty-btn minus"
+                                (click)="decreaseQty(item)"
+                                [disabled]="mode === 'view'">−</button>
+
+                        <input class="qty-input"
+                               type="number"
+                               [(ngModel)]="item.qty"
+                               [disabled]="mode === 'view'">
+
+                        <button class="qty-btn plus"
+                                (click)="increaseQty(item)"
+                                [disabled]="mode === 'view'">+</button>
+
+                      </div>
+
+                    </td>
+
+                    <td class="col-rate">
+                      {{ item.rate | number:'1.0-0' }}
+                    </td>
+
+                    <td class="col-amount">
+                      {{ (item.qty || 0) * (item.rate || 0) | number:'1.0-0' }}
+                    </td>
+
+                    <td class="col-action">
+
+                      <button class="remove-btn"
+                              (click)="removeItem(i)"
+                              [disabled]="mode === 'view'">
+                        ×
+                      </button>
+
+                    </td>
+
+                  </tr>
+
+                </tbody>
+
+                <tfoot>
+
+                  <tr class="cart-total-row">
+
+                    <td></td>
+                    <td><b>Total</b></td>
+
+                    <td style="text-align:center;font-weight:700;">
+                      {{ totalQty !== null ? totalQty : '–' }}
+                    </td>
+
+                    <td></td>
+
+                    <td style="text-align:right;font-weight:700;">
+                      {{ totalAmount !== null ? (totalAmount | number:'1.0-0') : '–' }}
+                    </td>
+
+                    <td></td>
+
+                  </tr>
+
+                </tfoot>
+
+              </table>
+
+            </div>
+
+          </div>
+
+          <div class="pi-box">
+
+            <div class="pi-box-title">Notes / Remarks</div>
+
+            <textarea class="pi-notes"
+                      [(ngModel)]="order.notes"
+                      [disabled]="mode === 'view'">
+            </textarea>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- RIGHT -->
+
+      <div class="pi-col pi-right">
+
+        <div class="pi-shelf">
+
+          <div class="pi-shelf-header">
+
+            <div class="pi-shelf-title">
+              Product Shelf
+            </div>
+
+            <div class="pi-shelf-search">
+
+              <input type="text"
+                     placeholder="Search product..."
+                     [(ngModel)]="productSearch"
+                     (ngModelChange)="filterProducts()">
+
+            </div>
+
+          </div>
+
+          <div class="pi-shelf-list">
+
+            <div class="pi-product-card"
+                 *ngFor="let p of filteredProducts"
+                 (click)="openShelfPopup(p)">
+
+              <div class="pi-product-img">
+                <img [src]="p.imageUrl || '/Logo.png'">
+              </div>
+
+              <div class="pi-product-name">
+                {{ p.productName }}
+              </div>
+
+              <div class="pi-product-stock">
+                Stock: {{ p.stock ?? 0 }}
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ================= POPUP ================= -->
+
+<div class="po-popup-overlay" *ngIf="showShelfPopup">
+
+  <div class="po-popup">
+
+    <div class="po-popup-header">
+
+      <span class="popup-title">
+        {{ popupProduct?.productName }}
+      </span>
+
+      <button class="popup-close"
+              (click)="closeShelfPopup()">
+        ×
+      </button>
+
+    </div>
+
+  <div class="popup-row">
+
+    <div class="popup-field">
+      <label>Qty</label>
+      <input
+        #popupQtyInput
+        type="number"
+        [(ngModel)]="popupQty"
+        placeholder="Quantity"
+        (keydown)="popupKeydown($event,'qty')">
+    </div>
+
+    <div class="popup-field">
+      <label>Rate</label>
+      <input
+        #popupRateInput
+        type="number"
+        [(ngModel)]="popupRate"
+        placeholder="Rate"
+        (keydown)="popupKeydown($event,'rate')">
+    </div>
+
+    <div class="popup-field">
+      <label>Amount</label>
+      <input
+        type="text"
+        [value]="popupAmount !== null ? (popupAmount | number:'1.0-0') : ''"
+        placeholder="Amount"
+        readonly>
+    </div>
+
+    <div class="popup-field">
+      <label>Stock</label>
+      <input
+        type="text"
+        [value]="popupProduct?.stock ?? ''"
+        placeholder="Stock"
+        readonly>
+    </div>
+
+  </div>
+
+    <div class="po-popup-actions">
+
+      <button class="popup-btn cancel-btn"
+              (click)="closeShelfPopup()">
+        Cancel
+      </button>
+
+      <button
+        #popupAddBtn
+        class="popup-btn add-btn"
+        (click)="addFromPopup()"
+        (keydown)="popupKeydown($event,'add')">
+        Add
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

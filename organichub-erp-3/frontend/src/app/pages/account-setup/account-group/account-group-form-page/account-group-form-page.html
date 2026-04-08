@@ -1,0 +1,158 @@
+<div class="page-body">
+
+  <app-organic-toast></app-organic-toast>
+
+<app-page-sub-header title="Create / Update Bank Account">
+  <div page-actions class="subheader-actions">
+
+    <button
+      type="button"
+      class="ch-btn"
+      *ngIf="!isViewMode"
+      (click)="onSave()">
+      {{ mode === 'edit' ? 'Update' : 'Save' }}
+    </button>
+
+    <button
+      type="button"
+      class="ch-btn"
+      *ngIf="!isViewMode"
+      (click)="onClear()">
+      Clear
+    </button>
+
+    <button
+      type="button"
+      class="ch-btn"
+      (click)="onBack()">
+      Back
+    </button>
+
+  </div>
+</app-page-sub-header>
+
+  <div class="page-body-content">
+    <div class="form-body">
+
+      <!-- COLUMN 1 -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+
+            <div class="section-header">Parent Control</div>
+
+            <div class="form-field">
+              <label>Account Class</label>
+
+                <select
+                  [(ngModel)]="accountGroup.accountClassId"
+                  (ngModelChange)="onClassChange($event)"
+                  [disabled]="isViewMode">
+
+                  <option [ngValue]="null" disabled>
+                    Select Account Class
+                  </option>
+
+                  <option
+                    *ngFor="let c of accountClasses"
+                    [ngValue]="c.id">
+                    {{ c.classCode }} - {{ c.className }}
+                  </option>
+
+                </select>
+            </div>
+
+            <div class="form-field">
+              <label>Status</label>
+              <select
+                [(ngModel)]="accountGroup.status"
+                [disabled]="isViewMode">
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+              </select>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- COLUMN 2 -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+
+            <div class="section-header">Group Information</div>
+
+            <div class="form-field">
+              <label>Group Code</label>
+              <input
+                type="text"
+                [(ngModel)]="accountGroup.groupCode"
+                readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Group Name</label>
+              <input
+                type="text"
+                [(ngModel)]="accountGroup.groupName"
+                [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>Remarks</label>
+              <textarea
+                [(ngModel)]="accountGroup.remarks"
+                [disabled]="isViewMode">
+              </textarea>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- COLUMN 3 -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+
+            <div class="section-header">Created Information</div>
+
+            <div class="form-field">
+              <label>Created By</label>
+              <input type="text" [(ngModel)]="accountGroup.createdBy" readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Created Date</label>
+              <input type="text" [(ngModel)]="accountGroup.createdDate" readonly>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- COLUMN 4 -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+
+            <div class="section-header">Updated Information</div>
+
+            <div class="form-field">
+              <label>Updated By</label>
+              <input type="text" [(ngModel)]="accountGroup.updatedBy" readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Updated Date</label>
+              <input type="text" [(ngModel)]="accountGroup.updatedDate" readonly>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

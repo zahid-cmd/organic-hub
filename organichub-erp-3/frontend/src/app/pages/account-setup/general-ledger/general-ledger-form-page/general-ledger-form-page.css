@@ -1,0 +1,167 @@
+/* ======================================================
+   FORM GRID (ACCOUNT CLASS – LOCKED CONTRACT)
+====================================================== */
+.form-body {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+
+  /* 🔒 MUST MATCH STANDARD FORM CONTRACT */
+  height: calc(100vh - var(--page-offset));
+  padding-top: 8px;
+  box-sizing: border-box;
+
+  align-items: stretch;
+}
+
+/* ======================================================
+   COLUMN (FULL HEIGHT – NO AUTO SHRINK)
+====================================================== */
+.form-col {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+/* ======================================================
+   GROUP BOX (SECTION CONTAINER – FIXED)
+====================================================== */
+.form-group-box {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 16px;
+  box-sizing: border-box;
+
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ======================================================
+   SECTION (INTERNAL LAYOUT)
+====================================================== */
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: 100%;
+}
+
+/* ======================================================
+   SECTION HEADER
+====================================================== */
+.section-header {
+  flex-shrink: 0;
+  font-size: 16px;
+  font-weight: 600;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 4px;
+}
+
+/* ======================================================
+   FIELD
+====================================================== */
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-field label {
+  font-size: 14px;
+  color: #374151;
+}
+
+/* ======================================================
+   INPUT + SELECT (UNIFIED & FIXED HEIGHT)
+====================================================== */
+.form-field input,
+.form-field select {
+  height: 36px;
+  width: 100%;
+
+  padding: 4px 10px;
+  font-size: 14px;
+  line-height: 1.2;
+
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  box-sizing: border-box;
+
+  background-color: #ffffff;
+  color: #111827;
+
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+/* ======================================================
+   TEXTAREA (REMARKS – DOUBLE HEIGHT, CONTROLLED)
+====================================================== */
+.form-field textarea {
+  width: 100%;
+  height: 76px;              /* 🔒 FIXED DOUBLE HEIGHT */
+  resize: none;
+
+  padding: 6px 10px;
+  font-size: 14px;
+  line-height: 1.4;
+
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  box-sizing: border-box;
+
+  background-color: #ffffff;
+  color: #111827;
+}
+
+/* ======================================================
+   SELECT DROPDOWN ARROW (STANDARD)
+====================================================== */
+.form-field select {
+  background-image:
+    linear-gradient(45deg, transparent 50%, #6b7280 50%),
+    linear-gradient(135deg, #6b7280 50%, transparent 50%);
+  background-position:
+    calc(100% - 18px) 50%,
+    calc(100% - 12px) 50%;
+  background-size:
+    6px 6px,
+    6px 6px;
+  background-repeat: no-repeat;
+}
+
+/* ======================================================
+   FOCUS STYLE (STANDARD)
+====================================================== */
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  outline: none;
+  border-color: #1f7a3a;
+  box-shadow: 0 0 0 2px rgba(95, 174, 59, 0.25);
+}
+
+/* ======================================================
+   VIEW MODE / DISABLED
+====================================================== */
+.form-field input:disabled,
+.form-field select:disabled,
+.form-field textarea:disabled {
+  background: #f9fafb;
+  color: #6b7280;
+  cursor: not-allowed;
+}
+
+/* ======================================================
+   READONLY (AUTO / SYSTEM FIELDS)
+====================================================== */
+.form-field input[readonly] {
+  background: #f3f4f6;
+  color: #374151;
+  cursor: default;
+}

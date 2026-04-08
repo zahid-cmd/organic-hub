@@ -1,0 +1,312 @@
+/* =====================================================
+   ROOT LAYOUT
+===================================================== */
+
+.pi-body {
+  height: calc(100vh - var(--page-offset));
+  display: flex;
+  gap: 12px;
+  padding: 12px 0 20px;
+  box-sizing: border-box;
+}
+
+/* =====================================================
+   COLUMNS
+===================================================== */
+
+.pi-col {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.pi-left {
+  width: 25%;
+  background: #ffffff;
+  border-radius: 6px;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pi-center {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =====================================================
+   BOXES
+===================================================== */
+
+.pi-box {
+  background: #ffffff;
+  border: 1px solid #e1e1e1;
+  border-radius: 6px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pi-box-title {
+  font-size: 13px;
+  font-weight: 600;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 6px;
+  margin-bottom: 6px;
+}
+
+/* =====================================================
+   FORM FIELDS
+===================================================== */
+
+.pi-box label {
+  font-size: 12px;
+  color: #444;
+}
+
+.pi-box input,
+.pi-box select,
+.pi-box textarea {
+  height: 34px;
+  font-size: 12px;
+  padding: 0 6px;
+  border: 1px solid #9fb89a;
+  border-radius: 4px;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0; /* 🔑 critical for grid */
+}
+
+.pi-box input[readonly],
+.pi-box input[disabled],
+.pi-box select[disabled] {
+  background-color: #f5f5f5;
+  border-color: #d0d0d0;
+  font-weight: 600;
+  cursor: not-allowed;
+}
+
+/* =====================================================
+   LEFT COLUMN GRID
+===================================================== */
+
+.pi-row,
+.pi-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.pi-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pi-full {
+  width: 100%;
+}
+
+/* =====================================================
+   ADD RAW MATERIAL – ROW 1
+   (Raw Material dropdown DOUBLE WIDTH)
+===================================================== */
+
+.pi-add-row {
+  display: grid;
+  width: 100%;
+  gap: 8px;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.pi-add-row.row-1 {
+  grid-template-columns:
+    2.4fr   /* Raw Material */
+    1fr     /* Invoice Qty */
+    1fr     /* Loss / Gain % */
+    1fr     /* Net Qty */
+    1fr     /* Invoice Rate */
+    1fr     /* Effective Rate */
+    1.2fr;  /* Invoice Amount */
+}
+
+/* =====================================================
+   ADD RAW MATERIAL – ROW 2
+   (Product dropdown DOUBLE WIDTH)
+===================================================== */
+
+/* ROW 2 with ADD button */
+.pi-add-row.row-2 {
+  display: grid;
+  grid-template-columns:
+    2.4fr   /* Raw Material */
+    1fr     /* Invoice Qty */
+    1fr     /* Loss / Gain % */
+    1fr     /* Net Qty */
+    1fr     /* Invoice Rate */
+    1fr     /* Effective Rate */
+    1.2fr;  /* Invoice Amount */
+  gap: 8px;
+  align-items: center;
+}
+
+/* Inline add button */
+.pi-add-inline {
+  height: 34px;
+  width: 100%;
+  padding: 0;
+  font-size: 13px;
+  font-weight: 600;
+  background: linear-gradient(135deg, #1f7a3a, #5fae3b);
+  color: #fff;
+  border: 1px solid #1f7a3a;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+
+.pi-add-row input {
+  text-align: center;
+}
+
+.pi-add-row select {
+  text-align: left;
+}
+
+/* =====================================================
+   ADD BUTTON
+===================================================== */
+
+.pi-add-action {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.pi-add-action .ch-btn.primary {
+  height: 32px;
+  min-width: 72px;
+  padding: 0 18px;
+  background: linear-gradient(135deg, #1f7a3a 0%, #5fae3b 100%);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid #1f7a3a;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* =====================================================
+   MATERIAL CONSUMPTION TABLE
+===================================================== */
+
+.pi-cart {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.pi-cart table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.pi-cart thead th {
+  position: sticky;
+  top: 0;
+  background: #f6f7f4;
+  border-bottom: 1px solid #ddd;
+  padding: 8px;
+  font-weight: 600;
+}
+
+.pi-cart td {
+  padding: 6px 8px;
+  border-bottom: 1px solid #eee;
+}
+
+.txt-center { text-align: center; }
+.txt-right  { text-align: right; }
+
+.cart-empty {
+  text-align: center;
+  padding: 20px;
+  color: #888;
+  font-style: italic;
+}
+
+/* =====================================================
+   COST SUMMARY – CORRECT WIDTH FIX
+===================================================== */
+
+/* Reduce Total Cost column width */
+.pi-left .pi-box:nth-of-type(2) .pi-row-2 {
+  grid-template-columns: 1fr 160px; /* matches date field */
+}
+
+/* =====================================================
+   INPUT INTERACTION
+===================================================== */
+
+.pi-body input:not([readonly]):not([disabled]):hover,
+.pi-body select:not([disabled]):hover {
+  border-color: #5fae3b;
+}
+
+.pi-body input:not([readonly]):not([disabled]):focus,
+.pi-body select:not([disabled]):focus {
+  outline: none;
+  border-color: #1f7a3a;
+  box-shadow: 0 0 0 2px rgba(95,174,59,0.25);
+}
+/* Center column must stretch */
+.pi-center {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Main center container */
+.pi-center-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Material Consumption box fills remaining height */
+.pi-cart {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+/* Table body scrolls if needed */
+.pi-cart table {
+  flex: 1;
+}
+/* ===============================
+   MATERIAL CONSUMPTION TOTAL ROW
+=============================== */
+
+.cart-total-row td {
+  font-weight: 700;
+  background: #f3f5ef;
+  border-top: 2px solid #d6dccf;
+  padding: 8px;
+}
+
+.cart-total-row td.txt-right {
+  color: #1f7a3a;
+}
+
+.cart-total-row td.txt-center {
+  color: #1f7a3a;
+}

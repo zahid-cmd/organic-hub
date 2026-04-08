@@ -1,0 +1,199 @@
+<div class="page-body">
+
+  <app-organic-toast></app-organic-toast>
+
+  <app-page-sub-header title="Create / Update POS Account">
+    <div page-actions class="subheader-actions">
+
+      <button class="ch-btn"
+              *ngIf="!isViewMode"
+              (click)="onSave()">
+        {{ mode === 'edit' ? 'Update' : 'Save' }}
+      </button>
+
+      <button class="ch-btn"
+              *ngIf="!isViewMode"
+              (click)="onClear()">
+        Clear
+      </button>
+
+      <button class="ch-btn"
+              (click)="onBack()">
+        Back
+      </button>
+
+    </div>
+  </app-page-sub-header>
+
+  <div class="page-body-content">
+    <div class="form-body">
+
+      <!-- ================= COLUMN 1 ================= -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+            <div class="section-header">Parent Information</div>
+
+            <!-- Branch -->
+            <div class="form-field">
+              <label>Branch</label>
+              <select
+                [(ngModel)]="posAccount.branchId"
+                (ngModelChange)="onBranchChange()"
+                [disabled]="isViewMode || mode === 'edit'">
+
+                <option [ngValue]="null">Select Branch</option>
+
+                <option *ngFor="let b of branches"
+                        [ngValue]="b.id">
+                  {{ b.branchCode }} - {{ b.branchName }}
+                </option>
+              </select>
+            </div>
+
+            <!-- SubGroup -->
+            <div class="form-field">
+              <label>Account SubGroup</label>
+              <input type="text" value="Cash With POS" readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Account SubGroup Code</label>
+              <input type="text" value="SUB-01-06-001" readonly>
+            </div>
+
+            <!-- Status -->
+            <div class="form-field">
+              <label>Status</label>
+              <select [(ngModel)]="posAccount.status"
+                      [disabled]="isViewMode">
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+              </select>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= COLUMN 2 ================= -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+            <div class="section-header">POS Account Information</div>
+
+            <div class="form-field">
+              <label>Account Code</label>
+              <input type="text"
+                     [(ngModel)]="posAccount.accountCode"
+                     readonly>
+            </div>
+            <div class="form-field">
+              <label>Terminal / Merchant ID</label>
+              <input type="text"
+                    [(ngModel)]="posAccount.terminalOrMerchantId"
+                    [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>POS Ledger</label>
+              <input type="text"
+                     [value]="posLedger"
+                     readonly>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= COLUMN 3 ================= -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+            <div class="section-header">Operational Decision</div>
+            <!-- Linked Bank -->
+            <div class="form-field">
+              <label>Linked Bank Account</label>
+              <select
+                [(ngModel)]="posAccount.linkedBankAccountId"
+                [disabled]="isViewMode || !posAccount.branchId">
+
+                <option [ngValue]="null">Select Bank Account</option>
+
+                <option *ngFor="let bank of bankAccounts"
+                        [ngValue]="bank.id">
+                  {{ bank.accountCode }} - {{ bank.accountName }}
+                </option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label>Collection Account</label>
+              <select [(ngModel)]="posAccount.isCollectionAccount"
+                      [disabled]="isViewMode">
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label>Payment Account</label>
+              <select [(ngModel)]="posAccount.isPaymentAccount"
+                      [disabled]="isViewMode">
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label>Remarks</label>
+              <textarea
+                [(ngModel)]="posAccount.remarks"
+                [disabled]="isViewMode">
+              </textarea>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= COLUMN 4 ================= -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+            <div class="section-header">Audit Information</div>
+
+            <div class="form-field">
+              <label>Created By</label>
+              <input type="text"
+                     [(ngModel)]="posAccount.createdBy"
+                     readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Created Date</label>
+              <input type="text"
+                     [(ngModel)]="posAccount.createdDate"
+                     readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Updated By</label>
+              <input type="text"
+                     [(ngModel)]="posAccount.updatedBy"
+                     readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Updated Date</label>
+              <input type="text"
+                     [(ngModel)]="posAccount.updatedDate"
+                     readonly>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

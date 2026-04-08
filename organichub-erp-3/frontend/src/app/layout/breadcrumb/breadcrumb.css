@@ -1,0 +1,55 @@
+/* ===============================
+   BREADCRUMB – ORGANIC HUB
+================================ */
+.ch-breadcrumb {
+  width: 100%;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 16px;
+  box-sizing: border-box;
+
+  background: linear-gradient(
+    90deg,
+    #0A2418 0%,    /* deep organic green */
+    #8FB339 55%,   /* fresh leaf green */
+    #F4C430 100%   /* golden yellow */
+  );
+
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+
+  border-radius: 6px;
+}
+
+/* ===============================
+   HOME LABEL
+================================ */
+.ch-breadcrumb .home {
+  opacity: 0.9;
+  color: #EAF5EE;
+  cursor: default;
+}
+
+/* ===============================
+   SEPARATOR
+================================ */
+.ch-breadcrumb .separator {
+  margin: 0 8px;
+  opacity: 0.8;
+  color: #ffffff;
+}
+
+/* ===============================
+   CURRENT PAGE
+================================ */
+.ch-breadcrumb .current {
+  font-weight: 600;
+  color: #1F5F3B;   /* dark green text */
+  background: rgba(255, 255, 255, 0.75);
+  padding: 2px 8px;
+  border-radius: 4px;
+}

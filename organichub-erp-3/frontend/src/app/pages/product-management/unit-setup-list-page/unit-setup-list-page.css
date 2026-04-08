@@ -1,0 +1,264 @@
+/* ===================================================== */
+/* PAGE LAYOUT                                           */
+/* ===================================================== */
+
+.page-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.page-body-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+
+/* ===================================================== */
+/* LIST BODY                                             */
+/* ===================================================== */
+
+.ch-list-body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+
+/* ===================================================== */
+/* TABLE CONTAINER                                       */
+/* ===================================================== */
+
+.ch-list-table {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+
+/* ===================================================== */
+/* HEADER (LOCKED ORGANIC STYLE)                         */
+/* ===================================================== */
+
+.ch-list-header {
+  flex-shrink: 0;
+  display: grid;
+
+  /* UNIT PAGE GRID */
+  grid-template-columns:
+    0.4fr
+    1.0fr
+    4fr
+    .5fr
+    0.5fr;
+
+  align-items: center;
+  height: 44px;
+
+  background-color: #e8f3e4; /* 🔒 LOCKED */
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f2937;
+
+  border-bottom: 1px solid #e0e6f1;
+}
+
+
+/* ===================================================== */
+/* BODY ROWS                                             */
+/* ===================================================== */
+
+.ch-list-body-rows {
+  flex: 1;
+  min-height: 0;
+  max-height: calc(10 * 43px); /* 🔒 10 rows fixed */
+  overflow-y: auto;
+}
+
+
+/* ===================================================== */
+/* ROW                                                   */
+/* ===================================================== */
+
+.ch-list-row {
+  display: grid;
+
+  grid-template-columns:
+    0.4fr
+    1.0fr
+    4fr
+    .5fr
+    0.5fr;
+
+  align-items: center;
+  min-height: 42px;
+  font-size: 14px;
+  border-bottom: 1px solid #eef0f4;
+}
+
+.ch-list-row:last-child {
+  border-bottom: none;
+}
+
+
+/* ===================================================== */
+/* CELLS                                                 */
+/* ===================================================== */
+
+.col {
+  padding: 0 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.col-sl {
+  text-align: center;
+}
+
+
+/* ===================================================== */
+/* SORTABLE HEADER                                       */
+/* ===================================================== */
+
+.sortable {
+  cursor: pointer;
+  user-select: none;
+  transition: none; /* 🔒 no animation shift */
+}
+
+.sortable:hover {
+  background-color: #e8f3e4 !important; /* 🔒 no color change */
+  color: #2e7d32;
+}
+
+
+/* ===================================================== */
+/* ACTION COLUMN                                         */
+/* ===================================================== */
+
+.ch-list-header .col-actions {
+  text-align: center;
+  justify-content: center;
+}
+
+.action-icons {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.icon-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  border: none;
+  background: #f4f6fb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.icon-btn.view { color: #2f6b3f; }
+.icon-btn.edit { color: #c48a12; }
+.icon-btn.delete { color: #dc2626; }
+
+.icon-btn:hover {
+  background: #e5e7eb;
+}
+
+
+/* ===================================================== */
+/* STATUS BADGE                                          */
+/* ===================================================== */
+
+.status-badge {
+  padding: 4px 10px;
+  border-radius: 14px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.status-badge.active {
+  background: #d4f5df;
+  color: #2e7d32;
+}
+
+.status-badge.inactive {
+  background: #ffe5e5;
+  color: #c62828;
+}
+
+
+/* ===================================================== */
+/* SCROLLBAR                                             */
+/* ===================================================== */
+
+.ch-list-body-rows::-webkit-scrollbar {
+  width: 6px;
+}
+
+.ch-list-body-rows::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+
+/* ===================================================== */
+/* LOADING / ERROR / EMPTY                               */
+/* ===================================================== */
+
+.ch-loading {
+  padding: 20px;
+  font-weight: 500;
+}
+
+.ch-error {
+  color: #c0392b;
+  padding: 20px;
+  font-weight: 500;
+}
+
+.ch-empty-state {
+  padding: 25px;
+  text-align: center;
+  opacity: 0.7;
+}
+/* If Status is the 2nd last column */
+.ch-list-header .col:nth-last-child(2),
+.ch-list-row .col:nth-last-child(2) {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* =====================================================
+   EMPTY STATE
+===================================================== */
+.ch-empty-state {
+  flex: 1;                          /* 🔥 controls height filling */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;          /* 🔥 vertical centering */
+
+  background: #ffffff;              /* 🔥 background color */
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+
+  text-align: center;
+  padding: 40px 20px;
+}

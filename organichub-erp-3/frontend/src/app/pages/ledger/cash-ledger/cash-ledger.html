@@ -1,0 +1,381 @@
+<!-- PAGE SUB HEADER -->
+<div class="ch-page-subheader">
+  <div class="subheader-left">
+    <select class="ch-input ch-input-wide">
+      <option>Select Account Sub Group</option>
+    </select>
+
+    <select class="ch-input ch-input-wide">
+      <option>Select Ledger</option>
+    </select>
+
+    <input type="date" class="ch-input" />
+    <input type="date" class="ch-input" />
+
+    <select class="ch-input">
+      <option value="yes">Ledger Code : Yes</option>
+      <option value="no">Ledger Code : No</option>
+    </select>
+
+    <select class="ch-input">
+      <option value="yes">Narration : Yes</option>
+      <option value="no">Narration : No</option>
+    </select>
+
+    <button class="ch-btn primary">Submit</button>
+  </div>
+
+  <div class="subheader-right">
+    <button class="ch-btn">Back</button>
+    <button class="icon-btn" (click)="printPage()">
+      <i class="fa fa-print"></i>
+    </button>
+  </div>
+</div>
+
+<!-- REPORT HEADER -->
+<div class="ledger-report-wrapper">
+  <div class="ledger-report-header">
+    <div class="ledger-report-left">
+      <img src="/assets/Logo.png" alt="Organic Hub" />
+    </div>
+
+    <div class="ledger-report-right">
+      <h2>ORGANIC HUB</h2>
+      <div class="ledger-report-title">Cash Ledger</div>
+      <div class="ledger-report-meta">
+        Suite # 02, 6th Floor, DOHS Shopping Complex, Mirpur, Dhaka 1216
+      </div>
+    </div>
+  </div>
+
+  <div class="ledger-report-divider"></div>
+</div>
+
+<!-- LEDGER META -->
+<div class="ledger-meta-row">
+  <div class="ledger-meta-left">
+    <strong>Ledger Name:</strong> Cash In Hand – Sales Center – Mirpur
+  </div>
+  <div class="ledger-meta-right">
+    <strong>Period:</strong> 01-01-2026 to 31-01-2026
+  </div>
+</div>
+
+<!-- LEDGER TABLE -->
+<div class="ledger-table-wrapper">
+
+  <!-- TABLE HEADER -->
+  <div class="ledger-table-header">
+    <div>Date</div>
+    <div>Particulars</div>
+    <div>Reference</div>
+    <div class="right">Debit</div>
+    <div class="right">Credit</div>
+    <div class="balance-merged-header right">Balance</div>
+    <div>Remarks</div>
+  </div>
+
+  <!-- OPENING BALANCE -->
+  <div class="ledger-row opening">
+    <div></div>
+    <div><strong>Opening Balance</strong></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div class="right"><strong>40,000.00</strong></div>
+    <div class="center dr">Dr</div>
+    <div></div>
+  </div>
+
+  <!-- SCROLLABLE BODY -->
+  <div class="ledger-table-scroll">
+    <div class="ledger-table-body">
+
+      <!-- ===== TRANSACTIONS (15+) ===== -->
+
+      <!-- 1 -->
+      <div class="ledger-row transaction">
+        <div>01-01-2026</div>
+        <div>Cash Sales – Mirpur</div>
+        <div>RV-1001</div>
+        <div class="right">10,000.00</div>
+        <div class="right"></div>
+        <div class="right">50,000.00</div>
+        <div class="center dr">Dr</div>
+        <div>Sales</div>
+      </div>
+      <div class="ledger-row ledger-remarks">
+        <div></div>
+        <div class="remarks-cell"><strong>Narration :</strong> Cash sales morning shift</div>
+        <div></div><div></div><div></div><div></div><div></div><div></div>
+      </div>
+
+      <!-- 2 -->
+      <div class="ledger-row transaction">
+        <div>01-01-2026</div>
+        <div>Cash Deposit to Bank</div>
+        <div>PV-1002</div>
+        <div class="right"></div>
+        <div class="right">15,000.00</div>
+        <div class="right">35,000.00</div>
+        <div class="center cr">Cr</div>
+        <div>Deposit</div>
+      </div>
+      <div class="ledger-row ledger-remarks">
+        <div></div>
+        <div class="remarks-cell"><strong>Narration :</strong> Deposit to BBL Mirpur</div>
+        <div></div><div></div><div></div><div></div><div></div><div></div>
+      </div>
+
+      <!-- 3 -->
+      <div class="ledger-row transaction">
+        <div>02-01-2026</div>
+        <div>Cash Sales – Evening</div>
+        <div>RV-1003</div>
+        <div class="right">12,000.00</div>
+        <div class="right"></div>
+        <div class="right">47,000.00</div>
+        <div class="center dr">Dr</div>
+        <div>Sales</div>
+      </div>
+      <div class="ledger-row ledger-remarks">
+        <div></div>
+        <div class="remarks-cell"><strong>Narration :</strong> Evening counter sales</div>
+        <div></div><div></div><div></div><div></div><div></div><div></div>
+      </div>
+
+      <!-- 4 -->
+      <div class="ledger-row transaction">
+        <div>03-01-2026</div>
+        <div>Office Expense – Cash</div>
+        <div>PV-1004</div>
+        <div class="right"></div>
+        <div class="right">5,000.00</div>
+        <div class="right">42,000.00</div>
+        <div class="center cr">Cr</div>
+        <div>Expense</div>
+      </div>
+      <div class="ledger-row ledger-remarks">
+        <div></div>
+        <div class="remarks-cell"><strong>Narration :</strong> Office stationery purchase</div>
+        <div></div><div></div><div></div><div></div><div></div><div></div>
+      </div>
+
+      <!-- 5 -->
+      <div class="ledger-row transaction">
+        <div>04-01-2026</div>
+        <div>Cash Sales – Mirpur</div>
+        <div>RV-1005</div>
+        <div class="right">8,000.00</div>
+        <div class="right"></div>
+        <div class="right">50,000.00</div>
+        <div class="center dr">Dr</div>
+        <div>Sales</div>
+      </div>
+      <div class="ledger-row ledger-remarks">
+        <div></div>
+        <div class="remarks-cell"><strong>Narration :</strong> Weekend sales</div>
+        <div></div><div></div><div></div><div></div><div></div><div></div>
+      </div>
+      <!-- 1 -->
+      <div class="ledger-row transaction">
+        <div>01-01-2026</div>
+        <div>Cash Sales – Mirpur</div>
+        <div>RV-1001</div>
+        <div class="right">10,000.00</div>
+        <div class="right"></div>
+        <div class="right">50,000.00</div>
+        <div class="center dr">Dr</div>
+        <div>Sales</div>
+      </div>
+      <div class="ledger-row ledger-remarks">
+        <div></div>
+        <div class="remarks-cell"><strong>Narration :</strong> Cash sales morning shift</div>
+        <div></div><div></div><div></div><div></div><div></div><div></div>
+      </div>
+
+      <!-- 2 -->
+      <div class="ledger-row transaction">
+        <div>01-01-2026</div>
+        <div>Cash Deposit to Bank</div>
+        <div>PV-1002</div>
+        <div class="right"></div>
+        <div class="right">15,000.00</div>
+        <div class="right">35,000.00</div>
+        <div class="center cr">Cr</div>
+        <div>Deposit</div>
+      </div>
+      <div class="ledger-row ledger-remarks">
+        <div></div>
+        <div class="remarks-cell"><strong>Narration :</strong> Deposit to BBL Mirpur</div>
+        <div></div><div></div><div></div><div></div><div></div><div></div>
+      </div>
+
+      <!-- 3 -->
+      <div class="ledger-row transaction">
+        <div>02-01-2026</div>
+        <div>Cash Sales – Evening</div>
+        <div>RV-1003</div>
+        <div class="right">12,000.00</div>
+        <div class="right"></div>
+        <div class="right">47,000.00</div>
+        <div class="center dr">Dr</div>
+        <div>Sales</div>
+      </div>
+      <div class="ledger-row ledger-remarks">
+        <div></div>
+        <div class="remarks-cell"><strong>Narration :</strong> Evening counter sales</div>
+        <div></div><div></div><div></div><div></div><div></div><div></div>
+      </div>
+
+      <!-- 4 -->
+      <div class="ledger-row transaction">
+        <div>03-01-2026</div>
+        <div>Office Expense – Cash</div>
+        <div>PV-1004</div>
+        <div class="right"></div>
+        <div class="right">5,000.00</div>
+        <div class="right">42,000.00</div>
+        <div class="center cr">Cr</div>
+        <div>Expense</div>
+      </div>
+      <div class="ledger-row ledger-remarks">
+        <div></div>
+        <div class="remarks-cell"><strong>Narration :</strong> Office stationery purchase</div>
+        <div></div><div></div><div></div><div></div><div></div><div></div>
+      </div>
+
+      <!-- 5 -->
+      <div class="ledger-row transaction">
+        <div>04-01-2026</div>
+        <div>Cash Sales – Mirpur</div>
+        <div>RV-1005</div>
+        <div class="right">8,000.00</div>
+        <div class="right"></div>
+        <div class="right">50,000.00</div>
+        <div class="center dr">Dr</div>
+        <div>Sales</div>
+      </div>
+      <div class="ledger-row ledger-remarks">
+        <div></div>
+        <div class="remarks-cell"><strong>Narration :</strong> Weekend sales</div>
+        <div></div><div></div><div></div><div></div><div></div><div></div>
+      </div>
+      <!-- 1 -->
+      <div class="ledger-row transaction">
+        <div>01-01-2026</div>
+        <div>Cash Sales – Mirpur</div>
+        <div>RV-1001</div>
+        <div class="right">10,000.00</div>
+        <div class="right"></div>
+        <div class="right">50,000.00</div>
+        <div class="center dr">Dr</div>
+        <div>Sales</div>
+      </div>
+      <div class="ledger-row ledger-remarks">
+        <div></div>
+        <div class="remarks-cell"><strong>Narration :</strong> Cash sales morning shift</div>
+        <div></div><div></div><div></div><div></div><div></div><div></div>
+      </div>
+
+      <!-- 2 -->
+      <div class="ledger-row transaction">
+        <div>01-01-2026</div>
+        <div>Cash Deposit to Bank</div>
+        <div>PV-1002</div>
+        <div class="right"></div>
+        <div class="right">15,000.00</div>
+        <div class="right">35,000.00</div>
+        <div class="center cr">Cr</div>
+        <div>Deposit</div>
+      </div>
+      <div class="ledger-row ledger-remarks">
+        <div></div>
+        <div class="remarks-cell"><strong>Narration :</strong> Deposit to BBL Mirpur</div>
+        <div></div><div></div><div></div><div></div><div></div><div></div>
+      </div>
+
+      <!-- 3 -->
+      <div class="ledger-row transaction">
+        <div>02-01-2026</div>
+        <div>Cash Sales – Evening</div>
+        <div>RV-1003</div>
+        <div class="right">12,000.00</div>
+        <div class="right"></div>
+        <div class="right">47,000.00</div>
+        <div class="center dr">Dr</div>
+        <div>Sales</div>
+      </div>
+      <div class="ledger-row ledger-remarks">
+        <div></div>
+        <div class="remarks-cell"><strong>Narration :</strong> Evening counter sales</div>
+        <div></div><div></div><div></div><div></div><div></div><div></div>
+      </div>
+
+      <!-- 4 -->
+      <div class="ledger-row transaction">
+        <div>03-01-2026</div>
+        <div>Office Expense – Cash</div>
+        <div>PV-1004</div>
+        <div class="right"></div>
+        <div class="right">5,000.00</div>
+        <div class="right">42,000.00</div>
+        <div class="center cr">Cr</div>
+        <div>Expense</div>
+      </div>
+      <div class="ledger-row ledger-remarks">
+        <div></div>
+        <div class="remarks-cell"><strong>Narration :</strong> Office stationery purchase</div>
+        <div></div><div></div><div></div><div></div><div></div><div></div>
+      </div>
+
+      <!-- 5 -->
+      <div class="ledger-row transaction">
+        <div>04-01-2026</div>
+        <div>Cash Sales – Mirpur</div>
+        <div>RV-1005</div>
+        <div class="right">8,000.00</div>
+        <div class="right"></div>
+        <div class="right">50,000.00</div>
+        <div class="center dr">Dr</div>
+        <div>Sales</div>
+      </div>
+      <div class="ledger-row ledger-remarks">
+        <div></div>
+        <div class="remarks-cell"><strong>Narration :</strong> Weekend sales</div>
+        <div></div><div></div><div></div><div></div><div></div><div></div>
+      </div>
+
+      <!-- DUPLICATE similar blocks to visually confirm scroll -->
+      <!-- 6–15 (intentionally repetitive for scroll test) -->
+
+      <!-- copy/paste pattern continues… -->
+
+    </div>
+  </div>
+
+  <!-- TOTAL -->
+  <div class="ledger-row ledger-total">
+    <div></div>
+    <div><strong>Total</strong></div>
+    <div></div>
+    <div class="right"><strong>30,000.00</strong></div>
+    <div class="right"><strong>20,000.00</strong></div>
+    <div class="right"></div>
+    <div></div>
+  </div>
+
+  <!-- CLOSING BALANCE -->
+  <div class="ledger-row opening">
+    <div></div>
+    <div><strong>Closing Balance</strong></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div class="right"><strong>50,000.00</strong></div>
+    <div class="center dr">Dr</div>
+    <div></div>
+  </div>
+
+</div>

@@ -1,0 +1,174 @@
+<div class="page-body">
+
+  <!-- GLOBAL TOAST -->
+  <app-organic-toast></app-organic-toast>
+
+  <!-- SUB HEADER -->
+  <app-page-sub-header title="Create / Update Account Class">
+    <div page-actions class="subheader-actions">
+
+      <button
+        type="button"
+        class="ch-btn"
+        *ngIf="!isViewMode"
+        (click)="onSave()">
+        {{ mode === 'edit' ? 'Update' : 'Save' }}
+      </button>
+
+      <button
+        type="button"
+        class="ch-btn"
+        *ngIf="!isViewMode"
+        (click)="onClear()">
+        Clear
+      </button>
+
+      <button
+        type="button"
+        class="ch-btn"
+        (click)="onBack()">
+        Back
+      </button>
+
+    </div>
+  </app-page-sub-header>
+
+  <div class="page-body-content">
+    <div class="form-body">
+
+      <!-- ============================================= -->
+      <!-- COLUMN 1 : CLASS INFORMATION -->
+      <!-- ============================================= -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+
+            <div class="section-header">Class Information</div>
+
+            <div class="form-field">
+              <label>Class Code</label>
+              <input
+                type="text"
+                [(ngModel)]="accountClass.classCode"
+                readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Class Name</label>
+              <input
+                type="text"
+                [(ngModel)]="accountClass.className"
+                [disabled]="isViewMode">
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================= -->
+      <!-- COLUMN 2 : TYPE & STATUS -->
+      <!-- ============================================= -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+
+            <div class="section-header">Type & Status</div>
+
+            <div class="form-field">
+              <label>Class Mode</label>
+              <select
+                [(ngModel)]="accountClass.classMode"
+                [disabled]="isViewMode">
+
+                <option value="">Select Mode</option>
+                <option value="Debit">Debit</option>
+                <option value="Credit">Credit</option>
+
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label>Status</label>
+              <select
+                [(ngModel)]="accountClass.status"
+                [disabled]="isViewMode">
+
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label>Remarks</label>
+              <textarea
+                [(ngModel)]="accountClass.remarks"
+                [disabled]="isViewMode">
+              </textarea>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================= -->
+      <!-- COLUMN 3 : CREATED INFO -->
+      <!-- ============================================= -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+
+            <div class="section-header">Created Information</div>
+
+            <div class="form-field">
+              <label>Created By</label>
+              <input
+                type="text"
+                [(ngModel)]="accountClass.createdBy"
+                readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Created Date</label>
+              <input
+                type="text"
+                [(ngModel)]="accountClass.createdDate"
+                readonly>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================= -->
+      <!-- COLUMN 4 : UPDATED INFO -->
+      <!-- ============================================= -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+
+            <div class="section-header">Updated Information</div>
+
+            <div class="form-field">
+              <label>Updated By</label>
+              <input
+                type="text"
+                [(ngModel)]="accountClass.updatedBy"
+                readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Updated Date</label>
+              <input
+                type="text"
+                [(ngModel)]="accountClass.updatedDate"
+                readonly>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,169 @@
+<!-- PAGE SUB HEADER (STANDARD – DO NOT TOUCH) -->
+<app-page-sub-header title="Purchase Return">
+  <div page-actions class="subheader-actions">
+    <button class="ch-btn primary" (click)="onSave()">Save</button>
+    <button class="ch-btn" (click)="onReset()">Reset</button>
+    <button class="ch-btn" (click)="onBack()">Back</button>
+  </div>
+</app-page-sub-header>
+
+<!-- PAGE BODY -->
+<div class="pi-body">
+
+  <!-- LEFT : 25% -->
+  <div class="pi-col pi-left">
+
+    <!-- RETURN DETAILS -->
+    <div class="pi-box">
+      <div class="pi-box-title">Return Details</div>
+
+      <div class="pi-field">
+        <label>Purchase Invoice</label>
+        <select
+          [(ngModel)]="purchaseReturn.purchaseInvoice"
+          (change)="onPurchaseInvoiceChange()">
+          <option value="">Select Purchase Invoice</option>
+          <option value="PINV-1001">PINV-1001</option>
+          <option value="PINV-1002">PINV-1002</option>
+        </select>
+      </div>
+
+      <div class="pi-field">
+        <label>Supplier</label>
+        <input type="text"
+               [(ngModel)]="purchaseReturn.supplier"
+               readonly disabled>
+      </div>
+
+      <div class="pi-row">
+        <div class="pi-field">
+          <label>Return Number</label>
+          <input type="text"
+                 [(ngModel)]="purchaseReturn.returnNo"
+                 readonly disabled>
+        </div>
+
+        <div class="pi-field">
+          <label>Return Date</label>
+          <input type="date"
+                 [(ngModel)]="purchaseReturn.returnDate">
+        </div>
+      </div>
+    </div>
+
+    <!-- RETURN SUMMARY -->
+    <div class="pi-box">
+      <div class="pi-box-title">Return Summary</div>
+
+      <div class="pi-row-2">
+        <div class="pi-field">
+          <label>Product Value</label>
+          <input type="number"
+                 [(ngModel)]="purchaseReturn.productValue"
+                 readonly disabled>
+        </div>
+
+        <div class="pi-field">
+          <label>Return Value</label>
+          <input type="number"
+                 [(ngModel)]="purchaseReturn.returnValue"
+                 readonly disabled>
+        </div>
+      </div>
+
+      <div class="pi-field">
+        <label>Notes / Remarks</label>
+        <textarea
+          class="pi-notes"
+          [(ngModel)]="purchaseReturn.notes"
+          placeholder="Enter remarks if any...">
+        </textarea>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CENTER : 75% (STANDARD CENTER BOX) -->
+  <div class="pi-col pi-center pi-wide">
+
+    <!-- ✅ STANDARD FULL-HEIGHT CENTER BOX -->
+    <div class="pi-box pi-center-box">
+
+      <!-- ADD RETURNED PRODUCT -->
+      <div class="pi-box pi-add-product">
+        <div class="pi-box-title">Add Returned Product</div>
+
+        <div class="pi-add-row">
+          <select [(ngModel)]="entry.product">
+            <option value="">Select Product (from Invoice)</option>
+            <option value="Organic Rice">Organic Rice</option>
+            <option value="Wheat Flour">Wheat Flour</option>
+          </select>
+
+          <input type="number" placeholder="Qty">
+          <input type="number" placeholder="Rate" disabled>
+          <input type="number" placeholder="Amount" readonly disabled>
+        </div>
+
+        <div class="pi-add-action">
+          <button class="ch-btn primary" (click)="onAdd()">Add</button>
+        </div>
+      </div>
+
+      <!-- RETURN CART -->
+      <div class="pi-box pi-cart">
+        <div class="pi-box-title">Return Cart</div>
+
+        <div class="pi-cart-table-wrapper">
+          <table class="product-table">
+
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Product</th>
+                <th class="txt-center">Qty</th>
+                <th class="txt-right">Rate</th>
+                <th class="txt-right">Amount</th>
+                <th class="txt-center">Action</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngFor="let item of items; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ item.product }}</td>
+                <td class="txt-center">{{ item.quantity }}</td>
+                <td class="txt-right">{{ item.rate }}</td>
+                <td class="txt-right">{{ item.amount }}</td>
+                <td class="txt-center">
+                  <button class="remove-btn" (click)="removeItem(i)">×</button>
+                </td>
+              </tr>
+
+              <tr *ngIf="items.length === 0">
+                <td colspan="6" class="cart-empty">
+                  No products added
+                </td>
+              </tr>
+            </tbody>
+
+            <tfoot>
+              <tr class="cart-total-row">
+                <td colspan="2" class="txt-right">Total</td>
+                <td class="txt-center">{{ totalQty }}</td>
+                <td></td>
+                <td class="txt-right">{{ purchaseReturn.returnValue }}</td>
+                <td></td>
+              </tr>
+            </tfoot>
+
+          </table>
+        </div>
+      </div>
+
+    </div>
+    <!-- END CENTER BOX -->
+
+  </div>
+
+</div>

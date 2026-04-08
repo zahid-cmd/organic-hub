@@ -1,0 +1,28 @@
+<div class="oh-search-area">
+
+  <!-- SEARCH -->
+  <div class="oh-search-box">
+    <input
+      type="text"
+      class="oh-search-input"
+      placeholder="Search suppliers..."
+      [value]="searchText"
+      (input)="onSearch($any($event.target).value)"
+    />
+  </div>
+
+  <!-- STATUS FILTER -->
+  <div class="oh-status-box" *ngIf="hasStatusFilter">
+    <select
+      class="oh-status-select"
+      [value]="status"
+      (change)="onStatusChange($any($event.target).value)"
+    >
+      <option value="">All Status</option>
+      <option *ngFor="let s of statusOptions" [value]="s">
+        {{ s }}
+      </option>
+    </select>
+  </div>
+
+</div>

@@ -1,0 +1,151 @@
+<!-- =========================
+     PAGE HEADER (SCREEN ONLY)
+========================= -->
+<app-page-sub-header
+  title="Purchase Invoice"
+  class="no-print">
+
+  <div page-actions class="subheader-actions">
+
+    <button
+      class="ch-btn"
+      type="button"
+      (click)="goBack()">
+      Back
+    </button>
+
+    <select
+      class="ch-select"
+      [value]="pageSize"
+      (change)="onPageSizeChange($event)">
+      <option value="a4">Page A4</option>
+      <option value="a5">Page A5</option>
+      <option value="pos">POS</option>
+    </select>
+
+    <button
+      class="icon-btn print"
+      type="button"
+      title="Print"
+      (click)="onPrint()">
+      <i class="fa fa-print"></i>
+    </button>
+
+  </div>
+</app-page-sub-header>
+
+<!-- =========================
+     PRINT AREA
+========================= -->
+<div id="print-area">
+
+  <div class="invoice-wrapper" [ngClass]="pageSize">
+
+    <!-- HEADER -->
+    <div class="invoice-header" [class.pos-header]="pageSize === 'pos'">
+
+      <div class="header-left" *ngIf="pageSize !== 'pos'">
+        <img
+          src="/assets/Logo.png"
+          alt="Organic Hub"
+          class="company-logo" />
+      </div>
+
+      <div class="header-right">
+        <h1>ORGANIC HUB</h1>
+        <p>Purchase Invoice</p>
+
+        <small *ngIf="pageSize !== 'pos'">
+          Suite #26, 6th Floor, DOHS Shopping Complex<br />
+          Mirpur, Dhaka 1216<br />
+          Phone: +8801896057950, +8801896057960
+        </small>
+      </div>
+
+    </div>
+
+    <hr *ngIf="pageSize !== 'pos'" />
+
+    <!-- META -->
+    <div class="invoice-meta">
+
+      <div class="meta-left">
+        <strong>Invoice No:</strong> PINV-1001<br />
+        <strong>Invoice Date:</strong> 08 Jan 2026
+      </div>
+
+      <div class="meta-right">
+        <strong>Supplier:</strong> Supplier A<br />
+        <strong>Contact:</strong> 01712-XXXXXX
+      </div>
+
+    </div>
+
+    <!-- ITEMS -->
+    <table class="invoice-table">
+      <thead>
+        <tr>
+          <th>SL</th>
+          <th>Product Name</th>
+          <th class="center">Qty</th>
+          <th class="right">Unit Price</th>
+          <th class="right">Amount</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Sample Product</td>
+          <td class="center">2</td>
+          <td class="right">500.00</td>
+          <td class="right">1,000.00</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- TOTALS -->
+    <div class="invoice-totals">
+      <table>
+        <tr>
+          <td>Subtotal</td>
+          <td class="right">1,000.00</td>
+        </tr>
+
+        <tr>
+          <td>Delivery Charge</td>
+          <td class="right">0.00</td>
+        </tr>
+
+        <tr>
+          <td>Discount</td>
+          <td class="right">0.00</td>
+        </tr>
+
+        <tr class="grand">
+          <td>Net Total</td>
+          <td class="right">1,000.00</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="amount-words">
+      <strong>In Words:</strong> One Thousand Taka Only
+    </div>
+
+    <div class="invoice-footer" *ngIf="pageSize !== 'pos'">
+
+      <div class="sign-left">
+        _______________________<br />
+        Supplier Signature
+      </div>
+
+      <div class="sign-right">
+        _______________________<br />
+        For Organic Hub
+      </div>
+
+    </div>
+
+  </div>
+</div>

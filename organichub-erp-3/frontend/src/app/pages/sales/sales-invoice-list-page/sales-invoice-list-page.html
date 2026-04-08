@@ -1,0 +1,96 @@
+<div class="page-body">
+
+  <!-- PAGE SUB HEADER -->
+  <app-page-sub-header title="Search & Filter Sales Invoices">
+    <div page-actions class="subheader-actions">
+      <button class="ch-btn" (click)="onAdd()">Add</button>
+      <button class="ch-btn" (click)="onClear()">Clear</button>
+      <button class="ch-btn" (click)="onBack()">Back</button>
+    </div>
+  </app-page-sub-header>
+
+  <div class="page-body-content">
+
+    <!-- SEARCH AREA -->
+    <app-search-area
+      [searchText]="searchText"
+      [status]="statusFilter"
+      [statusOptions]="statusOptions"
+      (searchChange)="onSearch($event)"
+      (statusChange)="onStatusChange($event)">
+    </app-search-area>
+
+    <!-- LIST -->
+    <div class="ch-list-body">
+      <div class="ch-list-table">
+
+        <!-- HEADER -->
+        <div class="ch-list-row ch-list-header">
+          <div class="col col-sl">#</div>
+          <div class="col">Invoice No</div>
+          <div class="col">Invoice Date</div>
+          <div class="col">Customer Name</div>
+          <div class="col">Total Amount</div>
+          <div class="col">Status</div>
+          <div class="col col-actions">Actions</div>
+        </div>
+
+        <!-- BODY ROWS -->
+        <div
+          class="ch-list-body-rows"
+          [class.scrollable]="pageSize > 10">
+
+          <div
+            class="ch-list-row"
+            *ngFor="let invoice of pagedInvoices; let i = index">
+
+            <div class="col col-sl">{{ serial(i) }}</div>
+            <div class="col">{{ invoice.invoiceNo }}</div>
+            <div class="col">{{ invoice.invoiceDate }}</div>
+            <div class="col">{{ invoice.customerName }}</div>
+            <div class="col amount">{{ invoice.totalAmount }}</div>
+            <div class="col status">{{ invoice.status }}</div>
+
+            <div class="col col-actions action-icons">
+
+              <!-- INVOICE PRINT / VIEW -->
+              <button
+                class="icon-btn print"
+                title="View Invoice"
+                (click)="onInvoiceView(i)">
+                <i class="fa fa-file-invoice"></i>
+              </button>
+
+              <!-- NORMAL VIEW -->
+              <button class="icon-btn view" (click)="onView(i)">
+                <i class="fa fa-eye"></i>
+              </button>
+
+              <!-- EDIT -->
+              <button class="icon-btn edit" (click)="onEdit(i)">
+                <i class="fa fa-pen"></i>
+              </button>
+
+            </div>
+
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PAGINATION (OUTSIDE SCROLL AREA) -->
+    <div class="ch-pagination">
+      <app-pagination
+        [totalRecords]="totalRecords"
+        [pageSize]="pageSize"
+        [currentPage]="currentPage"
+        (pageChange)="onPageChange($event)"
+        (pageSizeChange)="onPageSizeChange($event)">
+      </app-pagination>
+    </div>
+
+  </div>
+</div>

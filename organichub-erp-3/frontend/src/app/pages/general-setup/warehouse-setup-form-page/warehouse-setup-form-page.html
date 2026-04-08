@@ -1,0 +1,222 @@
+<div class="page-body">
+
+  <!-- GLOBAL TOAST -->
+  <app-organic-toast></app-organic-toast>
+
+  <!-- PAGE HEADER -->
+  <app-page-sub-header title="Create / Update Warehouse">
+    <div page-actions class="subheader-actions">
+
+      <button
+        type="button"
+        class="ch-btn"
+        *ngIf="!isViewMode"
+        (click)="onSave()">
+        {{ mode === 'edit' ? 'Update' : 'Save' }}
+      </button>
+
+      <button
+        type="button"
+        class="ch-btn"
+        *ngIf="!isViewMode"
+        (click)="onClear()">
+        Clear
+      </button>
+
+      <button
+        type="button"
+        class="ch-btn"
+        (click)="onBack()">
+        Back
+      </button>
+
+    </div>
+  </app-page-sub-header>
+
+  <!-- PAGE CONTENT -->
+  <div class="page-body-content">
+
+    <div class="form-body">
+
+      <!-- ================= COLUMN 1 ================= -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+
+            <div class="section-header">Warehouse Information</div>
+
+            <div class="form-field">
+              <label>Company *</label>
+              <select
+                [(ngModel)]="warehouse.companyId"
+                (change)="onCompanyChange()"
+                [disabled]="isViewMode">
+                <option [ngValue]="null">Select Company</option>
+                <option *ngFor="let c of companies" [ngValue]="c.id">
+                  {{ c.companyName }}
+                </option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label>Branch *</label>
+              <select
+                [(ngModel)]="warehouse.branchId"
+                [disabled]="isViewMode">
+                <option [ngValue]="null">Select Branch</option>
+                <option *ngFor="let b of filteredBranches" [ngValue]="b.id">
+                  {{ b.branchName }}
+                </option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label>Warehouse Code</label>
+              <input
+                type="text"
+                [(ngModel)]="warehouse.warehouseCode"
+                readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Warehouse Name *</label>
+              <input
+                type="text"
+                [(ngModel)]="warehouse.warehouseName"
+                [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>Status *</label>
+              <select
+                [(ngModel)]="warehouse.status"
+                [disabled]="isViewMode">
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+              </select>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= COLUMN 2 ================= -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+
+            <div class="section-header">Contact Information</div>
+
+            <div class="form-field">
+              <label>Primary Phone</label>
+              <input
+                type="text"
+                [(ngModel)]="warehouse.primaryPhone"
+                [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>Secondary Phone</label>
+              <input
+                type="text"
+                [(ngModel)]="warehouse.secondaryPhone"
+                [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>Email</label>
+              <input
+                type="email"
+                [(ngModel)]="warehouse.email"
+                [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>Location</label>
+              <input
+                type="text"
+                [(ngModel)]="warehouse.location"
+                [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>Address</label>
+              <textarea
+                [(ngModel)]="warehouse.address"
+                [disabled]="isViewMode">
+              </textarea>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= COLUMN 3 ================= -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+
+            <div class="section-header">Warehouse Settings</div>
+
+            <div class="form-field">
+              <label>Set as Default Warehouse</label>
+              <select
+                [(ngModel)]="warehouse.isDefault"
+                [disabled]="isViewMode">
+
+                <option [ngValue]="false">No</option>
+                <option [ngValue]="true">Yes</option>
+
+              </select>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= COLUMN 4 ================= -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+
+            <div class="section-header">System Information</div>
+
+            <div class="form-field">
+              <label>Created By</label>
+              <input
+                type="text"
+                [(ngModel)]="warehouse.createdBy"
+                readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Created Date</label>
+              <input
+                type="text"
+                [(ngModel)]="warehouse.createdDate"
+                readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Updated By</label>
+              <input
+                type="text"
+                [(ngModel)]="warehouse.updatedBy"
+                readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Updated Date</label>
+              <input
+                type="text"
+                [(ngModel)]="warehouse.updatedDate"
+                readonly>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

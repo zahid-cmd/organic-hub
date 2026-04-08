@@ -1,0 +1,295 @@
+<div class="page-body">
+
+  <!-- GLOBAL TOAST -->
+  <app-organic-toast></app-organic-toast>
+
+  <!-- PAGE HEADER -->
+  <app-page-sub-header title="Configuration Settings">
+    <div page-actions class="subheader-actions">
+
+      <button
+        type="button"
+        class="ch-btn"
+        (click)="onAdd()">
+        Add
+      </button>
+
+      <button
+        type="button"
+        class="ch-btn"
+        (click)="onBack()">
+        Back
+      </button>
+
+    </div>
+  </app-page-sub-header>
+
+  <!-- MAIN CONTENT -->
+  <div class="page-body-content">
+    <div class="form-body">
+
+      <!-- ================= PURCHASE ================= -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+
+            <div class="section-header">Purchase</div>
+
+            <div class="config-card"
+                 *ngFor="let item of getByModule('Purchase')">
+
+              <div class="card-top">
+
+                <div class="code">
+                  {{ item.configurationCode }}
+                </div>
+
+                <div class="card-actions">
+
+                  <i class="fa-solid"
+                     [ngClass]="item.isEnabled
+                       ? 'fa-circle-check yes-icon'
+                       : 'fa-circle-xmark no-icon'">
+                  </i>
+
+                  <i class="fa-solid fa-pen edit-icon"
+                     (click)="editConfig(item)">
+                  </i>
+
+                </div>
+
+              </div>
+
+              <div class="card-name">
+                {{ item.configurationName }}
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= SALES ================= -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+
+            <div class="section-header">Sales</div>
+
+            <div class="config-card"
+                 *ngFor="let item of getByModule('Sales')">
+
+              <div class="card-top">
+
+                <div class="code">
+                  {{ item.configurationCode }}
+                </div>
+
+                <div class="card-actions">
+
+                  <i class="fa-solid"
+                     [ngClass]="item.isEnabled
+                       ? 'fa-circle-check yes-icon'
+                       : 'fa-circle-xmark no-icon'">
+                  </i>
+
+                  <i class="fa-solid fa-pen edit-icon"
+                     (click)="editConfig(item)">
+                  </i>
+
+                </div>
+
+              </div>
+
+              <div class="card-name">
+                {{ item.configurationName }}
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= INVENTORY ================= -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+
+            <div class="section-header">Inventory</div>
+
+            <div class="config-card"
+                 *ngFor="let item of getByModule('Inventory')">
+
+              <div class="card-top">
+
+                <div class="code">
+                  {{ item.configurationCode }}
+                </div>
+
+                <div class="card-actions">
+
+                  <i class="fa-solid"
+                     [ngClass]="item.isEnabled
+                       ? 'fa-circle-check yes-icon'
+                       : 'fa-circle-xmark no-icon'">
+                  </i>
+
+                  <i class="fa-solid fa-pen edit-icon"
+                     (click)="editConfig(item)">
+                  </i>
+
+                </div>
+
+              </div>
+
+              <div class="card-name">
+                {{ item.configurationName }}
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= INVOICE ================= -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+
+            <div class="section-header">Invoice</div>
+
+            <div class="config-card"
+                 *ngFor="let item of getByModule('Invoice')">
+
+              <div class="card-top">
+
+                <div class="code">
+                  {{ item.configurationCode }}
+                </div>
+
+                <div class="card-actions">
+
+                  <i class="fa-solid"
+                     [ngClass]="item.isEnabled
+                       ? 'fa-circle-check yes-icon'
+                       : 'fa-circle-xmark no-icon'">
+                  </i>
+
+                  <i class="fa-solid fa-pen edit-icon"
+                     (click)="editConfig(item)">
+                  </i>
+
+                </div>
+
+              </div>
+
+              <div class="card-name">
+                {{ item.configurationName }}
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ================= CONFIGURATION MODAL ================= -->
+<div class="modal-overlay" *ngIf="showModal">
+
+  <div class="modal-box">
+
+    <!-- HEADER -->
+    <div class="modal-header">
+
+      <div class="modal-title">
+        Configuration Setup
+      </div>
+
+      <div class="modal-actions">
+
+        <button
+          type="button"
+          class="icon-btn save-btn"
+          (click)="onSave()"
+          title="Save">
+          <i class="fa-solid fa-floppy-disk"></i>
+        </button>
+
+        <button
+          type="button"
+          class="icon-btn close-btn"
+          (click)="onClose()"
+          title="Close">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- BODY -->
+    <div class="modal-body">
+
+      <!-- MODULE -->
+      <div class="form-field">
+        <label>Select Module</label>
+        <select
+          [(ngModel)]="config.module"
+          [disabled]="isEditMode">
+
+          <option value="">-- Select Module --</option>
+          <option value="Purchase">Purchase</option>
+          <option value="Sales">Sales</option>
+          <option value="Inventory">Inventory</option>
+          <option value="Invoice">Invoice</option>
+
+        </select>
+      </div>
+
+      <!-- CONFIG CODE (ONLY EDIT MODE) -->
+      <div class="form-field" *ngIf="isEditMode">
+        <label>Configuration Code</label>
+        <input
+          type="text"
+          [(ngModel)]="config.configurationCode"
+          disabled>
+      </div>
+
+      <!-- NAME -->
+      <div class="form-field">
+        <label>Configuration Name</label>
+        <input
+          type="text"
+          [(ngModel)]="config.configurationName"
+          placeholder="Enter configuration name">
+      </div>
+
+      <!-- ENABLED -->
+      <div class="form-field">
+        <label>Enabled</label>
+        <select [(ngModel)]="config.isEnabled">
+          <option [ngValue]="true">Yes</option>
+          <option [ngValue]="false">No</option>
+        </select>
+      </div>
+
+      <!-- REMARKS -->
+      <div class="form-field">
+        <label>Remarks</label>
+        <textarea
+          rows="3"
+          [(ngModel)]="config.remarks">
+        </textarea>
+      </div>
+
+    </div>
+
+  </div>
+</div>

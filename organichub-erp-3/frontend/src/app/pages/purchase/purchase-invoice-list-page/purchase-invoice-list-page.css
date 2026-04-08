@@ -1,0 +1,256 @@
+/* =====================================================
+   PAGE BODY (LOCKED)
+===================================================== */
+
+.page-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.page-body-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+
+/* =====================================================
+   FILTER BAR (MATCH PO)
+===================================================== */
+
+.ch-filter-bar {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;   /* 🔥 reduce gap to match PO */
+}
+
+.search-flex {
+  flex: 1;
+}
+
+.status-filter {
+  height: 34px;
+  min-width: 140px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 0 10px;
+  background: #ffffff;
+  font-size: 14px;
+}
+
+
+/* =====================================================
+   LIST BODY (IMPORTANT)
+===================================================== */
+
+.ch-list-body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* =====================================================
+   TABLE CONTAINER (FULL WIDTH FILL)
+===================================================== */
+
+.ch-list-table {
+  flex: 1;
+  width: 100%;            /* 🔥 VERY IMPORTANT */
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+
+/* =====================================================
+   HEADER GRID
+===================================================== */
+
+.ch-list-header {
+  flex-shrink: 0;
+  display: grid;
+  grid-template-columns:
+    0.4fr
+    1.2fr
+    1fr
+    1.2fr
+    1fr
+    1fr
+    1.0fr
+    1.0fr
+    0.8fr
+    0.8fr;
+
+  align-items: center;
+  height: 44px;
+  background: #e8f3e4;
+  font-size: 14px;
+  font-weight: 600;
+  border-bottom: 1px solid #e0e6f1;
+}
+
+
+/* =====================================================
+   SCROLL BODY
+===================================================== */
+
+.ch-list-body-rows {
+  flex: 1;
+  min-height: 0;
+  max-height: calc(10 * 43px);
+  overflow-y: auto;
+}
+
+
+/* =====================================================
+   ROW GRID
+===================================================== */
+
+.ch-list-row {
+  display: grid;
+  grid-template-columns:
+    0.4fr
+    1.2fr
+    1fr
+    1.2fr
+    1fr
+    1fr
+    1.0fr
+    1.0fr
+    0.8fr
+    0.8fr;
+
+  align-items: center;
+  min-height: 42px;
+  font-size: 14px;
+  border-bottom: 1px solid #eef0f4;
+}
+
+.ch-list-row:last-child {
+  border-bottom: none;
+}
+
+
+/* =====================================================
+   CELLS
+===================================================== */
+
+.col {
+  padding: 0 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.col-sl { text-align: center; }
+
+.col.amount {
+  text-align: right;
+  font-weight: 600;
+}
+
+
+/* =====================================================
+   ACTION ICONS
+===================================================== */
+
+.action-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.ch-list-header .col-actions {
+  text-align: center;
+}
+
+.icon-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  border: none;
+  background: #f4f6fb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.icon-btn.view { color: #2f6b3f; }
+.icon-btn.edit { color: #c48a12; }
+
+.icon-btn:hover {
+  background: #e5e7eb;
+}
+
+
+/* =====================================================
+   EMPTY STATE (EXACT PO LOOK)
+===================================================== */
+
+.ch-empty-state {
+  flex: 1;
+  width: 100%;          /* 🔥 critical */
+  min-height: 260px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.ch-empty-icon {
+  font-size: 40px;
+  color: #cbd5e1;
+  margin-bottom: 10px;
+}
+
+.ch-empty-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.ch-empty-subtitle {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.status-badge {
+  padding: 3px 10px;
+  border-radius: 14px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status-draft {
+  background: #ffeaa7;
+  color: #7a5c00;
+}
+
+.status-posted {
+  background: #55efc4;
+  color: #006644;
+}

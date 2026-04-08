@@ -1,0 +1,279 @@
+<!-- PAGE SUB HEADER (STANDARD – DO NOT TOUCH STRUCTURE) -->
+<app-page-sub-header title="Online Order">
+  <div page-actions class="subheader-actions">
+
+    <!-- Create Sale Invoice Button -->
+    <button class="ch-btn success"
+            *ngIf="canCreateInvoice"
+            (click)="onCreateSaleInvoice()">
+
+      <!-- Invoice SVG Icon -->
+      <span class="btn-icon">
+        <svg width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round">
+
+          <path d="M6 2h9l5 5v15H6z"></path>
+          <path d="M14 2v6h6"></path>
+          <line x1="8" y1="13" x2="16" y2="13"></line>
+          <line x1="8" y1="17" x2="16" y2="17"></line>
+
+        </svg>
+      </span>
+
+      <span>Create Sale Invoice</span>
+
+    </button>
+
+    <!-- Converted Badge -->
+    <span class="status-badge converted"
+          *ngIf="order.isConverted">
+      Converted to Invoice
+    </span>
+
+    <button class="ch-btn primary"
+            (click)="onSave()"
+            [disabled]="isReadOnly">
+      Save
+    </button>
+
+    <button class="ch-btn"
+            (click)="onReset()"
+            [disabled]="isReadOnly">
+      Reset
+    </button>
+
+    <button class="ch-btn"
+            (click)="onBack()">
+      Back
+    </button>
+
+  </div>
+</app-page-sub-header>
+
+<!-- PAGE BODY -->
+<div class="pi-body">
+
+  <!-- LEFT : 25% -->
+  <div class="pi-col pi-left">
+
+
+    <!-- ORDER DETAILS -->
+    <div class="pi-box">
+      <div class="pi-box-title">Order Details</div>
+
+      <!-- ROW 1 -->
+      <div class="pi-row">
+
+        <div class="pi-field">
+          <label>Order No</label>
+          <input type="text"
+                [(ngModel)]="order.orderNo"
+                readonly
+                disabled>
+        </div>
+
+        <div class="pi-field">
+          <label>Order Date</label>
+          <input type="date"
+                [(ngModel)]="order.orderDate"
+                readonly
+                disabled>
+        </div>
+
+      </div>
+
+      <!-- ROW 2 (FULL WIDTH) -->
+      <div class="pi-field">
+        <label>Status</label>
+          <select [(ngModel)]="order.status"
+                  [disabled]="isReadOnly">
+            <option value="Pending">Pending</option>
+            <option value="Confirmed">Confirmed</option>
+            <option value="Cancelled">Cancelled</option>
+          </select>
+      </div>
+
+    </div>
+
+    <!-- CUSTOMER INFO -->
+    <div class="pi-box">
+      <div class="pi-box-title">Customer Info</div>
+
+      <div class="pi-field">
+        <label>Name</label>
+        <input type="text"
+       [(ngModel)]="order.customerName"
+       [disabled]="isReadOnly">
+      </div>
+
+      <div class="pi-field">
+        <label>Phone</label>
+        <input type="text"
+       [(ngModel)]="order.phone"
+       [disabled]="isReadOnly">
+      </div>
+
+      <div class="pi-field">
+        <label>Address</label>
+        <textarea [(ngModel)]="order.address"
+          [disabled]="isReadOnly"></textarea>
+      </div>
+    </div>
+
+    <!-- ORDER SUMMARY -->
+    <div class="pi-box">
+      <div class="pi-box-title">Order Summary</div>
+
+      <div class="pi-row-2">
+        <div class="pi-field">
+          <label>Sub Total</label>
+          <input type="number"
+                 [(ngModel)]="order.subTotal"
+                 readonly disabled>
+        </div>
+
+        <div class="pi-field">
+          <label>Delivery Charge</label>
+            <input type="number"
+              [(ngModel)]="order.deliveryCharge"
+              (ngModelChange)="recalculateTotals()"
+              [disabled]="isReadOnly">
+        </div>
+      </div>
+
+      <div class="pi-field">
+        <label>Total</label>
+        <input type="number"
+               [(ngModel)]="order.totalAmount"
+               readonly disabled>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RIGHT : 75% -->
+  <div class="pi-col pi-center pi-wide">
+
+    <div class="pi-box pi-center-box">
+
+      <!-- ADD PRODUCT -->
+      <div class="pi-box pi-add-product">
+        <div class="pi-box-title">Add Product</div>
+
+        <div class="pi-add-row">
+          <select
+            [(ngModel)]="entry.productId"
+            (change)="onProductSelect()"
+            [disabled]="isReadOnly">
+
+            <option value="">Select Product</option>
+
+            <option *ngFor="let p of products"
+                    [value]="p.id">
+              {{ p.productCode }} - {{ p.productName }}
+            </option>
+
+          </select>
+
+            <input type="number"
+                  [(ngModel)]="entry.quantity"
+                  (ngModelChange)="onQtyChange()"
+                  placeholder="Qty"
+                  [disabled]="isReadOnly">
+
+          <input type="number"
+                 [(ngModel)]="entry.rate"
+                 readonly disabled>
+
+          <input type="number"
+                 [(ngModel)]="entry.amount"
+                 readonly disabled>
+        </div>
+
+        <div class="pi-add-action align-right">
+
+          <button class="ch-btn primary action-btn"
+                  (click)="onAddOrUpdate()"
+                  [disabled]="isReadOnly || !entry.productId || entry.quantity <= 0">
+            {{ editIndex === null ? 'Add' : 'Update' }}
+          </button>
+
+          <button class="ch-btn action-btn"
+                  *ngIf="editIndex !== null"
+                  (click)="cancelEdit()"
+                  [disabled]="isReadOnly">
+            Cancel
+          </button>
+
+        </div>
+      </div>
+
+      <!-- ORDER CART -->
+      <div class="pi-box pi-cart">
+        <div class="pi-box-title">Order Cart</div>
+
+        <div class="pi-cart-table-wrapper">
+          <table class="product-table">
+
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Product</th>
+              <th class="txt-center">Qty</th>
+              <th class="txt-right">Rate</th>
+              <th class="txt-right">Amount</th>
+              <th class="txt-center action-col">Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let item of order.items; let i = index"
+                (dblclick)="editRow(i)">
+
+              <td class="txt-center col-serial">{{ i + 1 }}</td>
+              <td>{{ item.productName }}</td>
+              <td class="txt-center">{{ item.quantity }}</td>
+              <td class="txt-right">{{ item.unitPrice }}</td>
+              <td class="txt-right">{{ item.lineTotal }}</td>
+
+              <td class="txt-center action-col">
+                <button class="remove-btn"
+                        *ngIf="!isReadOnly"
+                        (click)="removeRow(i); $event.stopPropagation();">
+                  ×
+                </button>
+              </td>
+
+            </tr>
+
+            <tr *ngIf="order.items.length === 0">
+              <td colspan="6" class="cart-empty">
+                No products added
+              </td>
+            </tr>
+          </tbody>
+
+          <tfoot>
+            <tr class="cart-total-row">
+              <td colspan="2" class="txt-right">Total</td>
+              <td class="txt-center">{{ totalQty }}</td>
+              <td></td>
+              <td class="txt-right">{{ order.totalAmount }}</td>
+              <td></td>
+            </tr>
+          </tfoot>
+
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

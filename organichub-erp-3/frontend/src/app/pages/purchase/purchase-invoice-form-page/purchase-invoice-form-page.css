@@ -1,0 +1,482 @@
+/* =====================================================
+HOST
+===================================================== */
+
+:host{
+display:flex;
+flex-direction:column;
+height:100%;
+min-height:0;
+}
+
+
+/* =====================================================
+PAGE BODY
+===================================================== */
+
+.page-body{
+flex:1;
+display:flex;
+flex-direction:column;
+min-height:0;
+}
+
+.page-body-content{
+flex:1;
+display:flex;
+flex-direction:column;
+min-height:0;
+padding:0;
+}
+
+
+/* =====================================================
+MAIN GRID LAYOUT
+===================================================== */
+
+.pi-body{
+flex:1;
+display:grid;
+grid-template-columns:380px 1fr 380px;
+gap:10px;
+padding:8px 0;
+overflow:hidden;
+}
+
+
+/* =====================================================
+COLUMN PANELS
+===================================================== */
+
+.pi-col{
+display:flex;
+flex-direction:column;
+background:#ffffff;
+border:1px solid #cfded4;
+border-radius:6px;
+padding:12px;
+min-width:0;
+min-height:0;
+overflow:hidden;
+}
+
+.pi-left{
+gap:12px;
+}
+
+.pi-center{
+display:flex;
+flex-direction:column;
+flex:1;
+min-height:0;
+}
+
+.pi-right{
+display:flex;
+flex-direction:column;
+min-height:0;
+}
+
+
+/* =====================================================
+BOX COMPONENT
+===================================================== */
+
+.pi-box{
+display:flex;
+flex-direction:column;
+gap:8px;
+background:#ffffff;
+border:1px solid #cfded4;
+border-radius:6px;
+padding:12px;
+}
+
+.pi-box-title{
+font-size:15px;
+font-weight:600;
+color:#1f2937;
+padding-bottom:6px;
+border-bottom:1px solid #e7efe9;
+}
+
+
+/* =====================================================
+FORM GRID
+===================================================== */
+
+.pi-row{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:8px;
+}
+
+.pi-field{
+display:flex;
+flex-direction:column;
+gap:4px;
+font-size:14px;
+}
+
+.pi-full{
+grid-column:1 / -1;
+}
+
+
+/* =====================================================
+INPUTS
+===================================================== */
+
+input,
+select{
+height:40px;
+padding:0 8px;
+font-size:14px;
+border:1px solid #b7d2c2;
+border-radius:4px;
+outline:none;
+box-sizing:border-box;
+transition:border-color .15s ease, box-shadow .15s ease;
+}
+
+input:focus,
+select:focus{
+border-color:#2f6f3e;
+box-shadow:0 0 0 1px rgba(47,111,62,0.15);
+}
+
+input[readonly]{
+background:#f6f8f7;
+text-align:center;
+}
+
+
+/* =====================================================
+TEXTAREA
+===================================================== */
+
+textarea{
+height:60px;
+padding:6px;
+font-size:14px;
+border:1px solid #b7d2c2;
+border-radius:4px;
+resize:none;
+outline:none;
+}
+
+textarea:focus{
+border-color:#2f6f3e;
+box-shadow:0 0 0 1px rgba(47,111,62,0.15);
+}
+
+.pi-notes{
+height:40px;
+}
+
+
+/* =====================================================
+ADD PRODUCT PANEL
+===================================================== */
+
+.pi-add-action{
+display:flex;
+justify-content:flex-end;
+margin-top:6px;
+}
+
+
+/* =====================================================
+CENTER PANEL
+===================================================== */
+
+.pi-center-box{
+display:flex;
+flex-direction:column;
+flex:1;
+min-height:0;
+gap:10px;
+}
+
+
+/* =====================================================
+SUMMARY GRID
+===================================================== */
+
+.pi-summary-grid{
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:12px;
+}
+
+.pi-summary-grid input{
+text-align:right;
+font-weight:600;
+}
+
+
+/* =====================================================
+PRODUCT CART
+===================================================== */
+
+.pi-cart{
+display:flex;
+flex-direction:column;
+flex:1;
+min-height:0;
+overflow:hidden;
+}
+
+.pi-cart-table-wrapper{
+flex:1;
+min-height:0;
+overflow-y:auto;
+overflow-x:hidden;
+}
+
+
+/* =====================================================
+PRODUCT TABLE
+===================================================== */
+
+.product-table{
+width:100%;
+border-collapse:collapse;
+font-size:14px;
+table-layout:fixed;
+}
+
+.product-table thead th{
+background:#f4f7f5;
+font-weight:600;
+color:#374151;
+padding:8px;
+border-bottom:1px solid #d9e6de;
+position:sticky;
+top:0;
+z-index:2;
+white-space:nowrap;
+}
+
+.product-table tbody td{
+padding:7px 8px;
+border-bottom:1px solid #edf2ef;
+white-space:nowrap;
+}
+
+.product-table tbody tr:nth-child(even){
+background:#fbfdfb;
+}
+
+.product-table tbody tr:hover{
+background:#f7fbf8;
+}
+
+.product-table tfoot td{
+position:sticky;
+bottom:0;
+background:#f8faf9;
+z-index:3;
+border-top:1px solid #d9e6de;
+font-weight:700;
+}
+
+
+/* =====================================================
+TABLE COLUMN WIDTHS
+===================================================== */
+
+.product-table th.col-no,
+.product-table td.col-no{
+width:40px;
+text-align:center;
+}
+
+.product-table th.col-product,
+.product-table td.col-product{
+text-align:left;
+}
+
+.product-table th.col-qty,
+.product-table td.col-qty{
+width:110px;
+text-align:center;
+}
+
+.product-table th.col-rate,
+.product-table td.col-rate{
+width:110px;
+text-align:right;
+padding-right:12px;
+}
+
+.product-table th.col-amount,
+.product-table td.col-amount{
+width:120px;
+text-align:right;
+padding-right:12px;
+}
+
+.product-table th.col-action,
+.product-table td.col-action{
+width:70px;
+text-align:center;
+}
+
+
+/* =====================================================
+REMOVE BUTTON
+===================================================== */
+
+.remove-btn{
+width:24px;
+height:24px;
+border:1px solid #e55353;
+border-radius:4px;
+background:#ffffff;
+color:#e55353;
+cursor:pointer;
+font-size:14px;
+font-weight:600;
+line-height:1;
+}
+
+.remove-btn:hover{
+background:#e55353;
+color:#ffffff;
+}
+
+
+/* =====================================================
+PRODUCT SHELF
+===================================================== */
+
+.pi-shelf{
+display:flex;
+flex-direction:column;
+flex:1;
+min-height:0;
+}
+
+.pi-shelf-search{
+margin-bottom:8px;
+}
+
+.pi-shelf-search input{
+width:100%;
+height:30px;
+padding-left:8px;
+}
+
+.pi-shelf-list{
+flex:1;
+min-height:0;
+overflow-y:auto;
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+align-content:start;
+}
+
+.pi-product-card{
+border:1px solid #cfded4;
+border-radius:6px;
+padding:8px;
+text-align:center;
+cursor:pointer;
+background:#fff;
+display:flex;
+flex-direction:column;
+align-items:center;
+min-height:110px;
+}
+
+.pi-product-card:hover{
+background:#f7f9f8;
+}
+
+.pi-product-img img{
+width:48px;
+height:48px;
+object-fit:contain;
+margin-bottom:6px;
+}
+
+.pi-product-name{
+font-size:13px;
+font-weight:500;
+height:28px;
+overflow:hidden;
+}
+
+.pi-product-stock{
+font-size:11px;
+color:#6b7280;
+}
+
+
+/* =====================================================
+HELPERS
+===================================================== */
+
+.txt-center{ text-align:center; }
+.txt-right{ text-align:right; }
+
+
+/* =====================================================
+VIEW MODE
+===================================================== */
+
+fieldset[disabled]{
+opacity:0.95;
+}
+
+fieldset[disabled] input,
+fieldset[disabled] select,
+fieldset[disabled] textarea{
+background:#f4f6f4;
+cursor:not-allowed;
+}
+
+
+/* =====================================================
+SCROLLBAR
+===================================================== */
+
+.pi-cart-table-wrapper,
+.pi-shelf-list{
+scrollbar-width:thin;
+scrollbar-color:#7fb069 #eef4ef;
+}
+
+.pi-cart-table-wrapper::-webkit-scrollbar,
+.pi-shelf-list::-webkit-scrollbar{
+width:6px;
+}
+
+.pi-cart-table-wrapper::-webkit-scrollbar-track,
+.pi-shelf-list::-webkit-scrollbar-track{
+background:#eef4ef;
+border-radius:10px;
+}
+
+.pi-cart-table-wrapper::-webkit-scrollbar-thumb,
+.pi-shelf-list::-webkit-scrollbar-thumb{
+background:linear-gradient(
+180deg,
+#9fdc6c,
+#ffd95e,
+#f6a64b
+);
+border-radius:10px;
+}
+
+.pi-cart-table-wrapper::-webkit-scrollbar-thumb:hover,
+.pi-shelf-list::-webkit-scrollbar-thumb:hover{
+background:linear-gradient(
+180deg,
+#7fbf58,
+#ffc843,
+#ef8f2f
+);
+}

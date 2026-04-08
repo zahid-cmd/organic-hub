@@ -1,0 +1,45 @@
+/* ===============================
+   PAGE HEADER RIBBON – ORGANIC HUB (LOCKED)
+================================ */
+.ch-page-header-ribbon {
+  height: 72px;                 /* 🔒 LOCKED */
+  background: #ffffff;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 20px;
+  padding-left: 12px;
+  box-sizing: border-box;
+
+  /* 🌿 ORGANIC ACCENT */
+  border: 1px solid #D1E7D9;    /* soft green outline */
+  border-left: 4px solid #1F5F3B; /* primary organic green */
+
+  border-radius: 8px;          /* premium feel */
+}
+
+/* ===============================
+   LEFT SIDE
+================================ */
+.ph-left h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #1F5F3B;               /* organic green title */
+}
+
+.ph-left .subtitle {
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: #4B7F5A;               /* muted leaf green */
+}
+
+/* ===============================
+   RIGHT SIDE (BUTTON GROUP)
+================================ */
+.ph-right {
+  display: flex;
+  gap: 10px;
+}

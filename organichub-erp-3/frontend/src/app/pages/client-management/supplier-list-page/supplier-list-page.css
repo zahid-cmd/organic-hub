@@ -1,0 +1,256 @@
+/* ======================================================
+   PAGE WRAPPER
+====================================================== */
+.page-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.page-body-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+
+/* ======================================================
+   LIST BODY
+====================================================== */
+.ch-list-body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+
+/* ======================================================
+   TABLE CONTAINER
+====================================================== */
+.ch-list-table {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+
+/* ======================================================
+   HEADER
+====================================================== */
+.ch-list-header {
+  flex-shrink: 0;
+  display: grid;
+  align-items: center;
+  height: 44px;
+  background: #e8f3e4;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f2937;
+  border-bottom: 1px solid #e0e6f1;
+
+grid-template-columns:
+  0.5fr   /* # */
+  1.2fr   /* Supplier Code */
+  2.4fr   /* Supplier Name */
+  1.8fr   /* Contact Person */
+  1.4fr   /* Phone */
+  1fr     /* Status */
+  .8fr;    /* Actions */
+}
+
+
+/* ======================================================
+   SORTABLE HEADER
+====================================================== */
+.sortable {
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.2s ease;
+}
+
+.ch-list-header .sortable:hover {
+  color: #2e7d32; /* 🌿 Organic Green */
+}
+
+
+/* ======================================================
+   SCROLLABLE BODY AREA
+====================================================== */
+.ch-list-body-rows {
+  flex: 1;
+  min-height: 0;
+  max-height: calc(10 * 43px);
+  overflow-y: auto;
+}
+
+
+/* ======================================================
+   ROW
+====================================================== */
+.ch-list-row {
+  display: grid;
+  align-items: center;
+  min-height: 42px;
+  font-size: 14px;
+  border-bottom: 1px solid #eef0f4;
+
+grid-template-columns:
+  0.5fr   /* # */
+  1.2fr   /* Supplier Code */
+  2.4fr   /* Supplier Name */
+  1.8fr   /* Contact Person */
+  1.4fr   /* Phone */
+  1fr     /* Status */
+  .8fr;    /* Actions */
+}
+
+.ch-list-row:last-child {
+  border-bottom: none;
+}
+
+
+/* ======================================================
+   CELLS
+====================================================== */
+.col {
+  padding: 0 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.col-sl {
+  text-align: center;
+}
+
+
+/* ======================================================
+   STATUS BADGE
+====================================================== */
+.status-badge {
+  padding: 4px 10px;
+  border-radius: 14px;
+  font-size: 13px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+/* Active */
+.status-badge.active {
+  background: #d4f5df;
+  color: #2e7d32;
+}
+
+/* Inactive */
+.status-badge.inactive {
+  background: #fde2e2;
+  color: #dc2626;
+}
+
+
+/* ======================================================
+   ACTION ICONS
+====================================================== */
+.col-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.action-icons {
+  display: flex;
+  gap: 8px;
+}
+
+
+/* ======================================================
+   ACTION BUTTON
+====================================================== */
+.icon-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  border: none;
+  background: #f4f6fb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.icon-btn.view { color: #2f6b3f; }
+.icon-btn.edit { color: #c48a12; }
+.icon-btn.delete { color: #dc2626; }
+
+.icon-btn:hover {
+  background: #e5e7eb;
+}
+
+.icon-btn.delete:hover {
+  background: #fee2e2;
+}
+
+
+/* ======================================================
+   LOADING / ERROR
+====================================================== */
+.ch-loading {
+  padding: 20px;
+  font-weight: 500;
+}
+
+.ch-error {
+  color: #c0392b;
+  padding: 20px;
+  font-weight: 500;
+}
+
+
+/* ======================================================
+   SCROLLBAR
+====================================================== */
+.ch-list-body-rows::-webkit-scrollbar {
+  width: 6px;
+}
+
+.ch-list-body-rows::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+/* If Status is the 2nd last column */
+.ch-list-header .col:nth-last-child(2),
+.ch-list-row .col:nth-last-child(2) {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* =====================================================
+   EMPTY STATE
+===================================================== */
+.ch-empty-state {
+  flex: 1;                          /* 🔥 controls height filling */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;          /* 🔥 vertical centering */
+
+  background: #ffffff;              /* 🔥 background color */
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+
+  text-align: center;
+  padding: 40px 20px;
+}

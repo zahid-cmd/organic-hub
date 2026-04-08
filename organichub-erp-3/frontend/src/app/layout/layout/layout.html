@@ -1,0 +1,51 @@
+<!-- GLOBAL ORGANIC TOAST -->
+<app-organic-toast></app-organic-toast>
+
+<div
+  class="app-shell"
+  [class.sidebar-collapsed]="sidebarCollapsed"
+  [class.print-layout]="isPrintPage">
+
+  <!-- TOP HEADER -->
+  <app-header (sidebarToggle)="onSidebarToggle()"></app-header>
+
+  <!-- BODY -->
+  <div class="app-body">
+
+    <!-- SIDEBAR -->
+    <app-sidebar
+      class="app-sidebar"
+      [collapsed]="sidebarCollapsed">
+    </app-sidebar>
+
+    <!-- CONTENT -->
+    <main class="app-content">
+
+      <div class="page-container">
+
+        <!-- BREADCRUMB -->
+        <app-breadcrumb></app-breadcrumb>
+
+        <!-- PAGE HEADER -->
+        <app-page-header
+          *ngIf="!hidePageHeader"
+          [title]="pageTitle"
+          [subtitle]="pageSubtitle"
+          [showActions]="!isDashboard">
+        </app-page-header>
+
+        <!-- PAGE BODY -->
+        <div class="ch-main-content">
+          <router-outlet></router-outlet>
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- FOOTER -->
+  <app-footer></app-footer>
+
+</div>

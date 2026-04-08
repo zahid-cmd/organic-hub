@@ -1,0 +1,167 @@
+<div class="page-body">
+
+  <app-organic-toast></app-organic-toast>
+
+  <app-page-sub-header title="Create / Update Product Type">
+    <div page-actions class="subheader-actions">
+
+      <button
+        type="button"
+        class="ch-btn"
+        *ngIf="!isViewMode"
+        (click)="onSave()">
+        {{ mode === 'edit' ? 'Update' : 'Save' }}
+      </button>
+
+      <button
+        type="button"
+        class="ch-btn"
+        *ngIf="!isViewMode"
+        (click)="onClear()">
+        Clear
+      </button>
+
+      <button
+        type="button"
+        class="ch-btn"
+        (click)="onBack()">
+        Back
+      </button>
+
+    </div>
+  </app-page-sub-header>
+
+  <div class="page-body-content">
+    <div class="form-body">
+
+      <!-- ===================================================== -->
+      <!-- COLUMN 1 - IDENTIFICATION -->
+      <!-- ===================================================== -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+
+            <div class="section-header">Product Type Identification</div>
+
+            <div class="form-field">
+              <label>Product Type Code</label>
+              <input type="text"
+                     [(ngModel)]="productType.typeCode"
+                     readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Product Type Name</label>
+              <input type="text"
+                     [(ngModel)]="productType.typeName"
+                     [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>Status</label>
+              <select [(ngModel)]="productType.status"
+                      [disabled]="isViewMode">
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label>Remarks</label>
+              <textarea [(ngModel)]="productType.remarks"
+                        [disabled]="isViewMode"></textarea>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================================================== -->
+      <!-- COLUMN 2 - BUSINESS BEHAVIOUR -->
+      <!-- ===================================================== -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+
+            <div class="section-header">Business Behaviour</div>
+
+            <div class="form-field">
+              <label>Purchasable</label>
+              <select [(ngModel)]="productType.isPurchasable"
+                      [disabled]="isViewMode">
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label>Sellable</label>
+              <select [(ngModel)]="productType.isSellable"
+                      [disabled]="isViewMode">
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label>Production Item</label>
+              <select [(ngModel)]="productType.isProductionItem"
+                      [disabled]="isViewMode">
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================================================== -->
+      <!-- COLUMN 3 - AUDIT INFO -->
+      <!-- ===================================================== -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+
+            <div class="section-header">Audit Info</div>
+
+            <div class="form-field">
+              <label>Created By</label>
+              <input [(ngModel)]="productType.createdBy" readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Created Date</label>
+              <input [(ngModel)]="productType.createdDate" readonly>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================================================== -->
+      <!-- COLUMN 4 - UPDATE INFO -->
+      <!-- ===================================================== -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+
+            <div class="section-header">Update Info</div>
+
+            <div class="form-field">
+              <label>Updated By</label>
+              <input [(ngModel)]="productType.updatedBy" readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Updated Date</label>
+              <input [(ngModel)]="productType.updatedDate" readonly>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

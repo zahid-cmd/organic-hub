@@ -1,0 +1,365 @@
+/* ===============================
+   ROOT LAYOUT (STANDARD)
+=============================== */
+
+.pi-body {
+  height: calc(100vh - var(--page-offset));
+  display: flex;
+  gap: 12px;
+
+  /* STANDARD spacing */
+  padding: 12px 0 20px;
+  box-sizing: border-box;
+}
+
+/* ===============================
+   COLUMNS
+=============================== */
+
+.pi-col {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* LEFT COLUMN */
+.pi-left {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* CENTER COLUMN */
+.pi-center {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* PURCHASE RETURN – WIDE CENTER */
+.pi-center.pi-wide {
+  width: 75%;
+}
+
+/* RIGHT COLUMN (kept safe for other pages) */
+.pi-right {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===============================
+   STANDARD FULL-HEIGHT CENTER BOX
+=============================== */
+
+.pi-center-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 0;
+}
+
+/* ===============================
+   BOXES
+=============================== */
+
+.pi-box {
+  background: #ffffff;
+  border: 1px solid #e1e1e1;
+  border-radius: 6px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pi-box-title {
+  font-size: 13px;
+  font-weight: 600;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 6px;
+  margin-bottom: 6px;
+}
+
+/* ===============================
+   FORM FIELDS (GLOBAL)
+=============================== */
+
+.pi-box label {
+  font-size: 12px;
+  color: #444;
+}
+
+.pi-box input,
+.pi-box select,
+.pi-box textarea {
+  height: 36px;
+  font-size: 12px;
+  padding: 0 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.pi-box textarea {
+  height: 72px;
+  padding-top: 4px;
+  resize: none;
+}
+
+/* FLAT readonly / disabled (STANDARD) */
+.pi-box input[readonly],
+.pi-box input[disabled],
+.pi-box textarea[readonly],
+.pi-box textarea[disabled] {
+  background-color: #f5f5f5;
+  border-color: #d0d0d0;
+  box-shadow: none;
+  cursor: not-allowed;
+  font-weight: 600;
+}
+
+/* ===============================
+   ROW SYSTEM
+=============================== */
+
+.pi-row,
+.pi-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.pi-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pi-full {
+  width: 100%;
+}
+
+/* ===============================
+   ADD PRODUCT / RETURN SECTION
+=============================== */
+
+.pi-add-product {
+  flex: 0 0 auto;
+}
+
+.pi-add-row {
+  display: grid;
+  grid-template-columns: 4fr 0.7fr 1.2fr 1.2fr;
+  gap: 10px;
+  align-items: center;
+}
+
+.pi-add-row select,
+.pi-add-row input {
+  width: 100%;
+  height: 36px;
+  font-size: 13px;
+  border-radius: 4px;
+}
+
+.pi-add-row input {
+  text-align: right;
+  padding-right: 10px;
+}
+
+.pi-add-row input[readonly],
+.pi-add-row input[disabled] {
+  background-color: #f5f5f5;
+  color: #666;
+}
+
+/* Action buttons */
+.pi-add-action {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Button (unchanged theme) */
+.pi-add-action .ch-btn.primary {
+  height: 32px;
+  min-width: 68px;
+  padding: 0 18px;
+  background: linear-gradient(135deg, #1f7a3a 0%, #5fae3b 100%);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid #1f7a3a;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.pi-add-action .ch-btn.primary:hover {
+  background: linear-gradient(135deg, #16612e 0%, #4e9a33 100%);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+  transform: translateY(-1px);
+}
+
+/* ===============================
+   CART (STANDARD)
+=============================== */
+
+.pi-cart {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.pi-cart-table-wrapper {
+  flex: 1;
+  overflow-y: auto;
+  border-top: 1px solid #e5e5e5;
+}
+
+/* ===============================
+   TABLE
+=============================== */
+
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.product-table thead th {
+  position: sticky;
+  top: 0;
+  background: #f6f7f4;
+  border-bottom: 1px solid #ddd;
+  padding: 8px;
+  font-weight: 600;
+  z-index: 2;
+}
+
+.product-table td {
+  padding: 6px 8px;
+  border-bottom: 1px solid #eee;
+}
+
+.cart-empty {
+  text-align: center;
+  padding: 20px;
+  color: #888;
+  font-style: italic;
+}
+
+.cart-total-row td {
+  font-weight: 600;
+  background: #f3f5ef;
+  border-top: 2px solid #dcdcdc;
+}
+
+/* ===============================
+   ALIGNMENT HELPERS
+=============================== */
+
+.txt-center { text-align: center; }
+.txt-right  { text-align: right; }
+
+/* ===============================
+   REMOVE BUTTON
+=============================== */
+
+.remove-btn {
+  border: none;
+  background: transparent;
+  color: #c0392b;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.remove-btn:hover {
+  color: #e74c3c;
+}
+
+/* ===============================
+   INPUT THEME (CLICKABLE ONLY)
+=============================== */
+
+.pi-body input:not([readonly]):not([disabled]),
+.pi-body select:not([disabled]),
+.pi-body textarea.pi-notes {
+  border: 1px solid #9fb89a;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pi-body input:not([readonly]):not([disabled]):hover,
+.pi-body select:not([disabled]):hover,
+.pi-body textarea.pi-notes:hover {
+  border-color: #5fae3b;
+}
+
+.pi-body input:not([readonly]):not([disabled]):focus,
+.pi-body select:not([disabled]):focus,
+.pi-body textarea.pi-notes:focus {
+  outline: none;
+  border-color: #1f7a3a;
+  box-shadow: 0 0 0 2px rgba(95, 174, 59, 0.25);
+}
+
+/* ===============================
+   PURCHASE RETURN – ALIGNMENT
+=============================== */
+
+.pi-left .pi-box:first-of-type .pi-row input {
+  text-align: center;
+  font-weight: 600;
+}
+
+.pi-left .pi-box:nth-of-type(2) .pi-row-2 input {
+  text-align: right;
+  font-weight: 600;
+  padding-right: 10px;
+}
+/* ===============================
+   LEFT COLUMN – BACKGROUND CONTAINER (STANDARD)
+=============================== */
+
+.pi-left {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  /* 🔥 THIS IS THE FIX */
+  background: #ffffff;
+  border-radius: 6px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+/* LEFT COLUMN: make last box fill remaining height */
+.pi-left {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+
+/* Return Summary must be a flex column */
+.pi-left .pi-box:last-child {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+
+/* Notes textarea: FIXED */
+.pi-left .pi-box:last-child .pi-notes {
+  flex: 1;
+  min-height: 72px;   /* 🔒 baseline height */
+  resize: none;
+}
+

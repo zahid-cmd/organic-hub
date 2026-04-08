@@ -1,0 +1,323 @@
+/* =====================================================
+   PAGE SUB HEADER
+===================================================== */
+
+.ch-page-subheader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 56px;
+  padding: 8px 12px;
+  background: linear-gradient(90deg, #0A2418 0%, #8FB339 55%, #F4C430 100%);
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.subheader-left,
+.subheader-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* INPUTS */
+
+.ch-input {
+  height: 36px;
+  padding: 0 10px;
+  font-size: 13px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+}
+
+.ch-input-wide {
+  min-width: 220px;
+}
+
+.ch-input:focus {
+  outline: none;
+  border-color: #4f7f52;
+  box-shadow: 0 0 0 1px #4f7f52;
+}
+
+/* BUTTONS */
+
+.ch-btn {
+  height: 36px;
+  padding: 0 14px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.ch-btn.primary {
+  background: #4f7f52;
+  color: #ffffff;
+  border-color: #4f7f52;
+}
+
+.icon-btn {
+  height: 36px;
+  width: 36px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* =====================================================
+   REPORT HEADER (LOGO + TITLE)
+===================================================== */
+
+.journal-report-wrapper {
+  width: 85%;
+  margin: 16px auto 0;
+  background: #ffffff;
+  padding: 0 30px;
+  box-sizing: border-box;
+}
+
+.journal-report-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+}
+
+.journal-report-left img {
+  height: 100px;
+}
+
+.journal-report-right {
+  text-align: right;
+  line-height: 1.6;
+}
+
+.journal-report-right h2 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: #2f6f44;
+}
+
+.journal-report-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #eab308;
+}
+
+.journal-report-meta {
+  font-size: 16px;
+  color: #111827;
+}
+
+/* DOUBLE DIVIDER */
+
+.journal-divider {
+  height: 2px;
+  border-top: 1px solid #6b7280;
+  border-bottom: 1px solid #6b7280;
+  margin-left: -30px;
+  margin-right: -30px;
+}
+
+/* =====================================================
+   CONTEXT RIBBON (MODULE + PERIOD)
+===================================================== */
+
+.journal-context-ribbon {
+  width: 85%;
+  margin: 0 auto;
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  box-sizing: border-box;
+}
+
+.journal-context-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.journal-context-right {
+  text-align: right;
+}
+
+.divider {
+  color: #9ca3af;
+}
+
+/* =====================================================
+   SCROLLABLE JOURNAL BODY
+===================================================== */
+
+.journal-scroll {
+  width: 85%;
+  margin: 0 auto 20px;
+  max-height: 520px;
+  overflow-y: auto;
+  background: #ffffff;
+  padding: 12px 30px;
+  box-sizing: border-box;
+}
+
+/* Scrollbar */
+
+.journal-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.journal-scroll::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+/* =====================================================
+   JOURNAL CARD
+===================================================== */
+
+.journal-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.journal-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  padding: 16px;
+}
+
+/* =====================================================
+   VOUCHER HEADER
+===================================================== */
+
+.journal-voucher-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.voucher-date {
+  color: #6b7280;
+}
+
+/* =====================================================
+   JOURNAL ROWS
+===================================================== */
+
+.journal-grid {
+  display: flex;
+  flex-direction: column;
+}
+
+.journal-row {
+  display: grid;
+  grid-template-columns: 2fr 140px 140px;
+  font-size: 14px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.journal-row > div {
+  padding: 6px 8px;
+}
+
+/* =====================================================
+   NARRATION
+===================================================== */
+
+.journal-narration {
+  margin-top: 10px;
+  padding: 8px 10px;
+  background: #f8fafc;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #374151;
+}
+
+/* =====================================================
+   TOTAL ROW
+===================================================== */
+
+.journal-total {
+  display: grid;
+  grid-template-columns: 2fr 140px 140px;
+  font-weight: 700;
+  background: #fefce8;
+  border-top: 1px solid #9ca3af;
+  margin-top: 10px;
+  padding: 8px 0;
+}
+
+.journal-total > div {
+  padding: 0 8px;
+}
+
+/* =====================================================
+   ALIGNMENT + COLORS
+===================================================== */
+
+.right {
+  text-align: right;
+}
+
+.debit {
+  color: #166534;
+  font-weight: 600;
+}
+
+.credit {
+  color: #991b1b;
+  font-weight: 600;
+}
+
+.journal-voucher-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.voucher-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.voucher-number {
+  font-weight: 700;
+  color: #111827;
+}
+
+.voucher-right {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #374151;
+}

@@ -1,0 +1,436 @@
+<!-- PAGE SUB HEADER -->
+<app-page-sub-header title="Purchase Invoice">
+
+  <div page-actions class="subheader-actions">
+
+    <button
+      class="ch-btn primary"
+      (click)="onSave()"
+      *ngIf="!isViewMode"
+      [disabled]="saving">
+
+      {{ isEditMode ? 'Update' : 'Save' }}
+
+    </button>
+
+    <button
+      class="ch-btn"
+      (click)="resetInvoice()"
+      *ngIf="!isViewMode">
+      Reset
+    </button>
+
+    <button
+      class="ch-btn"
+      (click)="goBack()">
+      Back
+    </button>
+
+  </div>
+
+</app-page-sub-header>
+
+
+<div class="page-body">
+
+  <div class="page-body-content">
+
+    <fieldset [disabled]="isViewMode" class="view-lock">
+
+      <div class="pi-body">
+
+        <!-- LEFT COLUMN -->
+        <div class="pi-col pi-left">
+
+          <!-- INVOICE DETAILS -->
+          <div class="pi-box">
+
+            <div class="pi-box-title">Invoice Details</div>
+
+            <div class="pi-row">
+
+              <div class="pi-field">
+                <label>Invoice Number</label>
+                <input type="text" [(ngModel)]="invoice.invoiceNo" readonly>
+              </div>
+
+              <div class="pi-field">
+                <label>Invoice Date</label>
+                <input type="date" [(ngModel)]="invoice.invoiceDate">
+              </div>
+
+            </div>
+
+
+            <div class="pi-row">
+
+              <div class="pi-field">
+
+                <label>Location</label>
+
+                <select
+                  [(ngModel)]="invoice.location"
+                  name="location"
+                  [disabled]="isViewMode">
+
+                  <option [ngValue]="''">Select Location</option>
+
+                  <option
+                    *ngFor="let w of warehouses"
+                    [ngValue]="w.warehouseName">
+
+                    {{ w.warehouseName }}
+
+                  </option>
+
+                </select>
+
+              </div>
+
+              <div class="pi-field">
+
+                <label>Reference</label>
+
+                <input
+                  type="text"
+                  class="txt-center"
+                  [(ngModel)]="invoice.reference"
+                  placeholder="Invoice / Challan / Memo">
+
+              </div>
+
+            </div>
+
+
+            <!-- PURCHASE ORDER -->
+            <div class="pi-field">
+
+              <label>Purchase Order</label>
+
+              <select
+                [(ngModel)]="selectedPurchaseOrderId"
+                (change)="onPurchaseOrderChange()"
+                [disabled]="poLocked || isViewMode">
+
+                <option [ngValue]="0">Select Purchase Order</option>
+
+                <option
+                  *ngFor="let po of purchaseOrders"
+                  [ngValue]="po.id">
+
+                  {{ po.orderNo }}
+
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <!-- SUPPLIER -->
+            <div class="pi-field">
+
+              <label>Supplier</label>
+
+              <select
+                [(ngModel)]="invoice.supplierId"
+                [disabled]="poMandatory">
+
+                <option [ngValue]="0">Select Supplier</option>
+
+                <option
+                  *ngFor="let s of suppliers"
+                  [ngValue]="s.id">
+
+                  {{ s.supplierName }}
+
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <!-- PURCHASE TYPE -->
+            <div class="pi-field">
+
+              <label>Purchase Type</label>
+
+              <select [(ngModel)]="invoice.purchaseType">
+
+                <option value="Finished">Finished Product</option>
+                <option value="Raw">Raw Material</option>
+
+              </select>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- ADD PRODUCT -->
+          <div class="pi-box">
+
+            <div class="pi-box-title">Add Product</div>
+
+
+            <div class="pi-field">
+
+              <select
+                [(ngModel)]="entry.productSubCategoryId"
+                (change)="entry.productId = 0">
+
+                <option [ngValue]="0">Select Sub Category</option>
+
+                <option
+                  *ngFor="let sc of productSubCategories"
+                  [ngValue]="sc.id">
+
+                  {{ sc.subCategoryName }}
+
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <div class="pi-field">
+
+              <select [(ngModel)]="entry.productId">
+
+                <option [ngValue]="0">Select Product</option>
+
+                <option
+                  *ngFor="let p of filteredProducts"
+                  [ngValue]="p.id">
+
+                  {{ p.productName }}
+
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <div class="pi-row">
+
+              <input
+                type="number"
+                class="txt-center"
+                [(ngModel)]="entry.quantity"
+                placeholder="Qty">
+
+              <input
+                type="text"
+                class="txt-center"
+                [value]="entry.rate ? formatNumber(entry.rate) : ''"
+                (input)="entry.rate=parseNumber($any($event.target).value)"
+                placeholder="Rate">
+
+            </div>
+
+
+            <div class="pi-row">
+
+              <input
+                type="number"
+                class="txt-center"
+                [(ngModel)]="entry.normalLoss"
+                placeholder="Normal Loss %">
+
+              <input
+                type="text"
+                class="txt-center"
+                [value]="calculatedNetQty ? (calculatedNetQty | number:'1.0-2') : ''"
+                placeholder="Net Qty"
+                readonly>
+
+            </div>
+
+
+            <div class="pi-row">
+
+              <input
+                type="text"
+                class="txt-center"
+                [value]="calculatedAmount ? (calculatedAmount | number:'1.0-0') : ''"
+                placeholder="Amount"
+                readonly>
+
+              <input
+                type="text"
+                class="txt-center"
+                [value]="selectedProductStock > 0 ? selectedProductStock : ''"
+                placeholder="Stock"
+                readonly>
+
+            </div>
+
+
+            <div class="pi-add-action">
+
+              <button
+                class="ch-btn success"
+                *ngIf="editingIndex !== null"
+                (click)="addItem()">
+
+                Update
+
+              </button>
+
+              <button
+                class="ch-btn primary"
+                *ngIf="editingIndex === null"
+                (click)="addItem()">
+
+                Add
+
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- CENTER COLUMN -->
+        <div class="pi-col pi-center">
+
+          <div class="pi-center-box">
+
+            <!-- SUMMARY -->
+            <div class="pi-box">
+
+              <div class="pi-box-title">Invoice Summary</div>
+
+              <div class="pi-summary-grid">
+
+                <div class="pi-field">
+                  <label>Product Value</label>
+                  <input class="txt-right" [value]="invoice.productValue | number:'1.0-0'" readonly>
+                </div>
+
+                <div class="pi-field">
+                  <label>Primary Transport</label>
+                  <input
+                    class="txt-right"
+                    [value]="invoice.primaryTransport ? formatNumber(invoice.primaryTransport) : ''"
+                    (input)="invoice.primaryTransport=parseNumber($any($event.target).value);onExtraCostChange()">
+                </div>
+
+                <div class="pi-field">
+                  <label>Secondary Transport</label>
+                  <input
+                    class="txt-right"
+                    [value]="invoice.secondaryTransport ? formatNumber(invoice.secondaryTransport) : ''"
+                    (input)="invoice.secondaryTransport=parseNumber($any($event.target).value);onExtraCostChange()">
+                </div>
+
+                <div class="pi-field">
+                  <label>Discount</label>
+                  <input
+                    class="txt-right"
+                    [value]="invoice.discount ? formatNumber(invoice.discount) : ''"
+                    (input)="invoice.discount=parseNumber($any($event.target).value);onExtraCostChange()">
+                </div>
+
+                <div class="pi-field">
+                  <label>Invoice Value</label>
+                  <input class="txt-right" [value]="invoice.invoiceValue | number:'1.0-0'" readonly>
+                </div>
+
+              </div>
+
+            </div>
+
+
+
+            <!-- CART -->
+            <div class="pi-box pi-cart">
+
+              <div class="pi-box-title">Product Cart</div>
+
+              <div class="pi-cart-table-wrapper">
+
+                <!-- your existing table stays unchanged -->
+
+              </div>
+
+            </div>
+
+
+
+            <!-- NOTES -->
+            <div class="pi-box">
+
+              <div class="pi-box-title">Notes / Remarks</div>
+
+              <textarea
+                class="pi-notes"
+                [(ngModel)]="invoice.notes">
+
+              </textarea>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- RIGHT COLUMN -->
+        <div class="pi-col pi-right">
+
+          <div class="pi-shelf">
+
+            <div class="pi-box-title">Product Shelf</div>
+
+            <div class="pi-shelf-search">
+
+              <input
+                type="text"
+                placeholder="Search product..."
+                [(ngModel)]="shelfSearch">
+
+            </div>
+
+            <div class="pi-shelf-list">
+
+              <div
+                class="pi-product-card"
+                *ngFor="let p of filteredShelfProducts"
+                (click)="selectProductFromShelf(p)">
+
+                <div class="pi-product-img">
+                  <img [src]="p.primaryImageUrl || '/Logo.png'">
+                </div>
+
+                <div class="pi-product-name">
+                  {{ p.productName }}
+                </div>
+
+                <div class="pi-product-stock">
+                  Stock: {{ p.currentStock || 0 }}
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </fieldset>
+
+  </div>
+
+</div>

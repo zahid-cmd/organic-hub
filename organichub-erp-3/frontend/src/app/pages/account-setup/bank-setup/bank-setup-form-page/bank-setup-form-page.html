@@ -1,0 +1,149 @@
+<div class="page-body">
+
+  <app-organic-toast></app-organic-toast>
+
+  <app-page-sub-header title="Create / Update Bank Setup">
+    <div page-actions class="subheader-actions">
+
+      <button class="ch-btn"
+              *ngIf="!isViewMode"
+              (click)="onSave()">
+        {{ mode === 'edit' ? 'Update' : 'Save' }}
+      </button>
+
+      <button class="ch-btn"
+              *ngIf="!isViewMode"
+              (click)="onClear()">
+        Clear
+      </button>
+
+      <button class="ch-btn"
+              (click)="onBack()">
+        Back
+      </button>
+
+    </div>
+  </app-page-sub-header>
+
+  <div class="page-body-content">
+    <div class="form-body">
+
+      <!-- COLUMN 1 -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+
+            <div class="section-header">Bank Information</div>
+
+            <div class="form-field">
+              <label>Bank Code</label>
+              <input type="text"
+                     [(ngModel)]="bank.bankCode"
+                     readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Bank Name</label>
+              <input type="text"
+                     [(ngModel)]="bank.bankName"
+                     [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>Short Name</label>
+              <input type="text"
+                     [(ngModel)]="bank.shortName"
+                     [disabled]="isViewMode">
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- COLUMN 2 -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+
+            <div class="section-header">Routing Information</div>
+
+            <div class="form-field">
+              <label>Routing Number</label>
+              <input type="text"
+                     [(ngModel)]="bank.routingNumber"
+                     [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>Swift Code</label>
+              <input type="text"
+                     [(ngModel)]="bank.swiftCode"
+                     [disabled]="isViewMode">
+            </div>
+
+            <div class="form-field">
+              <label>Status</label>
+              <select [(ngModel)]="bank.status"
+                      [disabled]="isViewMode">
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+              </select>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- COLUMN 3 -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+
+            <div class="section-header">System Information</div>
+
+            <div class="form-field">
+              <label>Created By</label>
+              <input type="text"
+                     [(ngModel)]="bank.createdBy"
+                     readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Created Date</label>
+              <input type="text"
+                     [(ngModel)]="bank.createdDate"
+                     readonly>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- COLUMN 4 -->
+      <div class="form-col">
+        <div class="form-group-box">
+          <div class="form-section">
+
+            <div class="section-header">Audit Information</div>
+
+            <div class="form-field">
+              <label>Updated By</label>
+              <input type="text"
+                     [(ngModel)]="bank.updatedBy"
+                     readonly>
+            </div>
+
+            <div class="form-field">
+              <label>Updated Date</label>
+              <input type="text"
+                     [(ngModel)]="bank.updatedDate"
+                     readonly>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

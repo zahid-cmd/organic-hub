@@ -1,0 +1,401 @@
+/* ======================================================
+   PRODUCT LIST – PAGE WRAPPER (FIXED)
+====================================================== */
+
+.page-body {
+  flex: 1;                 /* 🔑 NOT height */
+  display: flex;
+  flex-direction: column;
+  min-height: 0;           /* 🔥 ABSOLUTELY REQUIRED */
+  overflow: hidden;
+}
+
+.page-body-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;           /* 🔥 REQUIRED */
+  overflow: hidden;
+}
+
+
+/* ======================================================
+   LIST BODY (HEIGHT BOUNDARY)
+====================================================== */
+
+.ch-list-body {
+  flex: 1;
+  min-height: 0;              /* 🔥 CRITICAL */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ======================================================
+   TABLE CONTAINER
+====================================================== */
+
+.ch-list-table {
+  flex: 1;
+  min-height: 0;              /* 🔥 CRITICAL */
+  display: flex;
+  flex-direction: column;
+
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* ======================================================
+   TABLE HEADER (FIXED)
+====================================================== */
+
+.ch-list-header {
+  flex-shrink: 0;
+
+  display: grid;
+  grid-template-columns:
+    60px
+    140px
+    1.5fr
+    1fr
+    100px
+    1fr
+    1fr
+    120px
+    140px;
+
+  align-items: center;
+  height: 44px;
+
+  background: #e8f3e4;
+  font-size: 14px;
+  font-weight: 600;
+  border-bottom: 1px solid #e0e6f1;
+}
+
+/* ======================================================
+   BODY ROWS — THE ONLY SCROLL AREA
+====================================================== */
+
+.ch-list-body-rows {
+  flex: 1;
+  min-height: 0;
+  overflow-y: hidden;   /* 🔒 locked */
+}
+
+
+.ch-list-body-rows.scrollable {
+  overflow-y: auto;
+}
+
+
+
+/* ======================================================
+   DATA ROW
+====================================================== */
+
+.ch-list-row {
+  display: grid;
+  grid-template-columns:
+    60px
+    140px
+    1.5fr
+    1fr
+    100px
+    1fr
+    1fr
+    120px
+    140px;
+
+  align-items: center;
+  min-height: 43px;
+  font-size: 14px;
+  border-bottom: 1px solid #eef0f4;
+}
+
+.ch-list-row:last-child {
+  border-bottom: none;
+}
+
+/* ======================================================
+   CELLS
+====================================================== */
+
+.col {
+  padding: 0 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.col-sl {
+  text-align: center;
+}
+
+/* ======================================================
+   STATUS — PLAIN TEXT
+====================================================== */
+
+.status-badge {
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  font-weight: normal;
+  color: inherit;
+}
+
+/* ======================================================
+   ACTION ICONS — ORGANIC HUB THEME (LOCKED)
+====================================================== */
+
+.action-icons {
+  display: flex;
+  gap: 8px;
+}
+
+.icon-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  border: none;
+
+  background: #f4f6fb;          /* neutral light */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.icon-btn i {
+  font-size: 14px;
+}
+
+/* VIEW — ORGANIC GREEN */
+.icon-btn.view {
+  color: #2f6b3f;               /* Organic green */
+}
+
+.icon-btn.view:hover {
+  background: rgba(47, 107, 63, 0.12);
+}
+
+/* EDIT — ORGANIC AMBER */
+.icon-btn.edit {
+  color: #c48a12;               /* Organic amber */
+}
+
+.icon-btn.edit:hover {
+  background: rgba(196, 138, 18, 0.15);
+}
+
+/* DELETE — RED (CONFIRMED & LOCKED) */
+.icon-btn.delete {
+  color: #dc2626;               /* 🔴 RED */
+}
+
+.icon-btn.delete:hover {
+  background: rgba(220, 38, 38, 0.15);
+}
+
+/* subtle press */
+.icon-btn:active {
+  transform: scale(0.96);
+}
+
+/* ======================================================
+   SCROLLBAR
+====================================================== */
+
+.ch-list-body-rows::-webkit-scrollbar {
+  width: 6px;
+}
+
+.ch-list-body-rows::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+.ch-list-body-rows::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* 🔒 HARD LIMIT: 10 ROWS VISIBLE */
+.ch-list-body-rows {
+  max-height: calc(10 * 44px); /* 10 rows × row height */
+  overflow-y: auto;
+}
+/* ======================================================
+   FORM GRID (FIXED HEIGHT – 4 COLUMNS)
+====================================================== */
+.form-body {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+
+  height: calc(100vh - var(--page-offset));
+  padding: 0px;
+  padding-top: 8px;
+  box-sizing: border-box;
+
+  align-items: stretch;
+  overflow: hidden;            /* 🔑 HARD STOP overflow */
+}
+
+
+
+/* ======================================================
+   COLUMN
+====================================================== */
+.form-col {
+  display: flex;
+  flex-direction: column;
+
+  height: 60%;                /* 🔑 REQUIRED */
+  min-height: 0;               /* 🔑 CRITICAL for flex overflow */
+}
+
+
+
+
+
+/* Column 4 special split behavior */
+.form-col.col-split {
+  display: flex;
+  flex-direction: column;
+  height: 60%;
+  min-height: 0;
+}
+
+
+/* ======================================================
+   GROUP BOX (SECTION CONTAINER)
+====================================================== */
+.form-group-box {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 16px;
+  box-sizing: border-box;
+
+  height: 100%;
+  min-height: 0;               /* 🔑 ALLOWS flex shrink */
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* Column-4: push top & bottom sections apart naturally */
+.form-col.col-split .form-group-box {
+  justify-content: flex-start;   /* 🔑 stop artificial gap */
+  gap: 24px;                     /* 🔑 clean visual spacing */
+}
+
+
+
+/* ======================================================
+   SECTION
+====================================================== */
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  min-height: 0;               /* 🔑 PREVENTS overflow */
+}
+
+
+/* Bottom section visual separation (Column 4) */
+.section-bottom {
+  padding-top: 16px;
+  border-top: 1px dashed #e5e7eb;
+}
+
+
+/* ======================================================
+   SECTION HEADER
+====================================================== */
+.section-header {
+  font-size: 18px;
+  font-weight: 600;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+
+/* ======================================================
+   FIELD
+====================================================== */
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-field label {
+  font-size: 16px;
+  color: #374151;
+}
+
+
+/* ======================================================
+   INPUT
+====================================================== */
+.form-field input,
+.form-field select,
+.form-field textarea {
+  height: 36px;
+  padding: 4px 8px;
+  font-size: 15px;
+
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  box-sizing: border-box;
+
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+
+/* ======================================================
+   INPUT FOCUS / SELECTION STYLE (STANDARD)
+====================================================== */
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  border-color: #1f7a3a;
+  box-shadow: 0 0 0 2px rgba(95, 174, 59, 0.25);
+}
+
+
+/* ======================================================
+   READ-ONLY / VIEW MODE
+====================================================== */
+.form-field input[readonly],
+.form-field input[disabled],
+.form-field select[disabled] {
+  background-color: #f9fafb;
+  color: #6b7280;
+  cursor: not-allowed;
+}
+
+/* =====================================================
+   EMPTY STATE
+===================================================== */
+.ch-empty-state {
+  flex: 1;                          /* 🔥 controls height filling */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;          /* 🔥 vertical centering */
+
+  background: #ffffff;              /* 🔥 background color */
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+
+  text-align: center;
+  padding: 40px 20px;
+}
